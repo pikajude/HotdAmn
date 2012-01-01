@@ -1,0 +1,495 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2519311614AE46DB003A5FBA /* HDTabButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519311514AE46DB003A5FBA /* HDTabButtonCell.m */; };
+		2519BE5514AE21F30029F746 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE5414AE21F30029F746 /* Cocoa.framework */; };
+		2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE5D14AE21F30029F746 /* InfoPlist.strings */; };
+		2519BE6114AE21F30029F746 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE6014AE21F30029F746 /* main.m */; };
+		2519BE6514AE21F30029F746 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE6314AE21F30029F746 /* Credits.rtf */; };
+		2519BE6814AE21F30029F746 /* HotdAmnAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE6714AE21F30029F746 /* HotdAmnAppDelegate.m */; };
+		2519BE6B14AE21F30029F746 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE6914AE21F30029F746 /* MainMenu.xib */; };
+		2519BE7314AE21F30029F746 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE7214AE21F30029F746 /* SenTestingKit.framework */; };
+		2519BE7414AE21F30029F746 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE5414AE21F30029F746 /* Cocoa.framework */; };
+		2519BE7C14AE21F30029F746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE7A14AE21F30029F746 /* InfoPlist.strings */; };
+		2519BE7E14AE21F30029F746 /* HotdAmnTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE7D14AE21F30029F746 /* HotdAmnTests.h */; };
+		2519BE8014AE21F30029F746 /* HotdAmnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE7F14AE21F30029F746 /* HotdAmnTests.m */; };
+		2519BE9614AE22D30029F746 /* HDTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9514AE22D30029F746 /* HDTabBarView.m */; };
+		2519BE9814AE23040029F746 /* HDApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9714AE23040029F746 /* HDApplicationController.m */; };
+		2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* HDTabBarController.m */; };
+		2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* HDTabButton.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2519BE7514AE21F30029F746 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2519BE4714AE21F20029F746 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2519BE4F14AE21F30029F746;
+			remoteInfo = HotdAmn;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2519311414AE46DB003A5FBA /* HDTabButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabButtonCell.h; path = Views/HDTabButtonCell.h; sourceTree = "<group>"; };
+		2519311514AE46DB003A5FBA /* HDTabButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabButtonCell.m; path = Views/HDTabButtonCell.m; sourceTree = "<group>"; };
+		2519BE5014AE21F30029F746 /* HotdAmn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotdAmn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2519BE5414AE21F30029F746 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2519BE5714AE21F30029F746 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2519BE5814AE21F30029F746 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2519BE5914AE21F30029F746 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2519BE5C14AE21F30029F746 /* HotdAmn-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HotdAmn-Info.plist"; sourceTree = "<group>"; };
+		2519BE5E14AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2519BE6014AE21F30029F746 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2519BE6214AE21F30029F746 /* HotdAmn-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HotdAmn-Prefix.pch"; sourceTree = "<group>"; };
+		2519BE6414AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2519BE6614AE21F30029F746 /* HotdAmnAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotdAmnAppDelegate.h; sourceTree = "<group>"; };
+		2519BE6714AE21F30029F746 /* HotdAmnAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotdAmnAppDelegate.m; sourceTree = "<group>"; };
+		2519BE6A14AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2519BE7114AE21F30029F746 /* HotdAmnTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HotdAmnTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2519BE7214AE21F30029F746 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		2519BE7914AE21F30029F746 /* HotdAmnTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HotdAmnTests-Info.plist"; sourceTree = "<group>"; };
+		2519BE7B14AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2519BE7D14AE21F30029F746 /* HotdAmnTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotdAmnTests.h; sourceTree = "<group>"; };
+		2519BE7F14AE21F30029F746 /* HotdAmnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotdAmnTests.m; sourceTree = "<group>"; };
+		2519BE8E14AE22880029F746 /* HDApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDApplicationController.h; path = Controllers/HDApplicationController.h; sourceTree = "<group>"; };
+		2519BE9414AE22D30029F746 /* HDTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabBarView.h; path = Views/HDTabBarView.h; sourceTree = "<group>"; };
+		2519BE9514AE22D30029F746 /* HDTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabBarView.m; path = Views/HDTabBarView.m; sourceTree = "<group>"; };
+		2519BE9714AE23040029F746 /* HDApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDApplicationController.m; path = Controllers/HDApplicationController.m; sourceTree = "<group>"; };
+		2519BE9914AE2C920029F746 /* HDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabBarController.h; path = Controllers/HDTabBarController.h; sourceTree = "<group>"; };
+		2519BE9A14AE2C920029F746 /* HDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabBarController.m; path = Controllers/HDTabBarController.m; sourceTree = "<group>"; };
+		2568BE1814AE9C2900E1C825 /* HDTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabButton.h; path = Views/HDTabButton.h; sourceTree = "<group>"; };
+		2568BE1914AE9C2900E1C825 /* HDTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabButton.m; path = Views/HDTabButton.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2519BE4D14AE21F30029F746 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519BE5514AE21F30029F746 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2519BE6D14AE21F30029F746 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519BE7314AE21F30029F746 /* SenTestingKit.framework in Frameworks */,
+				2519BE7414AE21F30029F746 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2519BE4514AE21F20029F746 = {
+			isa = PBXGroup;
+			children = (
+				2519BE5A14AE21F30029F746 /* HotdAmn */,
+				2519BE7714AE21F30029F746 /* HotdAmnTests */,
+				2519BE5314AE21F30029F746 /* Frameworks */,
+				2519BE5114AE21F30029F746 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2519BE5114AE21F30029F746 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE5014AE21F30029F746 /* HotdAmn.app */,
+				2519BE7114AE21F30029F746 /* HotdAmnTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2519BE5314AE21F30029F746 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE5414AE21F30029F746 /* Cocoa.framework */,
+				2519BE7214AE21F30029F746 /* SenTestingKit.framework */,
+				2519BE5614AE21F30029F746 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2519BE5614AE21F30029F746 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE5714AE21F30029F746 /* AppKit.framework */,
+				2519BE5814AE21F30029F746 /* CoreData.framework */,
+				2519BE5914AE21F30029F746 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		2519BE5A14AE21F30029F746 /* HotdAmn */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE6614AE21F30029F746 /* HotdAmnAppDelegate.h */,
+				2519BE8A14AE220E0029F746 /* Controllers */,
+				2519BE6714AE21F30029F746 /* HotdAmnAppDelegate.m */,
+				2519BE8914AE22040029F746 /* Views */,
+				2519BE6914AE21F30029F746 /* MainMenu.xib */,
+				2519BE5B14AE21F30029F746 /* Supporting Files */,
+			);
+			path = HotdAmn;
+			sourceTree = "<group>";
+		};
+		2519BE5B14AE21F30029F746 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE5C14AE21F30029F746 /* HotdAmn-Info.plist */,
+				2519BE5D14AE21F30029F746 /* InfoPlist.strings */,
+				2519BE6014AE21F30029F746 /* main.m */,
+				2519BE6214AE21F30029F746 /* HotdAmn-Prefix.pch */,
+				2519BE6314AE21F30029F746 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2519BE7714AE21F30029F746 /* HotdAmnTests */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE7D14AE21F30029F746 /* HotdAmnTests.h */,
+				2519BE7F14AE21F30029F746 /* HotdAmnTests.m */,
+				2519BE7814AE21F30029F746 /* Supporting Files */,
+			);
+			path = HotdAmnTests;
+			sourceTree = "<group>";
+		};
+		2519BE7814AE21F30029F746 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE7914AE21F30029F746 /* HotdAmnTests-Info.plist */,
+				2519BE7A14AE21F30029F746 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2519BE8914AE22040029F746 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2568BE1814AE9C2900E1C825 /* HDTabButton.h */,
+				2568BE1914AE9C2900E1C825 /* HDTabButton.m */,
+				2519311414AE46DB003A5FBA /* HDTabButtonCell.h */,
+				2519311514AE46DB003A5FBA /* HDTabButtonCell.m */,
+				2519BE9414AE22D30029F746 /* HDTabBarView.h */,
+				2519BE9514AE22D30029F746 /* HDTabBarView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2519BE8A14AE220E0029F746 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2519BE8E14AE22880029F746 /* HDApplicationController.h */,
+				2519BE9714AE23040029F746 /* HDApplicationController.m */,
+				2519BE9914AE2C920029F746 /* HDTabBarController.h */,
+				2519BE9A14AE2C920029F746 /* HDTabBarController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2519BE4F14AE21F30029F746 /* HotdAmn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2519BE8314AE21F30029F746 /* Build configuration list for PBXNativeTarget "HotdAmn" */;
+			buildPhases = (
+				2519BE4C14AE21F30029F746 /* Sources */,
+				2519BE4D14AE21F30029F746 /* Frameworks */,
+				2519BE4E14AE21F30029F746 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HotdAmn;
+			productName = HotdAmn;
+			productReference = 2519BE5014AE21F30029F746 /* HotdAmn.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2519BE7014AE21F30029F746 /* HotdAmnTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2519BE8614AE21F30029F746 /* Build configuration list for PBXNativeTarget "HotdAmnTests" */;
+			buildPhases = (
+				2519BE6C14AE21F30029F746 /* Sources */,
+				2519BE6D14AE21F30029F746 /* Frameworks */,
+				2519BE6E14AE21F30029F746 /* Resources */,
+				2519BE6F14AE21F30029F746 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2519BE7614AE21F30029F746 /* PBXTargetDependency */,
+			);
+			name = HotdAmnTests;
+			productName = HotdAmnTests;
+			productReference = 2519BE7114AE21F30029F746 /* HotdAmnTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2519BE4714AE21F20029F746 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2519BE4A14AE21F20029F746 /* Build configuration list for PBXProject "HotdAmn" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2519BE4514AE21F20029F746;
+			productRefGroup = 2519BE5114AE21F30029F746 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2519BE4F14AE21F30029F746 /* HotdAmn */,
+				2519BE7014AE21F30029F746 /* HotdAmnTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2519BE4E14AE21F30029F746 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */,
+				2519BE6514AE21F30029F746 /* Credits.rtf in Resources */,
+				2519BE6B14AE21F30029F746 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2519BE6E14AE21F30029F746 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519BE7C14AE21F30029F746 /* InfoPlist.strings in Resources */,
+				2519BE7E14AE21F30029F746 /* HotdAmnTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2519BE6F14AE21F30029F746 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2519BE4C14AE21F30029F746 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519BE6114AE21F30029F746 /* main.m in Sources */,
+				2519BE6814AE21F30029F746 /* HotdAmnAppDelegate.m in Sources */,
+				2519BE9614AE22D30029F746 /* HDTabBarView.m in Sources */,
+				2519BE9814AE23040029F746 /* HDApplicationController.m in Sources */,
+				2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */,
+				2519311614AE46DB003A5FBA /* HDTabButtonCell.m in Sources */,
+				2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2519BE6C14AE21F30029F746 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519BE8014AE21F30029F746 /* HotdAmnTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2519BE7614AE21F30029F746 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2519BE4F14AE21F30029F746 /* HotdAmn */;
+			targetProxy = 2519BE7514AE21F30029F746 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2519BE5D14AE21F30029F746 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2519BE5E14AE21F30029F746 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2519BE6314AE21F30029F746 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2519BE6414AE21F30029F746 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		2519BE6914AE21F30029F746 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2519BE6A14AE21F30029F746 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2519BE7A14AE21F30029F746 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2519BE7B14AE21F30029F746 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2519BE8114AE21F30029F746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2519BE8214AE21F30029F746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2519BE8414AE21F30029F746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
+				INFOPLIST_FILE = "HotdAmn/HotdAmn-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2519BE8514AE21F30029F746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
+				INFOPLIST_FILE = "HotdAmn/HotdAmn-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2519BE8714AE21F30029F746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HotdAmn.app/Contents/MacOS/HotdAmn";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
+				INFOPLIST_FILE = "HotdAmnTests/HotdAmnTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2519BE8814AE21F30029F746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HotdAmn.app/Contents/MacOS/HotdAmn";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
+				INFOPLIST_FILE = "HotdAmnTests/HotdAmnTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2519BE4A14AE21F20029F746 /* Build configuration list for PBXProject "HotdAmn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2519BE8114AE21F30029F746 /* Debug */,
+				2519BE8214AE21F30029F746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2519BE8314AE21F30029F746 /* Build configuration list for PBXNativeTarget "HotdAmn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2519BE8414AE21F30029F746 /* Debug */,
+				2519BE8514AE21F30029F746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2519BE8614AE21F30029F746 /* Build configuration list for PBXNativeTarget "HotdAmnTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2519BE8714AE21F30029F746 /* Debug */,
+				2519BE8814AE21F30029F746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2519BE4714AE21F20029F746 /* Project object */;
+}
