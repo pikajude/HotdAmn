@@ -26,7 +26,7 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 - (void)awakeFromNib
 {
-	[barControl addButtonWithTitle:@"Server" withTarget:barControl withAction:@selector(activateSingleButton:)];
+	[barControl addButtonWithTitle:@"Server"];
 }
 
 - (NSString *)genRandStringLength:(int)len
@@ -42,8 +42,16 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 - (IBAction)addTab:(id)sender
 {
-	NSString *title = [self genRandStringLength:8];
-	[barControl addButtonWithTitle:title withTarget:barControl withAction:@selector(activateSingleButton:)];
+	HDJoinRoomController *ctrl = [[HDJoinRoomController alloc] initWithWindowNibName:@"JoinRoom"];
+	[ctrl setDelegate:self];
+	
+	[NSApp beginSheet:[ctrl window]
+	   modalForWindow:window
+		modalDelegate:nil
+	   didEndSelector:nil
+		  contextInfo:nil];
+	
+	[NSApp endSheet:[ctrl window]];
 }
 
 - (IBAction)removeTab:(id)sender
@@ -59,6 +67,17 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 - (IBAction)selectPreviousTab:(id)sender
 {
 	[barControl selectPrevious];
+}
+
+- (void)createTabWithTitle:(NSString *)title
+{
+	[barControl addButtonWithTitle:title];
+}
+
+// TODO: this
+- (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem
+{
+    return YES;
 }
 
 @end

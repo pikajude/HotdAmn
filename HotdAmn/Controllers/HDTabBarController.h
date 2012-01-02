@@ -18,7 +18,7 @@
 #pragma mark -
 #pragma mark Adding
 
-- (void)addButtonWithTitle:(NSString *)title withTarget:(id)target withAction:(SEL)action;
+- (void)addButtonWithTitle:(NSString *)title;
 - (void)showButtonWithTitle:(NSString *)title;
 - (void)activateSingleButton:(NSButton *)button;
 - (void)activateSingleIndex:(NSInteger)index;

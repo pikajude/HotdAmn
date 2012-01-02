@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HDTabBarController.h"
+#import "HDJoinRoomController.h"
 
 @interface HDApplicationController : NSObject <NSApplicationDelegate> {
 	IBOutlet HDTabBarController *barControl;
@@ -16,11 +17,12 @@
 @property (retain) IBOutlet NSWindow *window;
 @property (retain) IBOutlet NSMenu *appMenu;
 
-- (NSString *)genRandStringLength:(int)len;
-
 - (IBAction)removeTab:(id)sender;
 - (IBAction)addTab:(id)sender;
+- (void)createTabWithTitle:(NSString *)title;
 - (IBAction)selectNextTab:(id)sender;
 - (IBAction)selectPreviousTab:(id)sender;
+
+- (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem;
 
 @end

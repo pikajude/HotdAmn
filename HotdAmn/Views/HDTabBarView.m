@@ -57,7 +57,7 @@
 							   dirtyRect.size.width,
 							   1.0f);
 	
-	[[NSColor colorWithDeviceWhite:0.0f alpha:1.0f] set];
+	[[NSColor colorWithDeviceWhite:0.48f alpha:1.0f] set];
 	NSRectFill(border);
 		
 	[NSGraphicsContext restoreGraphicsState];

@@ -198,8 +198,8 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="294629803">
 									<reference key="NSMenu" ref="720053764"/>
-									<string key="NSTitle">New Tab</string>
-									<string key="NSKeyEquiv">n</string>
+									<string key="NSTitle">New Room</string>
+									<string key="NSKeyEquiv">t</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
@@ -208,7 +208,7 @@
 								</object>
 								<object class="NSMenuItem" id="753483817">
 									<reference key="NSMenu" ref="720053764"/>
-									<string key="NSTitle">Close Tab</string>
+									<string key="NSTitle">Close Room</string>
 									<string key="NSKeyEquiv">w</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -1245,6 +1245,7 @@
 							<string key="NSFrame">{{0, 331.5}, {480, 29}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:499</string>
 							<string key="NSClassName">HDTabBarView</string>
 						</object>
@@ -1905,14 +1906,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">addTab:</string>
-						<reference key="source" ref="577861220"/>
-						<reference key="destination" ref="294629803"/>
-					</object>
-					<int key="connectionID">557</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">selectNextTab:</string>
 						<reference key="source" ref="577861220"/>
 						<reference key="destination" ref="795725669"/>
@@ -1966,6 +1959,22 @@
 						<reference key="destination" ref="649796088"/>
 					</object>
 					<int key="connectionID">582</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">addTab:</string>
+						<reference key="source" ref="577861220"/>
+						<reference key="destination" ref="294629803"/>
+					</object>
+					<int key="connectionID">583</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="577861220"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">585</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3285,7 +3294,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">582</int>
+			<int key="maxID">585</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

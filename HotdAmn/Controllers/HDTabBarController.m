@@ -30,7 +30,7 @@
 #pragma mark -
 #pragma mark Button management
 
-- (void)addButtonWithTitle:(NSString *)title withTarget:(id)target withAction:(SEL)action
+- (void)addButtonWithTitle:(NSString *)title
 {
 	HDTabButton *b = [[[HDTabButton alloc] init] autorelease];
 	HDTabButtonCell *cell = [[[HDTabButtonCell alloc] init] autorelease];
@@ -39,8 +39,8 @@
 	[b setBordered:YES];
 	[b setBezelStyle:NSRoundRectBezelStyle];
 	[b setTitle:title];
-	if(target != NULL) [b setTarget:target];
-	if(action != NULL) [b setAction:action];
+	[b setTarget:self];
+	[b setAction:@selector(activateSingleButton:)];
 	[b setCtrl:self];
 	
 	[tabView addSubview:b];
