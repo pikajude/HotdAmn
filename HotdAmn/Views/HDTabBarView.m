@@ -68,7 +68,7 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
-	NSString *draggerName = [[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSStringPboardType] encoding:NSUTF8StringEncoding];
+	NSString *draggerName = [[[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSStringPboardType] encoding:NSUTF8StringEncoding] autorelease];
 	dragger = [[self controller] getButtonWithTitle:draggerName];
 	[[self controller] hideButtonWithTitle:draggerName];
 	return NSDragOperationMove;
@@ -89,6 +89,8 @@
 {
 	[[self controller] insertButton:dragger atIndex:dragIndex];
 	[[self controller] showButtonWithTitle:[dragger title]];
+	[[dragger cell] setBadgeValue:0];
+	[[self controller] resizeButtons];
 }
 
 @end

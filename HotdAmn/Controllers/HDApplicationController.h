@@ -18,6 +18,7 @@
 @property (retain) IBOutlet NSWindow *window;
 @property (retain) IBOutlet NSMenu *appMenu;
 
+- (IBAction)addBadge:(id)sender;
 - (IBAction)removeTab:(id)sender;
 - (IBAction)addTab:(id)sender;
 - (void)createTabWithTitle:(NSString *)title;

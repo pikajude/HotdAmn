@@ -44,6 +44,8 @@
 		if([currentRoomName characterAtIndex:0] != '#') [room appendString:@"#"];
 		[room appendString:currentRoomName];
 		[[self delegate] createTabWithTitle:room];
+		
+		// not actually canceling, this is just a shortcut
 		[self cancelRoom:nil];
 	}
 }

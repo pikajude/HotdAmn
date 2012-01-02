@@ -40,6 +40,12 @@
 	[[self target] performSelector:[self action] withObject:self];
 }
 
+- (void)mouseUp:(NSEvent *)theEvent
+{
+	[[self cell] setBadgeValue:0];
+	[[self ctrl] resizeButtons];
+}
+
 - (void)resetCursorRects
 {
 	NSCursor *c = [NSCursor pointingHandCursor];
@@ -74,6 +80,11 @@
 	[pboard setData:[[self title] dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
 	
 	[self dragImage:img at:point offset:offset event:theEvent pasteboard:pboard source:self slideBack:NO];
+}
+
+- (void)setBadgeValue:(NSInteger)value
+{
+	
 }
 
 @end

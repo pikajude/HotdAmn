@@ -75,6 +75,12 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 	[barControl addButtonWithTitle:title];
 }
 
+- (void)addBadge:(id)sender
+{
+	[[[[[barControl tabView] subviews] lastObject] cell] setBadgeValue:rand() % 1000000];
+	[barControl resizeButtons];
+}
+
 // TODO: this
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem
 {

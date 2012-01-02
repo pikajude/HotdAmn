@@ -35,6 +35,7 @@
 	HDTabButton *b = [[[HDTabButton alloc] init] autorelease];
 	HDTabButtonCell *cell = [[[HDTabButtonCell alloc] init] autorelease];
 	[b setCell:cell];
+	[[b cell] setImagePosition:NSImageRight];
 	[[b cell] setAllowsMixedState:YES];
 	[b setBordered:YES];
 	[b setBezelStyle:NSRoundRectBezelStyle];
