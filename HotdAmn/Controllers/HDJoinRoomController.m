@@ -37,7 +37,7 @@
 	
 	BOOL containsBadChars = ([currentRoomName rangeOfCharacterFromSet:set].location != NSNotFound);
 
-	if (containsBadChars) {
+	if ([currentRoomName isEqualToString:@""] || containsBadChars) {
 		[errMsg	setHidden:NO];
 	} else {
 		NSMutableString *room = [[[NSMutableString alloc] init] autorelease];
@@ -51,6 +51,7 @@
 - (IBAction)cancelRoom:(id)sender
 {
 	[[self window] orderOut:nil];
+	[[self delegate] setTabbing:NO];
 }
 
 @end

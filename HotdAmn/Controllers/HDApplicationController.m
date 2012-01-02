@@ -12,7 +12,7 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 @implementation HDApplicationController
 
-@synthesize window, appMenu;
+@synthesize window, appMenu, tabbing;
 
 - (id)init
 {
@@ -42,6 +42,7 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 - (IBAction)addTab:(id)sender
 {
+	tabbing = YES;
 	HDJoinRoomController *ctrl = [[HDJoinRoomController alloc] initWithWindowNibName:@"JoinRoom"];
 	[ctrl setDelegate:self];
 	
@@ -77,6 +78,14 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 // TODO: this
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem
 {
+	if ([theMenuItem action] == @selector(addTab:) && tabbing) {
+		return NO;
+	}
+	if (([theMenuItem action] == @selector(selectNextTab:) ||
+		 [theMenuItem action] == @selector(selectPreviousTab:)) &&
+		[[[barControl tabView] subviews] count] < 2) {
+		return NO;
+	}
     return YES;
 }
 
