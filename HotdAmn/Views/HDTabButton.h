@@ -14,7 +14,6 @@
 
 @property (assign) id ctrl;
 
-- (void)setBadgeValue:(NSInteger)value;
 - (void)select;
 - (void)deselect;
 - (void)addTracker;

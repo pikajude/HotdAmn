@@ -77,6 +77,7 @@
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
+	if ([[[[self ctrl] tabView] subviews] count] < 2) return;
 	NSBitmapImageRep *rep = [self bitmapImageRepForCachingDisplayInRect:[self bounds]];
 	[rep setSize:[self bounds].size];
 	[self cacheDisplayInRect:[self bounds] toBitmapImageRep:rep];
@@ -89,7 +90,13 @@
 	[pboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
 	[pboard setData:[[self title] dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
 	
-	[self dragImage:img at:point offset:offset event:theEvent pasteboard:pboard source:self slideBack:NO];
+	[self dragImage:img
+				 at:point
+			 offset:offset
+			  event:theEvent
+		 pasteboard:pboard
+			 source:self
+		  slideBack:NO];
 }
 
 - (void)addTracker

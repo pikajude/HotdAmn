@@ -7,6 +7,7 @@
 //
 
 #import "HDJoinRoomController.h"
+#import "HDApplicationController.h"
 
 @implementation HDJoinRoomController
 

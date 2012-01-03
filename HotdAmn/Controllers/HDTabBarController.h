@@ -11,7 +11,9 @@
 #import "HDTabButton.h"
 #import "HDTabButtonCell.h"
 
-@interface HDTabBarController : NSObject
+@class HDApplicationController;
+
+@interface HDTabBarController : NSViewController
 
 @property (retain) IBOutlet HDTabBarView *tabView;
 
@@ -33,7 +35,6 @@
 - (void)hideButtonWithTitle:(NSString *)title;
 - (void)removeButtonWithTitle:(NSString *)title;
 - (void)removeHighlighted;
-- (void)onTabClose;
 - (void)handleLastTab:(NSArray *)tabs;
 
 #pragma mark -

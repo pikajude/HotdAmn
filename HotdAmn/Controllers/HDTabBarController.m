@@ -7,6 +7,7 @@
 //
 
 #import "HDTabBarController.h"
+#import "HDApplicationController.h"
 
 @implementation HDTabBarController
 
@@ -225,7 +226,7 @@
 		[alert setInformativeText:@"Closing the server tab will quit the application."];
 		[alert addButtonWithTitle:@"OK"];
 		[alert addButtonWithTitle:@"Cancel"];
-		[alert beginSheetModalForWindow:[[[NSApplication sharedApplication] delegate] window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+		[alert beginSheetModalForWindow:[(HDApplicationController *)[[NSApplication sharedApplication] delegate] window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
 	} else {
 		[tabView setSubviews:tabs];
 		[self resizeButtons];

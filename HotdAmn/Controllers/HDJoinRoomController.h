@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HDApplicationController;
+
 @interface HDJoinRoomController : NSWindowController
 
 @property (retain) IBOutlet NSTextField *roomName;
