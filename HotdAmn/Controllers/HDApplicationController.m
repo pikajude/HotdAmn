@@ -95,4 +95,9 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
     return YES;
 }
 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+	[window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
+}
+
 @end

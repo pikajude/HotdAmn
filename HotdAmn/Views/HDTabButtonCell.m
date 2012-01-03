@@ -30,10 +30,10 @@
 	NSRange r = NSMakeRange(0, [title length]); // length of the whole string
 	NSMutableAttributedString *str = [[title mutableCopy] autorelease];
 	[str addAttribute:NSFontAttributeName
-				value:[NSFont fontWithName:@"Helvetica-Bold" size:13.0f]
+				value:[NSFont fontWithName:@"Helvetica" size:13.0f]
 				range:r];
 	
-	if ([self state] == NSOnState) {
+	if ([self state] != NSOnState) {
 		[str addAttribute:NSForegroundColorAttributeName
 					value:[NSColor whiteColor]
 					range:r];
@@ -48,7 +48,7 @@
 					range:r];
 	} else {
 		[str addAttribute:NSForegroundColorAttributeName
-					value:[NSColor colorWithDeviceWhite:0.43f alpha:1.0f]
+					value:[NSColor colorWithDeviceWhite:0.20f alpha:1.0f]
 					range:r];
 		
 		// 1px white shadow to look inset
@@ -68,14 +68,15 @@
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView
 {
+	[NSGraphicsContext saveGraphicsState];
+	NSRect rect = [controlView bounds];
+	
 	if ([self state] == NSOnState) {
-		NSRect rect = [controlView bounds];
-		[NSGraphicsContext saveGraphicsState];
-		
 		NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
-						  [NSColor colorWithDeviceWhite:0.48f alpha:1.0f], 0.0f,
-						  [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 0.45f,
-						  [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 1.0f, nil];
+						  [NSColor colorWithDeviceWhite:0.88f alpha:1.0f], 0.0f,
+						  [NSColor colorWithDeviceWhite:0.95f alpha:1.0f], 0.45f,
+						  [NSColor colorWithDeviceWhite:1.00f alpha:1.0f], 1.0f, nil];
+		
 		[bg drawInRect:rect angle:270.0f];
 		
 		NSRect highlight = NSMakeRect(rect.origin.x,
@@ -83,13 +84,16 @@
 									  rect.size.width,
 									  1.0f);
 		
-		[[NSColor colorWithDeviceWhite:0.75f alpha:1.0f] set];
+		[[NSColor whiteColor] set];
 		NSRectFill(highlight);
 		
 		[bg release];
-		
-		[NSGraphicsContext restoreGraphicsState];
+	} else if([self state] == NSMixedState) {
+		[[NSColor colorWithDeviceWhite:1.0f alpha:0.25f] set];
+		[NSBezierPath fillRect:frame];
 	}
+	
+	[NSGraphicsContext restoreGraphicsState];
 }
 
 - (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView
@@ -98,9 +102,9 @@
 	[NSGraphicsContext saveGraphicsState];
 	
 	// Make some frame adjustments.
-	NSRect newFrame = NSMakeRect(frame.origin.x + 3,
+	NSRect newFrame = NSMakeRect(frame.origin.x,
 								 frame.origin.y + 2,
-								 frame.size.width - 3,
+								 frame.size.width,
 								 frame.size.height - 2);
 	
 	// The pill shape -- a rounded rectangle.
@@ -113,7 +117,7 @@
 	
 	// Shadow for the pill.
 	NSShadow * shadow = [[[NSShadow alloc] init] autorelease];
-	[shadow setShadowColor:[NSColor colorWithDeviceWhite:0.62f alpha:1.0f]];
+	[shadow setShadowColor:[NSColor colorWithDeviceWhite:0.42f alpha:1.0f]];
 	[shadow setShadowBlurRadius:0.0];
 	[shadow setShadowOffset:NSMakeSize(0.0f, -1.0f)];
 	[shadow set];
@@ -141,7 +145,7 @@
 				value:[NSColor colorWithDeviceWhite:0.28f alpha:1.0f]
 				range:NSMakeRange(0, [str length])];
 	[str addAttribute:NSFontAttributeName
-				value:[NSFont fontWithName:@"Helvetica-Bold" size:11.0f]
+				value:[NSFont fontWithName:@"Helvetica" size:11.0f]
 				range:NSMakeRange(0, [str length])];
 	[str addAttribute:NSParagraphStyleAttributeName
 				value:pstyle
@@ -169,7 +173,7 @@
 	_badgeValue = bv;
 	[self setImagePosition:NSImageRight];
 	NSImage *img = [[[NSImage alloc] init] autorelease];
-	[img setSize:NSMakeSize(ceil(log10(bv))*5 + 24, [self cellSize].height)];
+	[img setSize:NSMakeSize(ceil(log10(bv))*5 + 20, [self cellSize].height)];
 	[self setImage:img];
 }
 
@@ -188,24 +192,9 @@
 	[self setState:[self prevState]];
 }
 
-- (BOOL)showsBorderOnlyWhileMouseInside
-{
-	return NO;
-}
-
-- (NSInteger)highlightsBy
-{
-	return 1;
-}
-
 - (NSInteger)showsStateBy
 {
 	return 1;
-}
-
-- (NSCellImagePosition)imagePosition
-{
-	return NSImageRight;
 }
 
 @end

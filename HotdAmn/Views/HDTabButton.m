@@ -34,6 +34,16 @@
 	[[self cell] setPrevState:0];
 }
 
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+	[[self cell] mouseEntered:theEvent];
+}
+
+- (void)mouseExited:(NSEvent *)theEvent
+{
+	[[self cell] mouseExited:theEvent];
+}
+
 - (void)mouseDown:(NSEvent *)theEvent
 {
 	[self setState:1];
@@ -82,9 +92,14 @@
 	[self dragImage:img at:point offset:offset event:theEvent pasteboard:pboard source:self slideBack:NO];
 }
 
-- (void)setBadgeValue:(NSInteger)value
+- (void)addTracker
 {
-	
+	NSTrackingArea *ar = [[NSTrackingArea alloc]
+						  initWithRect:[self bounds]
+							   options:NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow
+								 owner:self
+							  userInfo:nil];
+	[self addTrackingArea:ar];
 }
 
 @end
