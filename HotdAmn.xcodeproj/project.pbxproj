@@ -12,7 +12,6 @@
 		2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE5D14AE21F30029F746 /* InfoPlist.strings */; };
 		2519BE6114AE21F30029F746 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE6014AE21F30029F746 /* main.m */; };
 		2519BE6514AE21F30029F746 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE6314AE21F30029F746 /* Credits.rtf */; };
-		2519BE6814AE21F30029F746 /* HotdAmnAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE6714AE21F30029F746 /* HotdAmnAppDelegate.m */; };
 		2519BE6B14AE21F30029F746 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE6914AE21F30029F746 /* MainMenu.xib */; };
 		2519BE7314AE21F30029F746 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE7214AE21F30029F746 /* SenTestingKit.framework */; };
 		2519BE7414AE21F30029F746 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE5414AE21F30029F746 /* Cocoa.framework */; };
@@ -50,8 +49,6 @@
 		2519BE6014AE21F30029F746 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2519BE6214AE21F30029F746 /* HotdAmn-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HotdAmn-Prefix.pch"; sourceTree = "<group>"; };
 		2519BE6414AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		2519BE6614AE21F30029F746 /* HotdAmnAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotdAmnAppDelegate.h; sourceTree = "<group>"; };
-		2519BE6714AE21F30029F746 /* HotdAmnAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotdAmnAppDelegate.m; sourceTree = "<group>"; };
 		2519BE6A14AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2519BE7114AE21F30029F746 /* HotdAmnTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HotdAmnTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2519BE7214AE21F30029F746 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -135,9 +132,7 @@
 		2519BE5A14AE21F30029F746 /* HotdAmn */ = {
 			isa = PBXGroup;
 			children = (
-				2519BE6614AE21F30029F746 /* HotdAmnAppDelegate.h */,
 				2519BE8A14AE220E0029F746 /* Controllers */,
-				2519BE6714AE21F30029F746 /* HotdAmnAppDelegate.m */,
 				2519BE8914AE22040029F746 /* Views */,
 				2519BE6914AE21F30029F746 /* MainMenu.xib */,
 				25E90B1C14B1413200FF75B9 /* JoinRoom.xib */,
@@ -310,7 +305,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2519BE6114AE21F30029F746 /* main.m in Sources */,
-				2519BE6814AE21F30029F746 /* HotdAmnAppDelegate.m in Sources */,
 				2519BE9614AE22D30029F746 /* HDTabBarView.m in Sources */,
 				2519BE9814AE23040029F746 /* HDApplicationController.m in Sources */,
 				2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */,

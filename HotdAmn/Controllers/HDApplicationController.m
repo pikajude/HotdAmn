@@ -8,8 +8,6 @@
 
 #import "HDApplicationController.h"
 
-const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
 @implementation HDApplicationController
 
 @synthesize window, appMenu, tabbing;
@@ -27,17 +25,6 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 - (void)awakeFromNib
 {
 	[barControl addButtonWithTitle:@"Server"];
-}
-
-- (NSString *)genRandStringLength:(int)len
-{
-    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
-	
-    for (int i=0; i<len; i++) {
-		[randomString appendFormat: @"%c", [letters characterAtIndex: rand()%[letters length]]];
-	}
-		 
-	return randomString;
 }
 
 - (IBAction)addTab:(id)sender
@@ -73,12 +60,6 @@ const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 - (void)createTabWithTitle:(NSString *)title
 {
 	[barControl addButtonWithTitle:title];
-}
-
-- (void)addBadge:(id)sender
-{
-	[[[[[barControl tabView] subviews] lastObject] cell] setBadgeValue:rand() % 1000000];
-	[barControl resizeButtons];
 }
 
 // TODO: this
