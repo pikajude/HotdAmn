@@ -77,7 +77,7 @@
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
-	if ([[[[self ctrl] tabView] subviews] count] < 2) return;
+	if ([[self title] isEqualToString:@"Server"]) return;
 	NSBitmapImageRep *rep = [self bitmapImageRepForCachingDisplayInRect:[self bounds]];
 	[rep setSize:[self bounds].size];
 	[self cacheDisplayInRect:[self bounds] toBitmapImageRep:rep];

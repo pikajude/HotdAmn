@@ -165,7 +165,7 @@
 		float cellwidth = [[button cell] cellSize].width;
 		width += cellwidth;
 		
-		if(width >= point) return (NSInteger)idx;
+		if(width >= point) return idx > 0 ? idx : 1;
 		
 		++idx;
 	}

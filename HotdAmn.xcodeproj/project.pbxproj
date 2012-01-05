@@ -22,8 +22,8 @@
 		2519BE9814AE23040029F746 /* HDApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9714AE23040029F746 /* HDApplicationController.m */; };
 		2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* HDTabBarController.m */; };
 		2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* HDTabButton.m */; };
+		259EA07E14B53FF800D44466 /* HDJoinRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* HDJoinRoomController.m */; };
 		25E90B1E14B1413200FF75B9 /* JoinRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E90B1C14B1413200FF75B9 /* JoinRoom.xib */; };
-		25E90B2214B142E400FF75B9 /* HDJoinRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E90B2114B142E400FF75B9 /* HDJoinRoomController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,9 +64,9 @@
 		2519BE9A14AE2C920029F746 /* HDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabBarController.m; path = Controllers/HDTabBarController.m; sourceTree = "<group>"; };
 		2568BE1814AE9C2900E1C825 /* HDTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabButton.h; path = Views/HDTabButton.h; sourceTree = "<group>"; };
 		2568BE1914AE9C2900E1C825 /* HDTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabButton.m; path = Views/HDTabButton.m; sourceTree = "<group>"; };
+		259EA07C14B53FF700D44466 /* HDJoinRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDJoinRoomController.h; sourceTree = "<group>"; };
+		259EA07D14B53FF700D44466 /* HDJoinRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDJoinRoomController.m; sourceTree = "<group>"; };
 		25E90B1D14B1413200FF75B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JoinRoom.xib; sourceTree = "<group>"; };
-		25E90B2014B142E400FF75B9 /* HDJoinRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDJoinRoomController.h; path = Controllers/HDJoinRoomController.h; sourceTree = "<group>"; };
-		25E90B2114B142E400FF75B9 /* HDJoinRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDJoinRoomController.m; path = Controllers/HDJoinRoomController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +132,7 @@
 		2519BE5A14AE21F30029F746 /* HotdAmn */ = {
 			isa = PBXGroup;
 			children = (
+				259EA07B14B53FF700D44466 /* Dialogs */,
 				2519BE8A14AE220E0029F746 /* Controllers */,
 				2519BE8914AE22040029F746 /* Views */,
 				2519BE6914AE21F30029F746 /* MainMenu.xib */,
@@ -190,12 +191,19 @@
 			children = (
 				2519BE8E14AE22880029F746 /* HDApplicationController.h */,
 				2519BE9714AE23040029F746 /* HDApplicationController.m */,
-				25E90B2014B142E400FF75B9 /* HDJoinRoomController.h */,
-				25E90B2114B142E400FF75B9 /* HDJoinRoomController.m */,
 				2519BE9914AE2C920029F746 /* HDTabBarController.h */,
 				2519BE9A14AE2C920029F746 /* HDTabBarController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		259EA07B14B53FF700D44466 /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				259EA07C14B53FF700D44466 /* HDJoinRoomController.h */,
+				259EA07D14B53FF700D44466 /* HDJoinRoomController.m */,
+			);
+			path = Dialogs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +318,7 @@
 				2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */,
 				2519311614AE46DB003A5FBA /* HDTabButtonCell.m in Sources */,
 				2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */,
-				25E90B2214B142E400FF75B9 /* HDJoinRoomController.m in Sources */,
+				259EA07E14B53FF800D44466 /* HDJoinRoomController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
