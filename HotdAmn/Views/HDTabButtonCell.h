@@ -9,8 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface HDTabButtonCell : NSButtonCell {
-	NSInteger _badgeValue;
-	NSImage *badge;
+    NSInteger _badgeValue;
+    NSImage *badge;
 }
 
 @property (assign) NSInteger prevState;

@@ -24,61 +24,61 @@
 
 - (void)awakeFromNib
 {
-	[barControl addButtonWithTitle:@"Server"];
+    [barControl addButtonWithTitle:@"Server"];
 }
 
 - (IBAction)addTab:(id)sender
 {
-	tabbing = YES;
-	HDJoinRoomController *ctrl = [[HDJoinRoomController alloc] initWithWindowNibName:@"JoinRoom"];
-	[ctrl setDelegate:self];
-	
-	[NSApp beginSheet:[ctrl window]
-	   modalForWindow:window
-		modalDelegate:nil
-	   didEndSelector:nil
-		  contextInfo:nil];
-	
-	[NSApp endSheet:[ctrl window]];
+    tabbing = YES;
+    HDJoinRoomController *ctrl = [[HDJoinRoomController alloc] initWithWindowNibName:@"JoinRoom"];
+    [ctrl setDelegate:self];
+    
+    [NSApp beginSheet:[ctrl window]
+       modalForWindow:window
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
+    
+    [NSApp endSheet:[ctrl window]];
 }
 
 - (IBAction)removeTab:(id)sender
 {
-	[barControl removeHighlighted];
+    [barControl removeHighlighted];
 }
 
 - (IBAction)selectNextTab:(id)sender
 {
-	[barControl selectNext];
+    [barControl selectNext];
 }
 
 - (IBAction)selectPreviousTab:(id)sender
 {
-	[barControl selectPrevious];
+    [barControl selectPrevious];
 }
 
 - (void)createTabWithTitle:(NSString *)title
 {
-	[barControl addButtonWithTitle:title];
+    [barControl addButtonWithTitle:title];
 }
 
 // TODO: this
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem
 {
-	if ([theMenuItem action] == @selector(addTab:) && tabbing) {
-		return NO;
-	}
-	if (([theMenuItem action] == @selector(selectNextTab:) ||
-		 [theMenuItem action] == @selector(selectPreviousTab:)) &&
-		[[[barControl tabView] subviews] count] < 2) {
-		return NO;
-	}
+    if ([theMenuItem action] == @selector(addTab:) && tabbing) {
+        return NO;
+    }
+    if (([theMenuItem action] == @selector(selectNextTab:) ||
+         [theMenuItem action] == @selector(selectPreviousTab:)) &&
+        [[[barControl tabView] subviews] count] < 2) {
+        return NO;
+    }
     return YES;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-	[window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
+    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
 }
 
 @end

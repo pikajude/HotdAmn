@@ -11,8 +11,8 @@
 @class HDTabBarController;
 
 @interface HDTabBarView : NSView <NSDraggingDestination> {
-	NSButton *dragger;
-	NSInteger dragIndex;
+    NSButton *dragger;
+    NSInteger dragIndex;
 }
 
 @property (assign) HDTabBarController *controller;

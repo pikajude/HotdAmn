@@ -25,35 +25,35 @@
 
 - (NSInteger)contentWidth
 {
-	NSInteger i = 0;
-	for(NSButton *button in [self subviews]) {
-		i += [button bounds].size.width;
-	}
-	return i;
+    NSInteger i = 0;
+    for(NSButton *button in [self subviews]) {
+        i += [button bounds].size.width;
+    }
+    return i;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [NSGraphicsContext saveGraphicsState];
-	
-	NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
-					  [NSColor colorWithDeviceWhite:0.48f alpha:1.0f], 0.0f,
-					  [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 0.45f,
-					  [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 1.0f, nil];
-	
-	[bg drawInRect:dirtyRect angle:90.0f];
-	[bg release];
-	
-	// Top highlight
-	NSRect highlight = NSMakeRect(dirtyRect.origin.x,
-								  dirtyRect.origin.y + dirtyRect.size.height - 1,
-								  dirtyRect.size.width,
-								  1.0f);
-	
-	[[NSColor colorWithDeviceWhite:0.75f alpha:1.0f] set];
-	NSRectFill(highlight);
-		
-	[NSGraphicsContext restoreGraphicsState];
+    
+    NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
+                      [NSColor colorWithDeviceWhite:0.48f alpha:1.0f], 0.0f,
+                      [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 0.45f,
+                      [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 1.0f, nil];
+    
+    [bg drawInRect:dirtyRect angle:90.0f];
+    [bg release];
+    
+    // Top highlight
+    NSRect highlight = NSMakeRect(dirtyRect.origin.x,
+                                  dirtyRect.origin.y + dirtyRect.size.height - 1,
+                                  dirtyRect.size.width,
+                                  1.0f);
+    
+    [[NSColor colorWithDeviceWhite:0.75f alpha:1.0f] set];
+    NSRectFill(highlight);
+        
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 #pragma mark -
@@ -61,29 +61,29 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
-	NSString *draggerName = [[[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSStringPboardType] encoding:NSUTF8StringEncoding] autorelease];
-	dragger = [[self controller] getButtonWithTitle:draggerName];
-	[[self controller] hideButtonWithTitle:draggerName];
-	return NSDragOperationMove;
+    NSString *draggerName = [[[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSStringPboardType] encoding:NSUTF8StringEncoding] autorelease];
+    dragger = [[self controller] getButtonWithTitle:draggerName];
+    [[self controller] hideButtonWithTitle:draggerName];
+    return NSDragOperationMove;
 }
 
 - (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
 {
-	NSInteger idx = [[self controller] indexOfRightmostButtonBeforePoint:[sender draggingLocation].x];
-	if (dragIndex != idx) {
-		dragIndex = idx;
-		// Move a spacer to the new spot.
-		[[self controller] insertButton:dragger atIndex:dragIndex];
-	}
-	return NSDragOperationMove;
+    NSInteger idx = [[self controller] indexOfRightmostButtonBeforePoint:[sender draggingLocation].x];
+    if (dragIndex != idx) {
+        dragIndex = idx;
+        // Move a spacer to the new spot.
+        [[self controller] insertButton:dragger atIndex:dragIndex];
+    }
+    return NSDragOperationMove;
 }
 
 - (void)draggingEnded:(id<NSDraggingInfo>)sender
 {
-	[[self controller] insertButton:dragger atIndex:dragIndex];
-	[[self controller] showButtonWithTitle:[dragger title]];
-	[[dragger cell] setBadgeValue:0];
-	[[self controller] resizeButtons];
+    [[self controller] insertButton:dragger atIndex:dragIndex];
+    [[self controller] showButtonWithTitle:[dragger title]];
+    [[dragger cell] setBadgeValue:0];
+    [[self controller] resizeButtons];
 }
 
 @end

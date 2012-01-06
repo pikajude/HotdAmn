@@ -11,7 +11,7 @@
 #import "HDJoinRoomController.h"
 
 @interface HDApplicationController : NSObject <NSApplicationDelegate> {
-	IBOutlet HDTabBarController *barControl;
+    IBOutlet HDTabBarController *barControl;
 }
 
 @property (readwrite, assign) BOOL tabbing;
