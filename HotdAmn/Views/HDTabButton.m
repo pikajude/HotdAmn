@@ -101,11 +101,11 @@
 
 - (void)addTracker
 {
-	NSTrackingArea *ar = [[NSTrackingArea alloc]
+	NSTrackingArea *ar = [[[NSTrackingArea alloc]
 						  initWithRect:[self bounds]
 							   options:NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow
 								 owner:self
-							  userInfo:nil];
+							  userInfo:nil] autorelease];
 	[self addTrackingArea:ar];
 }
 
