@@ -12,11 +12,17 @@ static int port = 3900;
 
 @implementation DamnSocket
 
+@synthesize delegate;
+
 - (id)init
 {
     self = [super init];
     if (self) {
         host = [NSHost hostWithName:@"chat.deviantart.com"];
+        events = [[NSDictionary dictionaryWithObjectsAndKeys:
+                  [NSValue valueWithPointer:@selector(onServer:)], @"dAmnServer",
+                  [NSValue valueWithPointer:@selector(onLogin:)], @"login",
+                  nil] retain];
     }
     
     return self;
@@ -55,9 +61,12 @@ static int port = 3900;
             uint8_t *buf = malloc(sizeof(uint8_t) * 8192);
             NSInteger len = [istream read:buf maxLength:8192];
             NSData *dat = [NSData dataWithBytes:buf length:len];
-            NSString *str = [[[NSString alloc] initWithData:dat encoding:NSUTF8StringEncoding] autorelease];
-            NSLog(@"%@", str);
             free(buf);
+            NSString *str = [[[NSString alloc] initWithData:dat encoding:NSUTF8StringEncoding] autorelease];
+            Packet *pkt = [[[Packet alloc] initWithString:str] autorelease];
+            [delegate onPacket:pkt];
+            [delegate performSelector:[[events objectForKey:[pkt command]] pointerValue]
+                           withObject:pkt];
             break;
         }
             

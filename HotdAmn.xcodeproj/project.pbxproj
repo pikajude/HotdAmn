@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		250338E714B898AB000C2D44 /* DamnSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E614B898AB000C2D44 /* DamnSocket.m */; };
+		250338EA14B8C374000C2D44 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E914B8C374000C2D44 /* EventHandler.m */; };
+		250338ED14B8DA0F000C2D44 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338EC14B8DA0F000C2D44 /* Packet.m */; };
 		2519311614AE46DB003A5FBA /* TabButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519311514AE46DB003A5FBA /* TabButtonCell.m */; };
 		2519BE5514AE21F30029F746 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE5414AE21F30029F746 /* Cocoa.framework */; };
 		2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE5D14AE21F30029F746 /* InfoPlist.strings */; };
@@ -44,8 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		250338E514B898AB000C2D44 /* DamnSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; name = DamnSocket.h; path = dAmn/DamnSocket.h; sourceTree = "<group>"; };
+		250338E514B898AB000C2D44 /* DamnSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamnSocket.h; path = dAmn/DamnSocket.h; sourceTree = "<group>"; };
 		250338E614B898AB000C2D44 /* DamnSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DamnSocket.m; path = dAmn/DamnSocket.m; sourceTree = "<group>"; };
+		250338E814B8C374000C2D44 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventHandler.h; path = dAmn/EventHandler.h; sourceTree = "<group>"; };
+		250338E914B8C374000C2D44 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventHandler.m; path = dAmn/EventHandler.m; sourceTree = "<group>"; };
+		250338EB14B8DA0F000C2D44 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Packet.h; path = dAmn/Packet.h; sourceTree = "<group>"; };
+		250338EC14B8DA0F000C2D44 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Packet.m; path = dAmn/Packet.m; sourceTree = "<group>"; };
 		2519311414AE46DB003A5FBA /* TabButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButtonCell.h; path = Views/TabButtonCell.h; sourceTree = "<group>"; };
 		2519311514AE46DB003A5FBA /* TabButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButtonCell.m; path = Views/TabButtonCell.m; sourceTree = "<group>"; };
 		2519BE5014AE21F30029F746 /* HotdAmn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotdAmn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +121,10 @@
 			children = (
 				250338E514B898AB000C2D44 /* DamnSocket.h */,
 				250338E614B898AB000C2D44 /* DamnSocket.m */,
+				250338E814B8C374000C2D44 /* EventHandler.h */,
+				250338E914B8C374000C2D44 /* EventHandler.m */,
+				250338EB14B8DA0F000C2D44 /* Packet.h */,
+				250338EC14B8DA0F000C2D44 /* Packet.m */,
 			);
 			name = dAmn;
 			sourceTree = "<group>";
@@ -233,10 +243,10 @@
 		252DB61214B7968B0036E0CF /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
-				252DB61414B7975B0036E0CF /* Token.h */,
-				252DB61514B7975B0036E0CF /* Token.m */,
 				252DB61914B7B5700036E0CF /* DeviantArtAPI.h */,
 				252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */,
+				252DB61414B7975B0036E0CF /* Token.h */,
+				252DB61514B7975B0036E0CF /* Token.m */,
 			);
 			name = OAuth;
 			path = Dialogs;
@@ -374,6 +384,8 @@
 				252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */,
 				257D933C14B8038600CE636C /* About.m in Sources */,
 				250338E714B898AB000C2D44 /* DamnSocket.m in Sources */,
+				250338EA14B8C374000C2D44 /* EventHandler.m in Sources */,
+				250338ED14B8DA0F000C2D44 /* Packet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

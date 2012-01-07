@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#define NSPacket NSString
+#import "Packet.h"
 
 @protocol DamnSocketDelegate <NSObject>
 
-- (void)onPacket:(NSPacket *)msg;
-- (void)onServer:(NSPacket *)msg;
+- (void)onPacket:(Packet *)msg;
+- (void)onServer:(Packet *)msg;
+
+/*
 - (void)onLogin:(NSPacket *)msg;
 - (void)onJoin:(NSPacket *)msg;
 - (void)onPart:(NSPacket *)msg;
@@ -28,6 +30,7 @@
 - (void)onPing:(NSPacket *)msg;
 - (void)onDisconnect:(NSPacket *)msg;
 - (void)onError:(NSPacket *)msg;
+ */
 
 @end
 
@@ -35,7 +38,10 @@
     NSInputStream  *istream;
     NSOutputStream *ostream;
     NSHost         *host;
+    NSDictionary   *events;
 }
+
+@property (assign) id <DamnSocketDelegate> delegate;
 
 - (void)handleInputStreamEvent:(NSStreamEvent)eventCode;
 - (void)handleOutputStreamEvent:(NSStreamEvent)eventCode;

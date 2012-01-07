@@ -15,6 +15,8 @@
 - (id)init
 {
     self = [super init];
+    evtHandler = [[EventHandler alloc] init];
+    [evtHandler setDelegate:self];
     return self;
 }
 
@@ -25,6 +27,7 @@
     [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
     
     sock = [[DamnSocket alloc] init];
+    [sock setDelegate:evtHandler];
     [sock open];
     [sock write:@"dAmnClient 0.3\nagent=hotdAmn\n\0"];
 }
