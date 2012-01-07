@@ -30,7 +30,7 @@
 - (IBAction)addTab:(id)sender
 {
     tabbing = YES;
-    HDJoinRoomController *ctrl = [[HDJoinRoomController alloc] initWithWindowNibName:@"JoinRoom"];
+    JoinRoom *ctrl = [[JoinRoom alloc] initWithWindowNibName:@"JoinRoom"];
     [ctrl setDelegate:self];
     
     [NSApp beginSheet:[ctrl window]

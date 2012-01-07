@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HDTabBarController.h"
-#import "HDJoinRoomController.h"
+#import "JoinRoom.h"
 
 @interface HotDamn : NSObject <NSApplicationDelegate> {
     IBOutlet HDTabBarController *barControl;
