@@ -1,5 +1,5 @@
 //
-//  AppController.h
+//  HDApplicationController.h
 //  HotdAmn
 //
 //  Created by Joel on 12/30/11.
@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "HDTabBarController.h"
-#import "JoinRoom.h"
+#import "HDJoinRoomController.h"
 
-@interface AppController : NSWindowController <NSApplicationDelegate> {
+@interface HotDamn : NSObject <NSApplicationDelegate> {
     IBOutlet HDTabBarController *barControl;
 }
 
 @property (readwrite, assign) BOOL tabbing;
+@property (retain) IBOutlet NSWindow *window;
 @property (retain) IBOutlet NSMenu *appMenu;
 
 - (IBAction)removeTab:(id)sender;

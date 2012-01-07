@@ -7,7 +7,7 @@
 //
 
 #import "HDTabBarController.h"
-#import "HDApplicationController.h"
+#import "HotDamn.h"
 
 @implementation HDTabBarController
 

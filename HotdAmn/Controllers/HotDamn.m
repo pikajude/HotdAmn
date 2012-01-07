@@ -1,16 +1,16 @@
 //
-//  AppController.m
+//  HDApplicationController.m
 //  HotdAmn
 //
 //  Created by Joel on 12/30/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AppController.h"
+#import "HotDamn.h"
 
-@implementation AppController
+@implementation HotDamn
 
-@synthesize appMenu, tabbing;
+@synthesize window, appMenu, tabbing;
 
 - (id)init
 {
@@ -24,18 +24,17 @@
 
 - (void)awakeFromNib
 {
-    NSLog(@"awaking");
     [barControl addButtonWithTitle:@"Server"];
 }
 
 - (IBAction)addTab:(id)sender
 {
     tabbing = YES;
-    JoinRoom *ctrl = [[[JoinRoom alloc] initWithWindowNibName:@"JoinRoom2"] autorelease];
+    HDJoinRoomController *ctrl = [[HDJoinRoomController alloc] initWithWindowNibName:@"JoinRoom"];
     [ctrl setDelegate:self];
     
     [NSApp beginSheet:[ctrl window]
-       modalForWindow:[self window]
+       modalForWindow:window
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
@@ -79,7 +78,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-    [[self window] setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
+    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
 }
 
 @end

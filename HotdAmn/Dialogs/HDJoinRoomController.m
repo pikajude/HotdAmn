@@ -7,7 +7,7 @@
 //
 
 #import "HDJoinRoomController.h"
-#import "HDApplicationController.h"
+#import "HotDamn.h"
 
 @implementation HDJoinRoomController
 
