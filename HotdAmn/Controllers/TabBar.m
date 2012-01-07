@@ -33,8 +33,8 @@
 
 - (void)addButtonWithTitle:(NSString *)title
 {
-    HDTabButton *b = [[[HDTabButton alloc] init] autorelease];
-    HDTabButtonCell *cell = [[[HDTabButtonCell alloc] init] autorelease];
+    TabButton *b = [[[TabButton alloc] init] autorelease];
+    TabButtonCell *cell = [[[TabButtonCell alloc] init] autorelease];
     [b setCell:cell];
     [[b cell] setImagePosition:NSImageRight];
     [[b cell] setAllowsMixedState:YES];
@@ -54,7 +54,7 @@
 
 - (void)activateSingleButton:(NSButton *)button
 {
-    for(HDTabButton *b in [tabView subviews]) {
+    for(TabButton *b in [tabView subviews]) {
         if([[b title] isEqualToString:[button title]]) [b select];
         else [b deselect];
     }
@@ -159,7 +159,7 @@
 {
     float width = 0;
     int idx = 0;
-    for (HDTabButton *button in [tabView subviews]) {
+    for (TabButton *button in [tabView subviews]) {
         // Round off tab rearranging - i.e. if the tab is more than 50%
         // of the way on either side, return the proper index
         float cellwidth = [[button cell] cellSize].width;

@@ -1247,7 +1247,7 @@
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:499</string>
-							<string key="NSClassName">HDTabBarView</string>
+							<string key="NSClassName">TabView</string>
 						</object>
 					</object>
 					<string key="NSFrameSize">{480, 360}</string>
@@ -3282,14 +3282,6 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">HDTabBarView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HDTabBarView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">HotDamn</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
@@ -3387,18 +3379,26 @@
 					<string key="superclassName">NSViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">tabView</string>
-						<string key="NS.object.0">HDTabBarView</string>
+						<string key="NS.object.0">TabView</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<string key="NS.key.0">tabView</string>
 						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">tabView</string>
-							<string key="candidateClassName">HDTabBarView</string>
+							<string key="candidateClassName">TabView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/TabBar.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">TabView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/TabView.h</string>
 					</object>
 				</object>
 			</object>

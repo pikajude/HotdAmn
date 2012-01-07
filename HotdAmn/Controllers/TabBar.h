@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HDTabBarView.h"
-#import "HDTabButton.h"
-#import "HDTabButtonCell.h"
+#import "TabView.h"
+#import "TabButton.h"
+#import "TabButtonCell.h"
 
 @class HotDamn;
 
 @interface TabBar : NSViewController
 
-@property (retain) IBOutlet HDTabBarView *tabView;
+@property (retain) IBOutlet TabView *tabView;
 
 #pragma mark -
 #pragma mark Adding
