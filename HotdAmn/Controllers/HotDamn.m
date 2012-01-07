@@ -10,7 +10,7 @@
 
 @implementation HotDamn
 
-@synthesize window, appMenu, tabbing;
+@synthesize window, appMenu, tabbing, aboutPanel;
 
 - (id)init
 {
@@ -24,6 +24,7 @@
 
 - (void)awakeFromNib
 {
+    aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     [barControl addButtonWithTitle:@"Server"];
 }
 
@@ -74,6 +75,11 @@
         return NO;
     }
     return YES;
+}
+
+- (IBAction)showAboutPanel:(id)sender
+{
+    [[aboutPanel window] makeKeyAndOrderFront:nil];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification

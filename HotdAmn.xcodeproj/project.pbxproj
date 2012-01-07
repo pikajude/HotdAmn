@@ -26,6 +26,8 @@
 		252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */; };
 		252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */; };
 		2568BE1A14AE9C2900E1C825 /* TabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* TabButton.m */; };
+		257D933914B8024600CE636C /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257D933714B8024600CE636C /* About.xib */; };
+		257D933C14B8038600CE636C /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D933B14B8038600CE636C /* About.m */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
 		25E90B1E14B1413200FF75B9 /* JoinRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E90B1C14B1413200FF75B9 /* JoinRoom.xib */; };
 /* End PBXBuildFile section */
@@ -41,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2519311414AE46DB003A5FBA /* TabButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TabButtonCell.h; path = Views/TabButtonCell.h; sourceTree = "<group>"; };
+		2519311414AE46DB003A5FBA /* TabButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButtonCell.h; path = Views/TabButtonCell.h; sourceTree = "<group>"; };
 		2519311514AE46DB003A5FBA /* TabButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButtonCell.m; path = Views/TabButtonCell.m; sourceTree = "<group>"; };
 		2519BE5014AE21F30029F746 /* HotdAmn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotdAmn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2519BE5414AE21F30029F746 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -60,11 +62,11 @@
 		2519BE7B14AE21F30029F746 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2519BE7D14AE21F30029F746 /* HotdAmnTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotdAmnTests.h; sourceTree = "<group>"; };
 		2519BE7F14AE21F30029F746 /* HotdAmnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotdAmnTests.m; sourceTree = "<group>"; };
-		2519BE8E14AE22880029F746 /* HotDamn.h */ = {isa = PBXFileReference; fileEncoding = 4; name = HotDamn.h; path = Controllers/HotDamn.h; sourceTree = "<group>"; };
-		2519BE9414AE22D30029F746 /* TabView.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TabView.h; path = Views/TabView.h; sourceTree = "<group>"; };
+		2519BE8E14AE22880029F746 /* HotDamn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotDamn.h; path = Controllers/HotDamn.h; sourceTree = "<group>"; };
+		2519BE9414AE22D30029F746 /* TabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabView.h; path = Views/TabView.h; sourceTree = "<group>"; };
 		2519BE9514AE22D30029F746 /* TabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabView.m; path = Views/TabView.m; sourceTree = "<group>"; };
 		2519BE9714AE23040029F746 /* HotDamn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotDamn.m; path = Controllers/HotDamn.m; sourceTree = "<group>"; };
-		2519BE9914AE2C920029F746 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TabBar.h; path = Controllers/TabBar.h; sourceTree = "<group>"; };
+		2519BE9914AE2C920029F746 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBar.h; path = Controllers/TabBar.h; sourceTree = "<group>"; };
 		2519BE9A14AE2C920029F746 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBar.m; path = Controllers/TabBar.m; sourceTree = "<group>"; };
 		252DB61414B7975B0036E0CF /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Token.h; path = HotdAmn/OAuth/Token.h; sourceTree = SOURCE_ROOT; };
 		252DB61514B7975B0036E0CF /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Token.m; path = HotdAmn/OAuth/Token.m; sourceTree = SOURCE_ROOT; };
@@ -73,9 +75,12 @@
 		252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviantArtAPI.m; path = HotdAmn/OAuth/DeviantArtAPI.m; sourceTree = SOURCE_ROOT; };
 		252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthPrompt.h; sourceTree = "<group>"; };
 		252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthPrompt.m; sourceTree = "<group>"; };
-		2568BE1814AE9C2900E1C825 /* TabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TabButton.h; path = Views/TabButton.h; sourceTree = "<group>"; };
+		2568BE1814AE9C2900E1C825 /* TabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButton.h; path = Views/TabButton.h; sourceTree = "<group>"; };
 		2568BE1914AE9C2900E1C825 /* TabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButton.m; path = Views/TabButton.m; sourceTree = "<group>"; };
-		259EA07C14B53FF700D44466 /* JoinRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; path = JoinRoom.h; sourceTree = "<group>"; };
+		257D933814B8024600CE636C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/About.xib; sourceTree = "<group>"; };
+		257D933A14B8038600CE636C /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
+		257D933B14B8038600CE636C /* About.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = About.m; sourceTree = "<group>"; };
+		259EA07C14B53FF700D44466 /* JoinRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRoom.h; sourceTree = "<group>"; };
 		259EA07D14B53FF700D44466 /* JoinRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRoom.m; sourceTree = "<group>"; };
 		25E90B1D14B1413200FF75B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JoinRoom.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +155,7 @@
 				2519BE8A14AE220E0029F746 /* Controllers */,
 				2519BE8914AE22040029F746 /* Views */,
 				2519BE6914AE21F30029F746 /* MainMenu.xib */,
+				257D933714B8024600CE636C /* About.xib */,
 				25E90B1C14B1413200FF75B9 /* JoinRoom.xib */,
 				2519BE5B14AE21F30029F746 /* Supporting Files */,
 			);
@@ -226,6 +232,8 @@
 		259EA07B14B53FF700D44466 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
+				257D933A14B8038600CE636C /* About.h */,
+				257D933B14B8038600CE636C /* About.m */,
 				259EA07C14B53FF700D44466 /* JoinRoom.h */,
 				259EA07D14B53FF700D44466 /* JoinRoom.m */,
 				252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */,
@@ -305,6 +313,7 @@
 				2519BE6514AE21F30029F746 /* Credits.rtf in Resources */,
 				2519BE6B14AE21F30029F746 /* MainMenu.xib in Resources */,
 				25E90B1E14B1413200FF75B9 /* JoinRoom.xib in Resources */,
+				257D933914B8024600CE636C /* About.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +359,7 @@
 				252DB61614B7975B0036E0CF /* Token.m in Sources */,
 				252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */,
 				252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */,
+				257D933C14B8038600CE636C /* About.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +412,14 @@
 				2519BE7B14AE21F30029F746 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		257D933714B8024600CE636C /* About.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				257D933814B8024600CE636C /* en */,
+			);
+			name = About.xib;
 			sourceTree = "<group>";
 		};
 		25E90B1C14B1413200FF75B9 /* JoinRoom.xib */ = {
