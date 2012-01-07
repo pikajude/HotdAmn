@@ -23,6 +23,8 @@
 		2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* HDTabBarController.m */; };
 		252DB61614B7975B0036E0CF /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61514B7975B0036E0CF /* Token.m */; };
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
+		252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */; };
+		252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */; };
 		2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* HDTabButton.m */; };
 		259EA07E14B53FF800D44466 /* HDJoinRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* HDJoinRoomController.m */; };
 		25E90B1E14B1413200FF75B9 /* JoinRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E90B1C14B1413200FF75B9 /* JoinRoom.xib */; };
@@ -67,6 +69,10 @@
 		252DB61414B7975B0036E0CF /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Token.h; path = HotdAmn/OAuth/Token.h; sourceTree = SOURCE_ROOT; };
 		252DB61514B7975B0036E0CF /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Token.m; path = HotdAmn/OAuth/Token.m; sourceTree = SOURCE_ROOT; };
 		252DB61714B799E00036E0CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		252DB61914B7B5700036E0CF /* DeviantArtAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviantArtAPI.h; path = HotdAmn/OAuth/DeviantArtAPI.h; sourceTree = SOURCE_ROOT; };
+		252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviantArtAPI.m; path = HotdAmn/OAuth/DeviantArtAPI.m; sourceTree = SOURCE_ROOT; };
+		252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthPrompt.h; sourceTree = "<group>"; };
+		252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthPrompt.m; sourceTree = "<group>"; };
 		2568BE1814AE9C2900E1C825 /* HDTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabButton.h; path = Views/HDTabButton.h; sourceTree = "<group>"; };
 		2568BE1914AE9C2900E1C825 /* HDTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabButton.m; path = Views/HDTabButton.m; sourceTree = "<group>"; };
 		259EA07C14B53FF700D44466 /* HDJoinRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDJoinRoomController.h; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 			children = (
 				252DB61414B7975B0036E0CF /* Token.h */,
 				252DB61514B7975B0036E0CF /* Token.m */,
+				252DB61914B7B5700036E0CF /* DeviantArtAPI.h */,
+				252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */,
 			);
 			name = OAuth;
 			path = Dialogs;
@@ -220,6 +228,8 @@
 			children = (
 				259EA07C14B53FF700D44466 /* HDJoinRoomController.h */,
 				259EA07D14B53FF700D44466 /* HDJoinRoomController.m */,
+				252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */,
+				252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -338,6 +348,8 @@
 				2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */,
 				259EA07E14B53FF800D44466 /* HDJoinRoomController.m in Sources */,
 				252DB61614B7975B0036E0CF /* Token.m in Sources */,
+				252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */,
+				252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
