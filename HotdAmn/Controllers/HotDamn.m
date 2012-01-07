@@ -15,11 +15,6 @@
 - (id)init
 {
     self = [super init];
-    if (self) {
-        sock = [[Socket alloc] init];
-        NSLog(@"%@", sock);
-    }
-    
     return self;
 }
 
@@ -28,6 +23,8 @@
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     [barControl addButtonWithTitle:@"Server"];
     [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
+    
+    sock = [[DamnSocket alloc] init];
     [sock open];
     [sock write:@"dAmnClient 0.3\nagent=hotdAmn\n\0"];
 }
