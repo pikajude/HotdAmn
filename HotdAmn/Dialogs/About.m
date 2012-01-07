@@ -15,10 +15,6 @@
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    
     return self;
 }
 
@@ -34,8 +30,6 @@
     [[[box documentView] textStorage] setAttributedString:content];
     
     [[box documentView] setEditable:NO];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 @end

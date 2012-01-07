@@ -8,14 +8,17 @@
 
 #import "Token.h"
 
+static char *servName = "deviantART OAuth";
+static UInt32 servNameLength = 16;
+
 @implementation Token
 
 + (void)storeToken:(NSString *)token forUsername:(NSString *)username
 {
     if ([self getTokenForUsername:username] == NULL) { // Token not already stored.
         SecKeychainAddGenericPassword(NULL,
-                                      16,
-                                      "deviantART OAuth",
+                                      servNameLength,
+                                      servName,
                                       (UInt32)[username length],
                                       [username UTF8String],
                                       (UInt32)[token length],
@@ -23,7 +26,7 @@
                                       NULL);
     } else { // We're about to modify the token.
         SecKeychainItemRef ref = NULL;
-        SecKeychainFindGenericPassword(NULL, 16, "deviantART OAuth", (UInt32)[username length], [username UTF8String], NULL, NULL, &ref);
+        SecKeychainFindGenericPassword(NULL, servNameLength, servName, (UInt32)[username length], [username UTF8String], NULL, NULL, &ref);
         
         SecKeychainItemModifyAttributesAndData(ref,
                                                NULL,
@@ -39,8 +42,8 @@
     UInt32 len;
     char *tok = malloc(sizeof(char[32]));
     OSStatus stat = SecKeychainFindGenericPassword(NULL,
-                                                   16,
-                                                   "deviantART OAuth",
+                                                   servNameLength,
+                                                   servName,
                                                    (UInt32)[username length],
                                                    [username UTF8String],
                                                    &len,

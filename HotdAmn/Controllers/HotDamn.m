@@ -16,7 +16,8 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        sock = [[Socket alloc] init];
+        NSLog(@"%@", sock);
     }
     
     return self;
@@ -26,6 +27,9 @@
 {
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     [barControl addButtonWithTitle:@"Server"];
+    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
+    [sock open];
+    [sock write:@"dAmnClient 0.3\nagent=hotdAmn\n\0"];
 }
 
 - (IBAction)addTab:(id)sender
@@ -80,11 +84,6 @@
 - (IBAction)showAboutPanel:(id)sender
 {
     [[aboutPanel window] makeKeyAndOrderFront:nil];
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
-{
-    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
 }
 
 @end

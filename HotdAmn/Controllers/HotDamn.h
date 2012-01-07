@@ -10,9 +10,11 @@
 #import "TabBar.h"
 #import "JoinRoom.h"
 #import "About.h"
+#import "Socket.h"
 
 @interface HotDamn : NSObject <NSApplicationDelegate> {
     IBOutlet TabBar *barControl;
+    Socket *sock;
 }
 
 @property (readwrite, assign) BOOL tabbing;

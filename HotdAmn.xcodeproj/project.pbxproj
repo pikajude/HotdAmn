@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250338E714B898AB000C2D44 /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E614B898AB000C2D44 /* Socket.m */; };
 		2519311614AE46DB003A5FBA /* TabButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519311514AE46DB003A5FBA /* TabButtonCell.m */; };
 		2519BE5514AE21F30029F746 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE5414AE21F30029F746 /* Cocoa.framework */; };
 		2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE5D14AE21F30029F746 /* InfoPlist.strings */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		250338E514B898AB000C2D44 /* Socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Socket.h; path = dAmn/Socket.h; sourceTree = "<group>"; };
+		250338E614B898AB000C2D44 /* Socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Socket.m; path = dAmn/Socket.m; sourceTree = "<group>"; };
 		2519311414AE46DB003A5FBA /* TabButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButtonCell.h; path = Views/TabButtonCell.h; sourceTree = "<group>"; };
 		2519311514AE46DB003A5FBA /* TabButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButtonCell.m; path = Views/TabButtonCell.m; sourceTree = "<group>"; };
 		2519BE5014AE21F30029F746 /* HotdAmn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotdAmn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +110,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250338E314B8983E000C2D44 /* dAmn */ = {
+			isa = PBXGroup;
+			children = (
+				250338E514B898AB000C2D44 /* Socket.h */,
+				250338E614B898AB000C2D44 /* Socket.m */,
+			);
+			name = dAmn;
+			sourceTree = "<group>";
+		};
 		2519BE4514AE21F20029F746 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +162,7 @@
 		2519BE5A14AE21F30029F746 /* HotdAmn */ = {
 			isa = PBXGroup;
 			children = (
+				250338E314B8983E000C2D44 /* dAmn */,
 				252DB61214B7968B0036E0CF /* OAuth */,
 				259EA07B14B53FF700D44466 /* Dialogs */,
 				2519BE8A14AE220E0029F746 /* Controllers */,
@@ -360,6 +373,7 @@
 				252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */,
 				252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */,
 				257D933C14B8038600CE636C /* About.m in Sources */,
+				250338E714B898AB000C2D44 /* Socket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
