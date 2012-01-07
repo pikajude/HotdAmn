@@ -7,7 +7,7 @@
 //
 
 #import <AppKit/AppKit.h>
-#import "HDTabBarController.h"
+#import "TabBar.h"
 #import "HDTabButtonCell.h"
 
 @interface HDTabButton : NSButton

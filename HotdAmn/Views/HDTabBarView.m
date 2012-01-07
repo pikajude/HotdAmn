@@ -7,7 +7,7 @@
 //
 
 #import "HDTabBarView.h"
-#import "HDTabBarController.h"
+#import "TabBar.h"
 
 @implementation HDTabBarView
 

@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HDTabBarController.h"
+#import "TabBar.h"
 #import "JoinRoom.h"
 
 @interface HotDamn : NSObject <NSApplicationDelegate> {
-    IBOutlet HDTabBarController *barControl;
+    IBOutlet TabBar *barControl;
 }
 
 @property (readwrite, assign) BOOL tabbing;

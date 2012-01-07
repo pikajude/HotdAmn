@@ -20,7 +20,7 @@
 		2519BE8014AE21F30029F746 /* HotdAmnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE7F14AE21F30029F746 /* HotdAmnTests.m */; };
 		2519BE9614AE22D30029F746 /* HDTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9514AE22D30029F746 /* HDTabBarView.m */; };
 		2519BE9814AE23040029F746 /* HotDamn.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9714AE23040029F746 /* HotDamn.m */; };
-		2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* HDTabBarController.m */; };
+		2519BE9B14AE2C920029F746 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* TabBar.m */; };
 		252DB61614B7975B0036E0CF /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61514B7975B0036E0CF /* Token.m */; };
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
 		252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */; };
@@ -64,8 +64,8 @@
 		2519BE9414AE22D30029F746 /* HDTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabBarView.h; path = Views/HDTabBarView.h; sourceTree = "<group>"; };
 		2519BE9514AE22D30029F746 /* HDTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabBarView.m; path = Views/HDTabBarView.m; sourceTree = "<group>"; };
 		2519BE9714AE23040029F746 /* HotDamn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotDamn.m; path = Controllers/HotDamn.m; sourceTree = "<group>"; };
-		2519BE9914AE2C920029F746 /* HDTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDTabBarController.h; path = Controllers/HDTabBarController.h; sourceTree = "<group>"; };
-		2519BE9A14AE2C920029F746 /* HDTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDTabBarController.m; path = Controllers/HDTabBarController.m; sourceTree = "<group>"; };
+		2519BE9914AE2C920029F746 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TabBar.h; path = Controllers/TabBar.h; sourceTree = "<group>"; };
+		2519BE9A14AE2C920029F746 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBar.m; path = Controllers/TabBar.m; sourceTree = "<group>"; };
 		252DB61414B7975B0036E0CF /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Token.h; path = HotdAmn/OAuth/Token.h; sourceTree = SOURCE_ROOT; };
 		252DB61514B7975B0036E0CF /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Token.m; path = HotdAmn/OAuth/Token.m; sourceTree = SOURCE_ROOT; };
 		252DB61714B799E00036E0CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -205,8 +205,8 @@
 			children = (
 				2519BE8E14AE22880029F746 /* HotDamn.h */,
 				2519BE9714AE23040029F746 /* HotDamn.m */,
-				2519BE9914AE2C920029F746 /* HDTabBarController.h */,
-				2519BE9A14AE2C920029F746 /* HDTabBarController.m */,
+				2519BE9914AE2C920029F746 /* TabBar.h */,
+				2519BE9A14AE2C920029F746 /* TabBar.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 				2519BE6114AE21F30029F746 /* main.m in Sources */,
 				2519BE9614AE22D30029F746 /* HDTabBarView.m in Sources */,
 				2519BE9814AE23040029F746 /* HotDamn.m in Sources */,
-				2519BE9B14AE2C920029F746 /* HDTabBarController.m in Sources */,
+				2519BE9B14AE2C920029F746 /* TabBar.m in Sources */,
 				2519311614AE46DB003A5FBA /* HDTabButtonCell.m in Sources */,
 				2568BE1A14AE9C2900E1C825 /* HDTabButton.m in Sources */,
 				259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */,
