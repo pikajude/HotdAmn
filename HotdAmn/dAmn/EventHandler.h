@@ -16,11 +16,11 @@
 }
 
 @property (assign) HotDamn *delegate;
-@property (assign) NSString *username;
-@property (assign) NSString *token;
+@property (assign) NSDictionary *user;
 
 - (void)onPacket:(Packet *)msg;
 - (void)onServer:(Packet *)msg;
+- (void)onLogin:(Packet *)msg;
 
 - (void)startConnection;
 

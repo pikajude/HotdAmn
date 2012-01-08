@@ -95,9 +95,8 @@
     if (![window isVisible]) {
         [window makeKeyAndOrderFront:nil];
     }
-    NSDictionary *user = [[UserManager defaultManager] defaultUser];
-    [evtHandler setUsername:[user objectForKey:@"username"]];
-    [evtHandler setToken:[user objectForKey:@"damntoken"]];
+    NSDictionary *user = [[UserManager defaultManager] currentUser];
+    [evtHandler setUser:[user retain]];
     [evtHandler startConnection];
 }
 

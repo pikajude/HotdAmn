@@ -41,6 +41,9 @@ static int port = 3900;
     [istream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [ostream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
+    [istream retain];
+    [ostream retain];
+    
     [istream open];
     [ostream open];
 }

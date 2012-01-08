@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Welcome.h"
+#import "NSDictionary+User.h"
 
 @interface UserManager : NSObject {
     Welcome *win;
@@ -30,6 +31,6 @@
 - (NSArray *)userList;
 - (void)saveUserList:(NSArray *)users;
 
-- (NSDictionary *)defaultUser;
+- (NSDictionary *)currentUser;
 
 @end

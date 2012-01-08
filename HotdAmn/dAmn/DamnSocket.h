@@ -13,23 +13,21 @@
 
 - (void)onPacket:(Packet *)msg;
 - (void)onServer:(Packet *)msg;
-
-/*
-- (void)onLogin:(NSPacket *)msg;
-- (void)onJoin:(NSPacket *)msg;
-- (void)onPart:(NSPacket *)msg;
-- (void)onProperty:(NSPacket *)msg;
-- (void)onRecvMsg:(NSPacket *)msg;
-- (void)onRecvAction:(NSPacket *)msg;
-- (void)onRecvJoin:(NSPacket *)msg;
-- (void)onRecvPart:(NSPacket *)msg;
-- (void)onRecvPrivchg:(NSPacket *)msg;
-- (void)onRecvKicked:(NSPacket *)msg;
-- (void)onRecvAdmin:(NSPacket *)msg;
-- (void)onKicked:(NSPacket *)msg;
-- (void)onPing:(NSPacket *)msg;
-- (void)onDisconnect:(NSPacket *)msg;
-- (void)onError:(NSPacket *)msg;
+- (void)onLogin:(Packet *)msg;
+/*- (void)onJoin:(Packet *)msg;
+- (void)onPart:(Packet *)msg;
+- (void)onProperty:(Packet *)msg;
+- (void)onRecvMsg:(Packet *)msg;
+- (void)onRecvAction:(Packet *)msg;
+- (void)onRecvJoin:(Packet *)msg;
+- (void)onRecvPart:(Packet *)msg;
+- (void)onRecvPrivchg:(Packet *)msg;
+- (void)onRecvKicked:(Packet *)msg;
+- (void)onRecvAdmin:(Packet *)msg;
+- (void)onKicked:(Packet *)msg;
+- (void)onPing:(Packet *)msg;
+- (void)onDisconnect:(Packet *)msg;
+- (void)onError:(Packet *)msg;
  */
 
 @end

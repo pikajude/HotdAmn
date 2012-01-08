@@ -12,7 +12,7 @@
 
 @implementation EventHandler
 
-@synthesize delegate, username, token;
+@synthesize delegate, user;
 
 - (id)init
 {
@@ -31,7 +31,15 @@
 
 - (void)onServer:(Packet *)msg
 {
-    NSLog(@"Connected to server.");
+    NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
+                      [user objectForKey:@"username"],
+                      [user objectForKey:@"authtoken"]];
+    [sock write:resp];
+}
+
+- (void)onLogin:(Packet *)msg
+{
+    NSLog(@"%@", [msg args]);
 }
 
 - (void)startConnection
@@ -44,6 +52,7 @@
 
 - (void)dealloc
 {
+    [user release];
     [sock release];
     [super dealloc];
 }

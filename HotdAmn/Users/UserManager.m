@@ -89,10 +89,10 @@ const UserManager *man;
     [self saveUserList:users];
 }
 
-- (NSDictionary *)defaultUser
+- (NSDictionary *)currentUser
 {
     NSArray *users = [NSArray arrayWithContentsOfFile:[self userFilePath]];
-    for (NSDictionary *user in users) {
+    for (NSMutableDictionary *user in users) {
         if ([[user objectForKey:@"default"] boolValue] == YES) {
             return user;
         }

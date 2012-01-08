@@ -10,6 +10,7 @@
 		250338E714B898AB000C2D44 /* DamnSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E614B898AB000C2D44 /* DamnSocket.m */; };
 		250338EA14B8C374000C2D44 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E914B8C374000C2D44 /* EventHandler.m */; };
 		250338ED14B8DA0F000C2D44 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338EC14B8DA0F000C2D44 /* Packet.m */; };
+		250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 250907E914BA43E0007239E9 /* NSDictionary+User.m */; };
 		25123A9714B931A00022446A /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25123A9614B931A00022446A /* UserManager.m */; };
 		25123A9A14B93A8D0022446A /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25123A9814B93A8D0022446A /* Welcome.xib */; };
 		25123A9F14B95C800022446A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25123A9E14B95C800022446A /* WebKit.framework */; };
@@ -58,6 +59,8 @@
 		250338E914B8C374000C2D44 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventHandler.m; path = dAmn/EventHandler.m; sourceTree = "<group>"; };
 		250338EB14B8DA0F000C2D44 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Packet.h; path = dAmn/Packet.h; sourceTree = "<group>"; };
 		250338EC14B8DA0F000C2D44 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Packet.m; path = dAmn/Packet.m; sourceTree = "<group>"; };
+		250907E814BA43E0007239E9 /* NSDictionary+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+User.h"; path = "Users/NSDictionary+User.h"; sourceTree = "<group>"; };
+		250907E914BA43E0007239E9 /* NSDictionary+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+User.m"; path = "Users/NSDictionary+User.m"; sourceTree = "<group>"; };
 		25123A9514B931A00022446A /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Users/UserManager.h; sourceTree = "<group>"; };
 		25123A9614B931A00022446A /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserManager.m; path = Users/UserManager.m; sourceTree = "<group>"; };
 		25123A9914B93A8D0022446A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Welcome.xib; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 			children = (
 				25123A9514B931A00022446A /* UserManager.h */,
 				25123A9614B931A00022446A /* UserManager.m */,
+				250907E814BA43E0007239E9 /* NSDictionary+User.h */,
+				250907E914BA43E0007239E9 /* NSDictionary+User.m */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -318,7 +323,7 @@
 				2519BE4C14AE21F30029F746 /* Sources */,
 				2519BE4D14AE21F30029F746 /* Frameworks */,
 				2519BE4E14AE21F30029F746 /* Resources */,
-				25559A8A14BA344E00B60137 /* ShellScript */,
+				250907EB14BA480C007239E9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -397,6 +402,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		250907EB14BA480C007239E9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exit;\nrm -rf /Users/jdt/Library/Application\\ Support/HotdAmn";
+		};
 		2519BE6F14AE21F30029F746 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,19 +427,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		25559A8A14BA344E00B60137 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "rm -rf /Users/jdt/Library/Application\\ Support/HotdAmn";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -448,6 +453,7 @@
 				25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */,
 				25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */,
 				25559A8D14BA38F900B60137 /* Welcome.m in Sources */,
+				250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

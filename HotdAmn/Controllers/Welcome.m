@@ -51,10 +51,14 @@ static NSDictionary *parseQstring(NSString *querystring) {
     NSFileHandle *hand = [[not userInfo] objectForKey:NSFileHandleNotificationFileHandleItem];
     NSString *reqStart = [[[NSString alloc] initWithData:[hand availableData] encoding:NSUTF8StringEncoding] autorelease];
     NSString *firstLine = [[reqStart componentsSeparatedByString:@"\n"] objectAtIndex:0];
-    NSDictionary *qstring = parseQstring([firstLine substringFromIndex:2]);
+    NSString *qstringSection = [[firstLine componentsSeparatedByString:@" "] objectAtIndex:1];
+    NSDictionary *qstring = parseQstring([qstringSection substringFromIndex:2]);
     
+    NSLog(@"%@", qstring);
     NSString *accessToken = [Token getAccessTokenForCode:[qstring objectForKey:@"code"] refresh:NO];
     NSString *username = [Token getUsernameForAccessToken:accessToken];
+    
+    NSLog(@"%@, %@", accessToken, username);
     
     [[UserManager defaultManager] addUsername:username refreshCode:[Token getCodeForUsername:username] accessToken:accessToken authToken:[Token getDamnTokenForAccessToken:accessToken]];
     
