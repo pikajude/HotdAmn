@@ -11,11 +11,17 @@
 
 @class HotDamn;
 
-@interface EventHandler : NSObject <DamnSocketDelegate>
+@interface EventHandler : NSObject <DamnSocketDelegate> {
+    DamnSocket *sock;
+}
 
 @property (assign) HotDamn *delegate;
+@property (assign) NSString *username;
+@property (assign) NSString *token;
 
 - (void)onPacket:(Packet *)msg;
 - (void)onServer:(Packet *)msg;
+
+- (void)startConnection;
 
 @end

@@ -20,16 +20,20 @@
     return self;
 }
 
-- (void)awakeFromNib
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     [barControl addButtonWithTitle:@"Server"];
     [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
     
-    sock = [[DamnSocket alloc] init];
-    [sock setDelegate:evtHandler];
-    [sock open];
-    [sock write:@"dAmnClient 0.3\nagent=hotdAmn\n\0"];
+    [[UserManager defaultManager] setDelegate:self];
+    
+    if ([[UserManager defaultManager] hasDefaultUser]) {
+        [window makeKeyAndOrderFront:nil];
+        [self startConnection];
+    } else {
+        [[UserManager defaultManager] startIntroduction];
+    }
 }
 
 - (IBAction)addTab:(id)sender
@@ -84,6 +88,17 @@
 - (IBAction)showAboutPanel:(id)sender
 {
     [[aboutPanel window] makeKeyAndOrderFront:nil];
+}
+
+- (void)startConnection
+{
+    if (![window isVisible]) {
+        [window makeKeyAndOrderFront:nil];
+    }
+    NSDictionary *user = [[UserManager defaultManager] defaultUser];
+    [evtHandler setUsername:[user objectForKey:@"username"]];
+    [evtHandler setToken:[user objectForKey:@"damntoken"]];
+    [evtHandler startConnection];
 }
 
 @end

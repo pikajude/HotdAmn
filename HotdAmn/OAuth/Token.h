@@ -10,10 +10,14 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
 #include <CoreServices/CoreServices.h>
+#import "JSONKit.h"
 
 @interface Token : NSObject
 
-+ (void)storeToken:(NSString *)token forUsername:(NSString *)username;
-+ (NSString *)getTokenForUsername:(NSString *)username;
++ (void)storeCode:(NSString *)token forUsername:(NSString *)username;
++ (NSString *)getCodeForUsername:(NSString *)username;
++ (NSString *)getUsernameForAccessToken:(NSString *)access;
++ (NSString *)getAccessTokenForCode:(NSString *)code refresh:(BOOL)ref;
++ (NSString *)getDamnTokenForAccessToken:(NSString *)access;
 
 @end

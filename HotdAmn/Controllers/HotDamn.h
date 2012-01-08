@@ -12,10 +12,11 @@
 #import "About.h"
 #import "EventHandler.h"
 #import "DamnSocket.h"
+#import "Token.h"
+#import "UserManager.h"
 
 @interface HotDamn : NSObject <NSApplicationDelegate> {
     IBOutlet TabBar *barControl;
-    DamnSocket *sock;
     EventHandler *evtHandler;
 }
 
@@ -33,5 +34,7 @@
 - (IBAction)showAboutPanel:(id)sender;
 
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem;
+
+- (void)startConnection;
 
 @end
