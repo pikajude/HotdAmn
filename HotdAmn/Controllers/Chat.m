@@ -10,7 +10,7 @@
 
 @implementation Chat
 
-@synthesize chatView, chatParent, userView, chatContainer;
+@synthesize chatView, chatParent, userView, chatContainer, input, delegate, split;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +26,18 @@
 {
     CGFloat lowerLimit = 100.0f;
     CGFloat upperLimit = [splitView bounds].size.width - 50.0f;
-    return proposedPosition > upperLimit ? upperLimit : proposedPosition < lowerLimit ? lowerLimit : proposedPosition;
+    CGFloat newpos = proposedPosition > upperLimit ? upperLimit : proposedPosition < lowerLimit ? lowerLimit : proposedPosition;
+    return newpos;
+}
+
+- (void)selectInput
+{
+    [input becomeFirstResponder];
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    NSLog(@"dragged in chat");
 }
 
 @end

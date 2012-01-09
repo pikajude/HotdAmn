@@ -10,7 +10,7 @@
 
 @implementation TabButton
 
-@synthesize ctrl, chatView;
+@synthesize ctrl, chatRoom;
 
 - (id)init
 {
@@ -24,27 +24,36 @@
 
 - (void)createChatView
 {
-    chatView = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle]];
+    if ([[self title] isEqualToString:@"Server"]) {
+        chatRoom = [[ServerChat alloc] initWithNibName:nil bundle:[NSBundle mainBundle]];
+    } else {
+        chatRoom = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle]];
+    }
     NSRect frame = [[[self window] contentView] frame];
     NSRect ourframe = NSMakeRect(frame.origin.x,
                                  frame.origin.y,
                                  frame.size.width,
                                  frame.size.height - 29);
-    [[[self window] contentView] addSubview:[chatView view]];
-    [[chatView view] setFrame:ourframe];
-    [[chatView view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+    [[chatRoom view] setHidden:YES];
+    [[[self window] contentView] addSubview:[chatRoom view]];
+    [[chatRoom view] setFrame:ourframe];
+    [[chatRoom split] setDelegate:chatRoom];
+    [[chatRoom view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
 
 - (void)select
 {
     [[self cell] setState:1];
     [[self cell] setPrevState:1];
+    [[chatRoom view] setHidden:NO];
+    [chatRoom selectInput];
 }
 
 - (void)deselect
 {
     [[self cell] setState:0];
     [[self cell] setPrevState:0];
+    [[chatRoom view] setHidden:YES];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent
@@ -120,6 +129,21 @@
                                  owner:self
                               userInfo:nil] autorelease];
     [self addTrackingArea:ar];
+}
+
+- (CGFloat)dividerPos
+{
+    if ([[self title] isEqualToString:@"Server"])
+        return 0.0f;
+    NSView *v = [chatRoom chatContainer];
+    return [v frame].size.width + [v frame].origin.x;
+}
+
+- (void)setDividerPos:(CGFloat)pos
+{
+    if ([[self title] isEqualToString:@"Server"])
+        return;
+    [[chatRoom split] setPosition:pos ofDividerAtIndex:0];
 }
 
 @end

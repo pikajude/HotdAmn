@@ -11,15 +11,19 @@
 #import "TabBar.h"
 #import "TabButtonCell.h"
 #import "Chat.h"
+#import "ServerChat.h"
 
-@interface TabButton : NSButton
+@interface TabButton : NSButton <NSSplitViewDelegate>
 
-@property (assign) NSViewController *chatView;
+@property (assign) Chat *chatRoom;
 @property (assign) id ctrl;
 
 - (void)select;
 - (void)deselect;
 - (void)addTracker;
 - (void)createChatView;
+
+- (CGFloat)dividerPos;
+- (void)setDividerPos:(CGFloat)pos;
 
 @end

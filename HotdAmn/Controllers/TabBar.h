@@ -13,7 +13,9 @@
 
 @class HotDamn;
 
-@interface TabBar : NSViewController
+@interface TabBar : NSViewController {
+    id currentTab;
+}
 
 @property (retain) IBOutlet TabView *tabView;
 
@@ -40,6 +42,7 @@
 #pragma mark -
 #pragma mark Querying
 
+- (id)highlightedTab;
 - (NSInteger)indexOfRightmostButtonBeforePoint:(CGFloat)point;
 - (NSInteger)indexOfButtonWithTitle:(NSString *)title;
 - (NSButton *)getButtonWithTitle:(NSString *)title;
@@ -49,5 +52,10 @@
 
 - (NSRect)getNextRectWithLength:(NSInteger) length;
 - (void)resizeButtons;
+
+#pragma mark -
+#pragma mark Sizing
+
+- (void)beforeChangeFrom:(id)button1 toButton:(id)button2;
 
 @end

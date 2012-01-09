@@ -7,6 +7,7 @@
 //
 
 #import "TabBar.h"
+#import "TabButton.h"
 #import "HotDamn.h"
 
 @implementation TabBar
@@ -55,9 +56,12 @@
 
 - (void)activateSingleButton:(NSButton *)button
 {
+    [self beforeChangeFrom:[self highlightedTab] toButton:nil];
     for(TabButton *b in [tabView subviews]) {
-        if([[b title] isEqualToString:[button title]]) [b select];
-        else [b deselect];
+        if([[b title] isEqualToString:[button title]]) {
+            currentTab = b;
+            [b select];
+        } else [b deselect];
     }
 }
 
@@ -67,11 +71,18 @@
     
     // Apparently we want to activate the more-than-last button
     // just activate the last and return
-    if (index >= [views count]) return [[views lastObject] select];
+    if (index >= [views count]) {
+        [self beforeChangeFrom:[self highlightedTab] toButton:[views lastObject]];
+        currentTab = [views lastObject];
+        return [[views lastObject] select];
+    }
     
     for(int i = 0; i < [views count]; i++) {
-        if(index == i) [[views objectAtIndex:i] select];
-        else [[views objectAtIndex:i] deselect];
+        if(index == i) {
+            [self beforeChangeFrom:[self highlightedTab] toButton:[views objectAtIndex:i]];
+            currentTab = [views objectAtIndex:i];
+            [[views objectAtIndex:i] select];
+        } else [[views objectAtIndex:i] deselect];
     }
 }
 
@@ -107,6 +118,7 @@
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
         return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
     }];
+    [self beforeChangeFrom:[self highlightedTab] toButton:[[tabView subviews] objectAtIndex:idx]];
     [[[tabView subviews] objectAtIndex:idx] setHidden:NO];
     [self resizeButtons];
 }
@@ -125,6 +137,7 @@
     NSArray *tabs = [tabView subviews];
     for(int i = 0; i < [tabs count]; i++) {
         if([[tabs objectAtIndex:i] state] == 1) {
+            [self beforeChangeFrom:[tabs objectAtIndex:i] toButton:nil];
             
             // Unhighlight the current tab.
             [[tabs objectAtIndex:i] deselect];
@@ -132,8 +145,10 @@
             // We are at the end of the tab bar, so highlight the first tab.
             if (i + 1 == [tabs count]) {
                 [[tabs objectAtIndex:0] select];
+                currentTab = [tabs objectAtIndex:0];
             } else {
                 [[tabs objectAtIndex:++i] select];
+                currentTab = [tabs objectAtIndex:i];
             }
             break;
         }
@@ -145,11 +160,15 @@
     NSArray *tabs = [tabView subviews];
     for (int i = 0; i < [tabs count]; i++) {
         if([[tabs objectAtIndex:i] state] == 1) {
+            [self beforeChangeFrom:[tabs objectAtIndex:i] toButton:nil];
+            
             [[tabs objectAtIndex:i] deselect];
             if (i == 0) {
                 [[tabs lastObject] select];
+                currentTab = [tabs lastObject];
             } else {
                 [[tabs objectAtIndex:--i] select];
+                currentTab = [tabs objectAtIndex:i];
             }
             break;
         }
@@ -183,6 +202,11 @@
 - (NSButton *)getButtonWithTitle:(NSString *)title
 {
     return [[tabView subviews] objectAtIndex:[self indexOfButtonWithTitle:title]];
+}
+
+- (TabButton *)highlightedTab
+{
+    return currentTab;
 }
 
 #pragma mark -
@@ -238,6 +262,16 @@
 {
     if(returnCode == NSAlertFirstButtonReturn)
         [[NSApplication sharedApplication] terminate:nil];
+}
+
+- (void)beforeChangeFrom:(TabButton *)button1 toButton:(TabButton *)button2
+{
+    CGFloat sep = [button1 dividerPos];
+    if (sep == 0)
+        return;
+    for (TabButton *b in [[self tabView] subviews]) {
+        [b setDividerPos:sep];
+    }
 }
 
 @end

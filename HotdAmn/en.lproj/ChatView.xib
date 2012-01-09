@@ -95,7 +95,7 @@
 														<string>public.url-name</string>
 													</object>
 												</object>
-												<string key="NSFrame">{{1.5, 1}, {335, 226}}</string>
+												<string key="NSFrame">{{8, 9}, {335, 226}}</string>
 												<reference key="NSSuperview" ref="714851527"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView"/>
@@ -124,7 +124,7 @@
 												<bool key="AllowsUndo">YES</bool>
 											</object>
 										</object>
-										<string key="NSFrame">{{7, 37}, {337, 228}}</string>
+										<string key="NSFrame">{{0, 28}, {351, 244}}</string>
 										<reference key="NSSuperview" ref="453796210"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="561712780"/>
@@ -187,7 +187,6 @@
 								<string key="NSFrame">{{352, 0}, {128, 272}}</string>
 								<reference key="NSSuperview" ref="526925550"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:601</string>
 								<string key="NSClassName">NSView</string>
 							</object>
@@ -255,9 +254,25 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1005"/>
+					</object>
+					<int key="connectionID">52</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">input</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="970521506"/>
+					</object>
+					<int key="connectionID">53</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">split</string>
+						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="526925550"/>
 					</object>
-					<int key="connectionID">51</int>
+					<int key="connectionID">54</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -397,7 +412,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">51</int>
+			<int key="maxID">54</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -412,6 +427,8 @@
 							<string>chatContainer</string>
 							<string>chatParent</string>
 							<string>chatView</string>
+							<string>input</string>
+							<string>split</string>
 							<string>userView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -419,6 +436,8 @@
 							<string>NSView</string>
 							<string>ChatView</string>
 							<string>WebView</string>
+							<string>NSTextField</string>
+							<string>NSSplitView</string>
 							<string>NSView</string>
 						</object>
 					</object>
@@ -429,6 +448,8 @@
 							<string>chatContainer</string>
 							<string>chatParent</string>
 							<string>chatView</string>
+							<string>input</string>
+							<string>split</string>
 							<string>userView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -444,6 +465,14 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">chatView</string>
 								<string key="candidateClassName">WebView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">input</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">split</string>
+								<string key="candidateClassName">NSSplitView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">userView</string>

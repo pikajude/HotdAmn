@@ -22,8 +22,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    NSRect shrunkenRect = NSMakeRect(dirtyRect.origin.x + 7,
+                                     dirtyRect.origin.y + 8,
+                                     dirtyRect.size.width - 14,
+                                     dirtyRect.size.height - 16);
     [[NSColor colorWithDeviceWhite:0.67f alpha:1.0f] set];
-    NSFrameRectWithWidth(dirtyRect, 1.0f);
+    NSFrameRectWithWidth(shrunkenRect, 1.0f);
     [super drawRect:dirtyRect];
 }
 

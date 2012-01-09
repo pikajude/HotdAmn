@@ -12,9 +12,15 @@
 
 @interface Chat : NSViewController <NSSplitViewDelegate>
 
+@property (assign) id delegate;
+
+@property (assign) IBOutlet NSSplitView *split;
 @property (assign) IBOutlet WebView *chatView;
 @property (assign) IBOutlet ChatView *chatParent;
 @property (assign) IBOutlet NSView *userView;
 @property (assign) IBOutlet NSView *chatContainer;
+@property (assign) IBOutlet NSTextField *input;
+
+- (void)selectInput;
 
 @end

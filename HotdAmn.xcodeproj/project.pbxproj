@@ -38,6 +38,8 @@
 		25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8614BA1F6E00B60137 /* JSONKit.m */; };
 		25559A8D14BA38F900B60137 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8C14BA38F900B60137 /* Welcome.m */; };
 		2568BE1A14AE9C2900E1C825 /* TabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* TabButton.m */; };
+		2572059D14BA949C00A24228 /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2572059B14BA949C00A24228 /* ServerView.xib */; };
+		257205A114BA94DD00A24228 /* ServerChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 257205A014BA94DD00A24228 /* ServerChat.m */; };
 		257D933914B8024600CE636C /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257D933714B8024600CE636C /* About.xib */; };
 		257D933C14B8038600CE636C /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D933B14B8038600CE636C /* About.m */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
@@ -111,6 +113,9 @@
 		25559A8C14BA38F900B60137 /* Welcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Welcome.m; path = Controllers/Welcome.m; sourceTree = "<group>"; };
 		2568BE1814AE9C2900E1C825 /* TabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButton.h; path = Views/TabButton.h; sourceTree = "<group>"; };
 		2568BE1914AE9C2900E1C825 /* TabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButton.m; path = Views/TabButton.m; sourceTree = "<group>"; };
+		2572059C14BA949C00A24228 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerView.xib; sourceTree = "<group>"; };
+		2572059F14BA94DD00A24228 /* ServerChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerChat.h; path = Controllers/ServerChat.h; sourceTree = "<group>"; };
+		257205A014BA94DD00A24228 /* ServerChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerChat.m; path = Controllers/ServerChat.m; sourceTree = "<group>"; };
 		257D933814B8024600CE636C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/About.xib; sourceTree = "<group>"; };
 		257D933A14B8038600CE636C /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
 		257D933B14B8038600CE636C /* About.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = About.m; sourceTree = "<group>"; };
@@ -220,6 +225,7 @@
 				2519BE8914AE22040029F746 /* Views */,
 				2519BE6914AE21F30029F746 /* MainMenu.xib */,
 				254348E114BA73DC00453719 /* ChatView.xib */,
+				2572059B14BA949C00A24228 /* ServerView.xib */,
 				257D933714B8024600CE636C /* About.xib */,
 				25123A9814B93A8D0022446A /* Welcome.xib */,
 				25E90B1C14B1413200FF75B9 /* JoinRoom.xib */,
@@ -285,6 +291,8 @@
 				2519BE9A14AE2C920029F746 /* TabBar.m */,
 				25C7053814BA794A004BC131 /* Chat.h */,
 				25C7053914BA794A004BC131 /* Chat.m */,
+				2572059F14BA94DD00A24228 /* ServerChat.h */,
+				257205A014BA94DD00A24228 /* ServerChat.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -401,6 +409,7 @@
 				257D933914B8024600CE636C /* About.xib in Resources */,
 				25123A9A14B93A8D0022446A /* Welcome.xib in Resources */,
 				254348E314BA73DC00453719 /* ChatView.xib in Resources */,
+				2572059D14BA949C00A24228 /* ServerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +479,7 @@
 				250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */,
 				254348EC14BA77F100453719 /* ChatView.m in Sources */,
 				25C7053B14BA794A004BC131 /* Chat.m in Sources */,
+				257205A114BA94DD00A24228 /* ServerChat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +548,14 @@
 				254348E214BA73DC00453719 /* en */,
 			);
 			name = ChatView.xib;
+			sourceTree = "<group>";
+		};
+		2572059B14BA949C00A24228 /* ServerView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2572059C14BA949C00A24228 /* en */,
+			);
+			name = ServerView.xib;
 			sourceTree = "<group>";
 		};
 		257D933714B8024600CE636C /* About.xib */ = {
