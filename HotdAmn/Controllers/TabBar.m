@@ -47,6 +47,7 @@
     
     [tabView addSubview:b];
     
+    [b createChatView];
     [b setFrame:[self getNextRectWithLength:[[b cell] cellSize].width]];
     [b addTracker];
     [self activateSingleButton:b];

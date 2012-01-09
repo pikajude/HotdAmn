@@ -7,15 +7,19 @@
 //
 
 #import <AppKit/AppKit.h>
+#import <WebKit/WebKit.h>
 #import "TabBar.h"
 #import "TabButtonCell.h"
+#import "Chat.h"
 
 @interface TabButton : NSButton
 
+@property (assign) NSViewController *chatView;
 @property (assign) id ctrl;
 
 - (void)select;
 - (void)deselect;
 - (void)addTracker;
+- (void)createChatView;
 
 @end

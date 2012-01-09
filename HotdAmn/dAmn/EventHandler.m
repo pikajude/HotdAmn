@@ -39,7 +39,16 @@
 
 - (void)onLogin:(Packet *)msg
 {
-    NSLog(@"%@", [msg args]);
+    if ([[[msg args] objectForKey:@"e"] isEqualToString:@"ok"]) {
+        NSLog(@"Connection succeeded.");
+    } else {
+        NSLog(@"Connection phail, retrying.");
+        [user refreshFields];
+        NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
+                          [user objectForKey:@"username"],
+                          [user objectForKey:@"authtoken"]];
+        [sock write:resp];
+    }
 }
 
 - (void)startConnection

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DamnSocket.h"
+#import "NSDictionary+User.h"
 
 @class HotDamn;
 

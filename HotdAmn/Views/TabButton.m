@@ -10,16 +10,29 @@
 
 @implementation TabButton
 
-@synthesize ctrl;
+@synthesize ctrl, chatView;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        
     }
     
     return self;
+}
+
+- (void)createChatView
+{
+    chatView = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle]];
+    NSRect frame = [[[self window] contentView] frame];
+    NSRect ourframe = NSMakeRect(frame.origin.x,
+                                 frame.origin.y,
+                                 frame.size.width,
+                                 frame.size.height - 29);
+    [[[self window] contentView] addSubview:[chatView view]];
+    [[chatView view] setFrame:ourframe];
+    [[chatView view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
 
 - (void)select
