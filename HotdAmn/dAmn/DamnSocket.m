@@ -22,7 +22,10 @@ static int port = 3900;
         events = [[NSDictionary dictionaryWithObjectsAndKeys:
                   [NSValue valueWithPointer:@selector(onServer:)], @"dAmnServer",
                   [NSValue valueWithPointer:@selector(onLogin:)], @"login",
+                  [NSValue valueWithPointer:@selector(onJoin:)], @"join",
                   nil] retain];
+        
+        buf = [[NSMutableData alloc] init];
     }
     
     return self;
@@ -61,15 +64,24 @@ static int port = 3900;
 {
     switch (evt) {
         case NSStreamEventHasBytesAvailable: {
-            uint8_t *buf = malloc(sizeof(uint8_t) * 8192);
-            NSInteger len = [istream read:buf maxLength:8192];
-            NSData *dat = [NSData dataWithBytes:buf length:len];
-            free(buf);
-            NSString *str = [[[NSString alloc] initWithData:dat encoding:NSUTF8StringEncoding] autorelease];
-            Packet *pkt = [[[Packet alloc] initWithString:str] autorelease];
-            [delegate onPacket:pkt];
-            [delegate performSelector:[[events objectForKey:[pkt command]] pointerValue]
-                           withObject:pkt];
+            // Receive one char at a time, looking for NUL
+            uint8_t *buffer = malloc(sizeof(uint8_t));
+            [istream read:buffer maxLength:1];
+            
+            // Found NUL, end of packet
+            if (buffer[0] == '\0') {
+                NSString *str = [[[NSString alloc] initWithData:buf encoding:NSUTF8StringEncoding] autorelease];
+                Packet *pkt = [[[Packet alloc] initWithString:str] autorelease];
+                [delegate onPacket:pkt];
+                [delegate performSelector:[[events objectForKey:[pkt command]] pointerValue]
+                               withObject:pkt];
+                
+                // Clear buffer
+                [buf release];
+                buf = [[NSMutableData alloc] init];
+            } else {
+                [buf appendBytes:(const void *)buffer length:1];
+            }
             break;
         }
             
@@ -91,6 +103,7 @@ static int port = 3900;
 
 - (void)dealloc
 {
+    [buf release];
     [istream close];
     [ostream close];
     [istream release];

@@ -39,12 +39,9 @@
     BOOL containsBadChars = ([currentRoomName rangeOfCharacterFromSet:set].location != NSNotFound);
 
     if ([currentRoomName isEqualToString:@""] || containsBadChars) {
-        [errMsg    setHidden:NO];
+        [errMsg setHidden:NO];
     } else {
-        NSMutableString *room = [[[NSMutableString alloc] init] autorelease];
-        if([currentRoomName characterAtIndex:0] != '#') [room appendString:@"#"];
-        [room appendString:currentRoomName];
-        [[self delegate] createTabWithTitle:room];
+        [[self delegate] join:[currentRoomName stringByReplacingOccurrencesOfString:@"#" withString:@""]];
         
         // not actually canceling, this is just a shortcut
         [self cancelRoom:nil];
@@ -54,7 +51,7 @@
 - (IBAction)cancelRoom:(id)sender
 {
     [[self window] orderOut:nil];
-    [[self delegate] setTabbing:NO];
+    [[[self delegate] delegate] setTabbing:NO];
 }
 
 @end

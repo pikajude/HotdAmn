@@ -10,11 +10,12 @@
 
 @implementation HotDamn
 
-@synthesize window, appMenu, tabbing, aboutPanel;
+@synthesize isConnected, window, appMenu, tabbing, aboutPanel;
 
 - (id)init
 {
     self = [super init];
+    isConnected = NO;
     evtHandler = [[EventHandler alloc] init];
     [evtHandler setDelegate:self];
     return self;
@@ -40,7 +41,7 @@
 {
     tabbing = YES;
     JoinRoom *ctrl = [[JoinRoom alloc] initWithWindowNibName:@"JoinRoom"];
-    [ctrl setDelegate:self];
+    [ctrl setDelegate:evtHandler];
     
     [NSApp beginSheet:[ctrl window]
        modalForWindow:window
@@ -77,6 +78,9 @@
     if ([theMenuItem action] == @selector(addTab:) && tabbing) {
         return NO;
     }
+    if ([theMenuItem action] == @selector(addTab:) && !isConnected) {
+        return NO;
+    }
     if (([theMenuItem action] == @selector(selectNextTab:) ||
          [theMenuItem action] == @selector(selectPreviousTab:)) &&
         [[[barControl tabView] subviews] count] < 2) {
@@ -102,7 +106,9 @@
 
 - (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName
 {
-    [(TabButton *)[[barControl tabs] objectForKey:roomName] addLine:msg];
+    TabButton *b = [[barControl tabs] objectForKey:roomName];
+    [b addLine:msg];
+    [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
 }
 
 @end

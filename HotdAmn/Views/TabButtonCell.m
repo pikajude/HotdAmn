@@ -170,6 +170,10 @@
         [self setImagePosition:NSNoImage];
         return [self setImage:nil];
     }
+    if ([self state] == 1) {
+        _badgeValue = 0;
+        return;
+    }
     _badgeValue = bv;
     [self setImagePosition:NSImageRight];
     NSImage *img = [[[NSImage alloc] init] autorelease];

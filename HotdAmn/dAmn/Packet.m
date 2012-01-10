@@ -10,7 +10,7 @@
 
 @implementation Packet
 
-@synthesize body, args, command, param;
+@synthesize body, args, command, param, raw;
 
 - (id)init
 {
@@ -25,6 +25,7 @@
 - (Packet *)initWithString:(NSString *)str
 {
     self = [super init];
+    raw = [str retain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSString *key = [[[NSString alloc] init] autorelease];
     NSString *val = [[[NSString alloc] init] autorelease];
@@ -83,6 +84,12 @@
         return NULL;
     
     return [[[Packet alloc] initWithString:body] autorelease];
+}
+
+- (void)dealloc
+{
+    [raw release];
+    [super dealloc];
 }
 
 @end

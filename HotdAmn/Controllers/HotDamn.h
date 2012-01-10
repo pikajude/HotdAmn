@@ -20,6 +20,7 @@
     EventHandler *evtHandler;
 }
 
+@property (readwrite, assign) BOOL isConnected;
 @property (readwrite, assign) BOOL tabbing;
 @property (retain) IBOutlet NSWindow *window;
 @property (retain) IBOutlet NSMenu *appMenu;

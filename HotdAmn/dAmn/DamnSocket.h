@@ -14,8 +14,8 @@
 - (void)onPacket:(Packet *)msg;
 - (void)onServer:(Packet *)msg;
 - (void)onLogin:(Packet *)msg;
-/*- (void)onJoin:(Packet *)msg;
-- (void)onPart:(Packet *)msg;
+- (void)onJoin:(Packet *)msg;
+/*- (void)onPart:(Packet *)msg;
 - (void)onProperty:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;
@@ -37,6 +37,8 @@
     NSOutputStream *ostream;
     NSHost         *host;
     NSDictionary   *events;
+    
+    NSMutableData *buf;
 }
 
 @property (assign) id <DamnSocketDelegate> delegate;

@@ -24,9 +24,12 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Socket delegate methods
+
 - (void)onPacket:(Packet *)msg
 {
-    
+    NSLog(@"%@", [msg raw]);
 }
 
 - (void)onServer:(Packet *)msg
@@ -34,7 +37,7 @@
     NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
                       [user objectForKey:@"username"],
                       [user objectForKey:@"authtoken"]];
-    [delegate postMessage:[NSString stringWithFormat:@"Logged in to dAmnServer %@.", [msg param]] 
+    [delegate postMessage:[NSString stringWithFormat:@"Connected to dAmnServer %@.", [msg param]] 
                    inRoom:@"Server"];
     [sock write:resp];
 }
@@ -42,9 +45,11 @@
 - (void)onLogin:(Packet *)msg
 {
     if ([[[msg args] objectForKey:@"e"] isEqualToString:@"ok"]) {
-        NSLog(@"Connection succeeded.");
+        [delegate postMessage:[NSString stringWithFormat:@"Logged in as %@.", [msg param]]
+                       inRoom:@"Server"];
+        [delegate setIsConnected:YES];
     } else {
-        NSLog(@"Connection phail, retrying.");
+        [delegate postMessage:@"Login fail, refreshing authtoken." inRoom:@"Server"];
         [user refreshFields];
         NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
                           [user objectForKey:@"username"],
@@ -52,6 +57,22 @@
         [sock write:resp];
     }
 }
+
+- (void)onJoin:(Packet *)msg
+{
+    [[self delegate] createTabWithTitle:[[msg param] substringFromIndex:5]];
+}
+
+#pragma mark -
+#pragma mark Actions
+
+- (void)join:(NSString *)roomName
+{
+    NSString *pk = [NSString stringWithFormat:@"join chat:%@\n\0", roomName];
+    [sock write:pk];
+}
+
+#pragma mark -
 
 - (void)startConnection
 {

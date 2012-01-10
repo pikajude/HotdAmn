@@ -14,6 +14,7 @@
 @property (readonly) NSString *param;
 @property (readonly) NSDictionary *args;
 @property (readonly) NSString *body;
+@property (readonly) NSString *raw;
 
 - (Packet *)subpacket;
 - (Packet *)initWithString:(NSString *)str;
