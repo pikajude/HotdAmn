@@ -234,7 +234,7 @@
 			<object class="NSWindowTemplate" id="808259853">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{109, 132}, {469, 360}}</string>
+				<string key="NSWindowRect">{{341, 212}, {469, 360}}</string>
 				<int key="NSWTFlags">611845120</int>
 				<string key="NSWindowTitle">Authenticate</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -284,19 +284,13 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<string>WebKitDefaultFixedFontSize</string>
 										<string>WebKitDefaultFontSize</string>
-										<string>WebKitJavaEnabled</string>
-										<string>WebKitJavaScriptEnabled</string>
 										<string>WebKitMinimumFontSize</string>
-										<string>WebKitPluginsEnabled</string>
 									</object>
 									<object class="NSMutableArray" key="dict.values">
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<integer value="12"/>
 										<integer value="12"/>
-										<boolean value="NO"/>
-										<boolean value="NO"/>
 										<integer value="1"/>
-										<boolean value="NO"/>
 									</object>
 								</object>
 							</object>
@@ -554,8 +548,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<boolean value="YES"/>
-					<boolean value="YES"/>
+					<boolean value="NO"/>
+					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{357, 418}, {480, 270}}</string>
 					<integer value="1"/>
@@ -566,8 +560,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<boolean value="YES"/>
-					<boolean value="YES"/>
+					<boolean value="NO"/>
+					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

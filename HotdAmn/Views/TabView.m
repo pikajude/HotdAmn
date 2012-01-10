@@ -86,4 +86,9 @@
     [[self controller] resizeButtons];
 }
 
+- (void)willRemoveSubview:(NSView *)subview
+{
+    [[[self controller] tabs] removeObjectForKey:[(TabButton *)subview roomName]];
+}
+
 @end

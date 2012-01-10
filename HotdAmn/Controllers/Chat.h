@@ -10,7 +10,9 @@
 #import <WebKit/WebKit.h>
 #import "ChatView.h"
 
-@interface Chat : NSViewController <NSSplitViewDelegate>
+@interface Chat : NSViewController <NSSplitViewDelegate> {
+    NSMutableArray *lines;
+}
 
 @property (assign) id delegate;
 
@@ -22,5 +24,7 @@
 @property (assign) IBOutlet NSTextField *input;
 
 - (void)selectInput;
+
+- (void)addLine:(NSString *)str;
 
 @end

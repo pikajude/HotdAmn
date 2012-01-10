@@ -26,4 +26,8 @@
 - (CGFloat)dividerPos;
 - (void)setDividerPos:(CGFloat)pos;
 
+- (NSString *)roomName;
+
+- (void)addLine:(NSString *)str;
+
 @end

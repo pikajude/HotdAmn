@@ -7,6 +7,7 @@
 //
 
 #import "UserManager.h"
+#import "HotDamn.h"
 
 const UserManager *man;
 
@@ -36,6 +37,19 @@ const UserManager *man;
 - (BOOL)hasDefaultUser
 {
     return [[NSFileManager defaultManager] fileExistsAtPath:[self userFilePath]];
+}
+
+- (void)setDefaultUsername:(NSString *)username
+{
+    NSArray *list = [self userList];
+    for (NSMutableDictionary *dict in list) {
+        if ([[dict objectForKey:@"username"] isEqualToString:username]) {
+            [dict setObject:[NSNumber numberWithBool:YES] forKey:@"default"];
+        } else {
+            [dict setObject:[NSNumber numberWithBool:NO] forKey:@"default"];
+        }
+    }
+    [self saveUserList:list];
 }
 
 - (NSArray *)userList
@@ -89,7 +103,7 @@ const UserManager *man;
     [self saveUserList:users];
 }
 
-- (NSDictionary *)currentUser
+- (NSMutableDictionary *)currentUser
 {
     NSArray *users = [NSArray arrayWithContentsOfFile:[self userFilePath]];
     for (NSMutableDictionary *user in users) {

@@ -16,7 +16,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        lines = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -35,9 +35,13 @@
     [input becomeFirstResponder];
 }
 
-- (void)mouseDragged:(NSEvent *)theEvent
+- (void)addLine:(NSString *)str
 {
-    NSLog(@"dragged in chat");
+    [lines addObject:[NSString stringWithFormat:@"<li>%@</li>", str]];
+    if ([lines count] > 1500)
+        [lines removeObjectAtIndex:0];
+    NSString *cont = [NSString stringWithFormat:@"<ul>%@</ul>", [lines componentsJoinedByString:@""]];
+    [[chatView mainFrame] loadHTMLString:cont baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];
 }
 
 @end

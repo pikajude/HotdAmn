@@ -27,7 +27,6 @@
     
     // New access token
     NSString *newAccessToken = [Token getAccessTokenForCode:[self objectForKey:@"refreshcode"] refresh:YES];
-    NSLog(@"%@", newAccessToken);
     [self setValue:newAccessToken forKey:@"accesstoken"];
     
     // New authtoken

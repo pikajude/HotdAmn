@@ -10,6 +10,8 @@
 #import "Welcome.h"
 #import "NSDictionary+User.h"
 
+@class HotDamn;
+
 @interface UserManager : NSObject {
     Welcome *win;
 }

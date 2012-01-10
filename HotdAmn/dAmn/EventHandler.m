@@ -34,6 +34,8 @@
     NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
                       [user objectForKey:@"username"],
                       [user objectForKey:@"authtoken"]];
+    [delegate postMessage:[NSString stringWithFormat:@"Logged in to dAmnServer %@.", [msg param]] 
+                   inRoom:@"Server"];
     [sock write:resp];
 }
 

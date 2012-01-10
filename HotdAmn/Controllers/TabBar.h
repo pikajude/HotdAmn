@@ -7,17 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TabView.h"
 #import "TabButton.h"
 #import "TabButtonCell.h"
 
-@class HotDamn;
+@class TabView;
 
 @interface TabBar : NSViewController {
     id currentTab;
+    NSMutableDictionary *_tabs;
 }
 
 @property (retain) IBOutlet TabView *tabView;
+
+- (NSMutableDictionary *)tabs;
 
 #pragma mark -
 #pragma mark Adding

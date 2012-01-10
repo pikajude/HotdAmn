@@ -15,7 +15,7 @@
 #import "Token.h"
 #import "UserManager.h"
 
-@interface HotDamn : NSObject <NSApplicationDelegate> {
+@interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
     EventHandler *evtHandler;
 }
@@ -36,5 +36,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem;
 
 - (void)startConnection;
+
+- (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName;
 
 @end

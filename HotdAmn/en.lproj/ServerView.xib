@@ -137,6 +137,14 @@
 					</object>
 					<int key="connectionID">10</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">chatView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="247447968"/>
+					</object>
+					<int key="connectionID">11</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -223,7 +231,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -238,6 +246,8 @@
 							<string>chatContainer</string>
 							<string>chatParent</string>
 							<string>chatView</string>
+							<string>input</string>
+							<string>split</string>
 							<string>userView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -245,6 +255,8 @@
 							<string>NSView</string>
 							<string>ChatView</string>
 							<string>WebView</string>
+							<string>NSTextField</string>
+							<string>NSSplitView</string>
 							<string>NSView</string>
 						</object>
 					</object>
@@ -255,6 +267,8 @@
 							<string>chatContainer</string>
 							<string>chatParent</string>
 							<string>chatView</string>
+							<string>input</string>
+							<string>split</string>
 							<string>userView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -270,6 +284,14 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">chatView</string>
 								<string key="candidateClassName">WebView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">input</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">split</string>
+								<string key="candidateClassName">NSSplitView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">userView</string>

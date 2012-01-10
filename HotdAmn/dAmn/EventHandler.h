@@ -10,6 +10,12 @@
 #import "DamnSocket.h"
 #import "NSDictionary+User.h"
 
+@protocol EventHandlerDelegate <NSObject>
+
+- (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName;
+
+@end
+
 @class HotDamn;
 
 @interface EventHandler : NSObject <DamnSocketDelegate> {
@@ -17,7 +23,7 @@
 }
 
 @property (assign) HotDamn *delegate;
-@property (assign) NSDictionary *user;
+@property (assign) NSMutableDictionary *user;
 
 - (void)onPacket:(Packet *)msg;
 - (void)onServer:(Packet *)msg;

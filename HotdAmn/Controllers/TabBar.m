@@ -6,6 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "TabView.h"
 #import "TabBar.h"
 #import "TabButton.h"
 #import "HotDamn.h"
@@ -18,10 +19,15 @@
 {
     self = [super init];
     if (self) {
-        
+        _tabs = [[NSMutableDictionary alloc] init];
     }
     
     return self;
+}
+
+- (NSMutableDictionary *)tabs
+{
+    return _tabs;
 }
 
 - (void)awakeFromNib
@@ -51,6 +57,7 @@
     [b createChatView];
     [b setFrame:[self getNextRectWithLength:[[b cell] cellSize].width]];
     [b addTracker];
+    [_tabs setObject:b forKey:[b roomName]];
     [self activateSingleButton:b];
 }
 
@@ -272,6 +279,12 @@
     for (TabButton *b in [[self tabView] subviews]) {
         [b setDividerPos:sep];
     }
+}
+
+- (void)dealloc
+{
+    [_tabs release];
+    [super dealloc];
 }
 
 @end

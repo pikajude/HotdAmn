@@ -100,4 +100,9 @@
     [evtHandler startConnection];
 }
 
+- (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName
+{
+    [(TabButton *)[[barControl tabs] objectForKey:roomName] addLine:msg];
+}
+
 @end

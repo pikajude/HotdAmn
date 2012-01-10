@@ -146,4 +146,14 @@
     [[chatRoom split] setPosition:pos ofDividerAtIndex:0];
 }
 
+- (NSString *)roomName
+{
+    return [[self title] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+}
+
+- (void)addLine:(NSString *)str
+{
+    [chatRoom addLine:str];
+}
+
 @end

@@ -54,11 +54,8 @@ static NSDictionary *parseQstring(NSString *querystring) {
     NSString *qstringSection = [[firstLine componentsSeparatedByString:@" "] objectAtIndex:1];
     NSDictionary *qstring = parseQstring([qstringSection substringFromIndex:2]);
     
-    NSLog(@"%@", qstring);
     NSString *accessToken = [Token getAccessTokenForCode:[qstring objectForKey:@"code"] refresh:NO];
     NSString *username = [Token getUsernameForAccessToken:accessToken];
-    
-    NSLog(@"%@, %@", accessToken, username);
     
     [[UserManager defaultManager] addUsername:username refreshCode:[Token getCodeForUsername:username] accessToken:accessToken authToken:[Token getDamnTokenForAccessToken:accessToken]];
     
