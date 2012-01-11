@@ -86,6 +86,27 @@
     return [[[Packet alloc] initWithString:body] autorelease];
 }
 
+- (NSString *)roomName
+{
+    if ([self param] != nil) {
+        return [[self param] stringByReplacingOccurrencesOfString:@"chat:" withString:@""];
+    }
+    return @"";
+}
+
+- (NSString *)roomWithOctothorpe
+{
+    return [NSString stringWithFormat:@"#%@", [self roomName]];
+}
+
+- (BOOL)isOkay
+{
+    if (args && [args objectForKey:@"e"] != nil) {
+        return [[args objectForKey:@"e"] isEqualToString:@"ok"];
+    }
+    return NO;
+}
+
 - (void)dealloc
 {
     [raw release];

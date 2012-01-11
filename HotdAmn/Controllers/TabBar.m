@@ -237,6 +237,9 @@
         [tab setFrame:[self getNextRectWithLength:[[tab cell] cellSize].width]];
         [tabView addSubview:tab];
     }
+    for (TabButton *b in tabs) {
+        [_tabs setObject:b forKey:[b title]];
+    }
     [tabs release];
 }
 

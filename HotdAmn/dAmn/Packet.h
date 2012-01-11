@@ -19,4 +19,9 @@
 - (Packet *)subpacket;
 - (Packet *)initWithString:(NSString *)str;
 
+- (NSString *)roomName;
+- (NSString *)roomWithOctothorpe;
+
+- (BOOL)isOkay;
+
 @end

@@ -29,6 +29,7 @@
 - (IBAction)removeTab:(id)sender;
 - (IBAction)addTab:(id)sender;
 - (void)createTabWithTitle:(NSString *)title;
+- (void)removeTabWithTitle:(NSString *)title;
 - (IBAction)selectNextTab:(id)sender;
 - (IBAction)selectPreviousTab:(id)sender;
 

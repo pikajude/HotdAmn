@@ -72,6 +72,11 @@
     [barControl addButtonWithTitle:title];
 }
 
+- (void)removeTabWithTitle:(NSString *)title
+{
+    [barControl removeButtonWithTitle:title];
+}
+
 // TODO: this
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem
 {
@@ -109,6 +114,7 @@
     TabButton *b = [[barControl tabs] objectForKey:roomName];
     [b addLine:msg];
     [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
+    [barControl resizeButtons];
 }
 
 @end

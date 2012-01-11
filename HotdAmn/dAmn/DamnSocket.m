@@ -73,8 +73,10 @@ static int port = 3900;
                 NSString *str = [[[NSString alloc] initWithData:buf encoding:NSUTF8StringEncoding] autorelease];
                 Packet *pkt = [[[Packet alloc] initWithString:str] autorelease];
                 [delegate onPacket:pkt];
-                [delegate performSelector:[[events objectForKey:[pkt command]] pointerValue]
-                               withObject:pkt];
+                SEL sel = [[events objectForKey:[self eventName:pkt]] pointerValue];
+                if (sel) {
+                    [delegate performSelector:sel withObject:pkt];
+                }
                 
                 // Clear buffer
                 [buf release];
@@ -99,6 +101,20 @@ static int port = 3900;
 {
     NSData *dat = [toWrite dataUsingEncoding:NSUTF8StringEncoding];
     [ostream write:(uint8_t *)[dat bytes] maxLength:[dat length]]; // [dat ass];
+}
+
+- (NSString *)eventName:(Packet *)pkt
+{
+    if ([[pkt command] isEqualToString:@"property"]) {
+        NSString *pee = [[pkt args] objectForKey:@"p"];
+        return [NSString stringWithFormat:@"property_%@",
+                [pee hasPrefix:@"login:"] ? @"whois" : pee];
+    } else if ([[pkt command] isEqualToString:@"recv"]) {
+        NSInteger idx = (NSInteger)[[pkt body] rangeOfString:@" "].location;
+        return [[pkt body] substringToIndex:idx-1];
+    } else {
+        return [pkt command];
+    }
 }
 
 - (void)dealloc

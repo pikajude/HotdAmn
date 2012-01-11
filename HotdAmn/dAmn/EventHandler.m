@@ -60,7 +60,17 @@
 
 - (void)onJoin:(Packet *)msg
 {
-    [[self delegate] createTabWithTitle:[[msg param] substringFromIndex:5]];
+    if ([msg isOkay]) {
+        [[self delegate] createTabWithTitle:[msg roomWithOctothorpe]];
+        [delegate postMessage:@"Joined successfully." inRoom:@"Server"];
+    } else {
+        [delegate postMessage:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]] inRoom:@"Server"];
+    }
+}
+
+- (void)onPart:(Packet *)msg
+{
+    [[self delegate] removeTabWithTitle:[msg roomWithOctothorpe]];
 }
 
 #pragma mark -

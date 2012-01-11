@@ -15,8 +15,8 @@
 - (void)onServer:(Packet *)msg;
 - (void)onLogin:(Packet *)msg;
 - (void)onJoin:(Packet *)msg;
-/*- (void)onPart:(Packet *)msg;
-- (void)onProperty:(Packet *)msg;
+- (void)onPart:(Packet *)msg;
+/*- (void)onProperty:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;
 - (void)onRecvJoin:(Packet *)msg;
@@ -48,5 +48,7 @@
 
 - (void)open;
 - (void)write:(NSString *)str;
+
+- (NSString *)eventName:(Packet *)pkt;
 
 @end
