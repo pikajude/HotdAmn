@@ -9,18 +9,17 @@
 #import "UserManager.h"
 #import "HotDamn.h"
 
-const UserManager *man;
-
 @implementation UserManager
 
 @synthesize delegate;
 
 + (UserManager *)defaultManager
 {
+    static UserManager *man = nil;
     if (!man) {
         man = [[UserManager alloc] init];
     }
-    return (UserManager *)man;
+    return man;
 }
 
 - (NSString *)userFilePath

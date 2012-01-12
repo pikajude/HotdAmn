@@ -32,6 +32,7 @@
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
 		252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */; };
 		252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */; };
+		253FCAFC14BE8A64005FA3BB /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253FCAFA14BE8A64005FA3BB /* Preferences.xib */; };
 		254348E314BA73DC00453719 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 254348E114BA73DC00453719 /* ChatView.xib */; };
 		254348EC14BA77F100453719 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 254348EB14BA77F100453719 /* ChatView.m */; };
 		25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */; };
@@ -102,6 +103,7 @@
 		252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviantArtAPI.m; path = HotdAmn/OAuth/DeviantArtAPI.m; sourceTree = SOURCE_ROOT; };
 		252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthPrompt.h; sourceTree = "<group>"; };
 		252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthPrompt.m; sourceTree = "<group>"; };
+		253FCAFB14BE8A64005FA3BB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
 		254348E214BA73DC00453719 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChatView.xib; sourceTree = "<group>"; };
 		254348EA14BA77F100453719 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Views/ChatView.h; sourceTree = "<group>"; };
 		254348EB14BA77F100453719 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Views/ChatView.m; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				257D933714B8024600CE636C /* About.xib */,
 				25123A9814B93A8D0022446A /* Welcome.xib */,
 				25E90B1C14B1413200FF75B9 /* JoinRoom.xib */,
+				253FCAFA14BE8A64005FA3BB /* Preferences.xib */,
 				2519BE5B14AE21F30029F746 /* Supporting Files */,
 			);
 			path = HotdAmn;
@@ -410,6 +413,7 @@
 				25123A9A14B93A8D0022446A /* Welcome.xib in Resources */,
 				254348E314BA73DC00453719 /* ChatView.xib in Resources */,
 				2572059D14BA949C00A24228 /* ServerView.xib in Resources */,
+				253FCAFC14BE8A64005FA3BB /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +544,14 @@
 				2519BE7B14AE21F30029F746 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		253FCAFA14BE8A64005FA3BB /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				253FCAFB14BE8A64005FA3BB /* en */,
+			);
+			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 		254348E114BA73DC00453719 /* ChatView.xib */ = {
