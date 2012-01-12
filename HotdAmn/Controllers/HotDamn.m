@@ -24,6 +24,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
+    prefs = [[Preferences alloc] initWithWindowNibName:@"Shell"];
     [barControl addButtonWithTitle:@"Server"];
     [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
     
@@ -97,6 +98,11 @@
 - (IBAction)showAboutPanel:(id)sender
 {
     [[aboutPanel window] makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)showPreferences:(id)sender
+{
+    [[prefs window] makeKeyAndOrderFront:nil];
 }
 
 - (void)startConnection

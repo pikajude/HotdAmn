@@ -1974,6 +1974,14 @@
 					</object>
 					<int key="connectionID">592</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreferences:</string>
+						<reference key="source" ref="577861220"/>
+						<reference key="destination" ref="609285721"/>
+					</object>
+					<int key="connectionID">597</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3285,7 +3293,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">596</int>
+			<int key="maxID">597</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3302,9 +3310,11 @@
 							<string>selectNextTab:</string>
 							<string>selectPreviousTab:</string>
 							<string>showAboutPanel:</string>
+							<string>showPreferences:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3321,6 +3331,7 @@
 							<string>selectNextTab:</string>
 							<string>selectPreviousTab:</string>
 							<string>showAboutPanel:</string>
+							<string>showPreferences:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3342,6 +3353,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">showAboutPanel:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showPreferences:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

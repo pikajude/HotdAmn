@@ -14,10 +14,12 @@
 #import "DamnSocket.h"
 #import "Token.h"
 #import "UserManager.h"
+#import "Preferences.h"
 
 @interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
     EventHandler *evtHandler;
+    Preferences *prefs;
 }
 
 @property (readwrite, assign) BOOL isConnected;
@@ -34,6 +36,7 @@
 - (IBAction)selectPreviousTab:(id)sender;
 
 - (IBAction)showAboutPanel:(id)sender;
+- (IBAction)showPreferences:(id)sender;
 
 - (BOOL)validateMenuItem:(NSMenuItem *)theMenuItem;
 
