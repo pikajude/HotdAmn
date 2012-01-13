@@ -23,6 +23,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+    [self setupDefaults];
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     prefs = [[Preferences alloc] initWithWindowNibName:@"Shell"];
     [barControl addButtonWithTitle:@"Server"];
@@ -121,6 +122,28 @@
     [b addLine:msg];
     [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
     [barControl resizeButtons];
+}
+
+- (void)setupDefaults
+{
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSDictionary *standard = [NSDictionary dictionaryWithObjectsAndKeys:
+                              @"Courier New", @"chat.mainFont.name",
+                              [NSNumber numberWithFloat:12.0f], @"chat.mainFont.size",
+                              [[NSFont systemFontOfSize:0.0f] fontName], @"chat.inputFont.name",
+                              [NSNumber numberWithFloat:12.0f], @"chat.inputFont.size", nil];
+    [def registerDefaults:standard];
+    [def synchronize];
+}
+
+- (void)inputFontDidChange
+{
+    [barControl inputFontDidChange];
+}
+
+- (void)chatFontDidChange
+{
+    [barControl chatFontDidChange];
 }
 
 @end

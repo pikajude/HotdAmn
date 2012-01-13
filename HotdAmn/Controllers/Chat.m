@@ -22,6 +22,24 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [self inputFontDidChange];
+}
+
+- (void)inputFontDidChange
+{
+    NSUserDefaults *us = [NSUserDefaults standardUserDefaults];
+    CGFloat fontSize = [[us objectForKey:@"chat.inputFont.size"] floatValue];
+    NSString *fontName = [us objectForKey:@"chat.inputFont.name"];
+    [input setFont:[NSFont fontWithName:fontName size:fontSize]];
+}
+
+- (void)chatFontDidChange
+{
+    
+}
+
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
 {
     CGFloat lowerLimit = 100.0f;

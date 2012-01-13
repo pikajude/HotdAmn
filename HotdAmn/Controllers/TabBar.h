@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "TabButton.h"
 #import "TabButtonCell.h"
+#import "Preferences.h"
 
 @class TabView;
 
-@interface TabBar : NSViewController {
+@interface TabBar : NSViewController <PreferenceUpdateDelegate> {
     id currentTab;
     NSMutableDictionary *_tabs;
 }
@@ -59,5 +60,11 @@
 #pragma mark Sizing
 
 - (void)beforeChangeFrom:(id)button1 toButton:(id)button2;
+
+#pragma mark -
+#pragma mark Styling
+
+- (void)chatFontDidChange;
+- (void)inputFontDidChange;
 
 @end

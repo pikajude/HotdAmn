@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #import "ChatView.h"
+#import "Preferences.h"
 
-@interface Chat : NSViewController <NSSplitViewDelegate> {
+@interface Chat : NSViewController <NSSplitViewDelegate, PreferenceUpdateDelegate> {
     NSMutableArray *lines;
 }
 
@@ -26,5 +27,8 @@
 - (void)selectInput;
 
 - (void)addLine:(NSString *)str;
+
+- (void)chatFontDidChange;
+- (void)inputFontDidChange;
 
 @end

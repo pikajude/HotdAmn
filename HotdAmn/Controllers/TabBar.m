@@ -284,6 +284,20 @@
     }
 }
 
+- (void)chatFontDidChange
+{
+    for (TabButton *b in [[self tabView] subviews]) {
+        [[b chatRoom] chatFontDidChange];
+    }
+}
+
+- (void)inputFontDidChange
+{
+    for (TabButton *b in [[self tabView] subviews]) {
+        [[b chatRoom] inputFontDidChange];
+    }
+}
+
 - (void)dealloc
 {
     [_tabs release];
