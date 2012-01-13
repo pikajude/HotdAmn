@@ -20,7 +20,7 @@
     symbol = sym;
     
     // Grab the avatar asynchronously, since it could take awhile
-    [[[NSThread alloc] initWithTarget:[AvatarManager class] selector:@selector(setAvatarForUser:) object:self] start];
+    [[[[NSThread alloc] initWithTarget:[AvatarManager class] selector:@selector(setAvatarForUser:) object:self] autorelease] start];
     return self;
 }
 

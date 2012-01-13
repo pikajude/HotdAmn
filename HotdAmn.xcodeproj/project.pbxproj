@@ -55,6 +55,7 @@
 		25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5C14BFDBBE0019326D /* UserMessage.m */; };
 		25F20B6014BFE5300019326D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5F14BFE5300019326D /* User.m */; };
 		25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B6214BFE5D90019326D /* AvatarManager.m */; };
+		25FECF2414C0E57F0044AF94 /* UserListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FECF2314C0E57F0044AF94 /* UserListNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,8 @@
 		25F20B5F14BFE5300019326D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = dAmn/Models/User.m; sourceTree = "<group>"; };
 		25F20B6114BFE5D90019326D /* AvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarManager.h; path = dAmn/AvatarManager.h; sourceTree = "<group>"; };
 		25F20B6214BFE5D90019326D /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarManager.m; path = dAmn/AvatarManager.m; sourceTree = "<group>"; };
+		25FECF2214C0E57F0044AF94 /* UserListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListNode.h; path = Views/UserListNode.h; sourceTree = "<group>"; };
+		25FECF2314C0E57F0044AF94 /* UserListNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListNode.m; path = Views/UserListNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +328,8 @@
 				2519311514AE46DB003A5FBA /* TabButtonCell.m */,
 				2519BE9414AE22D30029F746 /* TabView.h */,
 				2519BE9514AE22D30029F746 /* TabView.m */,
+				25FECF2214C0E57F0044AF94 /* UserListNode.h */,
+				25FECF2314C0E57F0044AF94 /* UserListNode.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -566,6 +571,7 @@
 				25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */,
 				25F20B6014BFE5300019326D /* User.m in Sources */,
 				25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */,
+				25FECF2414C0E57F0044AF94 /* UserListNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

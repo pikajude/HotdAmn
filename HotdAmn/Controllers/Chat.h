@@ -10,16 +10,18 @@
 #import <WebKit/WebKit.h>
 #import "ChatView.h"
 #import "Preferences.h"
+#import "UserListNode.h"
 
-@interface Chat : NSViewController <NSSplitViewDelegate> {
+@interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource> {
     NSMutableArray *lines;
+    
+    UserListNode *testChild;
 }
 
 @property (assign) id delegate;
 @property (assign) IBOutlet NSSplitView *split;
 @property (assign) IBOutlet WebView *chatView;
 @property (assign) IBOutlet ChatView *chatParent;
-@property (assign) IBOutlet NSView *userView;
 @property (assign) IBOutlet NSView *chatContainer;
 @property (assign) IBOutlet NSTextField *input;
 

@@ -13,6 +13,9 @@ static NSString *avatars[] = {@".gif", @".gif", @".jpg", @".png"};
 
 @implementation AvatarManager
 
+// This method should be called asynchronously
+// (that's why it doesn't return anything,
+// but modifies the user object)
 + (void)setAvatarForUser:(User *)user
 {
     NSString *cachebuster = @"";
@@ -27,14 +30,15 @@ static NSString *avatars[] = {@".gif", @".gif", @".jpg", @".png"};
     if (cbust > 0)
         cachebuster = [NSString stringWithFormat:@"?%ld", cbust];
     if (a > 0)
-        urlsection = [NSString stringWithFormat:@"%c/%c/",
+        urlsection = [NSString stringWithFormat:@"%c/%c/%@",
                       [username characterAtIndex:0],
-                      [username characterAtIndex:1]];
+                      [username characterAtIndex:1],
+                      username];
     NSString *url = [NSString stringWithFormat:@"http://a.deviantart.com/avatars/%@%@%@",
                      urlsection,
                      ext,
                      cachebuster];
-    NSImage *image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+    NSImage *image = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:url]] autorelease];
     if (user != nil)
         [user setAvatar:image];
 }
