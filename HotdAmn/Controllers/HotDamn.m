@@ -131,7 +131,8 @@
                               @"Courier New", @"mainFontName",
                               [NSNumber numberWithFloat:12.0f], @"mainFontSize",
                               [[NSFont systemFontOfSize:0.0f] fontName], @"inputFontName",
-                              [NSNumber numberWithFloat:12.0f], @"inputFontSize", nil];
+                              [NSNumber numberWithFloat:12.0f], @"inputFontSize",
+                              [NSArray array], @"highlights", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
     [def synchronize];

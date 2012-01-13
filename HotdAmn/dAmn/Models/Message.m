@@ -10,7 +10,7 @@
 
 @implementation Message
 
-@synthesize content, date, highlight;
+@synthesize content, date;
 
 - (id)init
 {
@@ -28,6 +28,18 @@
     content = [cont retain];
     date = [NSDate date];
     return self;
+}
+
+- (User *)user {
+    static User *servUser;
+    if (!servUser) {
+        servUser = [[User alloc] initWithUsername:@"dAmnServer" userIcon:0 symbol:'+'];
+    }
+    return servUser;
+}
+
+- (BOOL)highlight {
+    return NO;
 }
 
 - (void)dealloc

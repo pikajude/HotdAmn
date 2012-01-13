@@ -52,6 +52,9 @@
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
 		25C7053B14BA794A004BC131 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7053914BA794A004BC131 /* Chat.m */; };
+		25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5C14BFDBBE0019326D /* UserMessage.m */; };
+		25F20B6014BFE5300019326D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5F14BFE5300019326D /* User.m */; };
+		25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B6214BFE5D90019326D /* AvatarManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +145,12 @@
 		259EA07D14B53FF700D44466 /* JoinRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRoom.m; sourceTree = "<group>"; };
 		25C7053814BA794A004BC131 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chat.h; path = Controllers/Chat.h; sourceTree = "<group>"; };
 		25C7053914BA794A004BC131 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chat.m; path = Controllers/Chat.m; sourceTree = "<group>"; };
+		25F20B5B14BFDBBE0019326D /* UserMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessage.h; path = dAmn/Models/UserMessage.h; sourceTree = "<group>"; };
+		25F20B5C14BFDBBE0019326D /* UserMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessage.m; path = dAmn/Models/UserMessage.m; sourceTree = "<group>"; };
+		25F20B5E14BFE5300019326D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = dAmn/Models/User.h; sourceTree = "<group>"; };
+		25F20B5F14BFE5300019326D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = dAmn/Models/User.m; sourceTree = "<group>"; };
+		25F20B6114BFE5D90019326D /* AvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarManager.h; path = dAmn/AvatarManager.h; sourceTree = "<group>"; };
+		25F20B6214BFE5D90019326D /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarManager.m; path = dAmn/AvatarManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +179,8 @@
 		250338E314B8983E000C2D44 /* dAmn */ = {
 			isa = PBXGroup;
 			children = (
+				25F20B6114BFE5D90019326D /* AvatarManager.h */,
+				25F20B6214BFE5D90019326D /* AvatarManager.m */,
 				256E7F7514BFB953000608A1 /* Models */,
 				250338E514B898AB000C2D44 /* DamnSocket.h */,
 				250338E614B898AB000C2D44 /* DamnSocket.m */,
@@ -367,6 +378,10 @@
 			children = (
 				256E7F7714BFB96A000608A1 /* Message.h */,
 				256E7F7814BFB96A000608A1 /* Message.m */,
+				25F20B5E14BFE5300019326D /* User.h */,
+				25F20B5F14BFE5300019326D /* User.m */,
+				25F20B5B14BFDBBE0019326D /* UserMessage.h */,
+				25F20B5C14BFDBBE0019326D /* UserMessage.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -548,6 +563,9 @@
 				2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */,
 				2541CD5214BF69F40065C4C1 /* PrefsAppearance.m in Sources */,
 				256E7F7914BFB96A000608A1 /* Message.m in Sources */,
+				25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */,
+				25F20B6014BFE5300019326D /* User.m in Sources */,
+				25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

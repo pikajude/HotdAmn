@@ -146,8 +146,9 @@
 								<reference key="NSSupport" ref="1011571868"/>
 								<string key="NSCellIdentifier">_NS:161</string>
 								<reference key="NSControlView" ref="300686617"/>
-								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags">-2034876161</int>
 								<int key="NSButtonFlags2">129</int>
+								<reference key="NSAlternateImage" ref="1011571868"/>
 								<string key="NSAlternateContents"/>
 								<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 								<int key="NSPeriodicDelay">200</int>

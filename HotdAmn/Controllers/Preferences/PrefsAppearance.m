@@ -42,13 +42,6 @@
     [chatFont setStringValue:[NSString stringWithFormat:@"%@ %.1f",
                               [mfont displayName],
                               [mfont pointSize]]];
-    [chatFont setFont:mfont];
-    [inputFont setFont:ifont];
-    
-    [inputFont bind:@"stringValue"
-           toObject:[NSUserDefaultsController sharedUserDefaultsController]
-        withKeyPath:@"values.inputFontName"
-            options:nil];
     
     [inputFont setStringValue:[NSString stringWithFormat:@"%@ %.1f",
                                [ifont displayName],
@@ -113,10 +106,58 @@
         field = inputFont;
     }
     
-    [field setFont:font];
     [field setStringValue:[NSString stringWithFormat:@"%@ %.1f",
                            [font displayName],
                            [font pointSize]]];
+}
+
+- (IBAction)addTableItem:(id)sender
+{
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *ary = [NSMutableArray arrayWithArray:[defs objectForKey:@"highlights"]];
+    [ary addObject:@""];
+    [defs setObject:ary forKey:@"highlights"];
+    [highlights reloadData];
+    [highlights editColumn:0 row:[ary count] - 1 withEvent:nil select:YES];
+    [removeHighlightButton setEnabled:YES];
+}
+
+- (IBAction)removeTableItem:(id)sender
+{
+    // if no row is selected, stop here
+    if ([highlights selectedRow] == -1)
+        return;
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *ary = [NSMutableArray arrayWithArray:[defs objectForKey:@"highlights"]];
+    [ary removeObjectAtIndex:[highlights selectedRow]];
+    
+    // disable the remove-highlight button if none exist
+    if ([ary count] == 0)
+        [removeHighlightButton setEnabled:NO];
+    
+    // update highlight list
+    [defs setObject:ary forKey:@"highlights"];
+    [highlights reloadData];
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    return [[defs objectForKey:@"highlights"] count];
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    return [[defs objectForKey:@"highlights"] objectAtIndex:row];
+}
+
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *h = [NSMutableArray arrayWithArray:[defs objectForKey:@"highlights"]];
+    [h replaceObjectAtIndex:row withObject:object];
+    [defs setObject:h forKey:@"highlights"];
 }
 
 @end

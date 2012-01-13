@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
+#import "User.h"
 
 @interface Message : NSObject
 
-@property (readonly) BOOL highlight;
 @property (readonly) NSString *content;
 @property (readonly) NSDate *date;
 
 - (id)initWithContent:(NSString *)cont;
+
+#pragma mark -
+#pragma mark Dummy methods
+- (User *)user;
+- (BOOL)highlight;
 
 @end
