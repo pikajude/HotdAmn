@@ -128,22 +128,13 @@
 {
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSDictionary *standard = [NSDictionary dictionaryWithObjectsAndKeys:
-                              @"Courier New", @"chat.mainFont.name",
-                              [NSNumber numberWithFloat:12.0f], @"chat.mainFont.size",
-                              [[NSFont systemFontOfSize:0.0f] fontName], @"chat.inputFont.name",
-                              [NSNumber numberWithFloat:12.0f], @"chat.inputFont.size", nil];
+                              @"Courier New", @"mainFontName",
+                              [NSNumber numberWithFloat:12.0f], @"mainFontSize",
+                              [[NSFont systemFontOfSize:0.0f] fontName], @"inputFontName",
+                              [NSNumber numberWithFloat:12.0f], @"inputFontSize", nil];
     [def registerDefaults:standard];
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
     [def synchronize];
-}
-
-- (void)inputFontDidChange
-{
-    [barControl inputFontDidChange];
-}
-
-- (void)chatFontDidChange
-{
-    [barControl chatFontDidChange];
 }
 
 @end

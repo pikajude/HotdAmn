@@ -24,20 +24,15 @@
 
 - (void)awakeFromNib
 {
-    [self inputFontDidChange];
-}
-
-- (void)inputFontDidChange
-{
-    NSUserDefaults *us = [NSUserDefaults standardUserDefaults];
-    CGFloat fontSize = [[us objectForKey:@"chat.inputFont.size"] floatValue];
-    NSString *fontName = [us objectForKey:@"chat.inputFont.name"];
-    [input setFont:[NSFont fontWithName:fontName size:fontSize]];
-}
-
-- (void)chatFontDidChange
-{
+    [input bind:@"fontName"
+       toObject:[NSUserDefaultsController sharedUserDefaultsController]
+    withKeyPath:@"values.inputFontName"
+        options:nil];
     
+    [input bind:@"fontSize"
+       toObject:[NSUserDefaultsController sharedUserDefaultsController]
+    withKeyPath:@"values.inputFontSize"
+        options:nil];
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex

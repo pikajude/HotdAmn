@@ -13,7 +13,7 @@
 
 @class TabView;
 
-@interface TabBar : NSViewController <PreferenceUpdateDelegate> {
+@interface TabBar : NSViewController {
     id currentTab;
     NSMutableDictionary *_tabs;
 }
@@ -60,11 +60,5 @@
 #pragma mark Sizing
 
 - (void)beforeChangeFrom:(id)button1 toButton:(id)button2;
-
-#pragma mark -
-#pragma mark Styling
-
-- (void)chatFontDidChange;
-- (void)inputFontDidChange;
 
 @end

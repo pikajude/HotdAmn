@@ -8,13 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@protocol PreferenceUpdateDelegate <NSObject>
-
-- (void)inputFontDidChange;
-- (void)chatFontDidChange;
-
-@end
-
 @interface Preferences : NSWindowController {
     NSViewController *currentPanel;
     NSDictionary *panelNames;

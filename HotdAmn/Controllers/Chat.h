@@ -11,12 +11,11 @@
 #import "ChatView.h"
 #import "Preferences.h"
 
-@interface Chat : NSViewController <NSSplitViewDelegate, PreferenceUpdateDelegate> {
+@interface Chat : NSViewController <NSSplitViewDelegate> {
     NSMutableArray *lines;
 }
 
 @property (assign) id delegate;
-
 @property (assign) IBOutlet NSSplitView *split;
 @property (assign) IBOutlet WebView *chatView;
 @property (assign) IBOutlet ChatView *chatParent;
@@ -27,8 +26,5 @@
 - (void)selectInput;
 
 - (void)addLine:(NSString *)str;
-
-- (void)chatFontDidChange;
-- (void)inputFontDidChange;
 
 @end

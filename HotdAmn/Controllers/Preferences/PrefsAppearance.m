@@ -23,15 +23,15 @@
 - (NSFont *)getMainFont
 {
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    return [NSFont fontWithName:[defs objectForKey:@"chat.mainFont.name"]
-                           size:[[defs objectForKey:@"chat.mainFont.size"] floatValue]];
+    return [NSFont fontWithName:[defs objectForKey:@"mainFontName"]
+                           size:[[defs objectForKey:@"mainFontSize"] floatValue]];
 }
 
 - (NSFont *)getInputFont
 {
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    return [NSFont fontWithName:[defs objectForKey:@"chat.inputFont.name"]
-                           size:[[defs objectForKey:@"chat.inputFont.size"] floatValue]];
+    return [NSFont fontWithName:[defs objectForKey:@"inputFontName"]
+                           size:[[defs objectForKey:@"inputFontSize"] floatValue]];
 }
 
 - (void)awakeFromNib
@@ -44,6 +44,11 @@
                               [mfont pointSize]]];
     [chatFont setFont:mfont];
     [inputFont setFont:ifont];
+    
+    [inputFont bind:@"stringValue"
+           toObject:[NSUserDefaultsController sharedUserDefaultsController]
+        withKeyPath:@"values.inputFontName"
+            options:nil];
     
     [inputFont setStringValue:[NSString stringWithFormat:@"%@ %.1f",
                                [ifont displayName],
@@ -96,18 +101,16 @@
 {
     NSTextField *field;
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSString *sizeField = [NSString stringWithFormat:@"chat.%@Font.size", fieldName];
-    NSString *nameField = [NSString stringWithFormat:@"chat.%@Font.name", fieldName];
+    NSString *sizeField = [NSString stringWithFormat:@"%@FontSize", fieldName];
+    NSString *nameField = [NSString stringWithFormat:@"%@FontName", fieldName];
     
     [def setObject:[NSNumber numberWithFloat:[font pointSize]] forKey:sizeField];
     [def setObject:[font displayName] forKey:nameField];
     
     if ([fieldName isEqualToString:@"main"]) {
         field = chatFont;
-        [(HotDamn *)[[NSApplication sharedApplication] delegate] chatFontDidChange];
     } else {
         field = inputFont;
-        [(HotDamn *)[[NSApplication sharedApplication] delegate] inputFontDidChange];
     }
     
     [field setFont:font];

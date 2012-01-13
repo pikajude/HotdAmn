@@ -16,7 +16,7 @@
 #import "UserManager.h"
 #import "Preferences.h"
 
-@interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate, PreferenceUpdateDelegate> {
+@interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
     EventHandler *evtHandler;
     Preferences *prefs;
@@ -50,8 +50,6 @@
 #pragma mark Chat management
 - (void)startConnection;
 - (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName;
-- (void)inputFontDidChange;
-- (void)chatFontDidChange;
 
 #pragma mark -
 #pragma mark User defaults
