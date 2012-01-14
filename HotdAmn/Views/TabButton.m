@@ -29,6 +29,7 @@
     } else {
         chatRoom = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle]];
     }
+    [chatRoom setRoomName:[self title]];
     NSRect frame = [[[self window] contentView] frame];
     NSRect ourframe = NSMakeRect(frame.origin.x,
                                  frame.origin.y,
@@ -75,6 +76,7 @@
 - (void)mouseUp:(NSEvent *)theEvent
 {
     [[self cell] setBadgeValue:0];
+    [chatRoom onTopicChange];
     [[self ctrl] resizeButtons];
 }
 

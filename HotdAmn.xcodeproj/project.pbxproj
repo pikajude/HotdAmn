@@ -40,14 +40,17 @@
 		252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */; };
 		2541CD5214BF69F40065C4C1 /* PrefsAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */; };
 		2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */; };
-		254348EC14BA77F100453719 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 254348EB14BA77F100453719 /* ChatView.m */; };
 		25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */; };
 		25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8614BA1F6E00B60137 /* JSONKit.m */; };
 		25559A8D14BA38F900B60137 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8C14BA38F900B60137 /* Welcome.m */; };
 		2568BE1A14AE9C2900E1C825 /* TabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* TabButton.m */; };
 		256E7F7914BFB96A000608A1 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E7F7814BFB96A000608A1 /* Message.m */; };
 		257205A114BA94DD00A24228 /* ServerChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 257205A014BA94DD00A24228 /* ServerChat.m */; };
+		2577727F14C0F5190012E657 /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2577727E14C0F5190012E657 /* UserListView.m */; };
 		257D933C14B8038600CE636C /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D933B14B8038600CE636C /* About.m */; };
+		257FD6E614C13BB300286FAE /* Privclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6E514C13BB300286FAE /* Privclass.m */; };
+		257FD6EC14C13D6600286FAE /* NSMutableDictionary+Privclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6EB14C13D6600286FAE /* NSMutableDictionary+Privclass.m */; };
+		257FD6EF14C1455800286FAE /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6EE14C1455800286FAE /* Topic.m */; };
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
@@ -123,8 +126,6 @@
 		2541CD4F14BF69F40065C4C1 /* PrefsAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsAppearance.h; path = Controllers/Preferences/PrefsAppearance.h; sourceTree = "<group>"; };
 		2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsAppearance.m; path = Controllers/Preferences/PrefsAppearance.m; sourceTree = "<group>"; };
 		2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsAppearance.xib; sourceTree = "<group>"; };
-		254348EA14BA77F100453719 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Views/ChatView.h; sourceTree = "<group>"; };
-		254348EB14BA77F100453719 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Views/ChatView.m; sourceTree = "<group>"; };
 		25559A7E14BA06AE00B60137 /* OAuthLocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthLocalServer.h; path = HotdAmn/OAuth/OAuthLocalServer.h; sourceTree = SOURCE_ROOT; };
 		25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthLocalServer.m; path = HotdAmn/OAuth/OAuthLocalServer.m; sourceTree = SOURCE_ROOT; };
 		25559A8514BA1F6E00B60137 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = HotdAmn/OAuth/JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
@@ -137,8 +138,16 @@
 		256E7F7814BFB96A000608A1 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = dAmn/Models/Message.m; sourceTree = "<group>"; };
 		2572059F14BA94DD00A24228 /* ServerChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerChat.h; path = Controllers/ServerChat.h; sourceTree = "<group>"; };
 		257205A014BA94DD00A24228 /* ServerChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerChat.m; path = Controllers/ServerChat.m; sourceTree = "<group>"; };
+		2577727D14C0F5190012E657 /* UserListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListView.h; path = Views/UserListView.h; sourceTree = "<group>"; };
+		2577727E14C0F5190012E657 /* UserListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListView.m; path = Views/UserListView.m; sourceTree = "<group>"; };
 		257D933A14B8038600CE636C /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
 		257D933B14B8038600CE636C /* About.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = About.m; sourceTree = "<group>"; };
+		257FD6E414C13BB300286FAE /* Privclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Privclass.h; path = dAmn/Models/Privclass.h; sourceTree = "<group>"; };
+		257FD6E514C13BB300286FAE /* Privclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Privclass.m; path = dAmn/Models/Privclass.m; sourceTree = "<group>"; };
+		257FD6EA14C13D6600286FAE /* NSMutableDictionary+Privclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+Privclass.h"; path = "dAmn/Models/NSMutableDictionary+Privclass.h"; sourceTree = "<group>"; };
+		257FD6EB14C13D6600286FAE /* NSMutableDictionary+Privclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+Privclass.m"; path = "dAmn/Models/NSMutableDictionary+Privclass.m"; sourceTree = "<group>"; };
+		257FD6ED14C1455700286FAE /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = dAmn/Models/Topic.h; sourceTree = "<group>"; };
+		257FD6EE14C1455800286FAE /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = dAmn/Models/Topic.m; sourceTree = "<group>"; };
 		2596C54F14BF556700CBEB08 /* PrefsGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsGeneral.h; path = Controllers/Preferences/PrefsGeneral.h; sourceTree = "<group>"; };
 		2596C55014BF556700CBEB08 /* PrefsGeneral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsGeneral.m; path = Controllers/Preferences/PrefsGeneral.m; sourceTree = "<group>"; };
 		2596C55414BF577200CBEB08 /* PrefsGeneral.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsGeneral.xib; sourceTree = "<group>"; };
@@ -320,8 +329,6 @@
 		2519BE8914AE22040029F746 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				254348EA14BA77F100453719 /* ChatView.h */,
-				254348EB14BA77F100453719 /* ChatView.m */,
 				2568BE1814AE9C2900E1C825 /* TabButton.h */,
 				2568BE1914AE9C2900E1C825 /* TabButton.m */,
 				2519311414AE46DB003A5FBA /* TabButtonCell.h */,
@@ -330,6 +337,8 @@
 				2519BE9514AE22D30029F746 /* TabView.m */,
 				25FECF2214C0E57F0044AF94 /* UserListNode.h */,
 				25FECF2314C0E57F0044AF94 /* UserListNode.m */,
+				2577727D14C0F5190012E657 /* UserListView.h */,
+				2577727E14C0F5190012E657 /* UserListView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -383,6 +392,12 @@
 			children = (
 				256E7F7714BFB96A000608A1 /* Message.h */,
 				256E7F7814BFB96A000608A1 /* Message.m */,
+				257FD6EA14C13D6600286FAE /* NSMutableDictionary+Privclass.h */,
+				257FD6EB14C13D6600286FAE /* NSMutableDictionary+Privclass.m */,
+				257FD6E414C13BB300286FAE /* Privclass.h */,
+				257FD6E514C13BB300286FAE /* Privclass.m */,
+				257FD6ED14C1455700286FAE /* Topic.h */,
+				257FD6EE14C1455800286FAE /* Topic.m */,
 				25F20B5E14BFE5300019326D /* User.h */,
 				25F20B5F14BFE5300019326D /* User.m */,
 				25F20B5B14BFDBBE0019326D /* UserMessage.h */,
@@ -561,7 +576,6 @@
 				25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */,
 				25559A8D14BA38F900B60137 /* Welcome.m in Sources */,
 				250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */,
-				254348EC14BA77F100453719 /* ChatView.m in Sources */,
 				25C7053B14BA794A004BC131 /* Chat.m in Sources */,
 				257205A114BA94DD00A24228 /* ServerChat.m in Sources */,
 				25153C4414BF3D2000115F43 /* Preferences.m in Sources */,
@@ -572,6 +586,10 @@
 				25F20B6014BFE5300019326D /* User.m in Sources */,
 				25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */,
 				25FECF2414C0E57F0044AF94 /* UserListNode.m in Sources */,
+				2577727F14C0F5190012E657 /* UserListView.m in Sources */,
+				257FD6E614C13BB300286FAE /* Privclass.m in Sources */,
+				257FD6EC14C13D6600286FAE /* NSMutableDictionary+Privclass.m in Sources */,
+				257FD6EF14C1455800286FAE /* Topic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

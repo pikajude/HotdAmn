@@ -8,25 +8,31 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
-#import "ChatView.h"
 #import "Preferences.h"
 #import "UserListNode.h"
+#import "UserManager.h"
+#import "User.h"
+#import "Topic.h"
 
-@interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource> {
+@interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, UserListWatcher, TopicWatcher> {
     NSMutableArray *lines;
+    IBOutlet NSOutlineView *userList;
+    IBOutlet NSTextField *input;
+    IBOutlet WebView *chatView;
     
-    UserListNode *testChild;
+    IBOutlet NSTextField *username;
 }
 
+@property (assign) NSString *roomName;
+@property (readonly) IBOutlet NSSplitView *split;
+@property (readonly) IBOutlet NSView *chatContainer;
 @property (assign) id delegate;
-@property (assign) IBOutlet NSSplitView *split;
-@property (assign) IBOutlet WebView *chatView;
-@property (assign) IBOutlet ChatView *chatParent;
-@property (assign) IBOutlet NSView *chatContainer;
-@property (assign) IBOutlet NSTextField *input;
 
 - (void)selectInput;
 
 - (void)addLine:(NSString *)str;
+
+- (void)onUserListUpdated;
+- (void)onTopicChange;
 
 @end

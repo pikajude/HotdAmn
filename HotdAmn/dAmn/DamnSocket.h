@@ -16,6 +16,9 @@
 - (void)onLogin:(Packet *)msg;
 - (void)onJoin:(Packet *)msg;
 - (void)onPart:(Packet *)msg;
+- (void)onPropertyMembers:(Packet *)msg;
+- (void)onPropertyPrivclasses:(Packet *)msg;
+- (void)onPropertyTopic:(Packet *)msg;
 /*- (void)onProperty:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;

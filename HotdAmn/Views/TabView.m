@@ -50,8 +50,16 @@
                                   dirtyRect.size.width,
                                   1.0f);
     
+    NSRect lowlight = NSMakeRect(dirtyRect.origin.x,
+                                 dirtyRect.origin.y,
+                                 dirtyRect.size.width,
+                                 1.0f);
+    
     [[NSColor colorWithDeviceWhite:0.75f alpha:1.0f] set];
     NSRectFill(highlight);
+    
+    [[NSColor colorWithDeviceWhite:0.40f alpha:1.0f] set];
+    NSRectFill(lowlight);
         
     [NSGraphicsContext restoreGraphicsState];
 }

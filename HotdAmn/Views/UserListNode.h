@@ -17,5 +17,6 @@
 - (void)addChildren:(NSArray *)objects;
 - (void)addChild:(id)obj;
 - (UserListNode *)childWithTitle:(NSString *)title;
+- (void)sortChildrenWithComparator:(NSComparator)cmptr;
 
 @end

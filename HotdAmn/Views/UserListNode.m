@@ -27,18 +27,17 @@
 {
     isLeaf = NO;
     children = [[NSMutableArray arrayWithArray:objects] retain];
-    [children sortUsingComparator:^NSComparisonResult(id a, id b) {
-        return [(NSString *)[a title] compare:[b title]];
-    }];
 }
 
 - (void)addChild:(UserListNode *)obj
 {
     isLeaf = NO;
     [children addObject:obj];
-    [children sortUsingComparator:^NSComparisonResult(id a, id b) {
-        return [(NSString *)[a title] compare:[b title]];
-    }];
+}
+
+- (void)sortChildrenWithComparator:(NSComparator)cmptr
+{
+    [children sortUsingComparator:cmptr];
 }
 
 - (UserListNode *)childWithTitle:(NSString *)t
@@ -53,6 +52,9 @@
 
 - (void)dealloc
 {
+    for (UserListNode *n in children) {
+        [[n title] release];
+    }
     [children release];
     [super dealloc];
 }

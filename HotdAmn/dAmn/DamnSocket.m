@@ -23,6 +23,9 @@ static int port = 3900;
                   [NSValue valueWithPointer:@selector(onServer:)], @"dAmnServer",
                   [NSValue valueWithPointer:@selector(onLogin:)], @"login",
                   [NSValue valueWithPointer:@selector(onJoin:)], @"join",
+                  [NSValue valueWithPointer:@selector(onPropertyMembers:)], @"property_members",
+                  [NSValue valueWithPointer:@selector(onPropertyPrivclasses:)], @"property_privclasses",
+                  [NSValue valueWithPointer:@selector(onPropertyTopic:)], @"property_topic",
                   nil] retain];
         
         buf = [[NSMutableData alloc] init];

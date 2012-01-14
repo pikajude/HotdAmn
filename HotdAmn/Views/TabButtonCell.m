@@ -72,22 +72,9 @@
     NSRect rect = [controlView bounds];
     
     if ([self state] == NSOnState) {
-        NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
-                          [NSColor colorWithDeviceWhite:0.88f alpha:1.0f], 0.0f,
-                          [NSColor colorWithDeviceWhite:0.95f alpha:1.0f], 0.45f,
-                          [NSColor colorWithDeviceWhite:1.00f alpha:1.0f], 1.0f, nil];
-        
-        [bg drawInRect:rect angle:270.0f];
-        
-        NSRect highlight = NSMakeRect(rect.origin.x,
-                                      rect.origin.y,
-                                      rect.size.width,
-                                      1.0f);
-        
         [[NSColor whiteColor] set];
-        NSRectFill(highlight);
         
-        [bg release];
+        NSRectFill(rect);
     } else if([self state] == NSMixedState) {
         [[NSColor colorWithDeviceWhite:1.0f alpha:0.25f] set];
         [NSBezierPath fillRect:frame];
@@ -103,9 +90,9 @@
     
     // Make some frame adjustments.
     NSRect newFrame = NSMakeRect(frame.origin.x,
-                                 frame.origin.y + 2,
+                                 frame.origin.y + 3,
                                  frame.size.width,
-                                 frame.size.height - 2);
+                                 frame.size.height - 4);
     
     // The pill shape -- a rounded rectangle.
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:newFrame
@@ -116,22 +103,11 @@
     [[NSColor colorWithDeviceWhite:0.93f alpha:1.0f] set];
     
     // Shadow for the pill.
-    NSShadow * shadow = [[[NSShadow alloc] init] autorelease];
-    [shadow setShadowColor:[NSColor colorWithDeviceWhite:0.42f alpha:1.0f]];
-    [shadow setShadowBlurRadius:0.0];
-    [shadow setShadowOffset:NSMakeSize(0.0f, -1.0f)];
-    [shadow set];
     [path fill];
     
     [NSGraphicsContext restoreGraphicsState];
     
     [NSGraphicsContext saveGraphicsState];
-    
-    // Text color style.
-    [shadow setShadowColor:[NSColor whiteColor]];
-    [shadow setShadowBlurRadius:0.0];
-    [shadow setShadowOffset:NSMakeSize(0.0f, -1.0f)];
-    [shadow set];
     
     // Paragraph style for the title (centered).
     NSMutableParagraphStyle *pstyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
@@ -152,7 +128,7 @@
                 range:NSMakeRange(0, [str length])];
     
     // Draw the title.
-    [str drawInRect:NSOffsetRect(newFrame, 0.0f, 1.0f)];
+    [str drawInRect:newFrame];
     
     [NSGraphicsContext restoreGraphicsState];
 }

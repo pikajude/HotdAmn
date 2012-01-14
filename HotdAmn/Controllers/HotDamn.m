@@ -112,6 +112,7 @@
         [window makeKeyAndOrderFront:nil];
     }
     NSDictionary *user = [[UserManager defaultManager] currentUser];
+    [[[[barControl tabs] objectForKey:@"Server"] chatRoom] onTopicChange];
     [evtHandler setUser:[user retain]];
     [evtHandler startConnection];
 }

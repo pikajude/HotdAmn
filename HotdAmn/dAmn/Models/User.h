@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "AvatarManager.h"
+#import "UserListNode.h"
+
+@protocol UserListWatcher <NSObject>
+
+- (void)onUserListUpdated;
+
+@end
 
 @interface User : NSObject
 
@@ -19,5 +26,10 @@
 @property (assign) NSImage *avatar;
 
 - (NSImage *)avatar;
+
++ (void)addUser:(NSString *)user toRoom:(NSString *)room withGroupName:(NSString *)groupName;
++ (void)addWatcher:(id<UserListWatcher>)watcher;
++ (UserListNode *)listForRoom:(NSString *)roomName;
++ (void)updateWatchers;
 
 @end

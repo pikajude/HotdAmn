@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DamnSocket.h"
 #import "NSDictionary+User.h"
+#import "NSMutableDictionary+Privclass.h"
 
 @protocol EventHandlerDelegate <NSObject>
 
@@ -20,6 +21,7 @@
 
 @interface EventHandler : NSObject <DamnSocketDelegate> {
     DamnSocket *sock;
+    NSMutableDictionary *privclasses;
 }
 
 @property (assign) HotDamn *delegate;
@@ -31,6 +33,9 @@
 - (void)onServer:(Packet *)msg;
 - (void)onLogin:(Packet *)msg;
 - (void)onJoin:(Packet *)msg;
+- (void)onPropertyMembers:(Packet *)msg;
+- (void)onPropertyPrivclasses:(Packet *)msg;
+- (void)onPropertyTopic:(Packet *)msg;
 
 #pragma mark -
 #pragma mark Actions
