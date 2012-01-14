@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "HotDamn.h"
 
-@interface PrefsAppearance : NSViewController <NSWindowDelegate, NSTableViewDataSource> {
+@interface PrefsAppearance : NSViewController <NSWindowDelegate, NSTableViewDataSource, NSControlTextEditingDelegate> {
     IBOutlet NSTextField *chatFont;
     IBOutlet NSTextField *inputFont;
     IBOutlet NSTableView *highlights;
@@ -17,6 +17,7 @@
     IBOutlet NSButton *chooseButton2;
     IBOutlet NSButton *removeHighlightButton;
     NSTextField *currentField;
+    IBOutlet NSTextField *scrollbackErr;
 }
 
 - (NSFont *)getMainFont;

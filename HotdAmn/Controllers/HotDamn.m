@@ -133,7 +133,8 @@
                               [NSNumber numberWithFloat:12.0f], @"mainFontSize",
                               [[NSFont systemFontOfSize:0.0f] fontName], @"inputFontName",
                               [NSNumber numberWithFloat:12.0f], @"inputFontSize",
-                              [NSArray array], @"highlights", nil];
+                              [NSArray array], @"highlights",
+                              [NSNumber numberWithInteger:500], @"scrollbackLimit", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
     [def synchronize];

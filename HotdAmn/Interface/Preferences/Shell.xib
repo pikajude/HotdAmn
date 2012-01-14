@@ -43,7 +43,7 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">4103</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {485, 321}}</string>
+				<string key="NSWindowRect">{{196, 240}, {485, 334}}</string>
 				<int key="NSWTFlags">1618485248</int>
 				<string key="NSWindowTitle">HotdAmn Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -151,19 +151,18 @@
 					<reference key="NSToolbarIBSelectableItems" ref="0"/>
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
-				<string key="NSWindowContentMaxSize">{485, 321}</string>
-				<string key="NSWindowContentMinSize">{485, 321}</string>
+				<string key="NSWindowContentMaxSize">{485, 334}</string>
+				<string key="NSWindowContentMinSize">{485, 334}</string>
 				<object class="NSView" key="NSWindowView" id="1006">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
-					<string key="NSFrameSize">{485, 321}</string>
+					<string key="NSFrameSize">{485, 334}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
-				<string key="NSMinSize">{485, 390}</string>
-				<string key="NSMaxSize">{485, 390}</string>
+				<string key="NSMinSize">{485, 403}</string>
+				<string key="NSMaxSize">{485, 403}</string>
 				<bool key="NSWindowIsRestorable">NO</bool>
 			</object>
 		</object>

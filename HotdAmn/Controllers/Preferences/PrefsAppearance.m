@@ -160,4 +160,19 @@
     [defs setObject:h forKey:@"highlights"];
 }
 
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+{
+    NSString *str = [fieldEditor string];
+    if ([str rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound) {
+        [scrollbackErr setHidden:NO];
+        return NO;
+    }
+    if ([str integerValue] < 100 || [str integerValue] > 10000) {
+        [scrollbackErr setHidden:NO];
+        return NO;
+    }
+    [scrollbackErr setHidden:YES];
+    return YES;
+}
+
 @end
