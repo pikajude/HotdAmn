@@ -115,7 +115,7 @@
 {
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableArray *ary = [NSMutableArray arrayWithArray:[defs objectForKey:@"highlights"]];
-    [ary addObject:@""];
+    [ary addObject:@"new highlight"];
     [defs setObject:ary forKey:@"highlights"];
     [highlights reloadData];
     [highlights editColumn:0 row:[ary count] - 1 withEvent:nil select:YES];
@@ -162,17 +162,21 @@
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 {
-    NSString *str = [fieldEditor string];
-    if ([str rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound) {
-        [scrollbackErr setHidden:NO];
-        return NO;
+    if (control == highlights) {
+        return ![[fieldEditor string] isEqualToString:@""];
+    } else {
+        NSString *str = [fieldEditor string];
+        if ([str rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound) {
+            [scrollbackErr setHidden:NO];
+            return NO;
+        }
+        if ([str integerValue] < 100 || [str integerValue] > 10000) {
+            [scrollbackErr setHidden:NO];
+            return NO;
+        }
+        [scrollbackErr setHidden:YES];
+        return YES;
     }
-    if ([str integerValue] < 100 || [str integerValue] > 10000) {
-        [scrollbackErr setHidden:NO];
-        return NO;
-    }
-    [scrollbackErr setHidden:YES];
-    return YES;
 }
 
 @end
