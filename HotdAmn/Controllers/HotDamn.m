@@ -111,10 +111,15 @@
     if (![window isVisible]) {
         [window makeKeyAndOrderFront:nil];
     }
-    NSDictionary *user = [[UserManager defaultManager] currentUser];
+    NSMutableDictionary *user = [[UserManager defaultManager] currentUser];
     [[[[barControl tabs] objectForKey:@"Server"] chatRoom] onTopicChange];
     [evtHandler setUser:[user retain]];
     [evtHandler startConnection];
+}
+
+- (void)stopConnection
+{
+    [evtHandler stopConnection];
 }
 
 - (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName

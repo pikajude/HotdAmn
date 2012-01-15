@@ -42,5 +42,6 @@
 - (void)join:(NSString *)roomName;
 
 - (void)startConnection;
+- (void)stopConnection;
 
 @end

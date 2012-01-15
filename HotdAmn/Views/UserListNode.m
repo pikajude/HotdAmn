@@ -52,9 +52,7 @@
 
 - (void)dealloc
 {
-    for (UserListNode *n in children) {
-        [[n title] release];
-    }
+    [title release];
     [children release];
     [super dealloc];
 }

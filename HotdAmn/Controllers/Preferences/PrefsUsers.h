@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "UserManager.h"
+#import "HotDamn.h"
 
 @interface PrefsUsers : NSViewController <NSTableViewDataSource, NSTableViewDelegate> {
     IBOutlet NSTableView *accountList;
@@ -27,5 +28,10 @@
 
 - (IBAction)addAccount:(id)sender;
 - (IBAction)removeAccount:(id)sender;
+
+- (void)addAccountAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+
+- (void)accountAdded;
 
 @end

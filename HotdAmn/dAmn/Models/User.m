@@ -60,7 +60,6 @@ static NSMutableDictionary *roomList;
         [roomRoot addChild:groupRoot];
     }
     if ([groupRoot childWithTitle:user]) {
-        [[userNode title] release];
         [userNode release];
         return;
     }

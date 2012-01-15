@@ -23,15 +23,15 @@
 - (void)refreshFields
 {
     // New refresh code
-    [self setValue:[Token getCodeForUsername:[self objectForKey:@"username"]] forKey:@"refreshcode"];
+    [self setObject:[Token getCodeForUsername:[self objectForKey:@"username"]] forKey:@"refreshcode"];
     
     // New access token
     NSString *newAccessToken = [Token getAccessTokenForCode:[self objectForKey:@"refreshcode"] refresh:YES];
-    [self setValue:newAccessToken forKey:@"accesstoken"];
+    [self setObject:newAccessToken forKey:@"accesstoken"];
     
     // New authtoken
     NSString *newAuthtoken = [Token getDamnTokenForAccessToken:newAccessToken];
-    [self setValue:newAuthtoken forKey:@"authtoken"];
+    [self setObject:newAuthtoken forKey:@"authtoken"];
 }
 
 @end

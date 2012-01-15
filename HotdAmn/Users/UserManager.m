@@ -8,6 +8,7 @@
 
 #import "UserManager.h"
 #import "HotDamn.h"
+#import "PrefsUsers.h"
 
 @implementation UserManager
 
@@ -73,6 +74,8 @@
     [[win webWindow] orderOut:nil];
     if (firstTime) {
         [delegate startConnection];
+    } else {
+        [delegate accountAdded];
     }
 }
 
@@ -89,6 +92,12 @@
 - (void)addUsername:(NSString *)username refreshCode:(NSString *)refreshCode accessToken:(NSString *)accessToken authToken:(NSString *)authtoken
 {
     NSMutableArray *users;
+    
+    for (NSDictionary *user in [self userList]) {
+        if ([[user objectForKey:@"username"] isEqualToString:username]) {
+            return;
+        }
+    }
     
     NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                           username, @"username",
@@ -109,15 +118,48 @@
     [self saveUserList:users];
 }
 
+- (void)removeUsername:(NSString *)username
+{
+    NSMutableArray *users = [NSMutableArray arrayWithArray:[self userList]];
+    NSMutableIndexSet *indices = [NSMutableIndexSet indexSet];
+    NSDictionary *user;
+    for (NSInteger i = 0; i < [users count]; i++) {
+        user = [users objectAtIndex:i];
+        if ([[user objectForKey:@"username"] isEqualToString:username]) {
+            [indices addIndex:i];
+        }
+    }
+    [users removeObjectsAtIndexes:indices];
+    [self saveUserList:users];
+}
+
 - (NSMutableDictionary *)currentUser
 {
     NSArray *users = [NSArray arrayWithContentsOfFile:[self userFilePath]];
-    for (NSMutableDictionary *user in users) {
+    for (NSDictionary *user in users) {
         if ([[user objectForKey:@"default"] boolValue] == YES) {
-            return user;
+            return [NSMutableDictionary dictionaryWithDictionary:user];
         }
     }
-    return [users objectAtIndex:0];
+    return [NSMutableDictionary dictionaryWithDictionary:[users objectAtIndex:0]];
+}
+
+- (void)updateRecord:(NSDictionary *)record forUsername:(NSString *)username
+{
+    NSMutableArray *users = [NSMutableArray arrayWithArray:[self userList]];
+    NSDictionary *user;
+    NSInteger idx = -1;
+    for (NSInteger i = 0; i < [users count]; i++) {
+        user = [users objectAtIndex:i];
+        if ([[user objectForKey:@"username"] isEqualToString:username]) {
+            idx = i;
+            break;
+        }
+    }
+    if (idx >= 0) {
+        [users replaceObjectAtIndex:idx withObject:record];
+        [self saveUserList:users];
+    }
 }
 
 @end

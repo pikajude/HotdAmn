@@ -22,10 +22,7 @@
 
 - (void)awakeFromNib
 {
-    NSInteger accountCount = [self numberOfRowsInTableView:accountList];
-    if (accountCount < 2) {
-        [accountRemoveButton setEnabled:NO];
-    }
+    
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -131,6 +128,77 @@
     [ignores removeObjectAtIndex:[ignoreList selectedRow]];
     [defs setObject:ignores forKey:@"ignores"];
     [ignoreList reloadData];
+}
+
+- (IBAction)addAccount:(id)sender
+{
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Hey you!"
+                                     defaultButton:@"OK"
+                                   alternateButton:@"Cancel"
+                                       otherButton:nil
+                         informativeTextWithFormat:@"Before you add a new account, remember to log in as that user on deviantART in your nearest web browser."];
+    [alert beginSheetModalForWindow:[[self view] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(addAccountAlertDidEnd:returnCode:contextInfo:) 
+                        contextInfo:nil];
+}
+
+- (IBAction)removeAccount:(id)sender
+{
+    NSString *informativeText;
+    NSDictionary *user = [[[UserManager defaultManager] userList] objectAtIndex:[accountList selectedRow]];
+    if ([user isEqualToDictionary:[[UserManager defaultManager] currentUser]]) {
+        informativeText = @"That account is currently in use; removing it will disconnect you from dAmn.";
+    } else {
+        informativeText = @"Deleting an account can't be undone.";
+    }
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Are you sure?"
+                                     defaultButton:@"OK"
+                                   alternateButton:@"Cancel"
+                                       otherButton:nil
+                         informativeTextWithFormat:informativeText];
+    [alert beginSheetModalForWindow:[[self view] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+                        contextInfo:user];
+}
+
+- (void)addAccountAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    switch (returnCode) {
+        case NSOKButton: {
+            [[UserManager defaultManager] setDelegate:self];
+            [[UserManager defaultManager] startIntroduction:NO];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    NSDictionary *user = (NSDictionary *)contextInfo;
+    switch (returnCode) {
+        case NSOKButton: {
+            UserManager *man = [UserManager defaultManager];
+            if ([user isEqualToDictionary:[man currentUser]]) {
+                [(HotDamn *)[[NSApplication sharedApplication] delegate] stopConnection];
+            }
+            [man removeUsername:[user objectForKey:@"username"]];
+            [man setDefaultUsername:[[[man userList] objectAtIndex:0] objectForKey:@"username"]];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void)accountAdded
+{
+    [accountList reloadData];
 }
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor

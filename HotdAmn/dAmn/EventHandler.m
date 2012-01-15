@@ -48,13 +48,12 @@
         [delegate postMessage:[NSString stringWithFormat:@"Logged in as %@.", [msg param]]
                        inRoom:@"Server"];
         [delegate setIsConnected:YES];
+        [[UserManager defaultManager] updateRecord:user forUsername:[msg param]];
     } else {
         [delegate postMessage:@"Login fail, refreshing authtoken." inRoom:@"Server"];
         [user refreshFields];
-        NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
-                          [user objectForKey:@"username"],
-                          [user objectForKey:@"authtoken"]];
-        [sock write:resp];
+        [sock release];
+        [self startConnection];
     }
 }
 
@@ -130,11 +129,17 @@
     [sock write:@"dAmnClient 0.3\nagent=hotdAmn\n\0"];
 }
 
+- (void)stopConnection
+{
+    [sock write:@"disconnect\n\0"];
+    [sock release];
+}
+
 - (void)dealloc
 {
     [privclasses release];
     [user release];
-    [sock release];
+    if (sock) [sock release];
     [super dealloc];
 }
 

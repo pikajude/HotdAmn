@@ -12,6 +12,8 @@
 
 @class HotDamn;
 
+@class PrefsUsers;
+
 @interface UserManager : NSObject {
     Welcome *win;
 }
@@ -29,10 +31,13 @@
 - (void)setDefaultUsername:(NSString *)username;
 
 - (void)addUsername:(NSString *)username refreshCode:(NSString *)refreshCode accessToken:(NSString *)accessToken authToken:(NSString *)authtoken;
+- (void)removeUsername:(NSString *)username;
+
+- (void)updateRecord:(NSDictionary *)record forUsername:(NSString *)username;
 
 - (NSArray *)userList;
 - (void)saveUserList:(NSArray *)users;
 
-- (NSDictionary *)currentUser;
+- (NSMutableDictionary *)currentUser;
 
 @end
