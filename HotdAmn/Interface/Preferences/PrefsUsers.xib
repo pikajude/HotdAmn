@@ -100,8 +100,8 @@
 																<bool key="EncodedWithXMLCoder">YES</bool>
 																<object class="NSTableColumn" id="288767379">
 																	<string key="NSIdentifier">image</string>
-																	<double key="NSWidth">14</double>
-																	<double key="NSMinWidth">14</double>
+																	<double key="NSWidth">16</double>
+																	<double key="NSMinWidth">16</double>
 																	<double key="NSMaxWidth">1000</double>
 																	<object class="NSTableHeaderCell" key="NSHeaderCell">
 																		<int key="NSCellFlags">75628096</int>
@@ -139,7 +139,7 @@
 																			<int key="NSfFlags">1044</int>
 																		</object>
 																		<string key="NSCellIdentifier">_NS:4045</string>
-																		<int key="NSAlign">0</int>
+																		<int key="NSAlign">8</int>
 																		<int key="NSScale">0</int>
 																		<int key="NSStyle">0</int>
 																		<bool key="NSAnimates">NO</bool>
@@ -326,7 +326,6 @@
 											<string key="NSFrame">{{52, 16}, {31, 23}}</string>
 											<reference key="NSSuperview" ref="723364279"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView"/>
 											<string key="NSReuseIdentifierKey">_NS:1566</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="43098979">

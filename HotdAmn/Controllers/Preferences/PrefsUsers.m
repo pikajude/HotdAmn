@@ -174,7 +174,7 @@
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
                      didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-                        contextInfo:user];
+                        contextInfo:[user retain]];
 }
 
 - (void)addAccountAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -202,6 +202,8 @@
             }
             [man removeUsername:[user objectForKey:@"username"]];
             [man setDefaultUsername:[[[man userList] objectAtIndex:0] objectForKey:@"username"]];
+            [user autorelease];
+            [accountList reloadData];
             break;
         }
             
