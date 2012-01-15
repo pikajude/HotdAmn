@@ -56,17 +56,24 @@
     return [NSArray arrayWithContentsOfFile:[self userFilePath]];
 }
 
-- (void)startIntroduction
+- (void)startIntroduction:(BOOL)firstTime
 {
     win = [[Welcome alloc] initWithWindowNibName:@"Welcome"];
-    [[win window] makeKeyAndOrderFront:nil];
+    [win setFirstTime:firstTime];
+    if (firstTime) {
+        [[win window] makeKeyAndOrderFront:nil];
+    } else {
+        [win getStarted:nil];
+    }
 }
 
-- (void)finishIntroduction
+- (void)finishIntroduction:(BOOL)firstTime
 {
     [[win window] orderOut:nil];
     [[win webWindow] orderOut:nil];
-    [delegate startConnection];
+    if (firstTime) {
+        [delegate startConnection];
+    }
 }
 
 - (void)saveUserList:(NSArray *)users

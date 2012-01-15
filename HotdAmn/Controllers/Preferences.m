@@ -36,8 +36,18 @@
         [currentPanel release];
     Class cls = NSClassFromString(nibName);
     currentPanel = [[cls alloc] initWithNibName:nibName bundle:[NSBundle mainBundle]];
+    
+    CGFloat newHeight = [[currentPanel view] bounds].size.height +
+                            ([[self window] frame].size.height -
+                             [[[self window] contentView] frame].size.height);
+    CGFloat newWidth = [[currentPanel view] bounds].size.width;
+    CGFloat newOriginX = [[self window] frame].origin.x - (newWidth - [[self window] frame].size.width)/2.0f;
+    CGFloat newOriginY = [[self window] frame].origin.y - newHeight + [[self window] frame].size.height;
+    
+    NSRect newRect = NSMakeRect(newOriginX, newOriginY, newWidth, newHeight);
+    
+    [[self window] setFrame:newRect display:NO animate:YES];
     [[[self window] contentView] addSubview:[currentPanel view]];
-    [[currentPanel view] setFrame:[[[self window] contentView] frame]];
 }
 
 @end

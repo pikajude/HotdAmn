@@ -51,6 +51,8 @@
 		257FD6E614C13BB300286FAE /* Privclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6E514C13BB300286FAE /* Privclass.m */; };
 		257FD6EC14C13D6600286FAE /* NSMutableDictionary+Privclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6EB14C13D6600286FAE /* NSMutableDictionary+Privclass.m */; };
 		257FD6EF14C1455800286FAE /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6EE14C1455800286FAE /* Topic.m */; };
+		257FD6F114C21A3200286FAE /* PrefsUsers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257FD6F014C21A3200286FAE /* PrefsUsers.xib */; };
+		257FD6F514C21AA400286FAE /* PrefsUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6F314C21AA400286FAE /* PrefsUsers.m */; };
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
@@ -148,6 +150,9 @@
 		257FD6EB14C13D6600286FAE /* NSMutableDictionary+Privclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+Privclass.m"; path = "dAmn/Models/NSMutableDictionary+Privclass.m"; sourceTree = "<group>"; };
 		257FD6ED14C1455700286FAE /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = dAmn/Models/Topic.h; sourceTree = "<group>"; };
 		257FD6EE14C1455800286FAE /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = dAmn/Models/Topic.m; sourceTree = "<group>"; };
+		257FD6F014C21A3200286FAE /* PrefsUsers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsUsers.xib; sourceTree = "<group>"; };
+		257FD6F214C21AA400286FAE /* PrefsUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsUsers.h; path = Controllers/Preferences/PrefsUsers.h; sourceTree = "<group>"; };
+		257FD6F314C21AA400286FAE /* PrefsUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsUsers.m; path = Controllers/Preferences/PrefsUsers.m; sourceTree = "<group>"; };
 		2596C54F14BF556700CBEB08 /* PrefsGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsGeneral.h; path = Controllers/Preferences/PrefsGeneral.h; sourceTree = "<group>"; };
 		2596C55014BF556700CBEB08 /* PrefsGeneral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsGeneral.m; path = Controllers/Preferences/PrefsGeneral.m; sourceTree = "<group>"; };
 		2596C55414BF577200CBEB08 /* PrefsGeneral.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsGeneral.xib; sourceTree = "<group>"; };
@@ -233,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */,
+				257FD6F014C21A3200286FAE /* PrefsUsers.xib */,
 				2596C55414BF577200CBEB08 /* PrefsGeneral.xib */,
 				25153C5A14BF3EC700115F43 /* Shell.xib */,
 			);
@@ -409,10 +415,12 @@
 		2596C54D14BF554E00CBEB08 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				2596C54F14BF556700CBEB08 /* PrefsGeneral.h */,
-				2596C55014BF556700CBEB08 /* PrefsGeneral.m */,
 				2541CD4F14BF69F40065C4C1 /* PrefsAppearance.h */,
 				2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */,
+				2596C54F14BF556700CBEB08 /* PrefsGeneral.h */,
+				2596C55014BF556700CBEB08 /* PrefsGeneral.m */,
+				257FD6F214C21AA400286FAE /* PrefsUsers.h */,
+				257FD6F314C21AA400286FAE /* PrefsUsers.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -509,6 +517,7 @@
 				25153C5B14BF3EC700115F43 /* Shell.xib in Resources */,
 				2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */,
 				2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */,
+				257FD6F114C21A3200286FAE /* PrefsUsers.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +599,7 @@
 				257FD6E614C13BB300286FAE /* Privclass.m in Sources */,
 				257FD6EC14C13D6600286FAE /* NSMutableDictionary+Privclass.m in Sources */,
 				257FD6EF14C1455800286FAE /* Topic.m in Sources */,
+				257FD6F514C21AA400286FAE /* PrefsUsers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

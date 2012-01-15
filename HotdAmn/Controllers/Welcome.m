@@ -13,7 +13,7 @@ const NSString *url = @"https://www.deviantart.com/oauth2/draft15/authorize?clie
 
 @implementation Welcome
 
-@synthesize icon, welcomeMsg, webWindow, webView, delegate;
+@synthesize icon, welcomeMsg, webWindow, webView, delegate, firstTime;
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -59,7 +59,7 @@ static NSDictionary *parseQstring(NSString *querystring) {
     
     [[UserManager defaultManager] addUsername:username refreshCode:[Token getCodeForUsername:username] accessToken:accessToken authToken:[Token getDamnTokenForAccessToken:accessToken]];
     
-    [[UserManager defaultManager] finishIntroduction];
+    [[UserManager defaultManager] finishIntroduction:firstTime];
 }
 
 - (IBAction)getStarted:(id)sender

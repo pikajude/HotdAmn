@@ -25,6 +25,8 @@
 
 @property (assign) id delegate;
 
+@property (assign) BOOL firstTime;
+
 - (IBAction)cancel:(id)sender;
 - (IBAction)getStarted:(id)sender;
 

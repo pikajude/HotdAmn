@@ -20,8 +20,8 @@
 
 + (UserManager *)defaultManager;
 
-- (void)startIntroduction;
-- (void)finishIntroduction;
+- (void)startIntroduction:(BOOL)firstTime;
+- (void)finishIntroduction:(BOOL)firstTime;
 
 - (NSString *)userFilePath;
 

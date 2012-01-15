@@ -160,16 +160,37 @@
     [defs setObject:h forKey:@"highlights"];
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    // Enable/disable the remove button based on whether
+    // a row is selected
+    if ([highlights selectedRow] == -1) {
+        [removeHighlightButton setEnabled:NO];
+    } else {
+        [removeHighlightButton setEnabled:YES];
+    }
+}
+
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 {
     if (control == highlights) {
+        
+        // If we're in the highlights list
+        // If the highlight is empty, it of course
+        // shouldn't be valid
         return ![[fieldEditor string] isEqualToString:@""];
+        
     } else {
         NSString *str = [fieldEditor string];
+        
+        // We're in the scrollback chooser
+        // If it contains non-numeric characters, it's invalid
         if ([str rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound) {
             [scrollbackErr setHidden:NO];
             return NO;
         }
+        
+        // If the integer value is outside [100, 10000] it's invalid
         if ([str integerValue] < 100 || [str integerValue] > 10000) {
             [scrollbackErr setHidden:NO];
             return NO;

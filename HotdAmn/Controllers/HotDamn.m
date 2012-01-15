@@ -35,7 +35,7 @@
         [window makeKeyAndOrderFront:nil];
         [self startConnection];
     } else {
-        [[UserManager defaultManager] startIntroduction];
+        [[UserManager defaultManager] startIntroduction:YES];
     }
 }
 
@@ -134,7 +134,10 @@
                               [[NSFont systemFontOfSize:0.0f] fontName], @"inputFontName",
                               [NSNumber numberWithFloat:12.0f], @"inputFontSize",
                               [NSArray array], @"highlights",
-                              [NSNumber numberWithInteger:500], @"scrollbackLimit", nil];
+                              [NSArray array], @"buddies",
+                              [NSArray array], @"ignores",
+                              [NSNumber numberWithInteger:500], @"scrollbackLimit",
+                              @"[%H:%M:%S]", @"timestampFormat", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
     [def synchronize];

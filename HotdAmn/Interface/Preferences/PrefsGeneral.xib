@@ -39,10 +39,9 @@
 					<object class="NSButton" id="324561015">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{134, 190}, {133, 18}}</string>
+						<string key="NSFrame">{{95, 18}, {133, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:239</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="387093183">
@@ -74,7 +73,7 @@
 					<object class="NSButton" id="957818581">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{134, 212}, {298, 18}}</string>
+						<string key="NSFrame">{{95, 40}, {298, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="324561015"/>
@@ -100,7 +99,7 @@
 					<object class="NSTextField" id="619810293">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{51, 235}, {60, 17}}</string>
+						<string key="NSFrame">{{12, 63}, {60, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="238344991"/>
@@ -136,7 +135,7 @@
 					<object class="NSButton" id="238344991">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{114, 234}, {225, 18}}</string>
+						<string key="NSFrame">{{75, 62}, {225, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="957818581"/>
@@ -160,7 +159,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{485, 272}</string>
+				<string key="NSFrameSize">{406, 100}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="619810293"/>
