@@ -56,6 +56,7 @@
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
+		25AB522C14C35CEC00A3A76C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 25AB522A14C35CEC00A3A76C /* check.png */; };
 		25C7053B14BA794A004BC131 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7053914BA794A004BC131 /* Chat.m */; };
 		25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5C14BFDBBE0019326D /* UserMessage.m */; };
 		25F20B6014BFE5300019326D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5F14BFE5300019326D /* User.m */; };
@@ -158,6 +159,7 @@
 		2596C55414BF577200CBEB08 /* PrefsGeneral.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsGeneral.xib; sourceTree = "<group>"; };
 		259EA07C14B53FF700D44466 /* JoinRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRoom.h; sourceTree = "<group>"; };
 		259EA07D14B53FF700D44466 /* JoinRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRoom.m; sourceTree = "<group>"; };
+		25AB522B14C35CEC00A3A76C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/check.png; sourceTree = "<group>"; };
 		25C7053814BA794A004BC131 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chat.h; path = Controllers/Chat.h; sourceTree = "<group>"; };
 		25C7053914BA794A004BC131 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chat.m; path = Controllers/Chat.m; sourceTree = "<group>"; };
 		25F20B5B14BFDBBE0019326D /* UserMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessage.h; path = dAmn/Models/UserMessage.h; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		2519BE5B14AE21F30029F746 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				25AB522A14C35CEC00A3A76C /* check.png */,
 				2519BE5C14AE21F30029F746 /* HotdAmn-Info.plist */,
 				2519BE5D14AE21F30029F746 /* InfoPlist.strings */,
 				2519BE6014AE21F30029F746 /* main.m */,
@@ -518,6 +521,7 @@
 				2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */,
 				2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */,
 				257FD6F114C21A3200286FAE /* PrefsUsers.xib in Resources */,
+				25AB522C14C35CEC00A3A76C /* check.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +648,14 @@
 				2519BE7B14AE21F30029F746 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		25AB522A14C35CEC00A3A76C /* check.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25AB522B14C35CEC00A3A76C /* en */,
+			);
+			name = check.png;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

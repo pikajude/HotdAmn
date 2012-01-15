@@ -39,8 +39,22 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     if (tableView == accountList) {
-        NSArray *users = [[UserManager defaultManager] userList];
-        return [[users objectAtIndex:row] objectForKey:@"username"];
+        if ([[tableColumn identifier] isEqualToString:@"text"]) {
+            NSArray *users = [[UserManager defaultManager] userList];
+            return [[users objectAtIndex:row] objectForKey:@"username"];
+        } else {
+            
+            // This is the user column
+            if ([[[[UserManager defaultManager] userList] objectAtIndex:row] isEqualToDictionary:[[UserManager defaultManager] currentUser]]) {
+                
+                // This is the active user, so display the check mark
+                return [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"check" ofType:@"png"]] autorelease];
+            } else {
+                
+                // Not the active user, display nothing
+                return [[[NSImage alloc] init] autorelease];
+            }
+        }
     } else if (tableView == buddyList) {
         return [[[NSUserDefaults standardUserDefaults] objectForKey:@"buddies"] objectAtIndex:row];
     } else {
