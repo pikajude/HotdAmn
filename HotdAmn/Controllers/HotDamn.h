@@ -48,6 +48,7 @@
 
 #pragma mark -
 #pragma mark Chat management
+- (void)restartConnection;
 - (void)startConnection;
 - (void)stopConnection;
 - (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName;

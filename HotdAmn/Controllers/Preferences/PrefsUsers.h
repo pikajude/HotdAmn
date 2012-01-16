@@ -18,6 +18,7 @@
     IBOutlet NSButton *accountRemoveButton;
     IBOutlet NSButton *buddyRemoveButton;
     IBOutlet NSButton *ignoreRemoveButton;
+    IBOutlet NSButton *accountUseButton;
 }
 
 - (IBAction)addIgnore:(id)sender;
@@ -28,6 +29,7 @@
 
 - (IBAction)addAccount:(id)sender;
 - (IBAction)removeAccount:(id)sender;
+- (IBAction)useAccount:(id)sender;
 
 - (void)addAccountAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 - (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;

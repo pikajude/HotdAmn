@@ -106,6 +106,12 @@
     [[prefs window] makeKeyAndOrderFront:nil];
 }
 
+- (void)restartConnection
+{
+    [self stopConnection];
+    [self startConnection];
+}
+
 - (void)startConnection
 {
     if (![window isVisible]) {

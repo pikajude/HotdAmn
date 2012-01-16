@@ -88,8 +88,10 @@
     } else if ([notification object] == accountList) {
         if ([accountList selectedRow] == -1 || [[[UserManager defaultManager] userList] count] < 2) {
             [accountRemoveButton setEnabled:NO];
+            [accountUseButton setEnabled:NO];
         } else {
             [accountRemoveButton setEnabled:YES];
+            [accountUseButton setEnabled:YES];
         }
     } else {
         if ([ignoreList selectedRow] == -1) {
@@ -175,6 +177,17 @@
                       modalDelegate:self
                      didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
                         contextInfo:[user retain]];
+}
+
+- (IBAction)useAccount:(id)sender
+{
+    UserManager *man = [UserManager defaultManager];
+    NSString *username = [[[man userList] objectAtIndex:[accountList selectedRow]] objectForKey:@"username"];
+    if (username == [[man currentUser] objectForKey:@"username"])
+        return;
+    [man setDefaultUsername:username];
+    [(HotDamn *)[[NSApplication sharedApplication] delegate] restartConnection];
+    [accountList reloadData];
 }
 
 - (void)addAccountAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
