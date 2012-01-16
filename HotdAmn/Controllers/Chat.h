@@ -13,6 +13,7 @@
 #import "UserManager.h"
 #import "User.h"
 #import "Topic.h"
+#import "Message.h"
 
 @interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, UserListWatcher, TopicWatcher> {
     NSMutableArray *lines;
@@ -30,7 +31,7 @@
 
 - (void)selectInput;
 
-- (void)addLine:(NSString *)str;
+- (void)addLine:(Message *)str;
 
 - (void)onUserListUpdated;
 - (void)onTopicChange;

@@ -128,7 +128,7 @@
     [evtHandler stopConnection];
 }
 
-- (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName
+- (void)postMessage:(Message *)msg inRoom:(NSString *)roomName
 {
     TabButton *b = [[barControl tabs] objectForKey:roomName];
     [b addLine:msg];

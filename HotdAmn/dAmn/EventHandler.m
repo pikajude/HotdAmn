@@ -37,20 +37,21 @@
     NSString *resp = [NSString stringWithFormat:@"login %@\npk=%@\n\0",
                       [user objectForKey:@"username"],
                       [user objectForKey:@"authtoken"]];
-    [delegate postMessage:[NSString stringWithFormat:@"Connected to dAmnServer %@.", [msg param]] 
-                   inRoom:@"Server"];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Connected to dAmnServer %@.", [msg param]]] autorelease];
+    [delegate postMessage:m inRoom:@"Server"];
     [sock write:resp];
 }
 
 - (void)onLogin:(Packet *)msg
 {
     if ([[[msg args] objectForKey:@"e"] isEqualToString:@"ok"]) {
-        [delegate postMessage:[NSString stringWithFormat:@"Logged in as %@.", [msg param]]
-                       inRoom:@"Server"];
+        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Logged in as %@.", [msg param]]] autorelease];
+        [delegate postMessage:m inRoom:@"Server"];
         [delegate setIsConnected:YES];
         [[UserManager defaultManager] updateRecord:user forUsername:[msg param]];
     } else {
-        [delegate postMessage:@"Login fail, refreshing authtoken." inRoom:@"Server"];
+        Message *m = [[[Message alloc] initWithContent:@"Login fail, refreshing authtoken."] autorelease];
+        [delegate postMessage:m inRoom:@"Server"];
         [user refreshFields];
         [sock release];
         [self startConnection];
@@ -61,10 +62,12 @@
 {
     if ([msg isOkay]) {
         [[self delegate] createTabWithTitle:[msg roomWithOctothorpe]];
-        [delegate postMessage:@"Joined successfully." inRoom:@"Server"];
+        Message *m = [[[Message alloc] initWithContent:@"Joined successfully."] autorelease];
+        [delegate postMessage:m inRoom:@"Server"];
         [privclasses setObject:[[NSMutableDictionary dictionary] retain] forKey:[msg roomName]];
     } else {
-        [delegate postMessage:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]] inRoom:@"Server"];
+        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
+        [delegate postMessage:m inRoom:@"Server"];
     }
 }
 

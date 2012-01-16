@@ -12,6 +12,7 @@
 #import "TabButtonCell.h"
 #import "Chat.h"
 #import "ServerChat.h"
+#import "Message.h"
 
 @interface TabButton : NSButton <NSSplitViewDelegate>
 
@@ -28,6 +29,6 @@
 
 - (NSString *)roomName;
 
-- (void)addLine:(NSString *)str;
+- (void)addLine:(Message *)str;
 
 @end

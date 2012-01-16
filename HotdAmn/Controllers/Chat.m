@@ -58,10 +58,14 @@
     [input becomeFirstResponder];
 }
 
-- (void)addLine:(NSString *)str
+- (void)addLine:(Message *)str
 {
-    [lines addObject:[NSString stringWithFormat:@"<li>%@</li>", str]];
-    if ([lines count] > 1500)
+    [lines addObject:[NSString stringWithFormat:@"<li><%c%@> %@</li>",
+                      [[str user] symbol],
+                      [[str user] username],
+                      [str content]]];
+    
+    if ([lines count] > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue])
         [lines removeObjectAtIndex:0];
     NSString *cont = [NSString stringWithFormat:@"<ul>%@</ul>", [lines componentsJoinedByString:@""]];
     [[chatView mainFrame] loadHTMLString:cont baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];

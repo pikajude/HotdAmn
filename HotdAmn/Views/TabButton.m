@@ -153,7 +153,7 @@
     return [[self title] stringByReplacingOccurrencesOfString:@"#" withString:@""];
 }
 
-- (void)addLine:(NSString *)str
+- (void)addLine:(Message *)str
 {
     [chatRoom addLine:str];
 }

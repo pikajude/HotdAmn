@@ -51,7 +51,7 @@
 - (void)restartConnection;
 - (void)startConnection;
 - (void)stopConnection;
-- (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName;
+- (void)postMessage:(Message *)msg inRoom:(NSString *)roomName;
 
 #pragma mark -
 #pragma mark User defaults

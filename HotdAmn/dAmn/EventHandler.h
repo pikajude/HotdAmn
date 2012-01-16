@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "DamnSocket.h"
+#import "Message.h"
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
 
 @protocol EventHandlerDelegate <NSObject>
 
-- (void)postMessage:(NSString *)msg inRoom:(NSString *)roomName;
+- (void)postMessage:(Message *)msg inRoom:(NSString *)roomName;
 
 @end
 

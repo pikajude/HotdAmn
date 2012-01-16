@@ -12,6 +12,8 @@
 @protocol DamnSocketDelegate <NSObject>
 
 - (void)onPacket:(Packet *)msg;
+
+@optional
 - (void)onServer:(Packet *)msg;
 - (void)onLogin:(Packet *)msg;
 - (void)onJoin:(Packet *)msg;
@@ -44,7 +46,7 @@
     NSMutableData *buf;
 }
 
-@property (assign) id <DamnSocketDelegate> delegate;
+@property (assign) id<DamnSocketDelegate> delegate;
 
 - (void)handleInputStreamEvent:(NSStreamEvent)eventCode;
 - (void)handleOutputStreamEvent:(NSStreamEvent)eventCode;
