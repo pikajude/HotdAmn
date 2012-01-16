@@ -58,6 +58,8 @@
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
 		25AB522C14C35CEC00A3A76C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 25AB522A14C35CEC00A3A76C /* check.png */; };
 		25C7053B14BA794A004BC131 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7053914BA794A004BC131 /* Chat.m */; };
+		25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */; };
+		25CCF4DE14C3E8D600C75C4B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 25CCF4DC14C3E8D600C75C4B /* Themes */; };
 		25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5C14BFDBBE0019326D /* UserMessage.m */; };
 		25F20B6014BFE5300019326D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5F14BFE5300019326D /* User.m */; };
 		25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B6214BFE5D90019326D /* AvatarManager.m */; };
@@ -162,6 +164,9 @@
 		25AB522B14C35CEC00A3A76C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/check.png; sourceTree = "<group>"; };
 		25C7053814BA794A004BC131 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chat.h; path = Controllers/Chat.h; sourceTree = "<group>"; };
 		25C7053914BA794A004BC131 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chat.m; path = Controllers/Chat.m; sourceTree = "<group>"; };
+		25CCF4C714C3CF7400C75C4B /* ThemeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeHelper.h; path = Controllers/ThemeHelper.h; sourceTree = "<group>"; };
+		25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeHelper.m; path = Controllers/ThemeHelper.m; sourceTree = "<group>"; };
+		25CCF4DD14C3E8D600C75C4B /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = HotdAmn/en.lproj/Themes; sourceTree = "<group>"; };
 		25F20B5B14BFDBBE0019326D /* UserMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessage.h; path = dAmn/Models/UserMessage.h; sourceTree = "<group>"; };
 		25F20B5C14BFDBBE0019326D /* UserMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessage.m; path = dAmn/Models/UserMessage.m; sourceTree = "<group>"; };
 		25F20B5E14BFE5300019326D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = dAmn/Models/User.h; sourceTree = "<group>"; };
@@ -250,6 +255,7 @@
 		2519BE4514AE21F20029F746 = {
 			isa = PBXGroup;
 			children = (
+				25CCF4DC14C3E8D600C75C4B /* Themes */,
 				25123A9E14B95C800022446A /* WebKit.framework */,
 				252DB61714B799E00036E0CF /* Security.framework */,
 				2519BE5A14AE21F30029F746 /* HotdAmn */,
@@ -366,6 +372,8 @@
 				257205A014BA94DD00A24228 /* ServerChat.m */,
 				2519BE9914AE2C920029F746 /* TabBar.h */,
 				2519BE9A14AE2C920029F746 /* TabBar.m */,
+				25CCF4C714C3CF7400C75C4B /* ThemeHelper.h */,
+				25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */,
 				25559A8B14BA38F900B60137 /* Welcome.h */,
 				25559A8C14BA38F900B60137 /* Welcome.m */,
 			);
@@ -509,6 +517,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25CCF4DE14C3E8D600C75C4B /* Themes in Resources */,
 				2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */,
 				2519BE6514AE21F30029F746 /* Credits.rtf in Resources */,
 				25153C5114BF3E8000115F43 /* About.xib in Resources */,
@@ -604,6 +613,7 @@
 				257FD6EC14C13D6600286FAE /* NSMutableDictionary+Privclass.m in Sources */,
 				257FD6EF14C1455800286FAE /* Topic.m in Sources */,
 				257FD6F514C21AA400286FAE /* PrefsUsers.m in Sources */,
+				25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +666,14 @@
 				25AB522B14C35CEC00A3A76C /* en */,
 			);
 			name = check.png;
+			sourceTree = "<group>";
+		};
+		25CCF4DC14C3E8D600C75C4B /* Themes */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25CCF4DD14C3E8D600C75C4B /* en */,
+			);
+			name = Themes;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

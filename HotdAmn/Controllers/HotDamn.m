@@ -24,6 +24,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     [self setupDefaults];
+    [self verifyTheme];
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     prefs = [[Preferences alloc] initWithWindowNibName:@"Shell"];
     [barControl addButtonWithTitle:@"Server"];
@@ -37,6 +38,31 @@
     } else {
         [[UserManager defaultManager] startIntroduction:YES];
     }
+}
+
+- (void)verifyTheme
+{
+    NSArray *themes = [ThemeHelper themeList];
+    NSLog(@"%@", themes);
+    NSAlert *al = [NSAlert alertWithMessageText:@"Theme error"
+                                  defaultButton:@"OK"
+                                alternateButton:nil
+                                    otherButton:nil
+                      informativeTextWithFormat:@""];
+    if ([themes count] < 1) {
+        [al setInformativeText:@"You can't run HotdAmn without at least one theme. What did you do with the default, silly?"];
+        [al beginSheetModalForWindow:nil
+                       modalDelegate:self
+                      didEndSelector:@selector(themeFailure:returnCode:contextInfo:)
+                         contextInfo:nil];
+    } else if (![themes containsObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"themeName"]]) {
+        [[NSUserDefaults standardUserDefaults] setObject:[themes objectAtIndex:0] forKey:@"themeName"];
+    }
+}
+
+- (void)themeFailure:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    [[NSApplication sharedApplication] terminate:nil];
 }
 
 - (IBAction)addTab:(id)sender
@@ -148,6 +174,7 @@
                               [NSArray array], @"buddies",
                               [NSArray array], @"ignores",
                               [NSNumber numberWithInteger:500], @"scrollbackLimit",
+                              @"Default", @"themeName",
                               @"[%H:%M:%S]", @"timestampFormat", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];

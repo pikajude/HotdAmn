@@ -46,11 +46,13 @@
     [inputFont setStringValue:[NSString stringWithFormat:@"%@ %.1f",
                                [ifont displayName],
                                [ifont pointSize]]];
+    
+    [themes setContent:[ThemeHelper themeList]];
 }
 
-- (IBAction)chooseAlignment:(id)sender
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    NSLog(@"%@", [[sender selectedItem] title]);
+    [[NSApplication sharedApplication] terminate:nil];
 }
 
 - (IBAction)selectAFont:(id)sender

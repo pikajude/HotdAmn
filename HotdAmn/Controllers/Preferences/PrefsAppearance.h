@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HotDamn.h"
+#import "ThemeHelper.h"
 
 @interface PrefsAppearance : NSViewController <NSWindowDelegate, NSTableViewDataSource, NSControlTextEditingDelegate, NSTableViewDelegate> {
     IBOutlet NSTextField *chatFont;
@@ -18,12 +19,13 @@
     IBOutlet NSButton *removeHighlightButton;
     NSTextField *currentField;
     IBOutlet NSTextField *scrollbackErr;
+    
+    IBOutlet NSArrayController *themes;
 }
 
 - (NSFont *)getMainFont;
 - (NSFont *)getInputFont;
 
-- (IBAction)chooseAlignment:(id)sender;
 - (IBAction)selectAFont:(id)sender;
 
 - (void)updateFont:(NSFont *)font forField:(NSString *)fieldName;

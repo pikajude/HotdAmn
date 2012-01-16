@@ -82,7 +82,7 @@
 - (void)saveUserList:(NSArray *)users
 {
     if (![self hasDefaultUser]) {
-        NSString *dirname = [[self userFilePath] substringToIndex:[[self userFilePath] length] - 12];
+        NSString *dirname = [[self userFilePath] stringByDeletingLastPathComponent];
         [[NSFileManager defaultManager] createDirectoryAtPath:dirname withIntermediateDirectories:YES attributes:nil error:nil];
     }
     

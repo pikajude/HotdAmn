@@ -22,6 +22,7 @@
 			<string>NSButton</string>
 			<string>NSTextFieldCell</string>
 			<string>NSScrollView</string>
+			<string>NSArrayController</string>
 			<string>NSTableView</string>
 			<string>NSCustomObject</string>
 			<string>NSCustomView</string>
@@ -137,6 +138,7 @@
 						<string key="NSFrame">{{144, 20}, {185, 29}}</string>
 						<reference key="NSSuperview" ref="676335128"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:3936</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="302294699">
@@ -682,7 +684,7 @@
 					<object class="NSTextField" id="296587180">
 						<reference key="NSNextResponder" ref="676335128"/>
 						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{67, 188}, {74, 17}}</string>
+						<string key="NSFrame">{{89, 188}, {52, 17}}</string>
 						<reference key="NSSuperview" ref="676335128"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="269342102"/>
@@ -691,7 +693,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="6723195">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Alignment:</string>
+							<string key="NSContents">Theme:</string>
 							<reference key="NSSupport" ref="550494352"/>
 							<string key="NSCellIdentifier">_NS:3936</string>
 							<reference key="NSControlView" ref="296587180"/>
@@ -705,6 +707,15 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="324202321"/>
 				<string key="NSClassName">NSView</string>
+			</object>
+			<object class="NSArrayController" id="500112786">
+				<bool key="NSEditable">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 			<object class="NSUserDefaultsController" id="70241278">
 				<bool key="NSSharedInstance">YES</bool>
@@ -736,14 +747,6 @@
 						<reference key="destination" ref="383763066"/>
 					</object>
 					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">chooseAlignment:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="269342102"/>
-					</object>
-					<int key="connectionID">28</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -955,6 +958,47 @@
 					</object>
 					<int key="connectionID">180</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">content: arrangedObjects</string>
+						<reference key="source" ref="269342102"/>
+						<reference key="destination" ref="500112786"/>
+						<object class="NSNibBindingConnector" key="connector" id="590064313">
+							<reference key="NSSource" ref="269342102"/>
+							<reference key="NSDestination" ref="500112786"/>
+							<string key="NSLabel">content: arrangedObjects</string>
+							<string key="NSBinding">content</string>
+							<string key="NSKeyPath">arrangedObjects</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">182</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">themes</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="500112786"/>
+					</object>
+					<int key="connectionID">183</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedObject: values.themeName</string>
+						<reference key="source" ref="269342102"/>
+						<reference key="destination" ref="70241278"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="269342102"/>
+							<reference key="NSDestination" ref="70241278"/>
+							<string key="NSLabel">selectedObject: values.themeName</string>
+							<string key="NSBinding">selectedObject</string>
+							<string key="NSKeyPath">values.themeName</string>
+							<reference key="NSPreviousConnector" ref="590064313"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">190</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -988,7 +1032,6 @@
 						<reference key="object" ref="676335128"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="296587180"/>
 							<reference ref="269342102"/>
 							<reference ref="569520784"/>
 							<reference ref="283173782"/>
@@ -1008,6 +1051,7 @@
 							<reference ref="453828552"/>
 							<reference ref="245061341"/>
 							<reference ref="178388047"/>
+							<reference ref="296587180"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1356,6 +1400,11 @@
 						<reference key="object" ref="220675194"/>
 						<reference key="parent" ref="193227781"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">181</int>
+						<reference key="object" ref="500112786"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1401,6 +1450,7 @@
 					<string>177.IBPluginDependency</string>
 					<string>178.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
+					<string>181.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
@@ -1471,6 +1521,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1485,7 +1536,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">180</int>
+			<int key="maxID">190</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1550,6 +1601,7 @@
 							<string>inputFont</string>
 							<string>removeHighlightButton</string>
 							<string>scrollbackErr</string>
+							<string>themes</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1560,6 +1612,7 @@
 							<string>NSTextField</string>
 							<string>NSButton</string>
 							<string>NSTextField</string>
+							<string>NSArrayController</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1573,6 +1626,7 @@
 							<string>inputFont</string>
 							<string>removeHighlightButton</string>
 							<string>scrollbackErr</string>
+							<string>themes</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1603,6 +1657,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">scrollbackErr</string>
 								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">themes</string>
+								<string key="candidateClassName">NSArrayController</string>
 							</object>
 						</object>
 					</object>

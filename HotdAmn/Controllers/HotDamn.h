@@ -13,6 +13,7 @@
 #import "EventHandler.h"
 #import "DamnSocket.h"
 #import "Token.h"
+#import "ThemeHelper.h"
 #import "UserManager.h"
 #import "Preferences.h"
 
@@ -56,5 +57,7 @@
 #pragma mark -
 #pragma mark User defaults
 - (void)setupDefaults;
+- (void)verifyTheme;
+- (void)themeFailure:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 
 @end
