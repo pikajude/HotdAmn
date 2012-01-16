@@ -16,6 +16,7 @@
 @property (readonly) NSDate *date;
 
 - (id)initWithContent:(NSString *)cont;
+- (NSString *)cssClasses;
 
 #pragma mark -
 #pragma mark Dummy methods

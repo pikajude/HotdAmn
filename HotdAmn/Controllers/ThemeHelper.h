@@ -10,6 +10,9 @@
 
 @interface ThemeHelper : NSObject
 
++ (NSArray *)themePathList;
 + (NSArray *)themeList;
++ (NSString *)pathForThemeStylesheet:(NSString *)themeName;
++ (NSData *)contentsOfThemeStylesheet:(NSString *)themeName;
 
 @end

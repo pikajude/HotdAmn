@@ -42,6 +42,17 @@
     return NO;
 }
 
+- (NSString *)cssClasses
+{
+    NSMutableArray *classes = [NSMutableArray arrayWithObject:@"message"];
+    if ([self highlight]) [classes addObject:@"highlight"];
+    if ([[[self user] username] isEqualToString:[[[UserManager defaultManager] currentUser] objectForKey:@"username"]]) {
+        [classes addObject:@"mine"];
+    }
+    [classes addObject:[NSString stringWithFormat:@"user-%@", [[self user] username]]];
+    return [classes componentsJoinedByString:@" "];
+}
+
 - (void)dealloc
 {
     [content release];

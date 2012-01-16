@@ -24,6 +24,12 @@
 
 - (void)awakeFromNib
 {
+    NSString *chatShell = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"chat_shell" ofType:@"html"]] encoding:NSUTF8StringEncoding];
+    NSString *styledShell = [NSString stringWithFormat:chatShell,
+                             [ThemeHelper contentsOfThemeStylesheet:[[NSUserDefaults standardUserDefaults] objectForKey:@"themeName"]]];
+    
+    [[chatView mainFrame] loadHTMLString:styledShell baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];
+    
     [User addWatcher:self];
     [Topic addWatcher:self];
     [input bind:@"fontName"
@@ -60,15 +66,17 @@
 
 - (void)addLine:(Message *)str
 {
-    [lines addObject:[NSString stringWithFormat:@"<li><%c%@> %@</li>",
-                      [[str user] symbol],
-                      [[str user] username],
-                      [str content]]];
-    
-    if ([lines count] > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue])
-        [lines removeObjectAtIndex:0];
-    NSString *cont = [NSString stringWithFormat:@"<ul>%@</ul>", [lines componentsJoinedByString:@""]];
-    [[chatView mainFrame] loadHTMLString:cont baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];
+    NSString *addScript = [NSString
+                           stringWithFormat:@"createLine('%@', '%c', '%@', '%@')",
+                           [str cssClasses],
+                           [[str user] symbol],
+                           [[str user] username],
+                           [str content]];
+    [chatView stringByEvaluatingJavaScriptFromString:addScript];
+    NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
+    if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
+        [chatView stringByEvaluatingJavaScriptFromString:@"removeFirstLine()"];
+    }
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item

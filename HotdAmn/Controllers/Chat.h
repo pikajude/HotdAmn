@@ -14,6 +14,7 @@
 #import "User.h"
 #import "Topic.h"
 #import "Message.h"
+#import "ThemeHelper.h"
 
 @interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, UserListWatcher, TopicWatcher> {
     NSMutableArray *lines;

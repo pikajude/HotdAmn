@@ -43,6 +43,7 @@
 		25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */; };
 		25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8614BA1F6E00B60137 /* JSONKit.m */; };
 		25559A8D14BA38F900B60137 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8C14BA38F900B60137 /* Welcome.m */; };
+		2567C64B14C4990C00A89A91 /* chat_shell.html in Resources */ = {isa = PBXBuildFile; fileRef = 2567C64914C4990C00A89A91 /* chat_shell.html */; };
 		2568BE1A14AE9C2900E1C825 /* TabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* TabButton.m */; };
 		256E7F7914BFB96A000608A1 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E7F7814BFB96A000608A1 /* Message.m */; };
 		257205A114BA94DD00A24228 /* ServerChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 257205A014BA94DD00A24228 /* ServerChat.m */; };
@@ -137,6 +138,7 @@
 		25559A8614BA1F6E00B60137 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = HotdAmn/OAuth/JSONKit/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		25559A8B14BA38F900B60137 /* Welcome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Welcome.h; path = Controllers/Welcome.h; sourceTree = "<group>"; };
 		25559A8C14BA38F900B60137 /* Welcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Welcome.m; path = Controllers/Welcome.m; sourceTree = "<group>"; };
+		2567C64A14C4990C00A89A91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/chat_shell.html; sourceTree = "<group>"; };
 		2568BE1814AE9C2900E1C825 /* TabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButton.h; path = Views/TabButton.h; sourceTree = "<group>"; };
 		2568BE1914AE9C2900E1C825 /* TabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButton.m; path = Views/TabButton.m; sourceTree = "<group>"; };
 		256E7F7714BFB96A000608A1 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = dAmn/Models/Message.h; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				2519BE6014AE21F30029F746 /* main.m */,
 				2519BE6214AE21F30029F746 /* HotdAmn-Prefix.pch */,
 				2519BE6314AE21F30029F746 /* Credits.rtf */,
+				2567C64914C4990C00A89A91 /* chat_shell.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */,
 				257FD6F114C21A3200286FAE /* PrefsUsers.xib in Resources */,
 				25AB522C14C35CEC00A3A76C /* check.png in Resources */,
+				2567C64B14C4990C00A89A91 /* chat_shell.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +662,14 @@
 				2519BE7B14AE21F30029F746 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2567C64914C4990C00A89A91 /* chat_shell.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2567C64A14C4990C00A89A91 /* en */,
+			);
+			name = chat_shell.html;
 			sourceTree = "<group>";
 		};
 		25AB522A14C35CEC00A3A76C /* check.png */ = {

@@ -175,7 +175,8 @@
                               [NSArray array], @"ignores",
                               [NSNumber numberWithInteger:500], @"scrollbackLimit",
                               @"Default", @"themeName",
-                              @"[%H:%M:%S]", @"timestampFormat", nil];
+                              @"[%H:%M:%S]", @"timestampFormat",
+                              [NSNumber numberWithBool:YES], @"WebKitDeveloperExtras", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
     [def synchronize];
