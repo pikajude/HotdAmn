@@ -28,6 +28,7 @@
 - (NSImage *)avatar;
 
 + (void)addUser:(User *)user toRoom:(NSString *)room withGroupName:(NSString *)groupName;
++ (User *)userWithName:(NSString *)name inRoom:(NSString *)room;
 + (void)removeUser:(NSString *)user fromRoom:(NSString *)room;
 + (void)addWatcher:(id<UserListWatcher>)watcher;
 + (UserListNode *)listForRoom:(NSString *)roomName;

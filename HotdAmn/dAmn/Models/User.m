@@ -81,6 +81,21 @@ static NSMutableDictionary *roomList;
     }
 }
 
++ (User *)userWithName:(NSString *)name inRoom:(NSString *)room
+{
+    UserListNode *roomList = [self listForRoom:room];
+    if (!roomList)
+        return nil;
+    for (UserListNode *group in [roomList children]) {
+        for (UserListNode *user in [group children]) {
+            if ([[[user object] username] isEqualToString:name]) {
+                return [user object];
+            }
+        }
+    }
+    return nil;
+}
+
 + (void)updateWatchers
 {
     for (id<UserListWatcher> watcher in watchers) {

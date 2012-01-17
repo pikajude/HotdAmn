@@ -168,6 +168,8 @@
                        roomName,
                        [top substringToIndex:[top length] > 0 ? 16 : 0]];
     [[[self view] window] setTitle:title];
+    [chatView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTopic(\"%@\")",
+                                                      [top stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]]];
 }
 
 @end

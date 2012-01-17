@@ -41,6 +41,7 @@
 - (void)onPropertyTopic:(Packet *)msg;
 - (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPart:(Packet *)msg;
+- (void)onRecvMsg:(Packet *)msg;
 
 #pragma mark -
 #pragma mark Actions

@@ -69,10 +69,18 @@ static NSDictionary *symbolTable() {
     return [classes componentsJoinedByString:@" "];
 }
 
+- (NSString *)timestamp
+{
+    NSString *format = [[NSUserDefaults standardUserDefaults] objectForKey:@"timestampFormat"];
+    NSDateFormatter *form = [[[NSDateFormatter alloc] initWithDateFormat:format allowNaturalLanguage:YES] autorelease];
+    return [form stringFromDate:[NSDate date]];
+}
+
 - (NSString *)asHTML
 {
-    return [NSString stringWithFormat:@"<li class='%@'>* <line>%@</line></li>",
+    return [NSString stringWithFormat:@"<li class='%@'><timestamp>%@</timestamp> * <line>%@</line></li>",
             [self cssClasses],
+            [self timestamp],
             [content stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
 }
 

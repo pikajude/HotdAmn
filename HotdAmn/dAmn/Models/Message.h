@@ -18,6 +18,7 @@
 - (id)initWithContent:(NSString *)cont;
 - (NSString *)cssClasses;
 - (NSString *)asHTML;
+- (NSString *)timestamp;
 
 #pragma mark -
 #pragma mark Dummy methods

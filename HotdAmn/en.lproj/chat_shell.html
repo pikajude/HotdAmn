@@ -6,6 +6,9 @@
     <title>Nothing here!</title>
 </head>
 <body class="chat-%@">
+<div id="topic">
+    
+</div>
 <ul id="chat">
     %@
 </ul>
@@ -19,6 +22,9 @@
     }
     var lineCount = function() {
         return chatList.children.length
+    }
+    var setTopic = function(topic) {
+        document.getElementById("topic").innerHTML = topic;
     }
 </script>
 </body>
