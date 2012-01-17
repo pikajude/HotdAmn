@@ -12,26 +12,56 @@
 
 @synthesize roomName, delegate, split, chatContainer;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         lines = [[NSMutableArray alloc] init];
+        roomName = name;
     }
     
     return self;
 }
 
-- (void)awakeFromNib
+#pragma mark -
+#pragma mark Theme management
+
+- (void)loadTheme:(NSString *)html;
 {
     NSString *chatShell = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"chat_shell" ofType:@"html"]] encoding:NSUTF8StringEncoding];
     NSString *styledShell = [NSString stringWithFormat:chatShell,
-                             [ThemeHelper contentsOfThemeStylesheet:[[NSUserDefaults standardUserDefaults] objectForKey:@"themeName"]]];
+                             [ThemeHelper contentsOfThemeStylesheet:[[NSUserDefaults standardUserDefaults] objectForKey:@"themeName"]],
+                             [[[self roomName] stringByReplacingOccurrencesOfString:@"#" withString:@""] lowercaseString],
+                             html];
     
     [[chatView mainFrame] loadHTMLString:styledShell baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];
-    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"values.themeName"]) {
+        NSMutableArray *ar = [NSMutableArray array];
+        for (Message *line in lines) {
+            [ar addObject:[line asHTML]];
+        }
+        [self loadTheme:[ar componentsJoinedByString:@""]];
+    }
+}
+
+#pragma mark -
+
+- (void)awakeFromNib
+{
+    [self loadTheme:@""];
     [User addWatcher:self];
     [Topic addWatcher:self];
+    
+    [[NSUserDefaultsController sharedUserDefaultsController]
+        addObserver:self
+         forKeyPath:@"values.themeName"
+            options:NSKeyValueObservingOptionNew
+            context:nil];
+    
     [input bind:@"fontName"
        toObject:[NSUserDefaultsController sharedUserDefaultsController]
     withKeyPath:@"values.inputFontName"
@@ -66,15 +96,13 @@
 
 - (void)addLine:(Message *)str
 {
-    NSString *addScript = [NSString
-                           stringWithFormat:@"createLine('%@', '%c', '%@', '%@')",
-                           [str cssClasses],
-                           [[str user] symbol],
-                           [[str user] username],
-                           [str content]];
+    [lines addObject:str];
+    NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [str asHTML]];
     [chatView stringByEvaluatingJavaScriptFromString:addScript];
     NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
     if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
+        [[lines objectAtIndex:0] release];
+        [lines removeObjectAtIndex:0];
         [chatView stringByEvaluatingJavaScriptFromString:@"removeFirstLine()"];
     }
 }

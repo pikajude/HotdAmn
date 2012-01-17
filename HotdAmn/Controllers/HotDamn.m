@@ -43,7 +43,6 @@
 - (void)verifyTheme
 {
     NSArray *themes = [ThemeHelper themeList];
-    NSLog(@"%@", themes);
     NSAlert *al = [NSAlert alertWithMessageText:@"Theme error"
                                   defaultButton:@"OK"
                                 alternateButton:nil

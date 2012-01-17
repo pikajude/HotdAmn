@@ -42,6 +42,11 @@
     [sock write:resp];
 }
 
+- (void)onPing:(Packet *)msg
+{
+    [sock write:@"pong\n\0"];
+}
+
 - (void)onLogin:(Packet *)msg
 {
     if ([[[msg args] objectForKey:@"e"] isEqualToString:@"ok"]) {
@@ -84,7 +89,8 @@
         if ([pk isEqualToString:@""])
             continue;
         Packet *p = [[[Packet alloc] initWithString:pk] autorelease];
-        [User addUser:[p param] toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
+        User *us = [[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]];
+        [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
     }
     [[User listForRoom:[msg roomWithOctothorpe]] sortChildrenWithComparator:^NSComparisonResult(id obj1, id obj2) {
         return [rm levelForPrivclass:[obj1 title]] < [rm levelForPrivclass:[obj2 title]] ? NSOrderedDescending : NSOrderedAscending;
@@ -111,6 +117,25 @@
 - (void)onPropertyTopic:(Packet *)msg
 {
     [Topic setTopic:[msg body] forRoom:[msg roomWithOctothorpe]];
+}
+
+- (void)onRecvJoin:(Packet *)msg
+{
+    Packet *p = [[[Packet alloc] initWithString:[[[msg subpacket] raw] stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"]] autorelease];
+    User *us = [[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]];
+    [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
+    
+    Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomWithOctothorpe]]];
+    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+    [User updateWatchers];
+}
+
+- (void)onRecvPart:(Packet *)msg
+{
+    Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomWithOctothorpe]]];
+    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+    [User removeUser:[[msg subpacket] param] fromRoom:[msg roomWithOctothorpe]];
+    [User updateWatchers];
 }
 
 #pragma mark -

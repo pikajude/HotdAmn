@@ -30,10 +30,19 @@
 @property (readonly) IBOutlet NSView *chatContainer;
 @property (assign) id delegate;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name;
+
 - (void)selectInput;
 
 - (void)addLine:(Message *)str;
 
+#pragma mark -
+#pragma mark Theme management
+- (void)loadTheme:(NSString *)html;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
+
+#pragma mark -
+#pragma mark Event management
 - (void)onUserListUpdated;
 - (void)onTopicChange;
 

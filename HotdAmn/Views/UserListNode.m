@@ -7,10 +7,11 @@
 //
 
 #import "UserListNode.h"
+#import "User.h"
 
 @implementation UserListNode
 
-@synthesize title, isLeaf, children;
+@synthesize title, isLeaf, children, object;
 
 - (id)init
 {
@@ -50,9 +51,22 @@
     return nil;
 }
 
+- (void)removeChildWithTitle:(NSString *)titl
+{
+    if (isLeaf) return;
+    for (int i = 0; i < [children count]; i++) {
+        UserListNode *node = [children objectAtIndex:i];
+        if ([[node title] isEqualToString:titl]) {
+            [children removeObject:node];
+            [node release];
+        }
+    }
+}
+
 - (void)dealloc
 {
     [title release];
+    [object release];
     [children release];
     [super dealloc];
 }

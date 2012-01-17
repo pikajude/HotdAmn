@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class User;
+
 @interface UserListNode : NSObject
 
+@property (assign) User *object;
 @property (assign) NSString *title;
 @property (readonly) NSMutableArray *children;
 @property (assign) BOOL isLeaf;
 
 - (void)addChildren:(NSArray *)objects;
 - (void)addChild:(id)obj;
+- (void)removeChildWithTitle:(NSString *)title;
 - (UserListNode *)childWithTitle:(NSString *)title;
 - (void)sortChildrenWithComparator:(NSComparator)cmptr;
 

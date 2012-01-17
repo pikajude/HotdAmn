@@ -21,11 +21,14 @@ static int port = 3900;
         host = [NSHost hostWithName:@"chat.deviantart.com"];
         events = [[NSDictionary dictionaryWithObjectsAndKeys:
                   [NSValue valueWithPointer:@selector(onServer:)], @"dAmnServer",
+                  [NSValue valueWithPointer:@selector(onPing:)], @"ping",
                   [NSValue valueWithPointer:@selector(onLogin:)], @"login",
                   [NSValue valueWithPointer:@selector(onJoin:)], @"join",
                   [NSValue valueWithPointer:@selector(onPropertyMembers:)], @"property_members",
                   [NSValue valueWithPointer:@selector(onPropertyPrivclasses:)], @"property_privclasses",
                   [NSValue valueWithPointer:@selector(onPropertyTopic:)], @"property_topic",
+                  [NSValue valueWithPointer:@selector(onRecvJoin:)], @"recv_join",
+                  [NSValue valueWithPointer:@selector(onRecvPart:)], @"recv_part",
                   nil] retain];
         
         buf = [[NSMutableData alloc] init];
@@ -76,6 +79,7 @@ static int port = 3900;
                 NSString *str = [[[NSString alloc] initWithData:buf encoding:NSUTF8StringEncoding] autorelease];
                 Packet *pkt = [[[Packet alloc] initWithString:str] autorelease];
                 [delegate onPacket:pkt];
+                NSLog(@"%@", [self eventName:pkt]);
                 SEL sel = [[events objectForKey:[self eventName:pkt]] pointerValue];
                 if (sel) {
                     [delegate performSelector:sel withObject:pkt];
@@ -114,7 +118,7 @@ static int port = 3900;
                 [pee hasPrefix:@"login:"] ? @"whois" : pee];
     } else if ([[pkt command] isEqualToString:@"recv"]) {
         NSInteger idx = (NSInteger)[[pkt body] rangeOfString:@" "].location;
-        return [[pkt body] substringToIndex:idx-1];
+        return [NSString stringWithFormat:@"recv_%@", [[pkt body] substringToIndex:idx]];
     } else {
         return [pkt command];
     }

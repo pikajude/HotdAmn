@@ -31,15 +31,27 @@
 }
 
 - (User *)user {
-    static User *servUser;
-    if (!servUser) {
-        servUser = [[User alloc] initWithUsername:@"dAmnServer" userIcon:0 symbol:'+'];
-    }
-    return servUser;
+    return nil;
 }
 
 - (BOOL)highlight {
     return NO;
+}
+
+static NSDictionary *symbolTable() {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            @"member", [NSNumber numberWithChar:'~'],
+            @"premium-member", [NSNumber numberWithChar:'*'],
+            @"beta-tester", [NSNumber numberWithChar:'='],
+            @"senior-member", [NSNumber numberWithChar:'`'],
+            @"alumni", [NSNumber numberWithChar:176], // °
+            @"banned", [NSNumber numberWithChar:'!'],
+            @"general-admin", [NSNumber numberWithChar:'+'],
+            @"creative-team", [NSNumber numberWithChar:162], // ¢
+            @"volunteer", [NSNumber numberWithChar:'^'],
+            @"admin", [NSNumber numberWithChar:'$'],
+            @"official", [NSNumber numberWithChar:163], // £
+            nil];
 }
 
 - (NSString *)cssClasses
@@ -49,8 +61,19 @@
     if ([[[self user] username] isEqualToString:[[[UserManager defaultManager] currentUser] objectForKey:@"username"]]) {
         [classes addObject:@"mine"];
     }
-    [classes addObject:[NSString stringWithFormat:@"user-%@", [[self user] username]]];
+    if ([self user]) {
+        [classes addObject:[NSString stringWithFormat:@"user-%@", [[self user] username]]];
+        [classes addObject:[symbolTable() objectForKey:[NSNumber numberWithChar:[[self user] symbol]]]];
+    } else
+        [classes addObject:@"server-msg"];
     return [classes componentsJoinedByString:@" "];
+}
+
+- (NSString *)asHTML
+{
+    return [NSString stringWithFormat:@"<li class='%@'>* <line>%@</line></li>",
+            [self cssClasses],
+            [content stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
 }
 
 - (void)dealloc

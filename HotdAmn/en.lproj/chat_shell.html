@@ -5,16 +5,14 @@
     </style>
     <title>Nothing here!</title>
 </head>
-<body>
+<body class="chat-%@">
 <ul id="chat">
+    %@
 </ul>
 <script type="text/javascript">
     var chatList = document.getElementById("chat");
-    var createLine = function(classes, symbol, username, content) {
-        var li = document.createElement("li")
-        li.innerHTML = "<username>"+symbol+username+"</username> <line>"+content+"</line>";
-        li.setAttribute("class", classes);
-        chatList.appendChild(li);
+    var createLine = function(cont) {
+        chatList.innerHTML += cont;
     }
     var removeFirstLine = function() {
         chatList.removeChild(chatList.children[0])

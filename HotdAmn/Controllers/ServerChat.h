@@ -10,4 +10,6 @@
 
 @interface ServerChat : Chat
 
+@property (assign) NSString *roomName;
+
 @end

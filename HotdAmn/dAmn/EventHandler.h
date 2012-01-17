@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DamnSocket.h"
 #import "Message.h"
+#import "UserMessage.h"
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
 
@@ -32,11 +33,14 @@
 #pragma mark Socket delegate methods
 - (void)onPacket:(Packet *)msg;
 - (void)onServer:(Packet *)msg;
+- (void)onPing:(Packet *)msg;
 - (void)onLogin:(Packet *)msg;
 - (void)onJoin:(Packet *)msg;
 - (void)onPropertyMembers:(Packet *)msg;
 - (void)onPropertyPrivclasses:(Packet *)msg;
 - (void)onPropertyTopic:(Packet *)msg;
+- (void)onRecvJoin:(Packet *)msg;
+- (void)onRecvPart:(Packet *)msg;
 
 #pragma mark -
 #pragma mark Actions

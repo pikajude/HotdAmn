@@ -15,22 +15,21 @@
 
 @optional
 - (void)onServer:(Packet *)msg;
+- (void)onPing:(Packet *)msg;
 - (void)onLogin:(Packet *)msg;
 - (void)onJoin:(Packet *)msg;
 - (void)onPart:(Packet *)msg;
 - (void)onPropertyMembers:(Packet *)msg;
 - (void)onPropertyPrivclasses:(Packet *)msg;
 - (void)onPropertyTopic:(Packet *)msg;
-/*- (void)onProperty:(Packet *)msg;
-- (void)onRecvMsg:(Packet *)msg;
-- (void)onRecvAction:(Packet *)msg;
 - (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPart:(Packet *)msg;
+/*- (void)onRecvAction:(Packet *)msg;
+- (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPrivchg:(Packet *)msg;
 - (void)onRecvKicked:(Packet *)msg;
 - (void)onRecvAdmin:(Packet *)msg;
 - (void)onKicked:(Packet *)msg;
-- (void)onPing:(Packet *)msg;
 - (void)onDisconnect:(Packet *)msg;
 - (void)onError:(Packet *)msg;
  */

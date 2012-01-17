@@ -41,12 +41,13 @@ static NSMutableDictionary *roomList;
     return [roomList objectForKey:roomName];
 }
 
-+ (void)addUser:(NSString *)user toRoom:(NSString *)room withGroupName:(NSString *)groupName
++ (void)addUser:(User *)user toRoom:(NSString *)room withGroupName:(NSString *)groupName
 {
     UserListNode *roomRoot;
     UserListNode *groupRoot;
     UserListNode *userNode = [[UserListNode alloc] init];
-    [userNode setTitle:[user retain]];
+    [userNode setTitle:[[user username] retain]];
+    [userNode setObject:user];
     if (!roomList) {
         roomList = [[NSMutableDictionary alloc] init];
     }
@@ -59,11 +60,25 @@ static NSMutableDictionary *roomList;
         [groupRoot setTitle:[groupName retain]];
         [roomRoot addChild:groupRoot];
     }
-    if ([groupRoot childWithTitle:user]) {
+    if ([groupRoot childWithTitle:[user username]]) {
         [userNode release];
         return;
     }
     [groupRoot addChild:userNode];
+}
+
++ (void)removeUser:(NSString *)user fromRoom:(NSString *)room
+{
+    UserListNode *roomList = [self listForRoom:room];
+    if (!roomList)
+        return;
+    for (int i = 0; i < [[roomList children] count]; i++) {
+        UserListNode *group = [[roomList children] objectAtIndex:i];
+        [group removeChildWithTitle:user];
+        if ([[group children] count] == 0) {
+            [roomList removeChildWithTitle:[group title]];
+        }
+    }
 }
 
 + (void)updateWatchers
@@ -71,12 +86,6 @@ static NSMutableDictionary *roomList;
     for (id<UserListWatcher> watcher in watchers) {
         [watcher onUserListUpdated];
     }
-}
-
-- (void)dealloc
-{
-    free((void *)&symbol);
-    [super dealloc];
 }
 
 @end
