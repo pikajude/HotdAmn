@@ -8,6 +8,8 @@
 
 #import <AppKit/AppKit.h>
 
+@class Chat;
+
 @interface UserListView : NSOutlineView
 
 @end

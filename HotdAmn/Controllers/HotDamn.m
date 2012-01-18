@@ -175,7 +175,10 @@
                               [NSNumber numberWithInteger:500], @"scrollbackLimit",
                               @"Default", @"themeName",
                               @"[%H:%M:%S]", @"timestampFormat",
-                              [NSNumber numberWithBool:YES], @"WebKitDeveloperExtras", nil];
+                              [NSNumber numberWithBool:YES], @"WebKitDeveloperExtras",
+                              [NSNumber numberWithInt:AutojoinNone], @"autojoin",
+                              [NSArray array], @"autojoinRooms",
+                              [NSArray array], @"savedRooms", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
     [def synchronize];

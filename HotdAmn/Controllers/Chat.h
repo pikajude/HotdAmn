@@ -36,6 +36,8 @@
 
 - (void)addLine:(Message *)str;
 
+- (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item;
+
 #pragma mark -
 #pragma mark Theme management
 - (void)loadTheme:(NSString *)html;

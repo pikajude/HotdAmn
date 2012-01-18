@@ -54,12 +54,32 @@
         [delegate postMessage:m inRoom:@"Server"];
         [delegate setIsConnected:YES];
         [[UserManager defaultManager] updateRecord:user forUsername:[msg param]];
+        [self onLaunch];
     } else {
         Message *m = [[[Message alloc] initWithContent:@"Login fail, refreshing authtoken."] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
         [user refreshFields];
         [sock release];
         [self startConnection];
+    }
+}
+
+- (void)onLaunch
+{
+    switch ([[[NSUserDefaults standardUserDefaults] objectForKey:@"autojoin"] intValue]) {
+        case AutojoinPrevious:
+            for (NSString *roomName in [[NSUserDefaults standardUserDefaults] objectForKey:@"savedRooms"]) {
+                [self join:roomName];
+            }
+            break;
+            
+        case AutojoinUserDefined:
+            for (NSString *roomName in [[NSUserDefaults standardUserDefaults] objectForKey:@"autojoinRooms"]) {
+                [self join:roomName];
+            }
+            
+        default:
+            break;
     }
 }
 
@@ -127,6 +147,14 @@
     
     Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomWithOctothorpe]]];
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+    
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
+    if (![rooms containsObject:[msg roomName]]) {
+        [rooms addObject:[msg roomName]];
+        [defs setObject:rooms forKey:@"savedRooms"];
+    }
+    
     [User updateWatchers];
 }
 
@@ -135,6 +163,12 @@
     Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomWithOctothorpe]]];
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
     [User removeUser:[[msg subpacket] param] fromRoom:[msg roomWithOctothorpe]];
+    
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
+    [rooms removeObject:[msg roomName]];
+    [defs setObject:rooms forKey:@"savedRooms"];
+    
     [User updateWatchers];
 }
 

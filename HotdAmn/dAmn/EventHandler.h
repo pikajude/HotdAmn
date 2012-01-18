@@ -46,6 +46,7 @@
 #pragma mark -
 #pragma mark Actions
 - (void)join:(NSString *)roomName;
+- (void)onLaunch;
 
 - (void)startConnection;
 - (void)stopConnection;

@@ -160,6 +160,7 @@
             break;
         }
     }
+    [self resizeButtons];
 }
 
 - (void)selectPrevious
@@ -180,6 +181,7 @@
             break;
         }
     }
+    [self resizeButtons];
 }
 
 - (NSInteger)indexOfRightmostButtonBeforePoint:(CGFloat)point

@@ -17,6 +17,12 @@
 #import "UserManager.h"
 #import "Preferences.h"
 
+typedef enum {
+    AutojoinNone,
+    AutojoinPrevious,
+    AutojoinUserDefined
+} autojoin;
+
 @interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
     EventHandler *evtHandler;

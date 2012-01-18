@@ -15,10 +15,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        lines = [[NSMutableArray alloc] init];
-        roomName = name;
-    }
+    roomName = name;
     
     return self;
 }
@@ -39,7 +36,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"values.themeName"]) {
+    if ([keyPath isEqualToString:@"values.themeName"] || [keyPath isEqualToString:@"values.timestampFormat"]) {
         NSMutableArray *ar = [NSMutableArray array];
         for (Message *line in lines) {
             [ar addObject:[line asHTML]];
@@ -52,6 +49,7 @@
 
 - (void)awakeFromNib
 {
+    lines = [[NSMutableArray alloc] init];
     [self loadTheme:@""];
     [User addWatcher:self];
     [Topic addWatcher:self];
@@ -59,6 +57,12 @@
     [[NSUserDefaultsController sharedUserDefaultsController]
         addObserver:self
          forKeyPath:@"values.themeName"
+            options:NSKeyValueObservingOptionNew
+            context:nil];
+    
+    [[NSUserDefaultsController sharedUserDefaultsController]
+        addObserver:self
+         forKeyPath:@"values.timestampFormat"
             options:NSKeyValueObservingOptionNew
             context:nil];
     
@@ -163,13 +167,23 @@
     if (top == NULL) {
         top = @"";
     }
-    NSString *title = [NSString stringWithFormat:@"%@ %@ %@",
+    NSString *title = [NSString stringWithFormat:@"%@ — %@",
                        [[[UserManager defaultManager] currentUser] objectForKey:@"username"],
-                       roomName,
-                       [top substringToIndex:[top length] > 0 ? 16 : 0]];
+                       [self roomName]];
     [[[self view] window] setTitle:title];
     [chatView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTopic(\"%@\")",
                                                       [top stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]]];
+}
+
+- (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item
+{
+    if (![item isLeaf])
+        return nil;
+    
+    NSMenu *m = [[[NSMenu alloc] initWithTitle:[item title]] autorelease];
+    NSMenuItem *it = [[[NSMenuItem alloc] initWithTitle:[item title] action:nil keyEquivalent:@""] autorelease];
+    [m addItem:it];
+    return m;
 }
 
 @end
