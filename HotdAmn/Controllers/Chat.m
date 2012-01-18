@@ -31,7 +31,7 @@
                              [[[self roomName] stringByReplacingOccurrencesOfString:@"#" withString:@""] lowercaseString],
                              html];
     
-    [[chatView mainFrame] loadHTMLString:styledShell baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];
+    [[chatView mainFrame] loadHTMLString:styledShell baseURL:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -184,6 +184,16 @@
     NSMenuItem *it = [[[NSMenuItem alloc] initWithTitle:[item title] action:nil keyEquivalent:@""] autorelease];
     [m addItem:it];
     return m;
+}
+
+- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
+{
+    if([[request URL] host]) {
+        [listener ignore];
+        [[NSWorkspace sharedWorkspace] openURL:[request URL]];
+    } else {
+        [listener use];
+    }
 }
 
 @end

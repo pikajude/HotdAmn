@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tablumps.h"
 
 @interface Packet : NSObject
 

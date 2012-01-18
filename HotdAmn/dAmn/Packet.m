@@ -46,7 +46,7 @@
     
     if ([scanner scanString:@"\n\n" intoString:nil]) {
         // Double newline, everything after here is the body
-        body = [str substringFromIndex:[scanner scanLocation]];
+        body = [Tablumps removeTablumps:[str substringFromIndex:[scanner scanLocation]]];
         return self;
     }
     

@@ -18,10 +18,16 @@ static NSString *avatars[] = {@".gif", @".gif", @".jpg", @".png"};
 // but modifies the user object)
 + (void)setAvatarForUser:(User *)user
 {
+    NSImage *avatar = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[self avatarURLForUsername:[user username] userIcon:[user usericon]]]] autorelease];
+    if (user != nil)
+        [user setAvatar:avatar];
+}
+
++ (NSString *)avatarURLForUsername:(NSString *)username userIcon:(NSInteger)userIcon
+{
     NSString *cachebuster = @"";
-    NSString *username = [user username];
     NSString *urlsection = @"default";
-    NSInteger a = [user usericon];
+    NSInteger a = userIcon;
     NSInteger cbust = (a >> 2) & 15;
     a &= 3;
     NSString *ext = avatars[a];
@@ -38,9 +44,7 @@ static NSString *avatars[] = {@".gif", @".gif", @".jpg", @".png"};
                      urlsection,
                      ext,
                      cachebuster];
-    NSImage *image = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:url]] autorelease];
-    if (user != nil)
-        [user setAvatar:image];
+    return url;
 }
 
 @end

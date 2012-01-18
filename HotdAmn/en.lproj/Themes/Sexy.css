@@ -1,5 +1,60 @@
 * {
-	margin: 0;
-	padding: 0;
-	color: red;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+
+#topic {
+	display: none;
+}
+
+li {
+    padding: 0.5em;
+    list-style: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#555));
+    border-top: 1px solid #999;
+    color: black;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-bottom: 1px solid #444;
+}
+
+.highlight {
+    border-right: 7px solid red;
+    background: -webkit-gradient(linear, left top, left bottom, from(#977), to(#755));
+    border-top: 1px solid #b99;
+}
+
+username {
+	display: block;
+	color: white;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.6);
+}
+
+line {
+	display: block;
+	margin: 5px 0 2px;
+}
+
+highlight {
+    font-weight: bold;
+}
+.notice.joined line {
+    color: #484;
+}
+.notice.parted line {
+    color: #844;
+}
+.notice line:before {
+    content: "* ";
+}
+
+timestamp {
+	float: right;
+}
+
+timestamp-section {
+    color: #666;
 }

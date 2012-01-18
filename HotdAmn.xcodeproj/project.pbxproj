@@ -38,6 +38,9 @@
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
 		252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */; };
 		252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */; };
+		253B216B14C66E9300146356 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B216A14C66E9300146356 /* RegexKitLite.m */; };
+		253B216E14C66F3D00146356 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 253B216D14C66F3D00146356 /* libicucore.dylib */; };
+		253B217114C66F7900146356 /* Tablumps.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B217014C66F7900146356 /* Tablumps.m */; };
 		2541CD5214BF69F40065C4C1 /* PrefsAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */; };
 		2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */; };
 		25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */; };
@@ -129,6 +132,11 @@
 		252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviantArtAPI.m; path = HotdAmn/OAuth/DeviantArtAPI.m; sourceTree = SOURCE_ROOT; };
 		252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthPrompt.h; sourceTree = "<group>"; };
 		252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthPrompt.m; sourceTree = "<group>"; };
+		253B216914C66E9300146356 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = dAmn/RegexKitLite.h; sourceTree = "<group>"; };
+		253B216A14C66E9300146356 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = dAmn/RegexKitLite.m; sourceTree = "<group>"; };
+		253B216D14C66F3D00146356 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		253B216F14C66F7800146356 /* Tablumps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tablumps.h; path = dAmn/Tablumps.h; sourceTree = "<group>"; };
+		253B217014C66F7900146356 /* Tablumps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tablumps.m; path = dAmn/Tablumps.m; sourceTree = "<group>"; };
 		2541CD4F14BF69F40065C4C1 /* PrefsAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsAppearance.h; path = Controllers/Preferences/PrefsAppearance.h; sourceTree = "<group>"; };
 		2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsAppearance.m; path = Controllers/Preferences/PrefsAppearance.m; sourceTree = "<group>"; };
 		2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsAppearance.xib; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253B216E14C66F3D00146356 /* libicucore.dylib in Frameworks */,
 				25123A9F14B95C800022446A /* WebKit.framework in Frameworks */,
 				252DB61814B799E00036E0CF /* Security.framework in Frameworks */,
 				2519BE5514AE21F30029F746 /* Cocoa.framework in Frameworks */,
@@ -214,6 +223,10 @@
 				250338E914B8C374000C2D44 /* EventHandler.m */,
 				250338EB14B8DA0F000C2D44 /* Packet.h */,
 				250338EC14B8DA0F000C2D44 /* Packet.m */,
+				253B216914C66E9300146356 /* RegexKitLite.h */,
+				253B216A14C66E9300146356 /* RegexKitLite.m */,
+				253B216F14C66F7800146356 /* Tablumps.h */,
+				253B217014C66F7900146356 /* Tablumps.m */,
 			);
 			name = dAmn;
 			sourceTree = "<group>";
@@ -257,6 +270,7 @@
 		2519BE4514AE21F20029F746 = {
 			isa = PBXGroup;
 			children = (
+				253B216D14C66F3D00146356 /* libicucore.dylib */,
 				25CCF4DC14C3E8D600C75C4B /* Themes */,
 				25123A9E14B95C800022446A /* WebKit.framework */,
 				252DB61714B799E00036E0CF /* Security.framework */,
@@ -618,6 +632,8 @@
 				257FD6EF14C1455800286FAE /* Topic.m in Sources */,
 				257FD6F514C21AA400286FAE /* PrefsUsers.m in Sources */,
 				25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */,
+				253B216B14C66E9300146356 /* RegexKitLite.m in Sources */,
+				253B217114C66F7900146356 /* Tablumps.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

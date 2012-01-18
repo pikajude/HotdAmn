@@ -13,5 +13,6 @@
 @interface AvatarManager : NSObject
 
 + (void)setAvatarForUser:(User *)user;
++ (NSString *)avatarURLForUsername:(NSString *)username userIcon:(NSInteger)userIcon;
 
 @end
