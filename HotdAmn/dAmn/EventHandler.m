@@ -174,7 +174,7 @@
 
 - (void)onRecvMsg:(Packet *)msg
 {
-    UserMessage *m = [[UserMessage alloc] initWithContent:[[msg subpacket] body] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]];
+    UserMessage *m = [[UserMessage alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]];
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
 }
 

@@ -32,6 +32,11 @@ username:after {
 	content: ">";
 }
 
+.thumb {
+	max-width: 100px;
+	height: auto;
+}
+
 li:nth-child(odd) {
 	background: #f4f4f4;
 }

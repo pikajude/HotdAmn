@@ -16,6 +16,7 @@
 @property (assign) NSString *title;
 @property (readonly) NSMutableArray *children;
 @property (assign) BOOL isLeaf;
+@property (assign) NSInteger joinCount;
 
 - (void)addChildren:(NSArray *)objects;
 - (void)addChild:(id)obj;

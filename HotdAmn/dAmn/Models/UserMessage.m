@@ -37,7 +37,7 @@
             [self timestamp],
             [[self user] symbol],
             [[self user] username],
-            [self content]];
+            [[self content] stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
 }
 
 @end

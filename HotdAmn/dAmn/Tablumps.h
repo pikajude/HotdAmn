@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RegexKitLite.h"
+#import "AvatarManager.h"
 
 @interface Tablumps : NSObject
 

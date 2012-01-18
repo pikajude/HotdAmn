@@ -137,7 +137,11 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    return [item title];
+    if ([item joinCount] < 2) {
+        return [item title];
+    } else {
+        return [NSString stringWithFormat:@"%@[%ld]", [item title], [item joinCount]];
+    }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
@@ -148,11 +152,6 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item
 {
     return [outlineView isExpandable:item];
-}
-
-- (void)outlineView:(NSOutlineView *)outlineView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{
-    [cell setAttributedStringValue:[[[NSAttributedString alloc] initWithString:[item title]] autorelease]];
 }
 
 - (void)onUserListUpdated

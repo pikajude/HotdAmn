@@ -11,7 +11,7 @@
 
 @implementation UserListNode
 
-@synthesize title, isLeaf, children, object;
+@synthesize title, isLeaf, children, object, joinCount;
 
 - (id)init
 {
@@ -19,6 +19,7 @@
     if (self) {
         children = [[NSMutableArray alloc] init];
         isLeaf = YES;
+        joinCount = 1;
     }
     
     return self;
@@ -57,8 +58,11 @@
     for (int i = 0; i < [children count]; i++) {
         UserListNode *node = [children objectAtIndex:i];
         if ([[node title] isEqualToString:titl]) {
-            [children removeObject:node];
-            [node release];
+            [node setJoinCount:[node joinCount] - 1];
+            if ([node joinCount] < 1) {
+                [children removeObject:node];
+                [node release];
+            }
         }
     }
 }
