@@ -136,7 +136,7 @@
 
 - (void)onPropertyTopic:(Packet *)msg
 {
-    [Topic setTopic:[msg body] forRoom:[msg roomWithOctothorpe]];
+    [Topic setTopic:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomWithOctothorpe]];
 }
 
 - (void)onRecvJoin:(Packet *)msg

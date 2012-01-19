@@ -115,7 +115,7 @@
 }
 
 static void notifyHighlight(Chat *chat, Message *str) {
-    if ([str isKindOfClass:NSClassFromString(@"UserMessage")]) {
+    if ([str isKindOfClass:[UserMessage class]]) {
         [GrowlApplicationBridge notifyWithTitle:[chat roomName]
                                     description:[str asText]
                                notificationName:@"User Mentioned"
@@ -258,7 +258,10 @@ static void notifyHighlight(Chat *chat, Message *str) {
         }
     }
     [usernames sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    NSLog(@"%@, %@", usernamePart, usernames);
+    if ([usernames count] < 1) {
+        NSBeep();
+        return YES;
+    }
     NSString *completion = [usernames objectAtIndex:0];
     
     if ([usernamePart length] == [cont length]) {

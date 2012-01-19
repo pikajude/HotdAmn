@@ -34,11 +34,11 @@ static NSString *tablumps_regex[] = {
 };
 
 static NSString *tablumps_regex_replace[] = {
-    @"<img alt='$1' width='$2' height='$3' alt='$4' src='http://e.deviantart.com/emoticons/$5'",
+    @"<img alt='$1' width='$2' height='$3' alt='$4' src='http://e.deviantart.com/emoticons/$5' />",
     @"<a href='$1'>$2",
     @"<a href='$1'>[link]</a>",
     @"<a href='$1'>$2</a>",
-    @"<img src='$1' alt='$2' title='$3'",
+    @"<img src='$1' alt='$2' title='$3' />",
     @"$1<a href='http://$2.deviantart.com'>$2</a>",
     @"<acronym title='$1'>$2",
     @"<abbr title='$1'>$2"
