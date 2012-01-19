@@ -107,7 +107,6 @@
 		250907E814BA43E0007239E9 /* NSDictionary+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+User.h"; path = "Users/NSDictionary+User.h"; sourceTree = "<group>"; };
 		250907E914BA43E0007239E9 /* NSDictionary+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+User.m"; path = "Users/NSDictionary+User.m"; sourceTree = "<group>"; };
 		250E00CD14C77F6300AE83F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = "HotdAmn/en.lproj/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
-		250E00CF14C7A22900AE83F7 /* copyFrameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = copyFrameworks.sh; path = HotdAmn/copyFrameworks.sh; sourceTree = "<group>"; };
 		250E00D314C7A2FA00AE83F7 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "../../../Downloads/Growl-1.3-2.1-SDK/Framework/Growl.framework"; sourceTree = "<group>"; };
 		250E00D714C7AA0800AE83F7 /* ChatInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatInputField.h; path = Views/ChatInputField.h; sourceTree = "<group>"; };
 		250E00D814C7AA0800AE83F7 /* ChatInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatInputField.m; path = Views/ChatInputField.m; sourceTree = "<group>"; };
@@ -294,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				250E00D314C7A2FA00AE83F7 /* Growl.framework */,
-				250E00CF14C7A22900AE83F7 /* copyFrameworks.sh */,
 				250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */,
 				253B216D14C66F3D00146356 /* libicucore.dylib */,
 				25CCF4DC14C3E8D600C75C4B /* Themes */,
