@@ -25,7 +25,6 @@ typedef enum {
 
 @interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
-    EventHandler *evtHandler;
     Preferences *prefs;
 }
 
@@ -34,6 +33,7 @@ typedef enum {
 @property (retain) IBOutlet NSWindow *window;
 @property (retain) IBOutlet NSMenu *appMenu;
 @property (retain) About *aboutPanel;
+@property (readonly) EventHandler *evtHandler;
 
 #pragma mark -
 #pragma mark Tabs

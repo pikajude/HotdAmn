@@ -1179,7 +1179,7 @@
 									<reference key="NSMenu" ref="835318025"/>
 									<string key="NSTitle">Select Next Tab</string>
 									<string key="NSKeyEquiv"></string>
-									<int key="NSKeyEquivModMask">1179648</int>
+									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
@@ -1188,7 +1188,7 @@
 									<reference key="NSMenu" ref="835318025"/>
 									<string key="NSTitle">Select Previous Tab</string>
 									<string key="NSKeyEquiv"></string>
-									<int key="NSKeyEquivModMask">1179648</int>
+									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
@@ -1243,9 +1243,10 @@
 						<object class="NSCustomView" id="507477028">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{0, 331.5}, {480, 29}}</string>
+							<string key="NSFrame">{{0, 336.5}, {480, 24}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:499</string>
 							<string key="NSClassName">TabView</string>
 						</object>

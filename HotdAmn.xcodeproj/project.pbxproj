@@ -11,6 +11,10 @@
 		250338EA14B8C374000C2D44 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E914B8C374000C2D44 /* EventHandler.m */; };
 		250338ED14B8DA0F000C2D44 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338EC14B8DA0F000C2D44 /* Packet.m */; };
 		250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 250907E914BA43E0007239E9 /* NSDictionary+User.m */; };
+		250E00CE14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */; };
+		250E00D414C7A2FA00AE83F7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250E00D314C7A2FA00AE83F7 /* Growl.framework */; };
+		250E00D614C7A39500AE83F7 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 250E00D314C7A2FA00AE83F7 /* Growl.framework */; };
+		250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E00D814C7AA0800AE83F7 /* ChatInputField.m */; };
 		25123A9714B931A00022446A /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25123A9614B931A00022446A /* UserManager.m */; };
 		25123A9F14B95C800022446A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25123A9E14B95C800022446A /* WebKit.framework */; };
 		25153C4414BF3D2000115F43 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 25153C4314BF3D2000115F43 /* Preferences.m */; };
@@ -80,6 +84,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		250E00D514C7A38700AE83F7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				250E00D614C7A39500AE83F7 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		250338E514B898AB000C2D44 /* DamnSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamnSocket.h; path = dAmn/DamnSocket.h; sourceTree = "<group>"; };
 		250338E614B898AB000C2D44 /* DamnSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DamnSocket.m; path = dAmn/DamnSocket.m; sourceTree = "<group>"; };
@@ -89,6 +106,11 @@
 		250338EC14B8DA0F000C2D44 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Packet.m; path = dAmn/Packet.m; sourceTree = "<group>"; };
 		250907E814BA43E0007239E9 /* NSDictionary+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+User.h"; path = "Users/NSDictionary+User.h"; sourceTree = "<group>"; };
 		250907E914BA43E0007239E9 /* NSDictionary+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+User.m"; path = "Users/NSDictionary+User.m"; sourceTree = "<group>"; };
+		250E00CD14C77F6300AE83F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = "HotdAmn/en.lproj/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		250E00CF14C7A22900AE83F7 /* copyFrameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = copyFrameworks.sh; path = HotdAmn/copyFrameworks.sh; sourceTree = "<group>"; };
+		250E00D314C7A2FA00AE83F7 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "../../../Downloads/Growl-1.3-2.1-SDK/Framework/Growl.framework"; sourceTree = "<group>"; };
+		250E00D714C7AA0800AE83F7 /* ChatInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatInputField.h; path = Views/ChatInputField.h; sourceTree = "<group>"; };
+		250E00D814C7AA0800AE83F7 /* ChatInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatInputField.m; path = Views/ChatInputField.m; sourceTree = "<group>"; };
 		25123A9514B931A00022446A /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Users/UserManager.h; sourceTree = "<group>"; };
 		25123A9614B931A00022446A /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserManager.m; path = Users/UserManager.m; sourceTree = "<group>"; };
 		25123A9E14B95C800022446A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -192,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250E00D414C7A2FA00AE83F7 /* Growl.framework in Frameworks */,
 				253B216E14C66F3D00146356 /* libicucore.dylib in Frameworks */,
 				25123A9F14B95C800022446A /* WebKit.framework in Frameworks */,
 				252DB61814B799E00036E0CF /* Security.framework in Frameworks */,
@@ -270,6 +293,9 @@
 		2519BE4514AE21F20029F746 = {
 			isa = PBXGroup;
 			children = (
+				250E00D314C7A2FA00AE83F7 /* Growl.framework */,
+				250E00CF14C7A22900AE83F7 /* copyFrameworks.sh */,
+				250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */,
 				253B216D14C66F3D00146356 /* libicucore.dylib */,
 				25CCF4DC14C3E8D600C75C4B /* Themes */,
 				25123A9E14B95C800022446A /* WebKit.framework */,
@@ -361,6 +387,8 @@
 		2519BE8914AE22040029F746 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				250E00D714C7AA0800AE83F7 /* ChatInputField.h */,
+				250E00D814C7AA0800AE83F7 /* ChatInputField.m */,
 				2568BE1814AE9C2900E1C825 /* TabButton.h */,
 				2568BE1914AE9C2900E1C825 /* TabButton.m */,
 				2519311414AE46DB003A5FBA /* TabButtonCell.h */,
@@ -476,7 +504,7 @@
 				2519BE4C14AE21F30029F746 /* Sources */,
 				2519BE4D14AE21F30029F746 /* Frameworks */,
 				2519BE4E14AE21F30029F746 /* Resources */,
-				250907EB14BA480C007239E9 /* ShellScript */,
+				250E00D514C7A38700AE83F7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -534,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250E00CE14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict in Resources */,
 				25CCF4DE14C3E8D600C75C4B /* Themes in Resources */,
 				2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */,
 				2519BE6514AE21F30029F746 /* Credits.rtf in Resources */,
@@ -564,19 +593,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		250907EB14BA480C007239E9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "exit;\nrm -rf /Users/jdt/Library/Application\\ Support/HotdAmn";
-		};
 		2519BE6F14AE21F30029F746 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,6 +650,7 @@
 				25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */,
 				253B216B14C66E9300146356 /* RegexKitLite.m in Sources */,
 				253B217114C66F7900146356 /* Tablumps.m in Sources */,
+				250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +673,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				250E00CD14C77F6300AE83F7 /* en */,
+			);
+			name = "Growl Registration Ticket.growlRegDict";
+			sourceTree = "<group>";
+		};
 		2519BE5D14AE21F30029F746 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -755,6 +780,14 @@
 		2519BE8414AE21F30029F746 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework\"",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework/Legacy\"",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-1.1-SDK/Framework\"",
+					"\"$(SRCROOT)/HotdAmn/Frameworks\"",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-2.1-SDK/Framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
 				INFOPLIST_FILE = "HotdAmn/HotdAmn-Info.plist";
@@ -766,6 +799,14 @@
 		2519BE8514AE21F30029F746 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework\"",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework/Legacy\"",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-1.1-SDK/Framework\"",
+					"\"$(SRCROOT)/HotdAmn/Frameworks\"",
+					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-2.1-SDK/Framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
 				INFOPLIST_FILE = "HotdAmn/HotdAmn-Info.plist";

@@ -10,7 +10,7 @@
 
 @implementation UserMessage
 
-@synthesize user, highlight;
+@synthesize user, highlight = _highlight;
 
 - (UserMessage *)initWithContent:(NSString *)content user:(User *)usr
 {
@@ -38,6 +38,14 @@
             [[self user] symbol],
             [[self user] username],
             [[self content] stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+}
+
+- (NSString *)asText
+{
+    return [NSString stringWithFormat:@"<%c%@> %@",
+            [[self user] symbol],
+            [[self user] username],
+            [self content]];
 }
 
 @end

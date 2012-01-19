@@ -46,6 +46,7 @@
 #pragma mark -
 #pragma mark Actions
 - (void)join:(NSString *)roomName;
+- (void)say:(NSString *)line toRoom:(NSString *)room;
 - (void)onLaunch;
 
 - (void)startConnection;

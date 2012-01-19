@@ -12,7 +12,7 @@
 @interface UserMessage : Message
 
 @property (readonly) User *user;
-@property (readonly) BOOL highlight;
+@property (readwrite) BOOL highlight;
 
 - (UserMessage *)initWithContent:(NSString *)content user:(User *)usr;
 

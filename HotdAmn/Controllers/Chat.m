@@ -7,6 +7,7 @@
 //
 
 #import "Chat.h"
+#import "HotDamn.h"
 
 @implementation Chat
 
@@ -76,6 +77,10 @@
     withKeyPath:@"values.inputFontSize"
         options:nil];
     
+    [input setTarget:self];
+    [input setAction:@selector(say:)];
+    [input setDelegate:self];
+    
     NSMutableAttributedString *str = [[[NSMutableAttributedString alloc] init] autorelease];
     NSString *us = [[[UserManager defaultManager] currentUser] objectForKey:@"username"];
     
@@ -83,6 +88,17 @@
     [str addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"http://google.com"] range:NSMakeRange(0, [str length])];
     [str addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:[NSFont systemFontSize]] range:NSMakeRange(0, [str length])];
     [username setAttributedStringValue:str];
+}
+
+- (void)say:(id)sender
+{
+    if ([[sender stringValue] isEqualToString:@""])
+        return;
+    [[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler]
+                say:[sender stringValue]
+             toRoom:[self roomName]];
+    [sender setStringValue:@""];
+    [sender selectText:nil];
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
@@ -98,8 +114,32 @@
     [input becomeFirstResponder];
 }
 
+static void notifyHighlight(Chat *chat, Message *str) {
+    if ([str isKindOfClass:NSClassFromString(@"UserMessage")]) {
+        [GrowlApplicationBridge notifyWithTitle:[chat roomName]
+                                    description:[str asText]
+                               notificationName:@"User Mentioned"
+                                       iconData:[[NSApp applicationIconImage] TIFFRepresentation]
+                                       priority:0
+                                       isSticky:NO
+                                   clickContext:nil];
+    } else {
+        [GrowlApplicationBridge notifyWithTitle:[chat roomName]
+                                    description:[str asText]
+                               notificationName:@"Buddy Joined"
+                                       iconData:[[NSApp applicationIconImage] TIFFRepresentation]
+                                       priority:0
+                                       isSticky:NO
+                                   clickContext:nil];
+    }
+}
+
 - (void)addLine:(Message *)str
 {
+    if ([str highlight]) {
+        notifyHighlight(self, str);
+    }
+    
     [lines addObject:str];
     NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [str asHTML]];
     [chatView stringByEvaluatingJavaScriptFromString:addScript];
@@ -193,6 +233,41 @@
     } else {
         [listener use];
     }
+}
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
+{
+    if (commandSelector != @selector(insertTab:))
+        return NO;
+    NSString *usernamePart;
+    NSString *cont = [[textView textStorage] string];
+    NSInteger loc = [cont rangeOfString:@" " options:NSBackwardsSearch].location;
+    if (loc == NSNotFound) {
+        usernamePart = [cont lowercaseString];
+    } else {
+        NSRange r = NSMakeRange(loc + 1, [cont length] - loc - 1);
+        usernamePart = [[cont substringWithRange:r] lowercaseString];
+    }
+    
+    NSMutableArray *usernames = [NSMutableArray array];
+    for (UserListNode *node in [[User listForRoom:[self roomName]] children]) {
+        for (UserListNode *user in [node children]) {
+            if ([[[user title] lowercaseString] hasPrefix:usernamePart]) {
+                [usernames addObject:[user title]];
+            }
+        }
+    }
+    [usernames sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSLog(@"%@, %@", usernamePart, usernames);
+    NSString *completion = [usernames objectAtIndex:0];
+    
+    if ([usernamePart length] == [cont length]) {
+        [textView setString:[NSString stringWithFormat:@"%@: ", completion]];
+    } else {
+        [textView setString:[NSString stringWithFormat:@"%@%@", [cont substringToIndex:loc+1], completion]];
+    }
+    
+    return YES;
 }
 
 @end

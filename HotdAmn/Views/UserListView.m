@@ -43,6 +43,7 @@
 {
     NSPoint where = [self convertPoint:[event locationInWindow] fromView:nil];
     NSInteger row = [self rowAtPoint:where];
+    [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     if (row < 0) return nil;
     return [(Chat *)[self dataSource] menuForOutlineView:self byItem:[self itemAtRow:row]];
 }

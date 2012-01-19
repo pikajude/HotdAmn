@@ -8,15 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
+#import <Growl/Growl.h>
 #import "Preferences.h"
 #import "UserListNode.h"
 #import "UserManager.h"
 #import "User.h"
 #import "Topic.h"
 #import "Message.h"
+#import "UserMessage.h"
 #import "ThemeHelper.h"
 
-@interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, UserListWatcher, TopicWatcher> {
+@class HotDamn;
+
+@interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, UserListWatcher, TopicWatcher, NSTextFieldDelegate> {
     NSMutableArray *lines;
     IBOutlet NSOutlineView *userList;
     IBOutlet NSTextField *input;
@@ -37,6 +41,8 @@
 - (void)addLine:(Message *)str;
 
 - (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item;
+
+- (void)say:(id)sender;
 
 #pragma mark -
 #pragma mark Theme management

@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        highlight = NO;
     }
     
     return self;
@@ -34,8 +34,13 @@
     return nil;
 }
 
+- (void)setHighlight:(BOOL)h
+{
+    highlight = h;
+}
+
 - (BOOL)highlight {
-    return NO;
+    return highlight;
 }
 
 static NSDictionary *symbolTable() {
@@ -82,6 +87,11 @@ static NSDictionary *symbolTable() {
             [self cssClasses],
             [self timestamp],
             [content stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+}
+
+- (NSString *)asText
+{
+    return [self content];
 }
 
 - (void)dealloc

@@ -82,7 +82,7 @@ static int port = 3900;
                 [delegate onPacket:pkt];
                 NSLog(@"%@", [self eventName:pkt]);
                 SEL sel = [[events objectForKey:[self eventName:pkt]] pointerValue];
-                if (sel) {
+                if (sel && [delegate respondsToSelector:sel]) {
                     [delegate performSelector:sel withObject:pkt];
                 }
                 

@@ -33,7 +33,7 @@
     NSRect ourframe = NSMakeRect(frame.origin.x,
                                  frame.origin.y,
                                  frame.size.width,
-                                 frame.size.height - 29);
+                                 frame.size.height - 24);
     [[chatRoom view] setHidden:YES];
     [[[self window] contentView] addSubview:[chatRoom view]];
     [[chatRoom view] setFrame:ourframe];

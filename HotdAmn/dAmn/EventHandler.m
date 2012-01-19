@@ -146,7 +146,6 @@
     [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
     
     Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomWithOctothorpe]]];
-    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
     
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
@@ -154,6 +153,16 @@
         [rooms addObject:[msg roomName]];
         [defs setObject:rooms forKey:@"savedRooms"];
     }
+    
+    NSArray *buddies = [defs objectForKey:@"buddies"];
+    for (NSString *buddy in buddies) {
+        if ([buddy isEqualToString:[p param]]) {
+            [m setHighlight:YES];
+            break;
+        }
+    }
+    
+    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
     
     [User updateWatchers];
 }
@@ -184,6 +193,14 @@
 - (void)join:(NSString *)roomName
 {
     NSString *pk = [NSString stringWithFormat:@"join chat:%@\n\0", roomName];
+    [sock write:pk];
+}
+
+- (void)say:(NSString *)line toRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\nmsg main\n\n%@\0",
+                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    line];
     [sock write:pk];
 }
 

@@ -10,7 +10,7 @@
 
 @implementation HotDamn
 
-@synthesize isConnected, window, appMenu, tabbing, aboutPanel;
+@synthesize isConnected, window, appMenu, tabbing, aboutPanel, evtHandler;
 
 - (id)init
 {
