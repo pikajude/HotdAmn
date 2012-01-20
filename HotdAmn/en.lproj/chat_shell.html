@@ -16,6 +16,7 @@
     var chatList = document.getElementById("chat");
     var createLine = function(cont) {
         chatList.innerHTML += cont;
+        window.scrollTo(0, document.body.scrollHeight)
     }
     var removeFirstLine = function() {
         chatList.removeChild(chatList.children[0])

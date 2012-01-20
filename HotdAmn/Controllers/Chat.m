@@ -101,6 +101,11 @@
     [sender selectText:nil];
 }
 
+- (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)view
+{
+    return view == chatShell || view == userShell;
+}
+
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
 {
     CGFloat lowerLimit = 100.0f;
@@ -115,23 +120,14 @@
 }
 
 static void notifyHighlight(Chat *chat, Message *str) {
-    if ([str isKindOfClass:[UserMessage class]]) {
-        [GrowlApplicationBridge notifyWithTitle:[chat roomName]
-                                    description:[str asText]
-                               notificationName:@"User Mentioned"
-                                       iconData:[[NSApp applicationIconImage] TIFFRepresentation]
-                                       priority:0
-                                       isSticky:NO
-                                   clickContext:nil];
-    } else {
-        [GrowlApplicationBridge notifyWithTitle:[chat roomName]
-                                    description:[str asText]
-                               notificationName:@"Buddy Joined"
-                                       iconData:[[NSApp applicationIconImage] TIFFRepresentation]
-                                       priority:0
-                                       isSticky:NO
-                                   clickContext:nil];
-    }
+    NSString *notName = [str isKindOfClass:[UserMessage class]] ? @"User Mentioned" : @"Buddy Joined";
+    [GrowlApplicationBridge notifyWithTitle:[chat roomName]
+                                description:[str asText]
+                            notificationName:notName
+                                    iconData:[[NSApp applicationIconImage] TIFFRepresentation]
+                                    priority:0
+                                    isSticky:NO
+                                clickContext:nil];
 }
 
 - (void)addLine:(Message *)str

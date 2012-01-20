@@ -356,6 +356,7 @@
 												<string key="NSFrame">{{1, 383.93999147415161}, {147.98101425170898, 15}}</string>
 												<reference key="NSSuperview" ref="1026595967"/>
 												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:317</string>
 												<int key="NSsFlags">1</int>
 												<reference key="NSTarget" ref="1026595967"/>
@@ -490,6 +491,38 @@
 					</object>
 					<int key="connectionID">105</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="598805857"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">106</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">otherSplit</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="598805857"/>
+					</object>
+					<int key="connectionID">107</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">chatShell</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="417944210"/>
+					</object>
+					<int key="connectionID">108</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">userShell</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="453796210"/>
+					</object>
+					<int key="connectionID">110</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -619,15 +652,6 @@
 						<reference key="parent" ref="598805857"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">88</int>
-						<reference key="object" ref="417944210"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="233088988"/>
-						</object>
-						<reference key="parent" ref="598805857"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">90</int>
 						<reference key="object" ref="514891753"/>
 						<object class="NSMutableArray" key="children">
@@ -640,6 +664,15 @@
 						<int key="objectID">91</int>
 						<reference key="object" ref="77454742"/>
 						<reference key="parent" ref="514891753"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">88</int>
+						<reference key="object" ref="417944210"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="233088988"/>
+						</object>
+						<reference key="parent" ref="598805857"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">93</int>
@@ -711,7 +744,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">105</int>
+			<int key="maxID">110</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -724,19 +757,25 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>chatContainer</string>
+							<string>chatShell</string>
 							<string>chatView</string>
 							<string>input</string>
+							<string>otherSplit</string>
 							<string>split</string>
 							<string>userList</string>
+							<string>userShell</string>
 							<string>username</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSView</string>
+							<string>NSView</string>
 							<string>WebView</string>
 							<string>NSTextField</string>
 							<string>NSSplitView</string>
+							<string>NSSplitView</string>
 							<string>NSOutlineView</string>
+							<string>NSView</string>
 							<string>NSTextField</string>
 						</object>
 					</object>
@@ -745,16 +784,23 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>chatContainer</string>
+							<string>chatShell</string>
 							<string>chatView</string>
 							<string>input</string>
+							<string>otherSplit</string>
 							<string>split</string>
 							<string>userList</string>
+							<string>userShell</string>
 							<string>username</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">chatContainer</string>
+								<string key="candidateClassName">NSView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">chatShell</string>
 								<string key="candidateClassName">NSView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -766,12 +812,20 @@
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">otherSplit</string>
+								<string key="candidateClassName">NSSplitView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">split</string>
 								<string key="candidateClassName">NSSplitView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">userList</string>
 								<string key="candidateClassName">NSOutlineView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">userShell</string>
+								<string key="candidateClassName">NSView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">username</string>
