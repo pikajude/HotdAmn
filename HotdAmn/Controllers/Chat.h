@@ -25,9 +25,8 @@
     IBOutlet NSOutlineView *userList;
     IBOutlet NSTextField *input;
     IBOutlet WebView *chatView;
-    IBOutlet NSSplitView *otherSplit;
-    IBOutlet NSView *chatShell;
-    IBOutlet NSView *userShell;
+    IBOutlet NSView *cShell;
+    IBOutlet NSView *uShell;
     
     IBOutlet NSTextField *username;
 }

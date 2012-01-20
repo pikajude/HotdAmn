@@ -501,27 +501,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">otherSplit</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="598805857"/>
-					</object>
-					<int key="connectionID">107</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">chatShell</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="417944210"/>
-					</object>
-					<int key="connectionID">108</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">userShell</string>
+						<string key="label">uShell</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="453796210"/>
 					</object>
-					<int key="connectionID">110</int>
+					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cShell</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="417944210"/>
+					</object>
+					<int key="connectionID">112</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -744,7 +736,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">110</int>
+			<int key="maxID">112</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -756,14 +748,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cShell</string>
 							<string>chatContainer</string>
-							<string>chatShell</string>
 							<string>chatView</string>
 							<string>input</string>
-							<string>otherSplit</string>
 							<string>split</string>
+							<string>uShell</string>
 							<string>userList</string>
-							<string>userShell</string>
 							<string>username</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -773,9 +764,8 @@
 							<string>WebView</string>
 							<string>NSTextField</string>
 							<string>NSSplitView</string>
-							<string>NSSplitView</string>
-							<string>NSOutlineView</string>
 							<string>NSView</string>
+							<string>NSOutlineView</string>
 							<string>NSTextField</string>
 						</object>
 					</object>
@@ -783,24 +773,23 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cShell</string>
 							<string>chatContainer</string>
-							<string>chatShell</string>
 							<string>chatView</string>
 							<string>input</string>
-							<string>otherSplit</string>
 							<string>split</string>
+							<string>uShell</string>
 							<string>userList</string>
-							<string>userShell</string>
 							<string>username</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">chatContainer</string>
+								<string key="name">cShell</string>
 								<string key="candidateClassName">NSView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">chatShell</string>
+								<string key="name">chatContainer</string>
 								<string key="candidateClassName">NSView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -812,20 +801,16 @@
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">otherSplit</string>
-								<string key="candidateClassName">NSSplitView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">split</string>
 								<string key="candidateClassName">NSSplitView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">userList</string>
-								<string key="candidateClassName">NSOutlineView</string>
+								<string key="name">uShell</string>
+								<string key="candidateClassName">NSView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">userShell</string>
-								<string key="candidateClassName">NSView</string>
+								<string key="name">userList</string>
+								<string key="candidateClassName">NSOutlineView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">username</string>

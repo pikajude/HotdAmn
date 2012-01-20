@@ -103,7 +103,7 @@
 
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)view
 {
-    return view == chatShell || view == userShell;
+    return view == cShell || view == uShell;
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
