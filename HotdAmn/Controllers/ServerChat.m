@@ -34,10 +34,6 @@
 
 - (void)onTopicChange
 {
-    NSString *top = [Topic topicForRoom:[self roomName]];
-    if (top == NULL) {
-        top = @"";
-    }
     NSString *title = [NSString stringWithFormat:@"%@ dAmn Server",
                        [[[UserManager defaultManager] currentUser] objectForKey:@"username"]];
     [[[self view] window] setTitle:title];

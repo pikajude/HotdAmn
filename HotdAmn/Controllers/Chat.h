@@ -17,6 +17,7 @@
 #import "Message.h"
 #import "UserMessage.h"
 #import "ThemeHelper.h"
+#import "TabCompletion.h"
 
 @class HotDamn;
 

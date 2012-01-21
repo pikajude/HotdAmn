@@ -23,5 +23,6 @@
 - (void)removeChildWithTitle:(NSString *)title;
 - (UserListNode *)childWithTitle:(NSString *)title;
 - (void)sortChildrenWithComparator:(NSComparator)cmptr;
+- (NSArray *)allChildren;
 
 @end

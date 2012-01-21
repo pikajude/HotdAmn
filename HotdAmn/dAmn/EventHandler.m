@@ -87,7 +87,7 @@
 {
     if ([msg isOkay]) {
         [[self delegate] createTabWithTitle:[msg roomWithOctothorpe]];
-        Message *m = [[[Message alloc] initWithContent:@"Joined successfully."] autorelease];
+        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Joined %@.", [msg roomWithOctothorpe]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
         [privclasses setObject:[[NSMutableDictionary dictionary] retain] forKey:[msg roomName]];
     } else {
@@ -103,7 +103,7 @@
 
 - (void)onPropertyMembers:(Packet *)msg
 {
-    NSMutableDictionary *rm = [privclasses objectForKey:[msg roomName]];
+    NSMutableDictionary *rm = [privclasses objectForKey:[msg roomWithOctothorpe]];
     NSArray *subpackets = [[msg body] componentsSeparatedByString:@"\n\n"];
     for (NSString *pk in subpackets) {
         if ([pk isEqualToString:@""])
@@ -121,9 +121,9 @@
 - (void)onPropertyPrivclasses:(Packet *)msg
 {
     NSMutableDictionary *room;
-    if (!(room = [privclasses objectForKey:[msg roomName]])) {
+    if (!(room = [privclasses objectForKey:[msg roomWithOctothorpe]])) {
         room = [[NSMutableDictionary alloc] init];
-        [privclasses setObject:room forKey:[msg roomName]];
+        [privclasses setObject:room forKey:[msg roomWithOctothorpe]];
     }
     NSArray *pairs = [[msg body] componentsSeparatedByString:@"\n"];
     for (NSString *pair in pairs) {

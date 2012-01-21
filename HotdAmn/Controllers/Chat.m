@@ -26,7 +26,7 @@
 
 - (void)loadTheme:(NSString *)html;
 {
-    NSString *chatShell = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"chat_shell" ofType:@"html"]] encoding:NSUTF8StringEncoding];
+    NSString *chatShell = [[[NSString alloc] initWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"chat_shell" ofType:@"html"]] encoding:NSUTF8StringEncoding] autorelease];
     NSString *styledShell = [NSString stringWithFormat:chatShell,
                              [ThemeHelper contentsOfThemeStylesheet:[[NSUserDefaults standardUserDefaults] objectForKey:@"themeName"]],
                              [[[self roomName] stringByReplacingOccurrencesOfString:@"#" withString:@""] lowercaseString],
@@ -85,8 +85,13 @@
     NSString *us = [[[UserManager defaultManager] currentUser] objectForKey:@"username"];
     
     [str appendAttributedString:[[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Logged in as %@", us]] autorelease]];
-    [str addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"http://google.com"] range:NSMakeRange(0, [str length])];
-    [str addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:[NSFont systemFontSize]] range:NSMakeRange(0, [str length])];
+    [str addAttribute:NSLinkAttributeName
+                value:[NSURL URLWithString:@"http://google.com"]
+                range:NSMakeRange(0, [str length])];
+    [str addAttribute:NSFontAttributeName
+                value:[NSFont systemFontOfSize:[NSFont systemFontSize]]
+                range:NSMakeRange(0, [str length])];
+    
     [username setAttributedStringValue:str];
 }
 
@@ -141,10 +146,10 @@ static void notifyHighlight(Chat *chat, Message *str) {
     [chatView stringByEvaluatingJavaScriptFromString:addScript];
     NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
     if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
-        [[lines objectAtIndex:0] release];
         [lines removeObjectAtIndex:0];
         [chatView stringByEvaluatingJavaScriptFromString:@"removeFirstLine()"];
     }
+    [str autorelease];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
@@ -231,41 +236,23 @@ static void notifyHighlight(Chat *chat, Message *str) {
     }
 }
 
+#pragma mark -
+#pragma mark Tab completion
+
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
 {
     if (commandSelector != @selector(insertTab:))
         return NO;
-    NSString *usernamePart;
-    NSString *cont = [[textView textStorage] string];
-    NSInteger loc = [cont rangeOfString:@" " options:NSBackwardsSearch].location;
-    if (loc == NSNotFound) {
-        usernamePart = [cont lowercaseString];
-    } else {
-        NSRange r = NSMakeRange(loc + 1, [cont length] - loc - 1);
-        usernamePart = [[cont substringWithRange:r] lowercaseString];
-    }
-    
-    NSMutableArray *usernames = [NSMutableArray array];
-    for (UserListNode *node in [[User listForRoom:[self roomName]] children]) {
-        for (UserListNode *user in [node children]) {
-            if ([[[user title] lowercaseString] hasPrefix:usernamePart]) {
-                [usernames addObject:[user title]];
-            }
-        }
-    }
-    [usernames sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    if ([usernames count] < 1) {
+    tabcmp *res = [TabCompletion completePartialString:[[textView textStorage] string]
+                                              details:[self roomName]
+                                       cursorLocation:[[[textView selectedRanges] objectAtIndex:0] rangeValue].location];
+    if ([res->content isEqualToString:[[textView textStorage] string]]) {
         NSBeep();
         return YES;
     }
-    NSString *completion = [usernames objectAtIndex:0];
-    
-    if ([usernamePart length] == [cont length]) {
-        [textView setString:[NSString stringWithFormat:@"%@: ", completion]];
-    } else {
-        [textView setString:[NSString stringWithFormat:@"%@%@", [cont substringToIndex:loc+1], completion]];
-    }
-    
+    [textView setString:res->content];
+    [textView setSelectedRange:NSMakeRange(res->cursorLocation, 0)];
+    free(res);
     return YES;
 }
 

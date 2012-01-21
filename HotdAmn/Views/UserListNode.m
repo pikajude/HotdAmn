@@ -67,6 +67,17 @@
     }
 }
 
+- (NSArray *)allChildren
+{
+    NSMutableArray *ch = [NSMutableArray array];
+    for (UserListNode *obj in [self children]) {
+        for (UserListNode *child in [obj children]) {
+            [ch addObject:child];
+        }
+    }
+    return ch;
+}
+
 - (void)dealloc
 {
     [title release];
