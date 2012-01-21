@@ -23,11 +23,11 @@
 
 @interface EventHandler : NSObject <DamnSocketDelegate> {
     DamnSocket *sock;
-    NSMutableDictionary *privclasses;
 }
 
+@property (readonly) NSMutableDictionary *privclasses;
 @property (assign) HotDamn *delegate;
-@property (assign) NSMutableDictionary *user;
+@property (retain) NSMutableDictionary *user;
 
 #pragma mark -
 #pragma mark Socket delegate methods

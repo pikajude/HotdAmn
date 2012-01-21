@@ -149,7 +149,6 @@ static void notifyHighlight(Chat *chat, Message *str) {
         [lines removeObjectAtIndex:0];
         [chatView stringByEvaluatingJavaScriptFromString:@"removeFirstLine()"];
     }
-    [str autorelease];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item

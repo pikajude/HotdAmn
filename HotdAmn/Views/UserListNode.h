@@ -12,8 +12,8 @@
 
 @interface UserListNode : NSObject
 
-@property (assign) User *object;
-@property (assign) NSString *title;
+@property (retain) User *object;
+@property (retain) NSString *title;
 @property (readonly) NSMutableArray *children;
 @property (assign) BOOL isLeaf;
 @property (assign) NSInteger joinCount;

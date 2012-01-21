@@ -46,24 +46,23 @@ static NSMutableDictionary *roomList;
     UserListNode *roomRoot;
     UserListNode *groupRoot;
     UserListNode *existingNode;
-    UserListNode *userNode = [[UserListNode alloc] init];
-    [userNode setTitle:[[user username] retain]];
+    UserListNode *userNode = [[[UserListNode alloc] init] autorelease];
+    [userNode setTitle:[user username]];
     [userNode setObject:user];
     if (!roomList) {
         roomList = [[NSMutableDictionary alloc] init];
     }
     if (!(roomRoot = [roomList objectForKey:room])) {
-        roomRoot = [[UserListNode alloc] init];
+        roomRoot = [[[UserListNode alloc] init] autorelease];
         [roomList setObject:roomRoot forKey:room];
     }
     if (!(groupRoot = [roomRoot childWithTitle:groupName])) {
-        groupRoot = [[UserListNode alloc] init];
-        [groupRoot setTitle:[groupName retain]];
+        groupRoot = [[[UserListNode alloc] init] autorelease];
+        [groupRoot setTitle:groupName];
         [roomRoot addChild:groupRoot];
     }
     if ((existingNode = [groupRoot childWithTitle:[user username]])) {
         [existingNode setJoinCount:[existingNode joinCount] + 1];
-        [userNode release];
         return;
     }
     [groupRoot addChild:userNode];

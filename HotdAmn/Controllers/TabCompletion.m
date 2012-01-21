@@ -7,6 +7,7 @@
 //
 
 #import "TabCompletion.h"
+#import "HotDamn.h"
 
 static tabcmp *makeTabcmp(NSString *cont, NSInteger loc) {
     tabcmp *t = malloc(sizeof(tabcmp));
@@ -45,10 +46,49 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
                        withPossibleUsernames:[possibilities sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]
                               cursorLocation:location];
     } else {
-        if (getRangeOfSelectedWord(str, location).location == 0) {
+        NSRange range = getRangeOfSelectedWord(str, location);
+        if (range.location == 0) {
             return [self _completeCommandString:str withPossibleCommands:[NSArray array] cursorLocation:location];
         } else {
-            return [self _completeCommandArgString:str withPossibleArgs:[NSArray array] cursorLocation:location];
+            NSInteger commandIndex = -1;
+            for (int i = 0; i < range.location; i++) {
+                if ([str characterAtIndex:i] == ' ') {
+                    commandIndex++;
+                }
+            }
+            NSString *commandName = [[[str componentsSeparatedByString:@" "] objectAtIndex:0] substringFromIndex:1];
+            int argType = [[[[Command commands] objectForKey:commandName] objectAtIndex:0] intValue];
+            
+            NSMutableArray *possibleArgs = [NSMutableArray array];
+            
+            switch (argType) {
+                case ArgTypeAny:
+                default:
+                    possibleArgs = [NSArray array];
+                    break;
+                    
+                case ArgTypeRoom: {
+                    [possibleArgs addObjectsFromArray:[[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] allKeys]];
+                }
+                    break;
+                    
+                case ArgTypePrivclass: {
+                    NSDictionary *privclasses = [[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] objectForKey:details];
+                    [possibleArgs addObjectsFromArray:[privclasses allKeys]];
+                }
+                    break;
+                    
+                case ArgTypeUsername: {
+                    NSArray *userObjects = [[User listForRoom:details] allChildren];
+                    for (UserListNode *obj in userObjects) {
+                        [possibleArgs addObject:[obj title]];
+                    }
+                }
+            }
+            
+            [possibleArgs sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+            
+            return [self _completeCommandArgString:str withPossibleArgs:possibleArgs cursorLocation:location];
         }
     }
 }
@@ -93,8 +133,13 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
     NSString *firstPiece = [str substringToIndex:range.location - 1];
     NSString *lastPiece = [str substringFromIndex:range.location + range.length];
     
-    return makeTabcmp([NSString stringWithFormat:@"/%@%@%@", firstPiece, cmd, lastPiece],
-                      [firstPiece length] + [cmd length] + 1);
+    return makeTabcmp([NSString stringWithFormat:@"/%@%@ %@", firstPiece, cmd, lastPiece],
+                      [firstPiece length] + [cmd length] + 2);
+}
+
++ (tabcmp *)_completeCommandArgString:(NSString *)command withPossibleArgs:(NSArray *)args cursorLocation:(NSInteger)location
+{
+    
 }
 
 @end

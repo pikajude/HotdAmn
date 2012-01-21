@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+enum {
+    ArgTypeAny,
+    ArgTypePrivclass,
+    ArgTypeUsername,
+    ArgTypeRoom
+};
+
 @interface Command : NSObject
 
 + (NSDictionary *)commands;

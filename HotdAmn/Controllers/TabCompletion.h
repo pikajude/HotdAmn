@@ -19,6 +19,8 @@ typedef struct {
 static tabcmp *makeTabcmp(NSString *cont, NSInteger loc);
 static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc);
 
+@class HotDamn;
+
 @interface TabCompletion : NSObject
 
 + (tabcmp *)completePartialString:(NSString *)str details:(NSString *)details cursorLocation:(NSInteger)location;

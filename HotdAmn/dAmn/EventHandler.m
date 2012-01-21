@@ -12,7 +12,7 @@
 
 @implementation EventHandler
 
-@synthesize delegate, user;
+@synthesize delegate, user, privclasses;
 
 - (id)init
 {
@@ -89,7 +89,7 @@
         [[self delegate] createTabWithTitle:[msg roomWithOctothorpe]];
         Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Joined %@.", [msg roomWithOctothorpe]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
-        [privclasses setObject:[[NSMutableDictionary dictionary] retain] forKey:[msg roomName]];
+        [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomWithOctothorpe]];
     } else {
         Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
@@ -98,6 +98,7 @@
 
 - (void)onPart:(Packet *)msg
 {
+    [privclasses removeObjectForKey:[msg roomWithOctothorpe]];
     [[self delegate] removeTabWithTitle:[msg roomWithOctothorpe]];
 }
 
@@ -109,7 +110,7 @@
         if ([pk isEqualToString:@""])
             continue;
         Packet *p = [[[Packet alloc] initWithString:pk] autorelease];
-        User *us = [[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]];
+        User *us = [[[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]] autorelease];
         [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
     }
     [[User listForRoom:[msg roomWithOctothorpe]] sortChildrenWithComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -122,7 +123,7 @@
 {
     NSMutableDictionary *room;
     if (!(room = [privclasses objectForKey:[msg roomWithOctothorpe]])) {
-        room = [[NSMutableDictionary alloc] init];
+        room = [NSMutableDictionary dictionary];
         [privclasses setObject:room forKey:[msg roomWithOctothorpe]];
     }
     NSArray *pairs = [[msg body] componentsSeparatedByString:@"\n"];
@@ -142,10 +143,10 @@
 - (void)onRecvJoin:(Packet *)msg
 {
     Packet *p = [[[Packet alloc] initWithString:[[[msg subpacket] raw] stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"]] autorelease];
-    User *us = [[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]];
+    User *us = [[[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]] autorelease];
     [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
     
-    Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomWithOctothorpe]]];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomWithOctothorpe]]] autorelease];
     
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
@@ -169,7 +170,7 @@
 
 - (void)onRecvPart:(Packet *)msg
 {
-    Message *m = [[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomWithOctothorpe]]];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomWithOctothorpe]]] autorelease];
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
     [User removeUser:[[msg subpacket] param] fromRoom:[msg roomWithOctothorpe]];
     
@@ -183,7 +184,7 @@
 
 - (void)onRecvMsg:(Packet *)msg
 {
-    UserMessage *m = [[UserMessage alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]];
+    UserMessage *m = [[[UserMessage alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]] autorelease];
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
 }
 

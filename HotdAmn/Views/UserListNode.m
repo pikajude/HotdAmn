@@ -28,7 +28,7 @@
 - (void)addChildren:(NSArray *)objects
 {
     isLeaf = NO;
-    children = [[NSMutableArray arrayWithArray:objects] retain];
+    [children addObjectsFromArray:objects];
 }
 
 - (void)addChild:(UserListNode *)obj
@@ -61,7 +61,6 @@
             [node setJoinCount:[node joinCount] - 1];
             if ([node joinCount] < 1) {
                 [children removeObject:node];
-                [node release];
             }
         }
     }
