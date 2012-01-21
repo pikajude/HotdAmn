@@ -188,18 +188,38 @@
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
 }
 
+- (void)onRecvAction:(Packet *)msg
+{
+    UserAction *m = [[[UserAction alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]] autorelease];
+    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+}
+
 #pragma mark -
 #pragma mark Actions
 
-- (void)join:(NSString *)roomName
+- (void)join:(NSString *)room
 {
-    NSString *pk = [NSString stringWithFormat:@"join chat:%@\n\0", roomName];
-    [sock write:pk];
+    [sock write:[NSString stringWithFormat:@"join chat:%@\n\0",
+                 [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
+}
+
+- (void)part:(NSString *)room
+{
+    [sock write:[NSString stringWithFormat:@"part chat:%@\n\0",
+                 [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
 }
 
 - (void)say:(NSString *)line toRoom:(NSString *)room
 {
     NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\nmsg main\n\n%@\0",
+                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    line];
+    [sock write:pk];
+}
+
+- (void)action:(NSString *)line inRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\naction main\n\n%@\0",
                     [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
                     line];
     [sock write:pk];

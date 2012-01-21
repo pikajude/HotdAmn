@@ -48,7 +48,7 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
     } else {
         NSRange range = getRangeOfSelectedWord(str, location);
         if (range.location == 0) {
-            return [self _completeCommandString:str withPossibleCommands:[NSArray array] cursorLocation:location];
+            return [self _completeCommandString:str withPossibleCommands:[[Command allCommands] allKeys] cursorLocation:location];
         } else {
             NSInteger commandIndex = -1;
             for (int i = 0; i < range.location; i++) {
@@ -57,14 +57,30 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
                 }
             }
             NSString *commandName = [[[str componentsSeparatedByString:@" "] objectAtIndex:0] substringFromIndex:1];
-            int argType = [[[[Command commands] objectForKey:commandName] objectAtIndex:0] intValue];
+            Command *argDict = [[Command allCommands] objectForKey:commandName];
+            int argType;
+            
+            // Command not found with this name
+            if (argDict == nil) {
+                return makeTabcmp(str, location);
+            }
+            
+            if ([argDict arity] < 0) {
+                return makeTabcmp(str, location);
+            }
+            
+            if (commandIndex >= [argDict arity]) {
+                return makeTabcmp(str, location);
+            } else {
+                argType = [[[argDict types] objectAtIndex:commandIndex] intValue];
+            }
             
             NSMutableArray *possibleArgs = [NSMutableArray array];
             
             switch (argType) {
                 case ArgTypeAny:
                 default:
-                    possibleArgs = [NSArray array];
+                    possibleArgs = [NSMutableArray array];
                     break;
                     
                 case ArgTypeRoom: {
@@ -106,17 +122,14 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
         return makeTabcmp(str, location);
     }
 
-    NSString *firstPiece = [str substringToIndex:range.location];
-    NSString *lastPiece = [str substringFromIndex:range.location + range.length];
     NSString *match = [matches objectAtIndex:0];
     
-    return makeTabcmp([NSString stringWithFormat:@"%@%@%@", firstPiece, match, lastPiece],
-                      [firstPiece length] + [match length]);
+    return makeTabcmp([str stringByReplacingCharactersInRange:range withString:match],
+                      range.location + [match length]);
 }
 
-+ (tabcmp *)_completeCommandString:(NSString *)str withPossibleCommands:(NSArray *)command cursorLocation:(NSInteger)location
++ (tabcmp *)_completeCommandString:(NSString *)str withPossibleCommands:(NSArray *)commandNames cursorLocation:(NSInteger)location
 {
-    NSArray *commandNames = [[Command commands] allKeys];
     NSRange range = getRangeOfSelectedWord(str, location);
     range.location++;
     range.length--;
@@ -126,6 +139,10 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
     NSIndexSet *potentialCommandIndexes = [commandNames indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         return [[obj lowercaseString] hasPrefix:[partialCommand lowercaseString]] || isEmpty;
     }];
+    
+    if ([potentialCommandIndexes lastIndex] == NSNotFound) {
+        return makeTabcmp(str, location);
+    }
     
     NSArray *potentialCommands = [commandNames objectsAtIndexes:potentialCommandIndexes];
     NSString *cmd = [potentialCommands objectAtIndex:0];
@@ -139,7 +156,23 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
 
 + (tabcmp *)_completeCommandArgString:(NSString *)command withPossibleArgs:(NSArray *)args cursorLocation:(NSInteger)location
 {
+    NSRange range = getRangeOfSelectedWord(command, location);
+    NSString *partialArg = [command substringWithRange:range];
+    BOOL isEmpty = [partialArg length] == 0;
     
+    NSIndexSet *potentialCommandIndexes = [args indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [[obj lowercaseString] hasPrefix:[partialArg lowercaseString]] || isEmpty;
+    }];
+    
+    if ([potentialCommandIndexes lastIndex] == NSNotFound) {
+        return makeTabcmp(command, location);
+    }
+    
+    NSString *cmd = [[args objectsAtIndexes:potentialCommandIndexes] objectAtIndex:0];
+    
+    return makeTabcmp([command stringByReplacingCharactersInRange:range
+                                                       withString:cmd],
+                      range.location + [cmd length]);
 }
 
 @end

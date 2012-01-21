@@ -97,11 +97,23 @@
 
 - (void)say:(id)sender
 {
+    EventHandler *receiver = [(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler];
     if ([[sender stringValue] isEqualToString:@""])
         return;
-    [[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler]
-                say:[sender stringValue]
-             toRoom:[self roomName]];
+    if ([[sender stringValue] hasPrefix:@"/"]) {
+        NSArray *pieces = [[sender stringValue] componentsSeparatedByString:@" "];
+        NSString *cmdName = [[pieces objectAtIndex:0] substringFromIndex:1];
+        Command *c = [[Command allCommands] objectForKey:cmdName];
+        if (c == nil) {
+            return; // TODO: print error
+        } else {
+            [c command](self, receiver, [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)]);
+        }
+    } else {
+        [[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler]
+                    say:[sender stringValue]
+                 toRoom:[self roomName]];
+    }
     [sender setStringValue:@""];
     [sender selectText:nil];
 }

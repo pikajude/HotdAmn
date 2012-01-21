@@ -10,8 +10,10 @@
 #import "DamnSocket.h"
 #import "Message.h"
 #import "UserMessage.h"
+#import "UserAction.h"
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
+#import "Command.h"
 
 @protocol EventHandlerDelegate <NSObject>
 
@@ -21,7 +23,7 @@
 
 @class HotDamn;
 
-@interface EventHandler : NSObject <DamnSocketDelegate> {
+@interface EventHandler : NSObject <DamnSocketDelegate, ChatDelegate> {
     DamnSocket *sock;
 }
 
@@ -45,8 +47,10 @@
 
 #pragma mark -
 #pragma mark Actions
-- (void)join:(NSString *)roomName;
+- (void)join:(NSString *)room;
+- (void)part:(NSString *)room;
 - (void)say:(NSString *)line toRoom:(NSString *)room;
+- (void)action:(NSString *)line toRoom:(NSString *)room;
 - (void)onLaunch;
 
 - (void)startConnection;

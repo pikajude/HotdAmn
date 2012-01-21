@@ -32,6 +32,14 @@ username:after {
 	content: ">";
 }
 
+.action username:before {
+	content: "* ";
+}
+
+.action username:after {
+	content: "";
+}
+
 .thumb {
 	max-width: 100px;
 	height: auto;

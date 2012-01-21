@@ -15,17 +15,49 @@ static NSNumber *argTypeRoom() { return [NSNumber numberWithInt:ArgTypeRoom]; }
 
 @implementation Command
 
-+ (NSDictionary *)commands
+@synthesize arity, command, types;
+
++ (Command *)commandWithBlock:(commandBlock)block arity:(NSInteger)ar types:(int [])types
+{
+    Command *c = [[[Command alloc] init] autorelease];
+    [c setCommand:block];
+    [c setArity:ar];
+    NSMutableArray *t = [NSMutableArray array];
+    if (types) {
+        for (int i = 0; i < sizeof(types); i++) {
+            [t addObject:[NSNumber numberWithInt:types[i]]];
+        }
+    }
+    [c setTypes:t];
+    return c;
+}
+
++ (NSDictionary *)allCommands
 {
     static NSDictionary *cmds;
     if (!cmds) {
         cmds = [[NSDictionary dictionaryWithObjectsAndKeys:
-                [NSArray arrayWithObject:argTypeAny()], @"join",
-                [NSArray arrayWithObject:argTypeRoom()], @"part", 
-                [NSArray arrayWithObject:argTypeUsername()], @"kick",
-                [NSArray arrayWithObject:argTypeUsername()], @"ban", nil] retain];
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+    for (NSString *room in args) {
+        [receiver join:room];
+    }
+} arity:-1 types:NULL], @"join",
+                 
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+    NSString *str = [args componentsJoinedByString:@" "];
+    [receiver action:str inRoom:[caller roomName]];
+} arity:-1 types:NULL], @"me",
+                 
+                 nil] retain];
     }
     return cmds;
+}
+
+- (void)dealloc
+{
+    [command release];
+    [types release];
+    [super dealloc];
 }
 
 @end

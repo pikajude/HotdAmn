@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25007E8614CB52DB0094C716 /* UserAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 25007E8514CB52DB0094C716 /* UserAction.m */; };
 		250338E714B898AB000C2D44 /* DamnSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E614B898AB000C2D44 /* DamnSocket.m */; };
 		250338EA14B8C374000C2D44 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E914B8C374000C2D44 /* EventHandler.m */; };
 		250338ED14B8DA0F000C2D44 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338EC14B8DA0F000C2D44 /* Packet.m */; };
@@ -100,6 +101,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		25007E8414CB52DB0094C716 /* UserAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserAction.h; path = dAmn/Models/UserAction.h; sourceTree = "<group>"; };
+		25007E8514CB52DB0094C716 /* UserAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAction.m; path = dAmn/Models/UserAction.m; sourceTree = "<group>"; };
 		250338E514B898AB000C2D44 /* DamnSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamnSocket.h; path = dAmn/DamnSocket.h; sourceTree = "<group>"; };
 		250338E614B898AB000C2D44 /* DamnSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DamnSocket.m; path = dAmn/DamnSocket.m; sourceTree = "<group>"; };
 		250338E814B8C374000C2D44 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventHandler.h; path = dAmn/EventHandler.h; sourceTree = "<group>"; };
@@ -470,6 +473,8 @@
 				257FD6EE14C1455800286FAE /* Topic.m */,
 				25F20B5E14BFE5300019326D /* User.h */,
 				25F20B5F14BFE5300019326D /* User.m */,
+				25007E8414CB52DB0094C716 /* UserAction.h */,
+				25007E8514CB52DB0094C716 /* UserAction.m */,
 				25F20B5B14BFDBBE0019326D /* UserMessage.h */,
 				25F20B5C14BFDBBE0019326D /* UserMessage.m */,
 			);
@@ -661,6 +666,7 @@
 				250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */,
 				257AACFD14CA135700A6F0C4 /* TabCompletion.m in Sources */,
 				25049E3214CA7418002239DD /* Command.m in Sources */,
+				25007E8614CB52DB0094C716 /* UserAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,6 +30,7 @@ static int port = 3900;
                   [NSValue valueWithPointer:@selector(onRecvJoin:)], @"recv_join",
                   [NSValue valueWithPointer:@selector(onRecvPart:)], @"recv_part",
                   [NSValue valueWithPointer:@selector(onRecvMsg:)], @"recv_msg",
+                  [NSValue valueWithPointer:@selector(onRecvAction:)], @"recv_action",
                   nil] retain];
         
         buf = [[NSMutableData alloc] init];

@@ -7,6 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Chat.h"
+
+/*
+ Algorithm for commands is pretty complicated.
+ Greediness specifies whether the command wants all of the arguments
+ passed to it. For 0-arity commands, this parameter doesn't really matter.I
+ Otherwise, if the arity is nonzero, and greedy is set to yes, the
+ selector will be called once for each argument. The command will also
+ tab-complete match indefinitely for that type of argument.
+ */
 
 enum {
     ArgTypeAny,
@@ -15,8 +25,29 @@ enum {
     ArgTypeRoom
 };
 
-@interface Command : NSObject
+@protocol ChatDelegate <NSObject>
 
-+ (NSDictionary *)commands;
+- (void)join:(NSString *)room;
+- (void)part:(NSString *)room;
+- (void)say:(NSString *)str inRoom:(NSString *)room;
+- (void)action:(NSString *)str inRoom:(NSString *)room;
+
+@end
+
+@class Chat;
+
+typedef void (^commandBlock)(Chat *caller, id<ChatDelegate> receiver, NSArray *args);
+
+@interface Command : NSObject {
+    
+}
+
+@property (retain) commandBlock command;
+@property (readwrite) NSInteger arity;
+@property (retain) NSArray *types;
+
++ (Command *)commandWithBlock:(commandBlock)block arity:(NSInteger)ar types:(int[])types;
+
++ (NSDictionary *)allCommands;
 
 @end
