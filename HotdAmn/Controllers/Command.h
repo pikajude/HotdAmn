@@ -19,10 +19,11 @@
  */
 
 enum {
-    ArgTypeAny,
-    ArgTypePrivclass,
-    ArgTypeUsername,
-    ArgTypeRoom
+    ArgTypeAny = 1,
+    ArgTypePrivclass = 1 << 1,
+    ArgTypeUsername = 1 << 2,
+    ArgTypeRoom = 1 << 3,
+    ArgTypeAll = ArgTypeAny | ArgTypePrivclass | ArgTypeUsername | ArgTypeRoom
 };
 
 @protocol ChatDelegate <NSObject>

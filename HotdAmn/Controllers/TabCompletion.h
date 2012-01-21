@@ -32,5 +32,6 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc);
 + (tabcmp *)_completeUsernameString:(NSString *)str withPossibleUsernames:(NSArray *)names cursorLocation:(NSInteger)location;
 + (tabcmp *)_completeCommandString:(NSString *)str withPossibleCommands:(NSArray *)command cursorLocation:(NSInteger)location;
 + (tabcmp *)_completeCommandArgString:(NSString *)command withPossibleArgs:(NSArray *)args cursorLocation:(NSInteger)location;
++ (NSArray *)_getPossibleArgs:(int)types withDetails:(NSString *)details;
 
 @end

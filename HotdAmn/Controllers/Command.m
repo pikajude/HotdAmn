@@ -24,7 +24,7 @@ static NSNumber *argTypeRoom() { return [NSNumber numberWithInt:ArgTypeRoom]; }
     [c setArity:ar];
     NSMutableArray *t = [NSMutableArray array];
     if (types) {
-        for (int i = 0; i < sizeof(types); i++) {
+        for (int i = 0; i < abs((int)ar); i++) {
             [t addObject:[NSNumber numberWithInt:types[i]]];
         }
     }
@@ -41,12 +41,16 @@ static NSNumber *argTypeRoom() { return [NSNumber numberWithInt:ArgTypeRoom]; }
     for (NSString *room in args) {
         [receiver join:room];
     }
-} arity:-1 types:NULL], @"join",
+} arity:-1 types:(int[]){ ArgTypeAny }], @"join",
                  
 [Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
     NSString *str = [args componentsJoinedByString:@" "];
     [receiver action:str inRoom:[caller roomName]];
-} arity:-1 types:NULL], @"me",
+} arity:-1 types:(int[]){ ArgTypeUsername | ArgTypeRoom }], @"me",
+                 
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+
+} arity:-2 types:(int[]){ ArgTypeUsername, ArgTypeAny }], @"kick",
                  
                  nil] retain];
     }

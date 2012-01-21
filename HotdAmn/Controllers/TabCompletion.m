@@ -56,53 +56,35 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
                     commandIndex++;
                 }
             }
+            
             NSString *commandName = [[[str componentsSeparatedByString:@" "] objectAtIndex:0] substringFromIndex:1];
             Command *argDict = [[Command allCommands] objectForKey:commandName];
             int argType;
             
-            // Command not found with this name
-            if (argDict == nil) {
+            if (argDict == nil || [argDict arity] == 0) {
                 return makeTabcmp(str, location);
             }
             
-            if ([argDict arity] < 0) {
-                return makeTabcmp(str, location);
-            }
-            
-            if (commandIndex >= [argDict arity]) {
-                return makeTabcmp(str, location);
+            if ([argDict arity] > 0) {
+                // positive arity
+                if (commandIndex >= [argDict arity]) {
+                    return makeTabcmp(str, location);
+                } else {
+                    argType = [[[argDict types] objectAtIndex:commandIndex] intValue];
+                }
             } else {
-                argType = [[[argDict types] objectAtIndex:commandIndex] intValue];
-            }
-            
-            NSMutableArray *possibleArgs = [NSMutableArray array];
-            
-            switch (argType) {
-                case ArgTypeAny:
-                default:
-                    possibleArgs = [NSMutableArray array];
-                    break;
-                    
-                case ArgTypeRoom: {
-                    [possibleArgs addObjectsFromArray:[[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] allKeys]];
-                }
-                    break;
-                    
-                case ArgTypePrivclass: {
-                    NSDictionary *privclasses = [[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] objectForKey:details];
-                    [possibleArgs addObjectsFromArray:[privclasses allKeys]];
-                }
-                    break;
-                    
-                case ArgTypeUsername: {
-                    NSArray *userObjects = [[User listForRoom:details] allChildren];
-                    for (UserListNode *obj in userObjects) {
-                        [possibleArgs addObject:[obj title]];
-                    }
+                // negative arity, so varargs
+                NSInteger arity = [argDict arity] * -1 - 1;
+                if (commandIndex > arity) {
+                    argType = [[[argDict types] lastObject] intValue];
+                } else {
+                    argType = [[[argDict types] objectAtIndex:commandIndex] intValue];
                 }
             }
             
-            [possibleArgs sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+            NSLog(@"%d", argType);
+            
+            NSArray *possibleArgs = [self _getPossibleArgs:argType withDetails:details];
             
             return [self _completeCommandArgString:str withPossibleArgs:possibleArgs cursorLocation:location];
         }
@@ -173,6 +155,34 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
     return makeTabcmp([command stringByReplacingCharactersInRange:range
                                                        withString:cmd],
                       range.location + [cmd length]);
+}
+
++ (NSArray *)_getPossibleArgs:(int)types withDetails:(NSString *)details
+{
+    NSMutableArray *poss = [NSMutableArray array];
+    
+    // All privclasses
+    if (types & ArgTypePrivclass) {
+        NSDictionary *privclasses = [[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] objectForKey:details];
+        [poss addObjectsFromArray:[privclasses allKeys]];
+    }
+    
+    // All users
+    if (types & ArgTypeUsername) {
+        NSArray *userObjects = [[User listForRoom:details] allChildren];
+        for (UserListNode *obj in userObjects) {
+            [poss addObject:[obj title]];
+        }
+    }
+    
+    // All rooms
+    if (types & ArgTypeRoom) {
+        [poss addObjectsFromArray:[[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] allKeys]];
+    }
+    
+    [poss sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    return poss;
 }
 
 @end
