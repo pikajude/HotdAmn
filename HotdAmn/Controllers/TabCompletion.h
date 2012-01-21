@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Command.h"
 #import "UserListNode.h"
 #import "User.h"
 
@@ -16,6 +17,7 @@ typedef struct {
 } tabcmp;
 
 static tabcmp *makeTabcmp(NSString *cont, NSInteger loc);
+static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc);
 
 @interface TabCompletion : NSObject
 

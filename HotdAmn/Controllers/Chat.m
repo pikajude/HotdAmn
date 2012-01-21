@@ -244,8 +244,8 @@ static void notifyHighlight(Chat *chat, Message *str) {
     if (commandSelector != @selector(insertTab:))
         return NO;
     tabcmp *res = [TabCompletion completePartialString:[[textView textStorage] string]
-                                              details:[self roomName]
-                                       cursorLocation:[[[textView selectedRanges] objectAtIndex:0] rangeValue].location];
+                                               details:[self roomName]
+                                        cursorLocation:[[[textView selectedRanges] objectAtIndex:0] rangeValue].location];
     if ([res->content isEqualToString:[[textView textStorage] string]]) {
         NSBeep();
         return YES;
