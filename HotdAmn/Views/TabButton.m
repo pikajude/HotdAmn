@@ -78,6 +78,7 @@
     [[self cell] setBadgeValue:0];
     [chatRoom onTopicChange];
     [[self ctrl] resizeButtons];
+    [[self ctrl] scaleButtons];
 }
 
 - (void)resetCursorRects
