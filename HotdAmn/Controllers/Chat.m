@@ -272,4 +272,12 @@ static void notifyHighlight(Chat *chat, Message *str) {
     return YES;
 }
 
+- (void)dealloc
+{
+    [roomName release];
+    [Topic removeWatcher:self];
+    [User removeWatcher:self];
+    [super dealloc];
+}
+
 @end

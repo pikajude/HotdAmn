@@ -32,7 +32,7 @@
     IBOutlet NSTextField *username;
 }
 
-@property (assign) NSString *roomName;
+@property (retain) NSString *roomName;
 @property (readonly) IBOutlet NSSplitView *split;
 @property (readonly) IBOutlet NSView *chatContainer;
 @property (assign) id delegate;

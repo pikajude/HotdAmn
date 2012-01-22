@@ -15,12 +15,8 @@ static NSMutableDictionary *topics;
 
 + (void)setTopic:(NSString *)topic forRoom:(NSString *)roomName
 {
-    if (!topics) {
-        topics = [[NSMutableDictionary alloc] init];
-    }
-    if (!watchers) {
-        watchers = [[NSMutableArray alloc] init];
-    }
+    if (!topics)
+        topics = [[NSMutableDictionary dictionary] retain];
     [topics setObject:topic forKey:roomName];
     for (id obj in watchers) {
         [obj onTopicChange];
@@ -32,12 +28,21 @@ static NSMutableDictionary *topics;
     return [topics objectForKey:roomName];
 }
 
++ (void)removeRoom:(NSString *)room
+{
+    [topics removeObjectForKey:room];
+}
+
 + (void)addWatcher:(id<TopicWatcher>)watcher
 {
-    if (!watchers) {
-        watchers = [[NSMutableArray alloc] init];
-    }
+    if (!watchers)
+        watchers = [[NSMutableArray array] retain];
     [watchers addObject:watcher];
+}
+
++ (void)removeWatcher:(id<TopicWatcher>)watcher
+{
+    [watchers removeObject:watcher];
 }
 
 @end

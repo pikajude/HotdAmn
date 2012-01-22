@@ -48,14 +48,13 @@
 - (id)highlightedTab;
 - (NSInteger)indexOfRightmostButtonBeforePoint:(CGFloat)point;
 - (NSInteger)indexOfButtonWithTitle:(NSString *)title;
-- (NSButton *)getButtonWithTitle:(NSString *)title;
+- (TabButton *)getButtonWithTitle:(NSString *)title;
 
 #pragma mark -
 #pragma mark Geometry
 
 - (NSRect)getNextRectWithLength:(NSInteger) length;
 - (void)resizeButtons;
-- (void)scaleButtons;
 
 #pragma mark -
 #pragma mark Sizing

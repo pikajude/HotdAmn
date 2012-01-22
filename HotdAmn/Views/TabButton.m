@@ -7,6 +7,7 @@
 //
 
 #import "TabButton.h"
+#import "TabBar.h"
 
 @implementation TabButton
 
@@ -25,15 +26,16 @@
 - (void)createChatView
 {
     if ([[self title] isEqualToString:@"Server"]) {
-        chatRoom = [[ServerChat alloc] initWithNibName:nil bundle:[NSBundle mainBundle] roomName:@"Server"];
+        chatRoom = [[[ServerChat alloc] initWithNibName:nil bundle:[NSBundle mainBundle] roomName:@"Server"] autorelease];
     } else {
-        chatRoom = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle] roomName:[self title]];
+        chatRoom = [[[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle] roomName:[self title]] autorelease];
     }
     NSRect frame = [[[self window] contentView] frame];
     NSRect ourframe = NSMakeRect(frame.origin.x,
                                  frame.origin.y,
                                  frame.size.width,
                                  frame.size.height - 24);
+    [chatRoom setDelegate:self];
     [[chatRoom view] setHidden:YES];
     [[[self window] contentView] addSubview:[chatRoom view]];
     [[chatRoom view] setFrame:ourframe];
@@ -77,7 +79,6 @@
     [[self cell] setBadgeValue:0];
     [chatRoom onTopicChange];
     [[self ctrl] resizeButtons];
-    [[self ctrl] scaleButtons];
 }
 
 - (void)resetCursorRects
@@ -156,6 +157,12 @@
 - (void)addLine:(Message *)str
 {
     [chatRoom addLine:str];
+}
+
+- (void)dealloc
+{
+    [chatRoom release];
+    [super dealloc];
 }
 
 @end

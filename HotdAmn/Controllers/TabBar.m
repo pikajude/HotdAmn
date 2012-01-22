@@ -67,10 +67,10 @@
 {
     [self beforeChangeFrom:[self highlightedTab] toButton:nil];
     for(TabButton *b in [tabView subviews]) {
-        if([[b title] isEqualToString:[button title]]) {
-            currentTab = b;
+        if([[b title] isEqualToString:[button title]])
             [b select];
-        } else [b deselect];
+        else
+            [b deselect];
     }
 }
 
@@ -82,14 +82,12 @@
     // just activate the last and return
     if (index >= [views count]) {
         [self beforeChangeFrom:[self highlightedTab] toButton:[views lastObject]];
-        currentTab = [views lastObject];
         return [[views lastObject] select];
     }
     
     for(int i = 0; i < [views count]; i++) {
         if(index == i) {
             [self beforeChangeFrom:[self highlightedTab] toButton:[views objectAtIndex:i]];
-            currentTab = [views objectAtIndex:i];
             [[views objectAtIndex:i] select];
         } else [[views objectAtIndex:i] deselect];
     }
@@ -100,17 +98,20 @@
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
         return [object state] == 1 ? (*stop = YES) : NO;
     }];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(state != 1)"];
-    NSArray *validViews = [[tabView subviews] filteredArrayUsingPredicate:pred];
-    [self handleLastTab:validViews];
+    NSMutableArray *ar = [NSMutableArray arrayWithArray:[tabView subviews]];
+    [ar removeObjectAtIndex:idx];
+    [self handleLastTab:ar];
     [self activateSingleIndex:idx];
 }
 
 - (void)removeButtonWithTitle:(NSString *)title
 {
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(title != %@)", title];
-    NSArray *validViews = [[tabView subviews] filteredArrayUsingPredicate:pred];
-    [self handleLastTab:validViews];
+    NSMutableArray *buttons = [NSMutableArray arrayWithArray:[tabView subviews]];
+    NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
+        return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
+    }];
+    [buttons removeObjectAtIndex:idx];
+    [self handleLastTab:buttons];
 }
 
 - (void)hideButtonWithTitle:(NSString *)title
@@ -134,7 +135,7 @@
 
 - (void)insertButton:(NSButton *)button atIndex:(NSInteger)idx
 {
-    NSMutableArray *ary = [[[tabView subviews] mutableCopy] autorelease];
+    NSMutableArray *ary = [NSMutableArray arrayWithArray:[tabView subviews]];
     [ary removeObjectIdenticalTo:button];
     [ary insertObject:button atIndex:idx];
     [tabView setSubviews:ary];
@@ -154,11 +155,9 @@
             // We are at the end of the tab bar, so highlight the first tab.
             if (i + 1 == [tabs count]) {
                 [[tabs objectAtIndex:0] select];
-                currentTab = [tabs objectAtIndex:0];
             } else {
                 [[tabs objectAtIndex:++i] select];
                 [[tabs objectAtIndex:i] mouseUp:nil];
-                currentTab = [tabs objectAtIndex:i];
             }
             break;
         }
@@ -176,11 +175,9 @@
             [[tabs objectAtIndex:i] deselect];
             if (i == 0) {
                 [[tabs lastObject] select];
-                currentTab = [tabs lastObject];
             } else {
                 [[tabs objectAtIndex:--i] select];
                 [[tabs objectAtIndex:i] mouseUp:nil];
-                currentTab = [tabs objectAtIndex:i];
             }
             break;
         }
@@ -212,14 +209,21 @@
     }];
 }
 
-- (NSButton *)getButtonWithTitle:(NSString *)title
+- (TabButton *)getButtonWithTitle:(NSString *)title
 {
     return [[tabView subviews] objectAtIndex:[self indexOfButtonWithTitle:title]];
 }
 
 - (TabButton *)highlightedTab
 {
-    return currentTab;
+    NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger len, BOOL *stop) {
+        return [[object cell] state] == NSOnState;
+    }];
+    if ([[tabView subviews] count] > idx) {
+        return [[tabView subviews] objectAtIndex:idx];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark -
@@ -237,36 +241,18 @@
 
 - (void)resizeButtons
 {
-    NSArray *tabs = [[tabView subviews] copy];
-    [tabView setSubviews:[NSArray array]];
-    for (NSButton *tab in tabs) {
-        [tab setFrame:[self getNextRectWithLength:[[tab cell] cellSize].width]];
-        [tabView addSubview:tab];
-    }
-    for (TabButton *b in tabs) {
-        [_tabs setObject:b forKey:[b title]];
-    }
-    [tabs release];
-}
-
-- (void)scaleButtons
-{
     NSInteger totalWidth = [tabView contentWidth];
     NSInteger frame = [[[tabView window] contentView] frame].size.width;
     CGFloat ratio = (float)frame / (float)totalWidth;
-    if (ratio > 1.0f) {
-        [self resizeButtons]; // ensure we reach 100% width even if window expands quickly
-    } else {
-        CGFloat newWidth = 0;
-        for (int i = 0; i < [[tabView subviews] count]; i++) {
-            TabButton *button = [[tabView subviews] objectAtIndex:i];
-            NSRect newFrame = NSMakeRect(newWidth,
-                                         [button frame].origin.y,
-                                         ([[button cell] cellSize].width + 8) * ratio,
-                                         [button frame].size.height);
-            [button setFrame:newFrame];
-            newWidth += newFrame.size.width;
-        }
+    CGFloat newWidth = 0;
+    for (int i = 0; i < [[tabView subviews] count]; i++) {
+        TabButton *button = [[tabView subviews] objectAtIndex:i];
+        NSRect newFrame = NSMakeRect(newWidth,
+                                     [button frame].origin.y,
+                                     ([[button cell] cellSize].width + 8) * (1.0f > ratio ? ratio : 1.0f),
+                                     [button frame].size.height);
+        [button setFrame:newFrame];
+        newWidth += newFrame.size.width;
     }
 }
 

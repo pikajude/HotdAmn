@@ -25,6 +25,7 @@
 
 @interface EventHandler : NSObject <DamnSocketDelegate, ChatDelegate> {
     DamnSocket *sock;
+    BOOL disconnecting;
 }
 
 @property (readonly) NSMutableDictionary *privclasses;
@@ -53,6 +54,7 @@
 - (void)action:(NSString *)line toRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room withReason:(NSString *)reason;
+- (void)quit;
 
 - (void)onLaunch;
 

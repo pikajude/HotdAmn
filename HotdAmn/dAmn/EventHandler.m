@@ -19,6 +19,7 @@
     self = [super init];
     if (self) {
         privclasses = [[NSMutableDictionary dictionary] retain];
+        disconnecting = NO;
     }
     
     return self;
@@ -39,6 +40,7 @@
                       [user objectForKey:@"authtoken"]];
     Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Connected to dAmnServer %@.", [msg param]]] autorelease];
     [delegate postMessage:m inRoom:@"Server"];
+    disconnecting = NO;
     [sock write:resp];
 }
 
@@ -99,7 +101,9 @@
 - (void)onPart:(Packet *)msg
 {
     [privclasses removeObjectForKey:[msg roomWithOctothorpe]];
+    [User removeRoom:[msg roomWithOctothorpe]];
     [[self delegate] removeTabWithTitle:[msg roomWithOctothorpe]];
+    [Topic removeRoom:[msg roomWithOctothorpe]];
 }
 
 - (void)onPropertyMembers:(Packet *)msg
@@ -174,10 +178,12 @@
     [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
     [User removeUser:[[msg subpacket] param] fromRoom:[msg roomWithOctothorpe]];
     
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
-    [rooms removeObject:[msg roomName]];
-    [defs setObject:rooms forKey:@"savedRooms"];
+    if (!disconnecting) {
+        NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
+        [rooms removeObject:[msg roomName]];
+        [defs setObject:rooms forKey:@"savedRooms"];
+    }
     
     [User updateWatchers];
 }
@@ -254,6 +260,13 @@
 
 - (void)stopConnection
 {
+    for (NSString *room in [privclasses allKeys]) {
+        [[self delegate] removeTabWithTitle:room];
+        [User removeRoom:room];
+        [privclasses removeObjectForKey:room];
+        [Topic removeRoom:room];
+        [self part:room];
+    }
     [sock write:@"disconnect\n\0"];
     [sock release];
 }

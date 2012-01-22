@@ -82,8 +82,6 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
                 }
             }
             
-            NSLog(@"%d", argType);
-            
             NSArray *possibleArgs = [self _getPossibleArgs:argType withDetails:details];
             
             return [self _completeCommandArgString:str withPossibleArgs:possibleArgs cursorLocation:location];

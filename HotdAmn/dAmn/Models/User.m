@@ -50,7 +50,7 @@ static NSMutableDictionary *roomList;
     [userNode setTitle:[user username]];
     [userNode setObject:user];
     if (!roomList) {
-        roomList = [[NSMutableDictionary alloc] init];
+        roomList = [[NSMutableDictionary dictionary] retain];
     }
     if (!(roomRoot = [roomList objectForKey:room])) {
         roomRoot = [[[UserListNode alloc] init] autorelease];
@@ -82,6 +82,11 @@ static NSMutableDictionary *roomList;
     }
 }
 
++ (void)removeRoom:(NSString *)room
+{
+    [roomList removeObjectForKey:room];
+}
+
 + (User *)userWithName:(NSString *)name inRoom:(NSString *)room
 {
     UserListNode *roomList = [self listForRoom:room];
@@ -102,6 +107,11 @@ static NSMutableDictionary *roomList;
     for (id<UserListWatcher> watcher in watchers) {
         [watcher onUserListUpdated];
     }
+}
+
++ (void)removeWatcher:(id<UserListWatcher>)watcher
+{
+    [watchers removeObject:watcher];
 }
 
 @end

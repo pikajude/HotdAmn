@@ -8,15 +8,16 @@
 
 #import <AppKit/AppKit.h>
 #import <WebKit/WebKit.h>
-#import "TabBar.h"
 #import "TabButtonCell.h"
 #import "Chat.h"
 #import "ServerChat.h"
 #import "Message.h"
 
+@class TabBar;
+
 @interface TabButton : NSButton <NSSplitViewDelegate>
 
-@property (assign) Chat *chatRoom;
+@property (retain) Chat *chatRoom;
 @property (assign) id ctrl;
 
 - (void)select;

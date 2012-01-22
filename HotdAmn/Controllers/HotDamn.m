@@ -143,7 +143,7 @@
         [window makeKeyAndOrderFront:nil];
     }
     NSMutableDictionary *user = [[UserManager defaultManager] currentUser];
-    [[[[barControl tabs] objectForKey:@"Server"] chatRoom] onTopicChange];
+    [[[barControl getButtonWithTitle:@"Server"] chatRoom] onTopicChange];
     [evtHandler setUser:user];
     [evtHandler startConnection];
 }
@@ -155,7 +155,7 @@
 
 - (void)postMessage:(Message *)msg inRoom:(NSString *)roomName
 {
-    TabButton *b = [[barControl tabs] objectForKey:roomName];
+    TabButton *b = [barControl getButtonWithTitle:roomName];
     [b addLine:msg];
     [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
     [barControl resizeButtons];
@@ -186,7 +186,12 @@
 
 - (void)windowDidResize:(NSNotification *)notification
 {
-    [barControl scaleButtons];
+    [barControl resizeButtons];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [evtHandler quit]; // disconnect cleanly
 }
 
 @end

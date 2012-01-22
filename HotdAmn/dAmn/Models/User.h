@@ -30,7 +30,9 @@
 + (void)addUser:(User *)user toRoom:(NSString *)room withGroupName:(NSString *)groupName;
 + (User *)userWithName:(NSString *)name inRoom:(NSString *)room;
 + (void)removeUser:(NSString *)user fromRoom:(NSString *)room;
++ (void)removeRoom:(NSString *)room;
 + (void)addWatcher:(id<UserListWatcher>)watcher;
++ (void)removeWatcher:(id<UserListWatcher>)watcher;
 + (UserListNode *)listForRoom:(NSString *)roomName;
 + (void)updateWatchers;
 

@@ -20,6 +20,8 @@
 
 + (void)setTopic:(NSString *)topic forRoom:(NSString *)roomName;
 + (NSString *)topicForRoom:(NSString *)roomName;
++ (void)removeRoom:(NSString *)room;
 + (void)addWatcher:(id<TopicWatcher>)watcher;
++ (void)removeWatcher:(id<TopicWatcher>)watcher;
 
 @end
