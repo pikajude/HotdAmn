@@ -157,6 +157,7 @@
                 currentTab = [tabs objectAtIndex:0];
             } else {
                 [[tabs objectAtIndex:++i] select];
+                [[tabs objectAtIndex:i] mouseUp:nil];
                 currentTab = [tabs objectAtIndex:i];
             }
             break;
@@ -178,6 +179,7 @@
                 currentTab = [tabs lastObject];
             } else {
                 [[tabs objectAtIndex:--i] select];
+                [[tabs objectAtIndex:i] mouseUp:nil];
                 currentTab = [tabs objectAtIndex:i];
             }
             break;
