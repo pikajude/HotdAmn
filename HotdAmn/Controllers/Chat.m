@@ -101,11 +101,11 @@
     if ([[sender stringValue] isEqualToString:@""])
         return;
     if ([[sender stringValue] hasPrefix:@"/"]) {
-        NSArray *pieces = [[sender stringValue] componentsSeparatedByString:@" "];
+        NSArray *pieces = [[[sender stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "];
         NSString *cmdName = [[pieces objectAtIndex:0] substringFromIndex:1];
         Command *c = [[Command allCommands] objectForKey:cmdName];
         if (c == nil) {
-            return; // TODO: print error
+            [self userError:[NSString stringWithFormat:@"Unknown command %@.", cmdName]];
         } else {
             [c command](self, receiver, [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)]);
         }
@@ -116,6 +116,11 @@
     }
     [sender setStringValue:@""];
     [sender selectText:nil];
+}
+
+- (void)userError:(NSString *)errMsg
+{
+    NSLog(@"%@", errMsg);
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)view

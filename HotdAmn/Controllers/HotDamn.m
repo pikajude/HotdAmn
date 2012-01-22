@@ -184,4 +184,9 @@
     [def synchronize];
 }
 
+- (void)windowDidResize:(NSNotification *)notification
+{
+    [barControl scaleButtons];
+}
+
 @end

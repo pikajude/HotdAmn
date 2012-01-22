@@ -225,6 +225,23 @@
     [sock write:pk];
 }
 
+- (void)kick:(NSString *)us fromRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"kick chat:%@\nu=%@\n\n\0",
+                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    us];
+    [sock write:pk];
+}
+
+- (void)kick:(NSString *)us fromRoom:(NSString *)room withReason:(NSString *)reason
+{
+    NSString *pk = [NSString stringWithFormat:@"kick chat:%@\nu=%@\n\n%@\n\0",
+                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    us,
+                    reason];
+    [sock write:pk];
+}
+
 #pragma mark -
 
 - (void)startConnection

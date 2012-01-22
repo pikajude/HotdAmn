@@ -55,6 +55,7 @@
 
 - (NSRect)getNextRectWithLength:(NSInteger) length;
 - (void)resizeButtons;
+- (void)scaleButtons;
 
 #pragma mark -
 #pragma mark Sizing

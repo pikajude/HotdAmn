@@ -8,11 +8,6 @@
 
 #import "Command.h"
 
-static NSNumber *argTypeAny() { return [NSNumber numberWithInt:ArgTypeAny]; }
-static NSNumber *argTypePrivclass() { return [NSNumber numberWithInt:ArgTypePrivclass]; }
-static NSNumber *argTypeUsername() { return [NSNumber numberWithInt:ArgTypeUsername]; }
-static NSNumber *argTypeRoom() { return [NSNumber numberWithInt:ArgTypeRoom]; }
-
 @implementation Command
 
 @synthesize arity, command, types;
@@ -37,21 +32,59 @@ static NSNumber *argTypeRoom() { return [NSNumber numberWithInt:ArgTypeRoom]; }
     static NSDictionary *cmds;
     if (!cmds) {
         cmds = [[NSDictionary dictionaryWithObjectsAndKeys:
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+// Join command
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
+{
     for (NSString *room in args) {
         [receiver join:room];
     }
-} arity:-1 types:(int[]){ ArgTypeAny }], @"join",
+}
+                    arity:-1
+                    types:(int[]){ ArgTypeAny }], @"join",
                  
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+// Part command
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate> receiver, NSArray *args) {
+    for (NSString *room in args) {
+        [receiver part:room];
+    }
+}
+                    arity:-1
+                    types:(int[]){ ArgTypeRoom }], @"part",
+
+// Action command
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
+{
+    if ([args count] == 0) {
+        NSBeep();
+        return;
+    }
+    
     NSString *str = [args componentsJoinedByString:@" "];
     [receiver action:str inRoom:[caller roomName]];
-} arity:-1 types:(int[]){ ArgTypeUsername | ArgTypeRoom }], @"me",
-                 
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+}
+                    arity:-1
+                    types:(int[]){ ArgTypeUsername | ArgTypeRoom }], @"me",
 
-} arity:-2 types:(int[]){ ArgTypeUsername, ArgTypeAny }], @"kick",
-                 
+// Kick command
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
+{
+    if ([args count] == 0) {
+        [caller userError:@"Not enough arguments to kick."];
+        return;
+    }
+    if ([args count] > 1) {
+        [receiver kick:[args objectAtIndex:0]
+              fromRoom:[caller roomName]
+            withReason:[[args subarrayWithRange:NSMakeRange(1, [args count] - 1)] componentsJoinedByString:@" "]];
+    } else {
+        [receiver kick:[args objectAtIndex:0]
+              fromRoom:[caller roomName]];
+    }
+}
+                    arity:-2
+                    types:(int[]){ ArgTypeUsername, ArgTypeAny }], @"kick",
+
+// end!
                  nil] retain];
     }
     return cmds;

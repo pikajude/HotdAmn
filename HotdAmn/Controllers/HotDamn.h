@@ -23,7 +23,7 @@ typedef enum {
     AutojoinUserDefined
 } autojoin;
 
-@interface HotDamn : NSObject <NSApplicationDelegate, EventHandlerDelegate> {
+@interface HotDamn : NSObject <NSApplicationDelegate, NSWindowDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
     Preferences *prefs;
 }
@@ -65,5 +65,9 @@ typedef enum {
 - (void)setupDefaults;
 - (void)verifyTheme;
 - (void)themeFailure:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+
+#pragma mark -
+#pragma mark Window handling
+- (void)windowDidResize:(NSNotification *)notification;
 
 @end

@@ -27,7 +27,7 @@
 {
     NSInteger i = 0;
     for(NSButton *button in [self subviews]) {
-        i += [button bounds].size.width;
+        i += [[button cell] cellSize].width + 8;
     }
     return i;
 }

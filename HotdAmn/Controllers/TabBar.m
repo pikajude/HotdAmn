@@ -45,6 +45,8 @@
     [b setCell:cell];
     [[b cell] setImagePosition:NSImageRight];
     [[b cell] setAllowsMixedState:YES];
+    [[b cell] setLineBreakMode:NSLineBreakByCharWrapping];
+    [[b cell] setTruncatesLastVisibleLine:YES];
     [b setBordered:YES];
     [b setBezelStyle:NSRoundRectBezelStyle];
     [b setTitle:title];
@@ -243,6 +245,27 @@
         [_tabs setObject:b forKey:[b title]];
     }
     [tabs release];
+}
+
+- (void)scaleButtons
+{
+    NSInteger totalWidth = [tabView contentWidth];
+    NSInteger frame = [[[tabView window] contentView] frame].size.width;
+    CGFloat ratio = (float)frame / (float)totalWidth;
+    if (ratio > 1.0f) {
+        [self resizeButtons]; // ensure we reach 100% width even if window expands quickly
+    } else {
+        CGFloat newWidth = 0;
+        for (int i = 0; i < [[tabView subviews] count]; i++) {
+            TabButton *button = [[tabView subviews] objectAtIndex:i];
+            NSRect newFrame = NSMakeRect(newWidth,
+                                         [button frame].origin.y,
+                                         ([[button cell] cellSize].width + 8) * ratio,
+                                         [button frame].size.height);
+            [button setFrame:newFrame];
+            newWidth += newFrame.size.width;
+        }
+    }
 }
 
 - (void)fixHighlight
