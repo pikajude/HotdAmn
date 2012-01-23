@@ -64,6 +64,7 @@ typedef enum {
 #pragma mark User defaults
 - (void)setupDefaults;
 - (void)verifyTheme;
+- (void)onQuitAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 - (void)themeFailure:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 
 #pragma mark -

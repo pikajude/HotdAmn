@@ -191,7 +191,26 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
-    [evtHandler quit]; // disconnect cleanly
+    [evtHandler stopConnection]; // disconnect cleanly
+}
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Are you sure you want to quit?"
+                                     defaultButton:@"OK"
+                                   alternateButton:@"Cancel"
+                                       otherButton:nil
+                         informativeTextWithFormat:@"Quitting will disconnect you from dAmn and stuff. Are you sure you want to continue?"];
+    [alert beginSheetModalForWindow:nil
+                      modalDelegate:self
+                     didEndSelector:@selector(onQuitAlertDidEnd:returnCode:contextInfo:)
+                        contextInfo:nil];
+    return NSTerminateLater;
+}
+
+- (void)onQuitAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    [NSApp replyToApplicationShouldTerminate:returnCode == NSOKButton];
 }
 
 @end
