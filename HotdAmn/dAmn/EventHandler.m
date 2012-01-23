@@ -215,7 +215,7 @@
                  [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
 }
 
-- (void)say:(NSString *)line toRoom:(NSString *)room
+- (void)say:(NSString *)line inRoom:(NSString *)room
 {
     NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\nmsg main\n\n%@\0",
                     [room stringByReplacingOccurrencesOfString:@"#" withString:@""],

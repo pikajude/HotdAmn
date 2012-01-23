@@ -42,6 +42,10 @@
 // Join command
 [Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
+    if ([args count] == 0) {
+        [caller error:@"Argument required to join."];
+        return;
+    }
     for (NSString *room in args) {
         [receiver join:room];
     }
@@ -51,6 +55,10 @@
                  
 // Part command
 [Command commandWithBlock:^(Chat *caller, id<ChatDelegate> receiver, NSArray *args) {
+    if ([args count] == 0) {
+        [receiver part:[caller roomName]];
+        return;
+    }
     for (NSString *room in args) {
         [receiver part:room];
     }
@@ -76,7 +84,7 @@
 [Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
     if ([args count] == 0) {
-        [caller userError:@"Not enough arguments to kick."];
+        [caller error:@"Not enough arguments to kick."];
         return;
     }
     if ([args count] > 1) {

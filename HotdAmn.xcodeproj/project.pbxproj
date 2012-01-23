@@ -14,8 +14,6 @@
 		250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 250907E914BA43E0007239E9 /* NSDictionary+User.m */; };
 		250E00CE14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */; };
 		250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E00D814C7AA0800AE83F7 /* ChatInputField.m */; };
-		250E00E214C9A1ED00AE83F7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250E00E114C9A1ED00AE83F7 /* Growl.framework */; };
-		250E00E314C9A1FB00AE83F7 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 250E00E114C9A1ED00AE83F7 /* Growl.framework */; };
 		25123A9714B931A00022446A /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25123A9614B931A00022446A /* UserManager.m */; };
 		25123A9F14B95C800022446A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25123A9E14B95C800022446A /* WebKit.framework */; };
 		25153C4414BF3D2000115F43 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 25153C4314BF3D2000115F43 /* Preferences.m */; };
@@ -65,6 +63,8 @@
 		257FD6EF14C1455800286FAE /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6EE14C1455800286FAE /* Topic.m */; };
 		257FD6F114C21A3200286FAE /* PrefsUsers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257FD6F014C21A3200286FAE /* PrefsUsers.xib */; };
 		257FD6F514C21AA400286FAE /* PrefsUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 257FD6F314C21AA400286FAE /* PrefsUsers.m */; };
+		258E5B6914CDF72C0041EDF1 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E5B6814CDF72C0041EDF1 /* Growl.framework */; };
+		258E5B6A14CDF7330041EDF1 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 258E5B6814CDF72C0041EDF1 /* Growl.framework */; };
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
@@ -95,7 +95,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				250E00E314C9A1FB00AE83F7 /* Growl.framework in CopyFiles */,
+				258E5B6A14CDF7330041EDF1 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,6 @@
 		250E00CD14C77F6300AE83F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = "HotdAmn/en.lproj/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		250E00D714C7AA0800AE83F7 /* ChatInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatInputField.h; path = Views/ChatInputField.h; sourceTree = "<group>"; };
 		250E00D814C7AA0800AE83F7 /* ChatInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatInputField.m; path = Views/ChatInputField.m; sourceTree = "<group>"; };
-		250E00E114C9A1ED00AE83F7 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = HotdAmn/Frameworks/Growl.framework; sourceTree = "<group>"; };
 		25123A9514B931A00022446A /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Users/UserManager.h; sourceTree = "<group>"; };
 		25123A9614B931A00022446A /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserManager.m; path = Users/UserManager.m; sourceTree = "<group>"; };
 		25123A9E14B95C800022446A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -199,6 +198,7 @@
 		257FD6F014C21A3200286FAE /* PrefsUsers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsUsers.xib; sourceTree = "<group>"; };
 		257FD6F214C21AA400286FAE /* PrefsUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsUsers.h; path = Controllers/Preferences/PrefsUsers.h; sourceTree = "<group>"; };
 		257FD6F314C21AA400286FAE /* PrefsUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsUsers.m; path = Controllers/Preferences/PrefsUsers.m; sourceTree = "<group>"; };
+		258E5B6814CDF72C0041EDF1 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = HotdAmn/Frameworks/Growl.framework; sourceTree = "<group>"; };
 		2596C54F14BF556700CBEB08 /* PrefsGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsGeneral.h; path = Controllers/Preferences/PrefsGeneral.h; sourceTree = "<group>"; };
 		2596C55014BF556700CBEB08 /* PrefsGeneral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsGeneral.m; path = Controllers/Preferences/PrefsGeneral.m; sourceTree = "<group>"; };
 		2596C55414BF577200CBEB08 /* PrefsGeneral.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsGeneral.xib; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				250E00E214C9A1ED00AE83F7 /* Growl.framework in Frameworks */,
+				258E5B6914CDF72C0041EDF1 /* Growl.framework in Frameworks */,
 				253B216E14C66F3D00146356 /* libicucore.dylib in Frameworks */,
 				25123A9F14B95C800022446A /* WebKit.framework in Frameworks */,
 				252DB61814B799E00036E0CF /* Security.framework in Frameworks */,
@@ -304,7 +304,7 @@
 		2519BE4514AE21F20029F746 = {
 			isa = PBXGroup;
 			children = (
-				250E00E114C9A1ED00AE83F7 /* Growl.framework */,
+				258E5B6814CDF72C0041EDF1 /* Growl.framework */,
 				250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */,
 				253B216D14C66F3D00146356 /* libicucore.dylib */,
 				25CCF4DC14C3E8D600C75C4B /* Themes */,
@@ -812,11 +812,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework\"",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework/Legacy\"",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-1.1-SDK/Framework\"",
 					"\"$(SRCROOT)/HotdAmn/Frameworks\"",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-2.1-SDK/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";
@@ -831,11 +827,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework\"",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3.1-SDK/Framework/Legacy\"",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-1.1-SDK/Framework\"",
 					"\"$(SRCROOT)/HotdAmn/Frameworks\"",
-					"\"$(SRCROOT)/../../../Downloads/Growl-1.3-2.1-SDK/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HotdAmn/HotdAmn-Prefix.pch";

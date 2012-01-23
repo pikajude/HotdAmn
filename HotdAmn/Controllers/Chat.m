@@ -100,25 +100,31 @@
     EventHandler *receiver = [(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler];
     if ([[sender stringValue] isEqualToString:@""])
         return;
-    if ([[sender stringValue] hasPrefix:@"/"]) {
+    NSString *cont;
+    if ([[sender stringValue] hasPrefix:@"//"] || ![[sender stringValue] hasPrefix:@"/"]) {
+        if ([[sender stringValue] hasPrefix:@"/"]) {
+            cont = [[sender stringValue] substringFromIndex:1];
+        } else {
+            cont = [sender stringValue];
+        }
+        [[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler]
+         say:cont
+         inRoom:[self roomName]];
+    } else {
         NSArray *pieces = [[[sender stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "];
         NSString *cmdName = [[pieces objectAtIndex:0] substringFromIndex:1];
         Command *c = [[Command allCommands] objectForKey:cmdName];
         if (c == nil) {
-            [self userError:[NSString stringWithFormat:@"Unknown command %@.", cmdName]];
+            [self error:[NSString stringWithFormat:@"Unknown command %@.", cmdName]];
         } else {
             [c command](self, receiver, [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)]);
         }
-    } else {
-        [[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler]
-                    say:[sender stringValue]
-                 toRoom:[self roomName]];
     }
     [sender setStringValue:@""];
     [sender selectText:nil];
 }
 
-- (void)userError:(NSString *)errMsg
+- (void)error:(NSString *)errMsg
 {
     NSLog(@"%@", errMsg);
 }

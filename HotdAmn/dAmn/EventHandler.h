@@ -50,11 +50,10 @@
 #pragma mark Actions
 - (void)join:(NSString *)room;
 - (void)part:(NSString *)room;
-- (void)say:(NSString *)line toRoom:(NSString *)room;
-- (void)action:(NSString *)line toRoom:(NSString *)room;
+- (void)say:(NSString *)line inRoom:(NSString *)room;
+- (void)action:(NSString *)line inRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room withReason:(NSString *)reason;
-- (void)quit;
 
 - (void)onLaunch;
 

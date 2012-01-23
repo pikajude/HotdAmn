@@ -46,7 +46,7 @@
 - (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item;
 
 - (void)say:(id)sender;
-- (void)userError:(NSString *)errMsg;
+- (void)error:(NSString *)errMsg;
 
 #pragma mark -
 #pragma mark Theme management
