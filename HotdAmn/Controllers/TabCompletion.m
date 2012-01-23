@@ -82,7 +82,13 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
                 }
             }
             
-            NSArray *possibleArgs = [self _getPossibleArgs:argType withDetails:details];
+            NSArray *possibleArgs;
+        
+            if (argType == ArgTypeCustom) {
+                possibleArgs = [argDict completionsForIndex:commandIndex];
+            } else {
+                possibleArgs = [self _getPossibleArgs:argType withDetails:details];
+            }
             
             return [self _completeCommandArgString:str withPossibleArgs:possibleArgs cursorLocation:location];
         }

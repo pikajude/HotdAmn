@@ -201,10 +201,12 @@
                                    alternateButton:@"Cancel"
                                        otherButton:nil
                          informativeTextWithFormat:@"Quitting will disconnect you from dAmn and stuff. Are you sure you want to continue?"];
-    [alert beginSheetModalForWindow:nil
+    
+    [alert beginSheetModalForWindow:nil // make it a popup, not a sheet
                       modalDelegate:self
                      didEndSelector:@selector(onQuitAlertDidEnd:returnCode:contextInfo:)
                         contextInfo:nil];
+    
     return NSTerminateLater;
 }
 

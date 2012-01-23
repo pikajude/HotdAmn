@@ -11,7 +11,6 @@
 		250338E714B898AB000C2D44 /* DamnSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E614B898AB000C2D44 /* DamnSocket.m */; };
 		250338EA14B8C374000C2D44 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338E914B8C374000C2D44 /* EventHandler.m */; };
 		250338ED14B8DA0F000C2D44 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = 250338EC14B8DA0F000C2D44 /* Packet.m */; };
-		25049E3214CA7418002239DD /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 25049E3114CA7418002239DD /* Command.m */; };
 		250907EA14BA43E0007239E9 /* NSDictionary+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 250907E914BA43E0007239E9 /* NSDictionary+User.m */; };
 		250E00CE14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */; };
 		250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E00D814C7AA0800AE83F7 /* ChatInputField.m */; };
@@ -40,6 +39,7 @@
 		2519BE9614AE22D30029F746 /* TabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9514AE22D30029F746 /* TabView.m */; };
 		2519BE9814AE23040029F746 /* HotDamn.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9714AE23040029F746 /* HotDamn.m */; };
 		2519BE9B14AE2C920029F746 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* TabBar.m */; };
+		252A83E814CD112700143D91 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 252A83E714CD112700143D91 /* Command.m */; };
 		252DB61614B7975B0036E0CF /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61514B7975B0036E0CF /* Token.m */; };
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
 		252DB61B14B7B5700036E0CF /* DeviantArtAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61A14B7B5700036E0CF /* DeviantArtAPI.m */; };
@@ -49,6 +49,7 @@
 		253B217114C66F7900146356 /* Tablumps.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B217014C66F7900146356 /* Tablumps.m */; };
 		2541CD5214BF69F40065C4C1 /* PrefsAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */; };
 		2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */; };
+		254B3C8014CD13BC00E97553 /* BuddyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 254B3C7F14CD13BC00E97553 /* BuddyCommand.m */; };
 		25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */; };
 		25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8614BA1F6E00B60137 /* JSONKit.m */; };
 		25559A8D14BA38F900B60137 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8C14BA38F900B60137 /* Welcome.m */; };
@@ -109,8 +110,6 @@
 		250338E914B8C374000C2D44 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventHandler.m; path = dAmn/EventHandler.m; sourceTree = "<group>"; };
 		250338EB14B8DA0F000C2D44 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Packet.h; path = dAmn/Packet.h; sourceTree = "<group>"; };
 		250338EC14B8DA0F000C2D44 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Packet.m; path = dAmn/Packet.m; sourceTree = "<group>"; };
-		25049E3014CA7418002239DD /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = Controllers/Command.h; sourceTree = "<group>"; };
-		25049E3114CA7418002239DD /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Command.m; path = Controllers/Command.m; sourceTree = "<group>"; };
 		250907E814BA43E0007239E9 /* NSDictionary+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+User.h"; path = "Users/NSDictionary+User.h"; sourceTree = "<group>"; };
 		250907E914BA43E0007239E9 /* NSDictionary+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+User.m"; path = "Users/NSDictionary+User.m"; sourceTree = "<group>"; };
 		250E00CD14C77F6300AE83F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = "HotdAmn/en.lproj/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -153,6 +152,8 @@
 		2519BE9714AE23040029F746 /* HotDamn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotDamn.m; path = Controllers/HotDamn.m; sourceTree = "<group>"; };
 		2519BE9914AE2C920029F746 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBar.h; path = Controllers/TabBar.h; sourceTree = "<group>"; };
 		2519BE9A14AE2C920029F746 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBar.m; path = Controllers/TabBar.m; sourceTree = "<group>"; };
+		252A83E614CD112700143D91 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = Models/Command.h; sourceTree = "<group>"; };
+		252A83E714CD112700143D91 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Command.m; path = Models/Command.m; sourceTree = "<group>"; };
 		252DB61414B7975B0036E0CF /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Token.h; path = HotdAmn/OAuth/Token.h; sourceTree = SOURCE_ROOT; };
 		252DB61514B7975B0036E0CF /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Token.m; path = HotdAmn/OAuth/Token.m; sourceTree = SOURCE_ROOT; };
 		252DB61714B799E00036E0CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -168,6 +169,8 @@
 		2541CD4F14BF69F40065C4C1 /* PrefsAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsAppearance.h; path = Controllers/Preferences/PrefsAppearance.h; sourceTree = "<group>"; };
 		2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsAppearance.m; path = Controllers/Preferences/PrefsAppearance.m; sourceTree = "<group>"; };
 		2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsAppearance.xib; sourceTree = "<group>"; };
+		254B3C7E14CD13BC00E97553 /* BuddyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuddyCommand.h; path = Models/BuddyCommand.h; sourceTree = "<group>"; };
+		254B3C7F14CD13BC00E97553 /* BuddyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuddyCommand.m; path = Models/BuddyCommand.m; sourceTree = "<group>"; };
 		25559A7E14BA06AE00B60137 /* OAuthLocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthLocalServer.h; path = HotdAmn/OAuth/OAuthLocalServer.h; sourceTree = SOURCE_ROOT; };
 		25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthLocalServer.m; path = HotdAmn/OAuth/OAuthLocalServer.m; sourceTree = SOURCE_ROOT; };
 		25559A8514BA1F6E00B60137 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = HotdAmn/OAuth/JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
@@ -346,6 +349,7 @@
 		2519BE5A14AE21F30029F746 /* HotdAmn */ = {
 			isa = PBXGroup;
 			children = (
+				252A83E514CD110F00143D91 /* Models */,
 				25153C4914BF3E7F00115F43 /* Interface */,
 				2519BE8A14AE220E0029F746 /* Controllers */,
 				250338E314B8983E000C2D44 /* dAmn */,
@@ -415,8 +419,6 @@
 			children = (
 				25C7053814BA794A004BC131 /* Chat.h */,
 				25C7053914BA794A004BC131 /* Chat.m */,
-				25049E3014CA7418002239DD /* Command.h */,
-				25049E3114CA7418002239DD /* Command.m */,
 				2519BE8E14AE22880029F746 /* HotDamn.h */,
 				2519BE9714AE23040029F746 /* HotDamn.m */,
 				25153C4214BF3D2000115F43 /* Preferences.h */,
@@ -434,6 +436,17 @@
 				25559A8C14BA38F900B60137 /* Welcome.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		252A83E514CD110F00143D91 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				252A83E614CD112700143D91 /* Command.h */,
+				252A83E714CD112700143D91 /* Command.m */,
+				254B3C7E14CD13BC00E97553 /* BuddyCommand.h */,
+				254B3C7F14CD13BC00E97553 /* BuddyCommand.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		252DB61214B7968B0036E0CF /* OAuth */ = {
@@ -665,8 +678,9 @@
 				253B217114C66F7900146356 /* Tablumps.m in Sources */,
 				250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */,
 				257AACFD14CA135700A6F0C4 /* TabCompletion.m in Sources */,
-				25049E3214CA7418002239DD /* Command.m in Sources */,
 				25007E8614CB52DB0094C716 /* UserAction.m in Sources */,
+				252A83E814CD112700143D91 /* Command.m in Sources */,
+				254B3C8014CD13BC00E97553 /* BuddyCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

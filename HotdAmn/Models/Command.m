@@ -7,6 +7,7 @@
 //
 
 #import "Command.h"
+#import "BuddyCommand.h"
 
 @implementation Command
 
@@ -24,6 +25,12 @@
         }
     }
     [c setTypes:t];
+    return c;
+}
+
++ (Command *)commandWithType:(Class)type
+{
+    Command *c = [[[type alloc] init] autorelease];
     return c;
 }
 
@@ -50,7 +57,7 @@
 }
                     arity:-1
                     types:(int[]){ ArgTypeRoom }], @"part",
-
+                 
 // Action command
 [Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
@@ -64,7 +71,7 @@
 }
                     arity:-1
                     types:(int[]){ ArgTypeUsername | ArgTypeRoom }], @"me",
-
+                 
 // Kick command
 [Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
@@ -83,11 +90,19 @@
 }
                     arity:-2
                     types:(int[]){ ArgTypeUsername, ArgTypeAny }], @"kick",
-
-// end!
+                 
+// Buddy command
+[Command commandWithType:[BuddyCommand class]], @"buddy",
+                 
+                 // end!
                  nil] retain];
     }
     return cmds;
+}
+
+- (NSArray *)completionsForIndex:(NSInteger)index
+{
+    return [NSArray array];
 }
 
 - (void)dealloc

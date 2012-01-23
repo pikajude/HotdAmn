@@ -23,7 +23,9 @@ enum {
     ArgTypePrivclass = 1 << 1,
     ArgTypeUsername = 1 << 2,
     ArgTypeRoom = 1 << 3,
-    ArgTypeAll = ArgTypeAny | ArgTypePrivclass | ArgTypeUsername | ArgTypeRoom
+    ArgTypeAll = ArgTypeAny | ArgTypePrivclass | ArgTypeUsername | ArgTypeRoom,
+    
+    ArgTypeCustom = -1
 };
 
 @protocol ChatDelegate <NSObject>
@@ -40,17 +42,21 @@ enum {
 
 @class Chat;
 
+@class BuddyCommand;
+
 typedef void (^commandBlock)(Chat *caller, id<ChatDelegate> receiver, NSArray *args);
 
-@interface Command : NSObject {
-    
-}
+@interface Command : NSObject
 
 @property (retain) commandBlock command;
 @property (readwrite) NSInteger arity;
 @property (retain) NSArray *types;
 
+// For use in subclasses.
+- (NSArray *)completionsForIndex:(NSInteger)index;
+
 + (Command *)commandWithBlock:(commandBlock)block arity:(NSInteger)ar types:(int[])types;
++ (Command *)commandWithType:(Class)type;
 
 + (NSDictionary *)allCommands;
 
