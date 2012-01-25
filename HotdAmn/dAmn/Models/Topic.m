@@ -18,8 +18,8 @@ static NSMutableDictionary *topics;
     if (!topics)
         topics = [[NSMutableDictionary dictionary] retain];
     [topics setObject:topic forKey:roomName];
-    for (id obj in watchers) {
-        [obj onTopicChange];
+    for (NSValue *obj in watchers) {
+        [(id)[obj pointerValue] onTopicChange];
     }
 }
 
@@ -37,12 +37,17 @@ static NSMutableDictionary *topics;
 {
     if (!watchers)
         watchers = [[NSMutableArray array] retain];
-    [watchers addObject:watcher];
+    [watchers addObject:[NSValue valueWithPointer:watcher]];
 }
 
 + (void)removeWatcher:(id<TopicWatcher>)watcher
 {
-    [watchers removeObject:watcher];
+    for (int i = 0; i < [watchers count]; i++) {
+        if (watcher == [[watchers objectAtIndex:i] pointerValue]) {
+            [watchers removeObject:watcher];
+            return;
+        }
+    }
 }
 
 @end

@@ -20,9 +20,42 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    
+static NSMutableArray *fieldForUser(NSString *field, NSString *username) {
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@", [defs objectForKey:field]);
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
+    if ([dict objectForKey:username] == nil) {
+        [dict setObject:[NSArray array] forKey:username];
+        [defs setObject:dict forKey:field];
+    }
+    return [NSMutableArray arrayWithArray:[[defs objectForKey:field] objectForKey:username]];
+}
+
+static void addObjectToFieldForUser(id value, NSString *field, NSString *username) {
+    NSMutableArray *items = fieldForUser(field, username);
+    [items addObject:value];
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
+    [dict setObject:items forKey:username];
+    [defs setObject:dict forKey:field];
+}
+
+static void removeObjectAtIndexFromFieldForUser(NSInteger index, NSString *field, NSString *username) {
+    NSMutableArray *items = fieldForUser(field, username);
+    [items removeObjectAtIndex:index];
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
+    [dict setObject:items forKey:username];
+    [defs setObject:dict forKey:field];
+}
+
+static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, NSString *username) {
+    NSMutableArray *items = fieldForUser(field, username);
+    [items replaceObjectAtIndex:index withObject:value];
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
+    [dict setObject:items forKey:username];
+    [defs setObject:dict forKey:field];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -30,9 +63,9 @@
     if (tableView == accountList) {
         return [[[UserManager defaultManager] userList] count];
     } else if (tableView == buddyList) {
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"buddies"] count];
+        return [fieldForUser(@"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) count];
     } else {
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"ignores"] count];
+        return [fieldForUser(@"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) count];
     }
 }
 
@@ -56,25 +89,21 @@
             }
         }
     } else if (tableView == buddyList) {
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"buddies"] objectAtIndex:row];
+        return [fieldForUser(@"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) objectAtIndex:row];
     } else {
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"ignores"] objectAtIndex:row];
+        return [fieldForUser(@"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) objectAtIndex:row];
     }
 }
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *items;
     NSString *key;
     if (tableView == buddyList) {
         key = @"buddies";
     } else {
         key = @"ignores";
     }
-    items = [NSMutableArray arrayWithArray:[defs objectForKey:key]];
-    [items replaceObjectAtIndex:row withObject:object];
-    [defs setObject:items forKey:key];
+    setFieldAtIndexForUser(object, row, key, [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
@@ -104,45 +133,30 @@
 
 - (IBAction)addBuddy:(id)sender
 {
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *buddies = [NSMutableArray arrayWithArray:[defs objectForKey:@"buddies"]];
-    
-    // Add a new username
-    [buddies addObject:@"username"];
-    [defs setObject:buddies forKey:@"buddies"];
+    addObjectToFieldForUser(@"username", @"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
     
     // Select the added item
     [buddyList reloadData];
-    [buddyList editColumn:0 row:[buddies count] - 1 withEvent:nil select:YES];
+    [buddyList editColumn:0 row:[buddyList numberOfRows] - 1 withEvent:nil select:YES];
 }
 
 - (IBAction)removeBuddy:(id)sender
 {
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *buddies = [NSMutableArray arrayWithArray:[defs objectForKey:@"buddies"]];
-    [buddies removeObjectAtIndex:[buddyList selectedRow]];
-    [defs setObject:buddies forKey:@"buddies"];
+    removeObjectAtIndexFromFieldForUser([buddyList selectedRow], @"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
     [buddyList reloadData];
 }
 
 - (IBAction)addIgnore:(id)sender
 {
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *ignores = [NSMutableArray arrayWithArray:[defs objectForKey:@"ignores"]];
-    
-    [ignores addObject:@"username"];
-    [defs setObject:ignores forKey:@"ignores"];
+    addObjectToFieldForUser(@"username", @"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
     
     [ignoreList reloadData];
-    [ignoreList editColumn:0 row:[ignores count] - 1 withEvent:nil select:YES];
+    [ignoreList editColumn:0 row:[ignoreList numberOfRows] - 1 withEvent:nil select:YES];
 }
 
 - (IBAction)removeIgnore:(id)sender
 {
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *ignores = [NSMutableArray arrayWithArray:[defs objectForKey:@"ignores"]];
-    [ignores removeObjectAtIndex:[ignoreList selectedRow]];
-    [defs setObject:ignores forKey:@"ignores"];
+    removeObjectAtIndexFromFieldForUser([ignoreList selectedRow], @"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
     [ignoreList reloadData];
 }
 
@@ -232,11 +246,11 @@
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 {
-    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSString *username = [[[UserManager defaultManager] currentUser] objectForKey:@"username"];
     if (control == buddyList) {
-        return ![[defs objectForKey:@"buddies"] containsObject:[fieldEditor string]];
+        return ![fieldForUser(@"buddies", username) containsObject:[fieldEditor string]];
     } else {
-        return ![[defs objectForKey:@"ignores"] containsObject:[fieldEditor string]];
+        return ![fieldForUser(@"ignores", username) containsObject:[fieldEditor string]];
     }
 }
 

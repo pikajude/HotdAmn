@@ -169,15 +169,15 @@
                               [NSNumber numberWithFloat:12.0f], @"mainFontSize",
                               [[NSFont systemFontOfSize:0.0f] fontName], @"inputFontName",
                               [NSNumber numberWithFloat:12.0f], @"inputFontSize",
-                              [NSArray array], @"highlights",
-                              [NSArray array], @"buddies",
-                              [NSArray array], @"ignores",
+                              [NSDictionary dictionary], @"highlights",
+                              [NSDictionary dictionary], @"buddies",
+                              [NSDictionary dictionary], @"ignores",
                               [NSNumber numberWithInteger:500], @"scrollbackLimit",
                               @"Default", @"themeName",
                               @"[%H:%M:%S]", @"timestampFormat",
                               [NSNumber numberWithBool:YES], @"WebKitDeveloperExtras",
                               [NSNumber numberWithInt:AutojoinNone], @"autojoin",
-                              [NSArray array], @"autojoinRooms",
+                              [NSDictionary dictionary], @"autojoinRooms",
                               [NSArray array], @"savedRooms", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];

@@ -26,9 +26,9 @@
 - (void)createChatView
 {
     if ([[self title] isEqualToString:@"Server"]) {
-        chatRoom = [[[ServerChat alloc] initWithNibName:nil bundle:[NSBundle mainBundle] roomName:@"Server"] autorelease];
+        chatRoom = [[ServerChat alloc] initWithNibName:nil bundle:[NSBundle mainBundle] roomName:@"Server"];
     } else {
-        chatRoom = [[[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle] roomName:[self title]] autorelease];
+        chatRoom = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle] roomName:[self title]];
     }
     NSRect frame = [[[self window] contentView] frame];
     NSRect ourframe = NSMakeRect(frame.origin.x,
@@ -157,12 +157,6 @@
 - (void)addLine:(Message *)str
 {
     [chatRoom addLine:str];
-}
-
-- (void)dealloc
-{
-    [chatRoom release];
-    [super dealloc];
 }
 
 @end

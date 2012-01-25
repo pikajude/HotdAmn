@@ -32,7 +32,7 @@ static NSMutableDictionary *roomList;
     if (!watchers) {
         watchers = [[NSMutableArray alloc] init];
     }
-    [watchers addObject:watcher];
+    [watchers addObject:[NSValue valueWithPointer:watcher]];
 }
 
 + (UserListNode *)listForRoom:(NSString *)roomName
@@ -104,14 +104,19 @@ static NSMutableDictionary *roomList;
 
 + (void)updateWatchers
 {
-    for (id<UserListWatcher> watcher in watchers) {
-        [watcher onUserListUpdated];
+    for (NSValue *watcher in watchers) {
+        [(id<UserListWatcher>)[watcher pointerValue] onUserListUpdated];
     }
 }
 
 + (void)removeWatcher:(id<UserListWatcher>)watcher
 {
-    [watchers removeObject:watcher];
+    for (int i = 0; i < [watchers count]; i++) {
+        if (watcher == [[watchers objectAtIndex:i] pointerValue]) {
+            [watchers removeObject:watcher];
+            return;
+        }
+    }
 }
 
 @end

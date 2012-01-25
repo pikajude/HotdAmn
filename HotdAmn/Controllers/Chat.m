@@ -16,7 +16,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    roomName = name;
+    [self setRoomName:name];
     
     return self;
 }
@@ -107,9 +107,7 @@
         } else {
             cont = [sender stringValue];
         }
-        [[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler]
-         say:cont
-         inRoom:[self roomName]];
+        [receiver say:cont inRoom:[self roomName]];
     } else {
         NSArray *pieces = [[[sender stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "];
         NSString *cmdName = [[pieces objectAtIndex:0] substringFromIndex:1];
@@ -280,7 +278,6 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (void)dealloc
 {
-    [roomName release];
     [Topic removeWatcher:self];
     [User removeWatcher:self];
     [super dealloc];
