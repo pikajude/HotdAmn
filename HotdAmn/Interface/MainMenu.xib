@@ -1218,7 +1218,6 @@
 							<string key="NSFrame">{{0, 336}, {480, 24}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:499</string>
 							<string key="NSClassName">TabView</string>
 						</object>

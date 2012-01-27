@@ -32,7 +32,7 @@
     NSRange r = NSMakeRange(0, [title length]); // length of the whole string
     NSMutableAttributedString *str = [[title mutableCopy] autorelease];
     [str addAttribute:NSFontAttributeName
-                value:[NSFont fontWithName:@"Helvetica" size:13.0f]
+                value:[NSFont systemFontOfSize:12.0f]
                 range:r];
     
     if ([self state] != NSOnState) {
@@ -57,7 +57,7 @@
         NSShadow *textshadow = [[[NSShadow alloc] init] autorelease];
         NSSize offset = NSMakeSize(0.0f, -1.0f);
         [textshadow setShadowOffset:offset];
-        [textshadow setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.85f]];
+        [textshadow setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.55f]];
         [str addAttribute:NSShadowAttributeName
                     value:textshadow
                     range:r];
@@ -73,37 +73,38 @@
     [NSGraphicsContext saveGraphicsState];
     NSRect rect = [controlView bounds];
     
+    NSBezierPath *p = [NSBezierPath bezierPath];
+    
+    NSRect inset = NSInsetRect(rect, RADIUS, RADIUS);
+    
+    NSPoint topLeft = NSMakePoint(NSMinX(rect), NSMinY(rect));
+    NSPoint topRight = NSMakePoint(NSMaxX(rect), NSMinY(rect));
+    
+    [p appendBezierPathWithPoints:&topRight count:1];
+    [p appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(inset), NSMaxY(inset))
+                                  radius:RADIUS
+                              startAngle:0.0f
+                                endAngle:90.0f];
+    [p appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(inset), NSMaxY(inset))
+                                  radius:RADIUS
+                              startAngle:90.0f
+                                endAngle:180.0f];
+    [p appendBezierPathWithPoints:&topLeft count:1];
+    
     if ([self state] == NSOnState) {
-        NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
-                          [NSColor colorWithDeviceWhite:0.69f alpha:1.0f], 0.0f,
-                          [NSColor colorWithDeviceWhite:0.76f alpha:1.0f], 0.45f,
-                          [NSColor colorWithDeviceWhite:0.81f alpha:1.0f], 1.0f, nil];
-        
-        NSBezierPath *p = [NSBezierPath bezierPath];
-        
-        NSRect inset = NSInsetRect(rect, RADIUS, RADIUS);
-        
-        NSPoint topLeft = NSMakePoint(NSMinX(rect), NSMinY(rect));
-        NSPoint topRight = NSMakePoint(NSMaxX(rect), NSMinY(rect));
-        
-        [p appendBezierPathWithPoints:&topRight count:1];
-        [p appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(inset), NSMaxY(inset))
-                                      radius:RADIUS
-                                  startAngle:0.0f
-                                    endAngle:90.0f];
-        [p appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(inset), NSMaxY(inset))
-                                      radius:RADIUS
-                                  startAngle:90.0f
-                                    endAngle:180.0f];
-        [p appendBezierPathWithPoints:&topLeft count:1];
+        NSGradient *bg;
+        bg = [[NSGradient alloc] initWithColorsAndLocations:
+              [NSColor colorWithDeviceWhite:0.61f alpha:1.0f], 0.0f,
+              [NSColor colorWithDeviceWhite:0.68f alpha:1.0f], 0.45f,
+              [NSColor colorWithDeviceWhite:0.73f alpha:1.0f], 1.0f, nil];
         
         [bg drawInBezierPath:p angle:270.0f];
         [[NSColor colorWithDeviceWhite:0.4f alpha:1.0f] set];
         [NSBezierPath setDefaultLineWidth:2.0f];
         [p stroke];
     } else if([self state] == NSMixedState) {
-        [[NSColor colorWithDeviceWhite:1.0f alpha:0.25f] set];
-        [NSBezierPath fillRect:frame];
+        [[NSColor colorWithDeviceWhite:0.0f alpha:0.15f] set];
+        [p fill];
     }
     
     [NSGraphicsContext restoreGraphicsState];

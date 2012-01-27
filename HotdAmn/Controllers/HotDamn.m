@@ -28,7 +28,8 @@
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     prefs = [[Preferences alloc] initWithWindowNibName:@"Shell"];
     [barControl addButtonWithTitle:@"Server"];
-    [window setContentBorderThickness:0 forEdge:NSMaxYEdge];
+    [window setContentBorderThickness:4.0f forEdge:NSMaxYEdge];
+    [window setAutorecalculatesContentBorderThickness:NO forEdge:NSMaxYEdge];
     
     [[UserManager defaultManager] setDelegate:self];
     

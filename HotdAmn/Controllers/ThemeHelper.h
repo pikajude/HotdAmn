@@ -13,6 +13,6 @@
 + (NSArray *)themePathList;
 + (NSArray *)themeList;
 + (NSString *)pathForThemeStylesheet:(NSString *)themeName;
-+ (NSData *)contentsOfThemeStylesheet:(NSString *)themeName;
++ (NSString *)contentsOfThemeStylesheet:(NSString *)themeName;
 
 @end

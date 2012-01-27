@@ -55,7 +55,7 @@
     return [pathList objectAtIndex:idx];
 }
 
-+ (NSData *)contentsOfThemeStylesheet:(NSString *)themeName
++ (NSString *)contentsOfThemeStylesheet:(NSString *)themeName
 {
     if ([self pathForThemeStylesheet:themeName] == nil) {
         return nil;
