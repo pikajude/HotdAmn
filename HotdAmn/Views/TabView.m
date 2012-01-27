@@ -39,26 +39,24 @@
     NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
                       [NSColor colorWithDeviceWhite:0.48f alpha:1.0f], 0.0f,
                       [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 0.45f,
-                      [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 1.0f, nil];
+                      [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 0.75f,
+                      [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 1.0f, nil];
     
     [bg drawInRect:dirtyRect angle:90.0f];
     [bg release];
     
-    // Top highlight
-    NSRect highlight = NSMakeRect(dirtyRect.origin.x,
+    NSRect highlight = NSMakeRect(0.0f,
                                   dirtyRect.origin.y + dirtyRect.size.height - 1,
                                   dirtyRect.size.width,
                                   1.0f);
     
-    NSRect lowlight = NSMakeRect(dirtyRect.origin.x,
-                                 dirtyRect.origin.y,
+    NSRect lowlight = NSMakeRect(0.0f,
+                                 dirtyRect.origin.y, 
                                  dirtyRect.size.width,
                                  1.0f);
     
-    [[NSColor colorWithDeviceWhite:0.75f alpha:1.0f] set];
+    [[NSColor colorWithDeviceWhite:0.4f alpha:1.0f] set];
     NSRectFill(highlight);
-    
-    [[NSColor colorWithDeviceWhite:0.40f alpha:1.0f] set];
     NSRectFill(lowlight);
         
     [NSGraphicsContext restoreGraphicsState];

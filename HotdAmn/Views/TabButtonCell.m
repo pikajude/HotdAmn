@@ -6,6 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#define RADIUS 4.0f
+
 #import "TabButtonCell.h"
 
 @implementation TabButtonCell
@@ -72,9 +74,33 @@
     NSRect rect = [controlView bounds];
     
     if ([self state] == NSOnState) {
-        [[NSColor whiteColor] set];
+        NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
+                          [NSColor colorWithDeviceWhite:0.69f alpha:1.0f], 0.0f,
+                          [NSColor colorWithDeviceWhite:0.76f alpha:1.0f], 0.45f,
+                          [NSColor colorWithDeviceWhite:0.81f alpha:1.0f], 1.0f, nil];
         
-        NSRectFill(rect);
+        NSBezierPath *p = [NSBezierPath bezierPath];
+        
+        NSRect inset = NSInsetRect(rect, RADIUS, RADIUS);
+        
+        NSPoint topLeft = NSMakePoint(NSMinX(rect), NSMinY(rect));
+        NSPoint topRight = NSMakePoint(NSMaxX(rect), NSMinY(rect));
+        
+        [p appendBezierPathWithPoints:&topRight count:1];
+        [p appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(inset), NSMaxY(inset))
+                                      radius:RADIUS
+                                  startAngle:0.0f
+                                    endAngle:90.0f];
+        [p appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(inset), NSMaxY(inset))
+                                      radius:RADIUS
+                                  startAngle:90.0f
+                                    endAngle:180.0f];
+        [p appendBezierPathWithPoints:&topLeft count:1];
+        
+        [bg drawInBezierPath:p angle:270.0f];
+        [[NSColor colorWithDeviceWhite:0.4f alpha:1.0f] set];
+        [NSBezierPath setDefaultLineWidth:2.0f];
+        [p stroke];
     } else if([self state] == NSMixedState) {
         [[NSColor colorWithDeviceWhite:1.0f alpha:0.25f] set];
         [NSBezierPath fillRect:frame];

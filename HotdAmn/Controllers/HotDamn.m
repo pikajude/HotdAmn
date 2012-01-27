@@ -28,7 +28,7 @@
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     prefs = [[Preferences alloc] initWithWindowNibName:@"Shell"];
     [barControl addButtonWithTitle:@"Server"];
-    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.88f alpha:1.0f]];
+    [window setContentBorderThickness:0 forEdge:NSMaxYEdge];
     
     [[UserManager defaultManager] setDelegate:self];
     

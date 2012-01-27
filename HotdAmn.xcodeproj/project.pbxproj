@@ -565,6 +565,9 @@
 /* Begin PBXProject section */
 		2519BE4714AE21F20029F746 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 2519BE4A14AE21F20029F746 /* Build configuration list for PBXProject "HotdAmn" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
