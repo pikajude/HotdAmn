@@ -93,10 +93,17 @@
     
     if ([self state] == NSOnState) {
         NSGradient *bg;
-        bg = [[NSGradient alloc] initWithColorsAndLocations:
-              [NSColor colorWithDeviceWhite:0.61f alpha:1.0f], 0.0f,
-              [NSColor colorWithDeviceWhite:0.68f alpha:1.0f], 0.45f,
-              [NSColor colorWithDeviceWhite:0.73f alpha:1.0f], 1.0f, nil];
+        if ([[[NSApplication sharedApplication] mainWindow] isKeyWindow]) {
+            bg = [[NSGradient alloc] initWithColorsAndLocations:
+                  [NSColor colorWithDeviceWhite:0.61f alpha:1.0f], 0.0f,
+                  [NSColor colorWithDeviceWhite:0.68f alpha:1.0f], 0.45f,
+                  [NSColor colorWithDeviceWhite:0.73f alpha:1.0f], 1.0f, nil];
+        } else {
+            bg = [[NSGradient alloc] initWithColorsAndLocations:
+                  [NSColor colorWithDeviceWhite:0.77f alpha:1.0f], 0.0f,
+                  [NSColor colorWithDeviceWhite:0.84f alpha:1.0f], 0.45f,
+                  [NSColor colorWithDeviceWhite:0.89f alpha:1.0f], 1.0f, nil];
+        }
         
         [bg drawInBezierPath:p angle:270.0f];
         [[NSColor colorWithDeviceWhite:0.4f alpha:1.0f] set];
@@ -117,7 +124,7 @@
     
     // Make some frame adjustments.
     NSRect newFrame = NSMakeRect(frame.origin.x,
-                                 frame.origin.y + 3,
+                                 frame.origin.y + 2,
                                  frame.size.width,
                                  frame.size.height - 4);
     
@@ -127,7 +134,7 @@
                                                          yRadius:newFrame.size.height / 2];
     
     // Pill background color.
-    [[NSColor colorWithDeviceWhite:0.93f alpha:1.0f] set];
+    [[NSColor colorWithDeviceWhite:1.0f alpha:0.7f] set];
     
     // Shadow for the pill.
     [path fill];
@@ -148,14 +155,14 @@
                 value:[NSColor colorWithDeviceWhite:0.28f alpha:1.0f]
                 range:NSMakeRange(0, [str length])];
     [str addAttribute:NSFontAttributeName
-                value:[NSFont fontWithName:@"Helvetica" size:11.0f]
+                value:[NSFont systemFontOfSize:10.0f]
                 range:NSMakeRange(0, [str length])];
     [str addAttribute:NSParagraphStyleAttributeName
                 value:pstyle
                 range:NSMakeRange(0, [str length])];
     
     // Draw the title.
-    [str drawInRect:newFrame];
+    [str drawInRect:NSOffsetRect(newFrame, 0.0f, 1.0f)];
     
     [NSGraphicsContext restoreGraphicsState];
 }

@@ -108,7 +108,7 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
         return makeTabcmp(str, location);
     }
 
-    NSString *match = [matches objectAtIndex:0];
+    NSString *match = [NSString stringWithFormat:@"%@: ", [matches objectAtIndex:0]];
     
     return makeTabcmp([str stringByReplacingCharactersInRange:range withString:match],
                       range.location + [match length]);

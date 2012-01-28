@@ -78,30 +78,18 @@
         options:nil];
     
     [input setTarget:self];
-    [input setAction:@selector(say:)];
     [input setDelegate:self];
-    
-    NSMutableAttributedString *str = [[[NSMutableAttributedString alloc] init] autorelease];
-    NSString *us = [[[UserManager defaultManager] currentUser] objectForKey:@"username"];
-    
-    [str appendAttributedString:[[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Logged in as %@", us]] autorelease]];
-    [str addAttribute:NSLinkAttributeName
-                value:[NSURL URLWithString:@"http://google.com"]
-                range:NSMakeRange(0, [str length])];
-    [str addAttribute:NSFontAttributeName
-                value:[NSFont systemFontOfSize:[NSFont systemFontSize]]
-                range:NSMakeRange(0, [str length])];
-    
-    [username setAttributedStringValue:str];
 }
 
-- (void)say:(id)sender
+- (void)say:(id)sender unparsed:(BOOL)unparsed
 {
     EventHandler *receiver = [(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler];
     if ([[sender stringValue] isEqualToString:@""])
         return;
     NSString *cont;
-    if ([[sender stringValue] hasPrefix:@"//"] || ![[sender stringValue] hasPrefix:@"/"]) {
+    if (unparsed) {
+        [receiver sayUnparsed:[sender stringValue] inRoom:[self roomName]];
+    } else if ([[sender stringValue] hasPrefix:@"//"] || ![[sender stringValue] hasPrefix:@"/"]) {
         if ([[sender stringValue] hasPrefix:@"/"]) {
             cont = [[sender stringValue] substringFromIndex:1];
         } else {
@@ -261,19 +249,23 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
 {
-    if (commandSelector != @selector(insertTab:))
-        return NO;
-    tabcmp *res = [TabCompletion completePartialString:[[textView textStorage] string]
-                                               details:[self roomName]
-                                        cursorLocation:[[[textView selectedRanges] objectAtIndex:0] rangeValue].location];
-    if ([res->content isEqualToString:[[textView textStorage] string]]) {
-        NSBeep();
+    if (commandSelector == @selector(insertTab:)) {
+        tabcmp *res = [TabCompletion completePartialString:[[textView textStorage] string]
+                                                   details:[self roomName]
+                                            cursorLocation:[[[textView selectedRanges] objectAtIndex:0] rangeValue].location];
+        if ([res->content isEqualToString:[[textView textStorage] string]]) {
+            NSBeep();
+            return YES;
+        }
+        [textView setString:res->content];
+        [textView setSelectedRange:NSMakeRange(res->cursorLocation, 0)];
+        free(res);
+        return YES;
+    } else if (commandSelector == @selector(insertNewline:)) {
+        [self say:control unparsed:([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask ? YES : NO)];
         return YES;
     }
-    [textView setString:res->content];
-    [textView setSelectedRange:NSMakeRange(res->cursorLocation, 0)];
-    free(res);
-    return YES;
+    return NO;
 }
 
 - (void)dealloc

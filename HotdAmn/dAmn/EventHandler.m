@@ -223,6 +223,14 @@
     [sock write:pk];
 }
 
+- (void)sayUnparsed:(NSString *)str inRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\nnpmsg main\n\n%@\0",
+                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    str];
+    [sock write:pk];
+}
+
 - (void)action:(NSString *)line inRoom:(NSString *)room
 {
     NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\naction main\n\n%@\0",

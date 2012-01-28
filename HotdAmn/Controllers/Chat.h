@@ -28,8 +28,6 @@
     IBOutlet WebView *chatView;
     IBOutlet NSView *cShell;
     IBOutlet NSView *uShell;
-    
-    IBOutlet NSTextField *username;
 }
 
 @property (retain) NSString *roomName;
@@ -45,7 +43,7 @@
 
 - (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item;
 
-- (void)say:(id)sender;
+- (void)say:(id)sender unparsed:(BOOL)unparsed;
 - (void)error:(NSString *)errMsg;
 
 #pragma mark -

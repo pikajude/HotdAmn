@@ -33,6 +33,7 @@ enum {
 - (void)join:(NSString *)room;
 - (void)part:(NSString *)room;
 - (void)say:(NSString *)str inRoom:(NSString *)room;
+- (void)sayUnparsed:(NSString *)str inRoom:(NSString *)room;
 - (void)action:(NSString *)str inRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room withReason:(NSString *)reason;
