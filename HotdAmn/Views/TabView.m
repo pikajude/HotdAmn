@@ -36,11 +36,22 @@
 {
     [NSGraphicsContext saveGraphicsState];
     
-    NSGradient *bg = [[NSGradient alloc] initWithColorsAndLocations:
-                      [NSColor colorWithDeviceWhite:0.48f alpha:1.0f], 0.0f,
-                      [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 0.45f,
-                      [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 0.75f,
-                      [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 1.0f, nil];
+    BOOL isKey = [[[NSApplication sharedApplication] mainWindow] isKeyWindow];
+    
+    NSGradient *bg;
+    if (isKey) {
+        bg = [[NSGradient alloc] initWithColorsAndLocations:
+              [NSColor colorWithDeviceWhite:0.48f alpha:1.0f], 0.0f,
+              [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 0.45f,
+              [NSColor colorWithDeviceWhite:0.60f alpha:1.0f], 0.75f,
+              [NSColor colorWithDeviceWhite:0.55f alpha:1.0f], 1.0f, nil];
+    } else {
+        bg = [[NSGradient alloc] initWithColorsAndLocations:
+              [NSColor colorWithDeviceWhite:0.64f alpha:1.0f], 0.0f,
+              [NSColor colorWithDeviceWhite:0.71f alpha:1.0f], 0.45f,
+              [NSColor colorWithDeviceWhite:0.76f alpha:1.0f], 0.75f,
+              [NSColor colorWithDeviceWhite:0.71f alpha:1.0f], 1.0f, nil];
+    }
     
     [bg drawInRect:dirtyRect angle:90.0f];
     [bg release];
@@ -55,7 +66,7 @@
                                  dirtyRect.size.width,
                                  1.0f);
     
-    [[NSColor colorWithDeviceWhite:0.4f alpha:1.0f] set];
+    [[NSColor colorWithDeviceWhite:isKey ? 0.4f : 0.56f alpha:1.0f] set];
     NSRectFill(highlight);
     NSRectFill(lowlight);
         

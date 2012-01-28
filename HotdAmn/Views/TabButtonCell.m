@@ -29,6 +29,8 @@
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
 {
+    BOOL isKey = [[[NSApplication sharedApplication] mainWindow] isKeyWindow];
+    
     NSRange r = NSMakeRange(0, [title length]); // length of the whole string
     NSMutableAttributedString *str = [[title mutableCopy] autorelease];
     [str addAttribute:NSFontAttributeName
@@ -50,7 +52,7 @@
                     range:r];
     } else {
         [str addAttribute:NSForegroundColorAttributeName
-                    value:[NSColor colorWithDeviceWhite:0.20f alpha:1.0f]
+                    value:[NSColor colorWithDeviceWhite:isKey ? 0.20f : 0.36f alpha:1.0f]
                     range:r];
         
         // 1px white shadow to look inset
@@ -70,6 +72,8 @@
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView
 {
+    BOOL isKey = [[[NSApplication sharedApplication] mainWindow] isKeyWindow];
+    
     [NSGraphicsContext saveGraphicsState];
     NSRect rect = [controlView bounds];
     
@@ -93,7 +97,7 @@
     
     if ([self state] == NSOnState) {
         NSGradient *bg;
-        if ([[[NSApplication sharedApplication] mainWindow] isKeyWindow]) {
+        if (isKey) {
             bg = [[NSGradient alloc] initWithColorsAndLocations:
                   [NSColor colorWithDeviceWhite:0.61f alpha:1.0f], 0.0f,
                   [NSColor colorWithDeviceWhite:0.68f alpha:1.0f], 0.45f,
@@ -106,7 +110,7 @@
         }
         
         [bg drawInBezierPath:p angle:270.0f];
-        [[NSColor colorWithDeviceWhite:0.4f alpha:1.0f] set];
+        [[NSColor colorWithDeviceWhite:isKey ? 0.4f : 0.56f alpha:1.0f] set];
         [NSBezierPath setDefaultLineWidth:2.0f];
         [p stroke];
     } else if([self state] == NSMixedState) {
