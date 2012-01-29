@@ -18,7 +18,7 @@
     user = usr;
     
     NSMutableArray *highlights = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"highlights"]];
-    [highlights addObject:[[[UserManager defaultManager] currentUser] objectForKey:@"username"]];
+    [highlights addObject:[[UserManager defaultManager] currentUsername]];
     
     for (NSString *match in highlights) {
         if ([content rangeOfString:match].location != NSNotFound) {

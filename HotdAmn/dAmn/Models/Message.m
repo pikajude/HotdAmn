@@ -63,7 +63,7 @@ static NSDictionary *symbolTable() {
 {
     NSMutableArray *classes = [NSMutableArray arrayWithObject:@"message"];
     if ([self highlight]) [classes addObject:@"highlight"];
-    if ([[[self user] username] isEqualToString:[[[UserManager defaultManager] currentUser] objectForKey:@"username"]]) {
+    if ([[[self user] username] isEqualToString:[[UserManager defaultManager] currentUsername]]) {
         [classes addObject:@"mine"];
     }
     if ([self user]) {

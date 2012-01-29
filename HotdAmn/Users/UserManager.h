@@ -26,6 +26,7 @@
 - (void)finishIntroduction:(BOOL)firstTime;
 
 - (NSString *)userFilePath;
+- (NSString *)currentUsername;
 
 - (BOOL)hasDefaultUser;
 - (void)setDefaultUsername:(NSString *)username;

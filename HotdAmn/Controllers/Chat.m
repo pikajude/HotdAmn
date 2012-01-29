@@ -216,7 +216,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
         top = @"";
     }
     NSString *title = [NSString stringWithFormat:@"%@ — %@",
-                       [[[UserManager defaultManager] currentUser] objectForKey:@"username"],
+                       [[UserManager defaultManager] currentUsername],
                        [self roomName]];
     [[[self view] window] setTitle:title];
 }

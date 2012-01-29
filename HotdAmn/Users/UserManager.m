@@ -10,6 +10,8 @@
 #import "HotDamn.h"
 #import "PrefsUsers.h"
 
+static NSString *currentUsername = nil;
+
 @implementation UserManager
 
 @synthesize delegate;
@@ -41,6 +43,9 @@
 
 - (void)setDefaultUsername:(NSString *)username
 {
+    if (currentUsername)
+        [currentUsername release];
+    currentUsername = username;
     NSArray *list = [self userList];
     for (NSMutableDictionary *dict in list) {
         if ([[dict objectForKey:@"username"] isEqualToString:username]) {
@@ -142,6 +147,14 @@
         }
     }
     return [NSMutableDictionary dictionaryWithDictionary:[users objectAtIndex:0]];
+}
+
+- (NSString *)currentUsername
+{
+    if (!currentUsername) {
+        currentUsername = [[[self currentUser] objectForKey:@"username"] retain];
+    }
+    return currentUsername;
 }
 
 - (void)updateRecord:(NSDictionary *)record forUsername:(NSString *)username

@@ -62,9 +62,9 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
     if (tableView == accountList) {
         return [[[UserManager defaultManager] userList] count];
     } else if (tableView == buddyList) {
-        return [fieldForUser(@"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) count];
+        return [fieldForUser(@"buddies", [[UserManager defaultManager] currentUsername]) count];
     } else {
-        return [fieldForUser(@"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) count];
+        return [fieldForUser(@"ignores", [[UserManager defaultManager] currentUsername]) count];
     }
 }
 
@@ -88,9 +88,9 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
             }
         }
     } else if (tableView == buddyList) {
-        return [fieldForUser(@"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) objectAtIndex:row];
+        return [fieldForUser(@"buddies", [[UserManager defaultManager] currentUsername]) objectAtIndex:row];
     } else {
-        return [fieldForUser(@"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]) objectAtIndex:row];
+        return [fieldForUser(@"ignores", [[UserManager defaultManager] currentUsername]) objectAtIndex:row];
     }
 }
 
@@ -102,7 +102,7 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
     } else {
         key = @"ignores";
     }
-    setFieldAtIndexForUser(object, row, key, [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
+    setFieldAtIndexForUser(object, row, key, [[UserManager defaultManager] currentUsername]);
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
@@ -132,7 +132,7 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
 
 - (IBAction)addBuddy:(id)sender
 {
-    addObjectToFieldForUser(@"username", @"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
+    addObjectToFieldForUser(@"username", @"buddies", [[UserManager defaultManager] currentUsername]);
     
     // Select the added item
     [buddyList reloadData];
@@ -141,13 +141,13 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
 
 - (IBAction)removeBuddy:(id)sender
 {
-    removeObjectAtIndexFromFieldForUser([buddyList selectedRow], @"buddies", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
+    removeObjectAtIndexFromFieldForUser([buddyList selectedRow], @"buddies", [[UserManager defaultManager] currentUsername]);
     [buddyList reloadData];
 }
 
 - (IBAction)addIgnore:(id)sender
 {
-    addObjectToFieldForUser(@"username", @"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
+    addObjectToFieldForUser(@"username", @"ignores", [[UserManager defaultManager] currentUsername]);
     
     [ignoreList reloadData];
     [ignoreList editColumn:0 row:[ignoreList numberOfRows] - 1 withEvent:nil select:YES];
@@ -155,7 +155,7 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
 
 - (IBAction)removeIgnore:(id)sender
 {
-    removeObjectAtIndexFromFieldForUser([ignoreList selectedRow], @"ignores", [[[UserManager defaultManager] currentUser] objectForKey:@"username"]);
+    removeObjectAtIndexFromFieldForUser([ignoreList selectedRow], @"ignores", [[UserManager defaultManager] currentUsername]);
     [ignoreList reloadData];
 }
 
@@ -196,7 +196,7 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
 {
     UserManager *man = [UserManager defaultManager];
     NSString *username = [[[man userList] objectAtIndex:[accountList selectedRow]] objectForKey:@"username"];
-    if (username == [[man currentUser] objectForKey:@"username"])
+    if (username == [man currentUsername])
         return;
     [man setDefaultUsername:username];
     [(HotDamn *)[[NSApplication sharedApplication] delegate] restartConnection];
@@ -245,7 +245,7 @@ static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, N
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 {
-    NSString *username = [[[UserManager defaultManager] currentUser] objectForKey:@"username"];
+    NSString *username = [[UserManager defaultManager] currentUsername];
     if (control == buddyList) {
         return ![fieldForUser(@"buddies", username) containsObject:[fieldEditor string]];
     } else {

@@ -10,6 +10,19 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+.server-msg avatar-container {
+	display: none;
+}
+
+.server-msg {
+	min-height: 0px;
+}
+
+.server-msg msg {
+	padding-left: 10px;
+	font-size: 11px;
+}
+
 avatar-container {
 	position: relative;
 	float: left;
@@ -39,6 +52,7 @@ msg {
 }
 
 username {
+	white-space: nowrap;
 	opacity: 0;
 	display: none;
 	position: absolute;

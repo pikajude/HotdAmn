@@ -35,7 +35,7 @@
 - (void)onTopicChange
 {
     NSString *title = [NSString stringWithFormat:@"%@ dAmn Server",
-                       [[[UserManager defaultManager] currentUser] objectForKey:@"username"]];
+                       [[UserManager defaultManager] currentUsername]];
     [[[self view] window] setTitle:title];
 }
 
