@@ -64,9 +64,9 @@ static void removeAvatarTablump(NSMutableString *str) {
 static void removeThumbTablump(NSMutableString *str) {
     for (NSArray *matchGroup in [str arrayOfCaptureComponentsMatchedByRegex:tablumps_thumb]) {
         [str replaceOccurrencesOfString:[matchGroup objectAtIndex:0]
-                             withString:[NSString stringWithFormat:@"<a href='http://%@.deviantart.com/%@-%@'><img class='thumb' title='%@ by %@, %@' alt=':thumb%@:' src='http://th01.deviantart.com/%@' /></a>",
+                             withString:[NSString stringWithFormat:@"<a href='http://%@.deviantart.com/art/%@-%@'><img class='thumb' title='%@ by %@, %@' alt=':thumb%@:' src='http://th01.deviantart.com/%@' /></a>",
                                          [[matchGroup objectAtIndex:3] substringFromIndex:1],
-                                         [[matchGroup objectAtIndex:2] stringByReplacingOccurrencesOfRegex:@"[^a-zA-Z0-9\\-]" withString:@"-"],
+                                         [[matchGroup objectAtIndex:2] stringByReplacingOccurrencesOfRegex:@"[^a-zA-Z0-9\\-]+" withString:@"-"],
                                          [matchGroup objectAtIndex:1],
                                          [matchGroup objectAtIndex:2],
                                          [matchGroup objectAtIndex:3],
