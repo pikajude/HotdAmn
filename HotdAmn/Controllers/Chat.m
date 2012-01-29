@@ -40,7 +40,7 @@
     if ([keyPath isEqualToString:@"values.themeName"] || [keyPath isEqualToString:@"values.timestampFormat"]) {
         NSMutableArray *ar = [NSMutableArray array];
         for (Message *line in lines) {
-            [ar addObject:[line asHTML]];
+            [ar addObject:[MessageFormatter formatMessage:line]];
         }
         [self loadTheme:[ar componentsJoinedByString:@""]];
     }
@@ -151,7 +151,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
     }
     
     [lines addObject:str];
-    NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [str asHTML]];
+    NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [MessageFormatter formatMessage:str]];
     [chatView stringByEvaluatingJavaScriptFromString:addScript];
     NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
     if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
@@ -219,8 +219,6 @@ static void notifyHighlight(Chat *chat, Message *str) {
                        [[[UserManager defaultManager] currentUser] objectForKey:@"username"],
                        [self roomName]];
     [[[self view] window] setTitle:title];
-    [chatView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTopic(\"%@\")",
-                                                      [top stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]]];
 }
 
 - (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item

@@ -1,0 +1,78 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #333;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+}
+
+avatar-container {
+	position: relative;
+	float: left;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,0.25)), to(rgba(0,0,0,0.3)), color-stop(95%, rgba(0,0,0,0.25)));
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0 1px rgba(255,255,255,0.1);
+	border: 1px solid #242424;
+	margin-right: 10px;
+	padding: 3px 3px 0;
+}
+
+li {
+	background: -webkit-gradient(linear, left bottom, left top, from(#3b3b3b), to(#484848));
+	border-top: 1px solid #595959;
+	outline: 1px solid black;
+	margin-top: 1px;
+	list-style: none;
+	padding: 4px;
+	min-height: 24px;
+}
+
+msg {
+	color: white;
+	text-shadow: 0 1px 1px #111;
+	padding: 3px 0;
+	display: block;
+}
+
+username {
+	opacity: 0;
+	display: none;
+	position: absolute;
+	top: -23px;
+	left: 8px;
+	font-size: 11px;
+	color: white;
+	background: -webkit-gradient(linear, left bottom, left top, from(black), to(#444), color-stop(96%, #222));
+	padding: 5px;
+	-webkit-border-radius: 4px;
+	-webkit-border-bottom-left-radius: 0;
+	border: 1px solid black;
+	-webkit-transition: opacity 0.2s linear;
+}
+
+avatar-container:hover username {
+	opacity: 1;
+	display: block;
+}
+
+span.corner {
+	position: absolute;
+	display: block;
+	left: -1px;
+	top: 23px;
+	width: 0px;
+	height: 0px;
+	border-top: 3px solid black;
+	border-left: 3px solid transparent;
+	border-bottom: 3px solid transparent;
+	border-right: 3px solid transparent;
+	text-indent: -9999px;
+}
+
+time {
+	display: none;
+}

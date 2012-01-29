@@ -81,14 +81,6 @@ static NSDictionary *symbolTable() {
     return [form stringFromDate:[NSDate date]];
 }
 
-- (NSString *)asHTML
-{
-    return [NSString stringWithFormat:@"<li class='%@'><timestamp>%@</timestamp> * <line>%@</line></li>",
-            [self cssClasses],
-            [self timestamp],
-            [content stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
-}
-
 - (NSString *)asText
 {
     return [self content];

@@ -16,6 +16,7 @@
 		250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 250E00D814C7AA0800AE83F7 /* ChatInputField.m */; };
 		25123A9714B931A00022446A /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25123A9614B931A00022446A /* UserManager.m */; };
 		25123A9F14B95C800022446A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25123A9E14B95C800022446A /* WebKit.framework */; };
+		2514FE6D14D596B7000CC1B5 /* MessageFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2514FE6C14D596B7000CC1B5 /* MessageFormatter.m */; };
 		25153C4414BF3D2000115F43 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 25153C4314BF3D2000115F43 /* Preferences.m */; };
 		25153C5114BF3E8000115F43 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25153C4A14BF3E7F00115F43 /* About.xib */; };
 		25153C5214BF3E8000115F43 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25153C4B14BF3E7F00115F43 /* ChatView.xib */; };
@@ -118,6 +119,8 @@
 		25123A9514B931A00022446A /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Users/UserManager.h; sourceTree = "<group>"; };
 		25123A9614B931A00022446A /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserManager.m; path = Users/UserManager.m; sourceTree = "<group>"; };
 		25123A9E14B95C800022446A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		2514FE6B14D596B7000CC1B5 /* MessageFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageFormatter.h; path = dAmn/Models/MessageFormatter.h; sourceTree = "<group>"; };
+		2514FE6C14D596B7000CC1B5 /* MessageFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageFormatter.m; path = dAmn/Models/MessageFormatter.m; sourceTree = "<group>"; };
 		25153C4214BF3D2000115F43 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Controllers/Preferences.h; sourceTree = "<group>"; };
 		25153C4314BF3D2000115F43 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Controllers/Preferences.m; sourceTree = "<group>"; };
 		25153C4A14BF3E7F00115F43 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
@@ -478,6 +481,8 @@
 			children = (
 				256E7F7714BFB96A000608A1 /* Message.h */,
 				256E7F7814BFB96A000608A1 /* Message.m */,
+				2514FE6B14D596B7000CC1B5 /* MessageFormatter.h */,
+				2514FE6C14D596B7000CC1B5 /* MessageFormatter.m */,
 				257FD6EA14C13D6600286FAE /* NSMutableDictionary+Privclass.h */,
 				257FD6EB14C13D6600286FAE /* NSMutableDictionary+Privclass.m */,
 				257FD6E414C13BB300286FAE /* Privclass.h */,
@@ -684,6 +689,7 @@
 				25007E8614CB52DB0094C716 /* UserAction.m in Sources */,
 				252A83E814CD112700143D91 /* Command.m in Sources */,
 				254B3C8014CD13BC00E97553 /* BuddyCommand.m in Sources */,
+				2514FE6D14D596B7000CC1B5 /* MessageFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

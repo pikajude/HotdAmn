@@ -22,7 +22,6 @@
 
 static NSMutableArray *fieldForUser(NSString *field, NSString *username) {
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
-    NSLog(@"%@", [defs objectForKey:field]);
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
     if ([dict objectForKey:username] == nil) {
         [dict setObject:[NSArray array] forKey:username];

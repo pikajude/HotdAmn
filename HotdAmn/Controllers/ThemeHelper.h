@@ -14,5 +14,7 @@
 + (NSArray *)themeList;
 + (NSString *)pathForThemeStylesheet:(NSString *)themeName;
 + (NSString *)contentsOfThemeStylesheet:(NSString *)themeName;
++ (NSString *)pathForThemeTemplate:(NSString *)themeName;
++ (NSString *)contentsOfThemeTemplate:(NSString *)themeName;
 
 @end

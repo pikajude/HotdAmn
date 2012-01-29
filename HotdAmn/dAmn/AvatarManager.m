@@ -44,7 +44,7 @@ static NSString *avatars[] = {@".gif", @".gif", @".jpg", @".png"};
                      urlsection,
                      ext,
                      cachebuster];
-    return url;
+    return [url lowercaseString];
 }
 
 @end

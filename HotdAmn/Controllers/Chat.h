@@ -15,6 +15,7 @@
 #import "User.h"
 #import "Topic.h"
 #import "Message.h"
+#import "MessageFormatter.h"
 #import "UserMessage.h"
 #import "ThemeHelper.h"
 #import "TabCompletion.h"
