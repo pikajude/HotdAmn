@@ -44,22 +44,22 @@ static NSString *tablumps_regex_replace[] = {
     @"<abbr title='$1'>$2"
 };
 
-static NSString *tablumps_avatar = @"&avatar\\t([^\\t]+)\\t([0-9]+)\\t";
+static NSString *tablumps_avatar = @"&avatar\t([^\t]+)\t([0-9]+)\t";
 static NSString *tablumps_thumb = @"&thumb\t([0-9]+)\t([^\t]+)\t([^\t]+)\t([^\t]+)\t([^\t]+)\t([^\t]+)\t([^\t]+)\t";
 static NSString *tablumps_iframe = @"&iframe\t([^\t]+)\t([0-9%]*)\t([0-9%]*)\t&\"iframe\t";
 
 static void removeAvatarTablump(NSMutableString *str) {
     for (NSArray *matchGroup in [str arrayOfCaptureComponentsMatchedByRegex:tablumps_avatar]) {
         [str replaceOccurrencesOfString:[matchGroup objectAtIndex:0]
-                             withString:[NSString stringWithFormat:@"<a href='http://%@.deviantart.com'><img src='%@' title=\"%@'s avatar\" /></a>",
+                             withString:[NSString stringWithFormat:@"<a href='http://%@.deviantart.com'><img class='avatar' src='%@' title=\"%@'s avatar\" /></a>",
                                         [matchGroup objectAtIndex:1],
                                         [AvatarManager avatarURLForUsername:[matchGroup objectAtIndex:1]
-                                                                    userIcon:[[matchGroup objectAtIndex:2] integerValue]],
-                                         [matchGroup objectAtIndex:1]]
+                                                                   userIcon:[[matchGroup objectAtIndex:2] integerValue]],
+                                        [matchGroup objectAtIndex:1]]
                                 options:NSCaseInsensitiveSearch
                                   range:NSMakeRange(0, [str length])];
     }
-};
+}
 
 static void removeThumbTablump(NSMutableString *str) {
     for (NSArray *matchGroup in [str arrayOfCaptureComponentsMatchedByRegex:tablumps_thumb]) {
@@ -77,14 +77,12 @@ static void removeThumbTablump(NSMutableString *str) {
                                 options:NSCaseInsensitiveSearch
                                   range:NSMakeRange(0, [str length])];
     }
-};
+}
 
 @implementation Tablumps
 
 + (NSString *)removeTablumps:(NSString *)str
 {
-    assert(sizeof(tablumps_noregex) == sizeof(tablumps_noregex_replace));
-    assert(sizeof(tablumps_regex) == sizeof(tablumps_regex_replace));
     NSMutableString *replacement = [[str mutableCopy] autorelease];
     for (int i = 0; i < sizeof(tablumps_noregex) / sizeof(tablumps_noregex[0]); i++) {
         [replacement replaceOccurrencesOfString:tablumps_noregex[i] withString:tablumps_noregex_replace[i] options:NSCaseInsensitiveSearch range:NSMakeRange(0, [replacement length])];

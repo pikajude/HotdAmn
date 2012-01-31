@@ -89,14 +89,18 @@
 - (NSString *)roomName
 {
     if ([self param] != nil) {
-        return [[self param] stringByReplacingOccurrencesOfString:@"chat:" withString:@""];
+        if ([[self param] hasPrefix:@"pchat"]) {
+            NSString *username = [[UserManager defaultManager] currentUsername];
+            NSArray *possibles = [[[self param] componentsSeparatedByString:@":"] subarrayWithRange:NSMakeRange(1, 1)];
+            for (NSString *p in possibles)
+                if (![p isEqualToString:username])
+                    return p;
+        } else {
+            return [NSString stringWithFormat:@"#%@",
+                    [[self param] stringByReplacingOccurrencesOfString:@"chat:" withString:@""]];
+        }
     }
     return @"";
-}
-
-- (NSString *)roomWithOctothorpe
-{
-    return [NSString stringWithFormat:@"#%@", [self roomName]];
 }
 
 - (BOOL)isOkay

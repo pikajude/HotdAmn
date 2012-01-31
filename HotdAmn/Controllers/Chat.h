@@ -47,6 +47,8 @@
 - (void)say:(id)sender unparsed:(BOOL)unparsed;
 - (void)error:(NSString *)errMsg;
 
+- (BOOL)isPchat;
+
 #pragma mark -
 #pragma mark Theme management
 - (void)loadTheme:(NSString *)html;

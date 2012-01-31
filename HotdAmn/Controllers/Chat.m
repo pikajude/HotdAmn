@@ -160,8 +160,14 @@ static void notifyHighlight(Chat *chat, Message *str) {
     }
 }
 
+- (BOOL)isPchat
+{
+    return [[self roomName] rangeOfString:@"#"].location == NSNotFound;
+}
+
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
+    if ([self isPchat]) return [[[[[User listForRoom:roomName] children] objectAtIndex:0] children] objectAtIndex:index];
     if (!item) {
         return [[[User listForRoom:roomName] children] objectAtIndex:index];
     }
@@ -170,6 +176,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
+    if ([self isPchat]) return NO;
     if (!item) {
         return YES;
     }
@@ -178,6 +185,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
+    if ([self isPchat]) return [[[[[User listForRoom:roomName] children] objectAtIndex:0] children] count];
     if (!item) {
         return [[[User listForRoom:roomName] children] count];
     }

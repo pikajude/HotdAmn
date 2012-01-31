@@ -98,6 +98,20 @@
 }
                     arity:-2
                     types:(int[]){ ArgTypeUsername, ArgTypeAny }], @"kick",
+
+[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+    if ([args count] == 0) {
+        [caller error:@"Not enough arguments to chat (expects username)."];
+        return;
+    }
+    NSString *us = [[[UserManager defaultManager] currentUsername] lowercaseString];
+    NSString *toChat = [[args objectAtIndex:0] lowercaseString];
+    NSMutableArray *objs = [NSMutableArray arrayWithObjects:us, toChat, nil];
+    [objs sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [receiver join:[objs componentsJoinedByString:@":"]];
+}
+                    arity:1
+                    types:(int[]){ ArgTypeUsername }], @"chat",
                  
 // Buddy command
 [Command commandWithType:[BuddyCommand class]], @"buddy",

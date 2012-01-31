@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Tablumps.h"
+#import "UserManager.h"
 
 @interface Packet : NSObject
 
@@ -21,7 +22,6 @@
 - (Packet *)initWithString:(NSString *)str;
 
 - (NSString *)roomName;
-- (NSString *)roomWithOctothorpe;
 
 - (BOOL)isOkay;
 

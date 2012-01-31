@@ -88,10 +88,10 @@
 - (void)onJoin:(Packet *)msg
 {
     if ([msg isOkay]) {
-        [[self delegate] createTabWithTitle:[msg roomWithOctothorpe]];
-        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Joined %@.", [msg roomWithOctothorpe]]] autorelease];
+        [[self delegate] createTabWithTitle:[msg roomName]];
+        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Joined %@.", [msg roomName]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
-        [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomWithOctothorpe]];
+        [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
         Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
@@ -100,24 +100,24 @@
 
 - (void)onPart:(Packet *)msg
 {
-    [privclasses removeObjectForKey:[msg roomWithOctothorpe]];
-    [User removeRoom:[msg roomWithOctothorpe]];
-    [[self delegate] removeTabWithTitle:[msg roomWithOctothorpe]];
-    [Topic removeRoom:[msg roomWithOctothorpe]];
+    [privclasses removeObjectForKey:[msg roomName]];
+    [User removeRoom:[msg roomName]];
+    [[self delegate] removeTabWithTitle:[msg roomName]];
+    [Topic removeRoom:[msg roomName]];
 }
 
 - (void)onPropertyMembers:(Packet *)msg
 {
-    NSMutableDictionary *rm = [privclasses objectForKey:[msg roomWithOctothorpe]];
+    NSMutableDictionary *rm = [privclasses objectForKey:[msg roomName]];
     NSArray *subpackets = [[msg body] componentsSeparatedByString:@"\n\n"];
     for (NSString *pk in subpackets) {
         if ([pk isEqualToString:@""])
             continue;
         Packet *p = [[[Packet alloc] initWithString:pk] autorelease];
         User *us = [[[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]] autorelease];
-        [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
+        [User addUser:us toRoom:[msg roomName] withGroupName:[[p args] objectForKey:@"pc"]];
     }
-    [[User listForRoom:[msg roomWithOctothorpe]] sortChildrenWithComparator:^NSComparisonResult(id obj1, id obj2) {
+    [[User listForRoom:[msg roomName]] sortChildrenWithComparator:^NSComparisonResult(id obj1, id obj2) {
         return [rm levelForPrivclass:[obj1 title]] < [rm levelForPrivclass:[obj2 title]] ? NSOrderedDescending : NSOrderedAscending;
     }];
     [User updateWatchers];
@@ -126,9 +126,9 @@
 - (void)onPropertyPrivclasses:(Packet *)msg
 {
     NSMutableDictionary *room;
-    if (!(room = [privclasses objectForKey:[msg roomWithOctothorpe]])) {
+    if (!(room = [privclasses objectForKey:[msg roomName]])) {
         room = [NSMutableDictionary dictionary];
-        [privclasses setObject:room forKey:[msg roomWithOctothorpe]];
+        [privclasses setObject:room forKey:[msg roomName]];
     }
     NSArray *pairs = [[msg body] componentsSeparatedByString:@"\n"];
     for (NSString *pair in pairs) {
@@ -141,16 +141,16 @@
 
 - (void)onPropertyTopic:(Packet *)msg
 {
-    [Topic setTopic:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomWithOctothorpe]];
+    [Topic setTopic:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomName]];
 }
 
 - (void)onRecvJoin:(Packet *)msg
 {
     Packet *p = [[[Packet alloc] initWithString:[[[msg subpacket] raw] stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"]] autorelease];
     User *us = [[[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]] autorelease];
-    [User addUser:us toRoom:[msg roomWithOctothorpe] withGroupName:[[p args] objectForKey:@"pc"]];
+    [User addUser:us toRoom:[msg roomName] withGroupName:[[p args] objectForKey:@"pc"]];
     
-    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomWithOctothorpe]]] autorelease];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomName]]] autorelease];
     
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
@@ -167,16 +167,16 @@
         }
     }
     
-    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+    [[self delegate] postMessage:m inRoom:[msg roomName]];
     
     [User updateWatchers];
 }
 
 - (void)onRecvPart:(Packet *)msg
 {
-    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomWithOctothorpe]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
-    [User removeUser:[[msg subpacket] param] fromRoom:[msg roomWithOctothorpe]];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomName]]] autorelease];
+    [[self delegate] postMessage:m inRoom:[msg roomName]];
+    [User removeUser:[[msg subpacket] param] fromRoom:[msg roomName]];
     
     if (!disconnecting) {
         NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
@@ -190,14 +190,14 @@
 
 - (void)onRecvMsg:(Packet *)msg
 {
-    UserMessage *m = [[[UserMessage alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+    UserMessage *m = [[[UserMessage alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomName]]] autorelease];
+    [[self delegate] postMessage:m inRoom:[msg roomName]];
 }
 
 - (void)onRecvAction:(Packet *)msg
 {
-    UserAction *m = [[[UserAction alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomWithOctothorpe]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomWithOctothorpe]];
+    UserAction *m = [[[UserAction alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomName]]] autorelease];
+    [[self delegate] postMessage:m inRoom:[msg roomName]];
 }
 
 #pragma mark -
@@ -205,8 +205,12 @@
 
 - (void)join:(NSString *)room
 {
-    [sock write:[NSString stringWithFormat:@"join chat:%@\n\0",
-                 [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
+    if ([room rangeOfString:@":"].location != NSNotFound) {
+        [sock write:[NSString stringWithFormat:@"join pchat:%@\n\0", room]];
+    } else {
+        [sock write:[NSString stringWithFormat:@"join chat:%@\n\0",
+                     [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
+    }
 }
 
 - (void)part:(NSString *)room
