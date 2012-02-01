@@ -29,7 +29,7 @@
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
 {
-    BOOL isKey = [[[NSApplication sharedApplication] mainWindow] isKeyWindow];
+    BOOL isKey = [[controlView window] isKeyWindow] || [[controlView window] isMainWindow];
     
     NSRange r = NSMakeRange(0, [title length]); // length of the whole string
     NSMutableAttributedString *str = [[title mutableCopy] autorelease];
@@ -72,7 +72,7 @@
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView
 {
-    BOOL isKey = [[[NSApplication sharedApplication] mainWindow] isKeyWindow];
+    BOOL isKey = [[controlView window] isKeyWindow] || [[controlView window] isMainWindow];
     
     [NSGraphicsContext saveGraphicsState];
     NSRect rect = [controlView bounds];

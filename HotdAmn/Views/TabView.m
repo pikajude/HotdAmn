@@ -36,7 +36,7 @@
 {
     [NSGraphicsContext saveGraphicsState];
     
-    BOOL isKey = [[[NSApplication sharedApplication] mainWindow] isKeyWindow];
+    BOOL isKey = [[self window] isKeyWindow] || [[self window] isMainWindow];
     
     NSGradient *bg;
     if (isKey) {
