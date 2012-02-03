@@ -102,7 +102,11 @@
 - (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
 {
     NSInteger idx = [[self controller] indexOfRightmostButtonBeforePoint:[sender draggingLocation].x];
-    [dragImage setFrameOrigin:NSMakePoint((NSInteger)([sender draggingLocation].x - ([dragImage frame].size.width / 2)), [dragImage frame].origin.y)];
+    NSInteger rightmostEdge = [sender draggingLocation].x + ([dragImage frame].size.width / 2);
+    NSInteger loc = rightmostEdge - [dragImage frame].size.width;
+    
+    [dragImage setFrameOrigin:NSMakePoint(rightmostEdge > [self frame].size.width ? [self frame].size.width - [dragImage frame].size.width : loc, [dragImage frame].origin.y)];
+    
     if (dragIndex != idx) {
         dragIndex = idx;
         // Move a spacer to the new spot.
