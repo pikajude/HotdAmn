@@ -10,7 +10,7 @@
 
 @implementation BuddyCommand
 
-commandBlock action = ^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+commandBlock action = ^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableArray *buddies = [NSMutableArray arrayWithArray:[defs objectForKey:@"buddies"]];
     if ([args count] == 0) {

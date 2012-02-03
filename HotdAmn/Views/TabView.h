@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TabButton.h"
+#import "TabGhostView.h"
 
 @class TabBar;
 
 @interface TabView : NSView <NSDraggingDestination> {
     NSButton *dragger;
     NSInteger dragIndex;
+    IBOutlet TabGhostView *dragImage;
 }
 
 @property (assign) TabBar *controller;

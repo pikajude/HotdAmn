@@ -103,7 +103,7 @@
         if (c == nil) {
             [self error:[NSString stringWithFormat:@"Unknown command %@.", cmdName]];
         } else {
-            [c command](self, receiver, [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)]);
+            [c command](c, self, receiver, [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)]);
         }
     }
     [sender setStringValue:@""];

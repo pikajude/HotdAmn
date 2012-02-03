@@ -114,8 +114,9 @@
     NSPasteboard *pboard = [NSPasteboard pasteboardWithName:NSDragPboard];
     [pboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
     [pboard setData:[[self title] dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
+    [pboard setData:[img TIFFRepresentation] forType:NSTIFFPboardType];
     
-    [self dragImage:img
+    [self dragImage:nil
                  at:point
              offset:offset
               event:theEvent

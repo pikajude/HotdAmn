@@ -6,6 +6,8 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+#define POSIFY(arg) (arg < 0 ? -arg - 1 : arg)
+
 #import <Foundation/Foundation.h>
 #import "Chat.h"
 
@@ -44,7 +46,8 @@ enum {
 
 @class BuddyCommand;
 
-typedef void (^commandBlock)(Chat *caller, id<ChatDelegate> receiver, NSArray *args);
+@class Command;
+typedef void (^commandBlock)(Command *me, Chat *caller, id<ChatDelegate> receiver, NSArray *args);
 
 @interface Command : NSObject
 
@@ -54,6 +57,8 @@ typedef void (^commandBlock)(Chat *caller, id<ChatDelegate> receiver, NSArray *a
 
 // For use in subclasses.
 - (NSArray *)completionsForIndex:(NSInteger)index;
+
+- (BOOL)verifyArity:(NSArray *)args error:(NSError **)err;
 
 + (Command *)commandWithBlock:(commandBlock)block arity:(NSInteger)ar types:(int[])types;
 + (Command *)commandWithType:(Class)type;

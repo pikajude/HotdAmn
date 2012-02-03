@@ -17,10 +17,19 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self registerForDraggedTypes:[NSArray arrayWithObject:NSStringPboardType]];
+        [self registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTIFFPboardType, nil]];
     }
     
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [self setNeedsDisplay:YES];
+    [dragImage setParent:self];
+    [dragImage setHidden:YES];
+    [dragImage setFrameOrigin:[self frame].origin];
+    [dragImage setFrameSize:NSMakeSize(0.0f, [self frame].size.height)];
 }
 
 - (NSInteger)contentWidth
@@ -80,6 +89,12 @@
 {
     NSString *draggerName = [[[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSStringPboardType] encoding:NSUTF8StringEncoding] autorelease];
     dragger = [[self controller] getButtonWithTitle:draggerName];
+    [dragImage setImage:[[[NSImage alloc] initWithData:[[sender draggingPasteboard] dataForType:NSTIFFPboardType]] autorelease]];
+    
+    [dragImage setFrameSize:[[dragImage image] size]];
+    
+    [dragImage setHidden:NO];
+    
     [[self controller] hideButtonWithTitle:draggerName];
     return NSDragOperationMove;
 }
@@ -87,6 +102,7 @@
 - (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
 {
     NSInteger idx = [[self controller] indexOfRightmostButtonBeforePoint:[sender draggingLocation].x];
+    [dragImage setFrameOrigin:NSMakePoint((NSInteger)([sender draggingLocation].x - ([dragImage frame].size.width / 2)), [dragImage frame].origin.y)];
     if (dragIndex != idx) {
         dragIndex = idx;
         // Move a spacer to the new spot.
@@ -97,6 +113,8 @@
 
 - (void)draggingEnded:(id<NSDraggingInfo>)sender
 {
+    [dragImage setImage:nil];
+    [dragImage setHidden:YES];
     [[self controller] insertButton:dragger atIndex:dragIndex];
     [[self controller] showButtonWithTitle:[dragger title]];
     [[dragger cell] setBadgeValue:0];
@@ -106,6 +124,12 @@
 - (void)willRemoveSubview:(NSView *)subview
 {
     [[[self controller] tabs] removeObjectForKey:[(TabButton *)subview roomName]];
+}
+
+- (void)dealloc
+{
+    [dragImage release];
+    [super dealloc];
 }
 
 @end

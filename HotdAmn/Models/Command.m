@@ -20,7 +20,7 @@
     [c setArity:ar];
     NSMutableArray *t = [NSMutableArray array];
     if (types) {
-        for (int i = 0; i < abs((int)ar); i++) {
+        for (int i = 0; i < POSIFY(ar); i++) {
             [t addObject:[NSNumber numberWithInt:types[i]]];
         }
     }
@@ -40,21 +40,23 @@
     if (!cmds) {
         cmds = [[NSDictionary dictionaryWithObjectsAndKeys:
 // Join command
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
+[Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
-    if ([args count] == 0) {
-        [caller error:@"Argument required to join."];
+    NSError *err = nil;
+    if (![me verifyArity:args error:&err]) {
+        [caller error:[err localizedDescription]];
         return;
     }
+    
     for (NSString *room in args) {
         [receiver join:room];
     }
 }
-                    arity:-1
+                    arity:-2
                     types:(int[]){ ArgTypeAny }], @"join",
                  
 // Part command
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate> receiver, NSArray *args) {
+[Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate> receiver, NSArray *args) {
     if ([args count] == 0) {
         [receiver part:[caller roomName]];
         return;
@@ -67,7 +69,7 @@
                     types:(int[]){ ArgTypeRoom }], @"part",
                  
 // Action command
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
+[Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
     if ([args count] == 0) {
         NSBeep();
@@ -81,12 +83,14 @@
                     types:(int[]){ ArgTypeUsername | ArgTypeRoom }], @"me",
                  
 // Kick command
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args)
+[Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
-    if ([args count] == 0) {
-        [caller error:@"Not enough arguments to kick."];
+    NSError *err = nil;
+    if (![me verifyArity:args error:&err]) {
+        [caller error:[err localizedDescription]];
         return;
     }
+    
     if ([args count] > 1) {
         [receiver kick:[args objectAtIndex:0]
               fromRoom:[caller roomName]
@@ -99,11 +103,13 @@
                     arity:-2
                     types:(int[]){ ArgTypeUsername, ArgTypeAny }], @"kick",
 
-[Command commandWithBlock:^(Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
-    if ([args count] == 0) {
-        [caller error:@"Not enough arguments to chat (expects username)."];
+[Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args) {
+    NSError *err = nil;
+    if (![me verifyArity:args error:&err]) {
+        [caller error:[err localizedDescription]];
         return;
     }
+    
     NSString *us = [[[UserManager defaultManager] currentUsername] lowercaseString];
     NSString *toChat = [[args objectAtIndex:0] lowercaseString];
     NSMutableArray *objs = [NSMutableArray arrayWithObjects:us, toChat, nil];
@@ -125,6 +131,29 @@
 - (NSArray *)completionsForIndex:(NSInteger)index
 {
     return [NSArray array];
+}
+
+static NSError *createError(NSString *msg, NSInteger code) {
+    return [NSError errorWithDomain:@"org.jdt.commands"
+                               code:code
+                           userInfo:[NSDictionary dictionaryWithObject:msg
+                                                                forKey:NSLocalizedDescriptionKey]];
+}
+
+- (BOOL)verifyArity:(NSArray *)args error:(NSError **)err
+{
+    NSInteger cnt = [args count];
+    NSInteger ar = [self arity];
+    NSString *errmsg = @"Wrong number of arguments (got %ld, expected %ld).";
+    if (ar >= 0) {
+        if (cnt == ar)
+            return true;
+    } else {
+        if (cnt >= -ar - 1)
+            return true;
+    }
+    *err = createError([NSString stringWithFormat:errmsg, cnt, POSIFY(ar)], -1);
+    return false;
 }
 
 - (void)dealloc
