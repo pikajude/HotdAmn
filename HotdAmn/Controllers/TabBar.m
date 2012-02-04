@@ -190,9 +190,7 @@
     float width = 0;
     int idx = 0;
     for (TabButton *button in [tabView subviews]) {
-        // Round off tab rearranging - i.e. if the tab is more than 50%
-        // of the way on either side, return the proper index
-        float cellwidth = [[button cell] cellSize].width;
+        float cellwidth = [button frame].size.width;
         width += cellwidth;
         
         if(width >= point) return idx > 0 ? idx : 1;
@@ -234,7 +232,7 @@
     NSRect bounds = [tabView bounds];
     NSRect nextRect = NSMakeRect(bounds.origin.x + [tabView contentWidth],
                                 bounds.origin.y,
-                                length + 8.0f,
+                                120.0f,
                                 bounds.size.height);
     return nextRect;
 }
@@ -249,7 +247,7 @@
         TabButton *button = [[tabView subviews] objectAtIndex:i];
         NSRect newFrame = NSMakeRect(newWidth,
                                      [button frame].origin.y,
-                                     ([[button cell] cellSize].width + 8) * (1.0f > ratio ? ratio : 1.0f),
+                                     (i == 0 ? 80.0f : 160.0f) * (1.0f > ratio ? ratio : 1.0f),
                                      [button frame].size.height);
         [button setFrame:newFrame];
         newWidth += newFrame.size.width;

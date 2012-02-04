@@ -25,7 +25,6 @@
 
 - (void)awakeFromNib
 {
-    [self setNeedsDisplay:YES];
     [dragImage setParent:self];
     [dragImage setHidden:YES];
     [dragImage setFrameOrigin:[self frame].origin];
@@ -101,6 +100,7 @@
 
 - (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
 {
+    [self setNeedsDisplay:YES];
     NSInteger idx = [[self controller] indexOfRightmostButtonBeforePoint:[sender draggingLocation].x];
     NSInteger rightmostEdge = [sender draggingLocation].x + ([dragImage frame].size.width / 2);
     NSInteger loc = rightmostEdge - [dragImage frame].size.width;
