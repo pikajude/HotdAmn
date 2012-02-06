@@ -29,6 +29,7 @@
     [[self window] setTitle:_roomName];
     [topicContents setString:_contents];
     [[topicRendered mainFrame] loadHTMLString:_contents baseURL:[NSURL URLWithString:@"http://www.deviantart.com"]];
+    [topicContainer setBorderColor:[NSColor colorWithDeviceWhite:0.74f alpha:1.0f]];
 }
 
 - (TopicDialog *)initWithContents:(NSString *)contents roomName:(NSString *)roomName

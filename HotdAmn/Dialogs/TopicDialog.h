@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
+#import "BorderedView.h"
 
 @class HotDamn;
 
 @interface TopicDialog : NSWindowController <NSTextViewDelegate> {
     IBOutlet NSTextView *topicContents;
     IBOutlet WebView *topicRendered;
+    IBOutlet BorderedView *topicContainer;
     NSString *_roomName;
     NSString *_contents;
 }

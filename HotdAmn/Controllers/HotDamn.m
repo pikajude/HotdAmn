@@ -120,6 +120,9 @@
          topicActive)) {
         return NO;
     }
+    if ([theMenuItem action] == @selector(showTopic:) && [[[barControl highlightedTab] title] isEqualToString:@"Server"]) {
+        return NO;
+    }
     return YES;
 }
 
@@ -235,6 +238,11 @@
 - (void)onTopicAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     topicActive = NO;
+}
+
+- (NSRect)window:(NSWindow *)window willPositionSheet:(NSWindow *)sheet usingRect:(NSRect)rect
+{
+    return NSOffsetRect(rect, 0.0f, 3.0f);
 }
 
 @end
