@@ -219,10 +219,6 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (void)onTopicChange
 {
-    NSString *top = [Topic topicForRoom:[self roomName]];
-    if (top == NULL) {
-        top = @"";
-    }
     NSString *title = [NSString stringWithFormat:@"%@ — %@",
                        [[UserManager defaultManager] currentUsername],
                        [self roomName]];

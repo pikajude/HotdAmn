@@ -113,6 +113,7 @@
         [[NSColor colorWithDeviceWhite:isKey ? 0.4f : 0.56f alpha:1.0f] set];
         [NSBezierPath setDefaultLineWidth:2.0f];
         [p stroke];
+        [bg release];
     } else if([self state] == NSMixedState) {
         [[NSColor colorWithDeviceWhite:0.0f alpha:0.15f] set];
         [p fill];

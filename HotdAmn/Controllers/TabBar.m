@@ -6,6 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#define TAB_WIDTH 160.0f
+#define SERVER_TAB_WIDTH 80.0f
+
 #import "TabView.h"
 #import "TabBar.h"
 #import "TabButton.h"
@@ -209,6 +212,8 @@
 
 - (TabButton *)getButtonWithTitle:(NSString *)title
 {
+    if ([self indexOfButtonWithTitle:title] == NSNotFound)
+        return nil;
     return [[tabView subviews] objectAtIndex:[self indexOfButtonWithTitle:title]];
 }
 
@@ -232,22 +237,22 @@
     NSRect bounds = [tabView bounds];
     NSRect nextRect = NSMakeRect(bounds.origin.x + [tabView contentWidth],
                                 bounds.origin.y,
-                                120.0f,
+                                TAB_WIDTH,
                                 bounds.size.height);
     return nextRect;
 }
 
 - (void)resizeButtons
 {
-    NSInteger totalWidth = [tabView contentWidth];
-    NSInteger frame = [[[tabView window] contentView] frame].size.width;
-    CGFloat ratio = (float)frame / (float)totalWidth;
+    CGFloat totalWidth = [tabView contentWidth];
+    CGFloat frame = [[[tabView window] contentView] frame].size.width;
+    CGFloat ratio = frame / totalWidth;
     CGFloat newWidth = 0;
     for (int i = 0; i < [[tabView subviews] count]; i++) {
         TabButton *button = [[tabView subviews] objectAtIndex:i];
         NSRect newFrame = NSMakeRect(newWidth,
                                      [button frame].origin.y,
-                                     (i == 0 ? 80.0f : 160.0f) * (1.0f > ratio ? ratio : 1.0f),
+                                     (i == 0 ? SERVER_TAB_WIDTH : TAB_WIDTH) * (1.0f > ratio ? ratio : 1.0f),
                                      [button frame].size.height);
         [button setFrame:newFrame];
         newWidth += newFrame.size.width;

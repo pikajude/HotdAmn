@@ -25,6 +25,8 @@
 		25153C5614BF3E8000115F43 /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25153C4F14BF3E7F00115F43 /* ServerView.xib */; };
 		25153C5714BF3E8000115F43 /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25153C5014BF3E7F00115F43 /* Welcome.xib */; };
 		25153C5B14BF3EC700115F43 /* Shell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25153C5A14BF3EC700115F43 /* Shell.xib */; };
+		2516D3E214DDAF26001C2EA0 /* TopicDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2516D3E114DDAF26001C2EA0 /* TopicDialog.m */; };
+		2516D3E514DDAF47001C2EA0 /* Topic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2516D3E414DDAF47001C2EA0 /* Topic.xib */; };
 		2519311614AE46DB003A5FBA /* TabButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519311514AE46DB003A5FBA /* TabButtonCell.m */; };
 		2519BE5514AE21F30029F746 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519BE5414AE21F30029F746 /* Cocoa.framework */; };
 		2519BE5F14AE21F30029F746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2519BE5D14AE21F30029F746 /* InfoPlist.strings */; };
@@ -131,6 +133,9 @@
 		25153C4F14BF3E7F00115F43 /* ServerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerView.xib; sourceTree = "<group>"; };
 		25153C5014BF3E7F00115F43 /* Welcome.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Welcome.xib; sourceTree = "<group>"; };
 		25153C5A14BF3EC700115F43 /* Shell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Shell.xib; sourceTree = "<group>"; };
+		2516D3E014DDAF26001C2EA0 /* TopicDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TopicDialog.h; sourceTree = "<group>"; };
+		2516D3E114DDAF26001C2EA0 /* TopicDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDialog.m; sourceTree = "<group>"; };
+		2516D3E414DDAF47001C2EA0 /* Topic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Topic.xib; sourceTree = "<group>"; };
 		2519311414AE46DB003A5FBA /* TabButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButtonCell.h; path = Views/TabButtonCell.h; sourceTree = "<group>"; };
 		2519311514AE46DB003A5FBA /* TabButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButtonCell.m; path = Views/TabButtonCell.m; sourceTree = "<group>"; };
 		2519BE5014AE21F30029F746 /* HotdAmn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotdAmn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,6 +296,7 @@
 				25153C5914BF3EC700115F43 /* Preferences */,
 				25153C4D14BF3E7F00115F43 /* MainMenu.xib */,
 				25153C4F14BF3E7F00115F43 /* ServerView.xib */,
+				2516D3E414DDAF47001C2EA0 /* Topic.xib */,
 				25153C5014BF3E7F00115F43 /* Welcome.xib */,
 			);
 			path = Interface;
@@ -526,6 +532,8 @@
 				259EA07D14B53FF700D44466 /* JoinRoom.m */,
 				252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */,
 				252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */,
+				2516D3E014DDAF26001C2EA0 /* TopicDialog.h */,
+				2516D3E114DDAF26001C2EA0 /* TopicDialog.m */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 				257FD6F114C21A3200286FAE /* PrefsUsers.xib in Resources */,
 				25AB522C14C35CEC00A3A76C /* check.png in Resources */,
 				2567C64B14C4990C00A89A91 /* chat_shell.html in Resources */,
+				2516D3E514DDAF47001C2EA0 /* Topic.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +705,7 @@
 				254B3C8014CD13BC00E97553 /* BuddyCommand.m in Sources */,
 				2514FE6D14D596B7000CC1B5 /* MessageFormatter.m in Sources */,
 				25FCA20514DB2B590031E150 /* TabGhostView.m in Sources */,
+				2516D3E214DDAF26001C2EA0 /* TopicDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

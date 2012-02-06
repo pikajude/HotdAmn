@@ -26,6 +26,7 @@
 - (void)onRecvPart:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;
+- (void)onSet:(Packet *)msg;
 /*- (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPrivchg:(Packet *)msg;
 - (void)onRecvKicked:(Packet *)msg;

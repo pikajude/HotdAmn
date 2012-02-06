@@ -45,6 +45,8 @@
 - (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPart:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;
+- (void)onRecvAction:(Packet *)msg;
+- (void)onSet:(Packet *)msg;
 
 #pragma mark -
 #pragma mark Actions
@@ -55,6 +57,7 @@
 - (void)action:(NSString *)line inRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room withReason:(NSString *)reason;
+- (void)setTopic:(NSString *)topic inRoom:(NSString *)room;
 
 - (void)onLaunch;
 

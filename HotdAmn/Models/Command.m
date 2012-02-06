@@ -152,7 +152,8 @@ static NSError *createError(NSString *msg, NSInteger code) {
         if (cnt >= -ar - 1)
             return true;
     }
-    *err = createError([NSString stringWithFormat:errmsg, cnt, POSIFY(ar)], -1);
+    if (*err != NULL)
+        *err = createError([NSString stringWithFormat:errmsg, cnt, POSIFY(ar)], -1);
     return false;
 }
 

@@ -16,6 +16,7 @@
 #import "ThemeHelper.h"
 #import "UserManager.h"
 #import "Preferences.h"
+#import "TopicDialog.h"
 
 typedef enum {
     AutojoinNone,
@@ -26,6 +27,7 @@ typedef enum {
 @interface HotDamn : NSObject <NSApplicationDelegate, NSWindowDelegate, EventHandlerDelegate> {
     IBOutlet TabBar *barControl;
     Preferences *prefs;
+    BOOL topicActive;
 }
 
 @property (readwrite, assign) BOOL isConnected;
@@ -48,6 +50,7 @@ typedef enum {
 #pragma mark Panels
 - (IBAction)showAboutPanel:(id)sender;
 - (IBAction)showPreferences:(id)sender;
+- (IBAction)showTopic:(id)sender;
 
 #pragma mark -
 #pragma mark Menu items

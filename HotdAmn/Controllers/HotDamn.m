@@ -116,7 +116,8 @@
     }
     if (([theMenuItem action] == @selector(selectNextTab:) ||
          [theMenuItem action] == @selector(selectPreviousTab:)) &&
-        [[[barControl tabView] subviews] count] < 2) {
+        ([[[barControl tabView] subviews] count] < 2 ||
+         topicActive)) {
         return NO;
     }
     return YES;
@@ -157,6 +158,8 @@
 - (void)postMessage:(Message *)msg inRoom:(NSString *)roomName
 {
     TabButton *b = [barControl getButtonWithTitle:roomName];
+    if (b == nil)
+        b = [barControl getButtonWithTitle:@"Server"];
     [b addLine:msg];
     [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
     [barControl resizeButtons];
@@ -214,6 +217,24 @@
 - (void)onQuitAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     [NSApp replyToApplicationShouldTerminate:returnCode == NSOKButton];
+}
+
+- (IBAction)showTopic:(id)sender
+{
+    topicActive = YES;
+    TopicDialog *d = [[TopicDialog alloc] initWithContents:[Topic topicForRoom:[[barControl highlightedTab] title]]
+                                                  roomName:[[barControl highlightedTab] title]];
+    [d setDelegate:self];
+    [NSApp beginSheet:[d window]
+       modalForWindow:[self window]
+        modalDelegate:self
+       didEndSelector:@selector(onTopicAlertDidEnd:returnCode:contextInfo:)
+          contextInfo:nil];
+}
+
+- (void)onTopicAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    topicActive = NO;
 }
 
 @end

@@ -200,6 +200,15 @@
     [[self delegate] postMessage:m inRoom:[msg roomName]];
 }
 
+- (void)onSet:(Packet *)msg
+{
+    NSString *prop = [[[msg args] objectForKey:@"p"] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[[[msg args] objectForKey:@"p"] substringToIndex:1] uppercaseString]];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ set error: %@",
+                                                    prop,
+                                                    [[msg args] objectForKey:@"e"]]] autorelease];
+    [[self delegate] postMessage:m inRoom:[msg roomName]];
+}
+
 #pragma mark -
 #pragma mark Actions
 
@@ -257,6 +266,14 @@
                     [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
                     us,
                     reason];
+    [sock write:pk];
+}
+
+- (void)setTopic:(NSString *)topic inRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"set chat:%@\np=topic\n\n%@\n\0",
+                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    topic];
     [sock write:pk];
 }
 
