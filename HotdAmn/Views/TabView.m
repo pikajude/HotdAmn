@@ -124,6 +124,9 @@
 {
     [NSAnimationContext beginGrouping];
     
+    [[NSAnimationContext currentContext] setDuration:0.25];
+    [[NSAnimationContext currentContext] setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
     [[NSAnimationContext currentContext] setCompletionHandler:^(void) {
         [dragImage setImage:nil];
         [dragImage setHidden:YES];
