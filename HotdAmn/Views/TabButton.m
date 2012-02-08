@@ -66,12 +66,14 @@
 - (void)mouseExited:(NSEvent *)theEvent
 {
     [[self cell] mouseExited:theEvent];
+    [[self superview] setNeedsDisplayInRect:[self bounds]];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
     [self setState:1];
     [[self target] performSelector:[self action] withObject:self];
+    [[self superview] setNeedsDisplay:YES];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
@@ -84,7 +86,7 @@
 - (void)resetCursorRects
 {
     NSCursor *c = [NSCursor pointingHandCursor];
-    [self addCursorRect:[self bounds] cursor:c];
+    [self addCursorRect:[self frame] cursor:c];
     [c setOnMouseEntered:YES];
     [super resetCursorRects];
 }
@@ -128,7 +130,7 @@
 - (void)addTracker
 {
     NSTrackingArea *ar = [[[NSTrackingArea alloc]
-                          initWithRect:[self bounds]
+                          initWithRect:NSMakeRect(0.0f, 0.0f, [self frame].size.width, [self frame].size.height)
                                options:NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow
                                  owner:self
                               userInfo:nil] autorelease];

@@ -60,9 +60,10 @@
     [tabView addSubview:b];
     
     [b createChatView];
-    [b setFrame:[self getNextRectWithLength:[[b cell] cellSize].width]];
+    [b setFrame:[self getNextRect]];
     [b addTracker];
     [_tabs setObject:b forKey:[b roomName]];
+    
     [self activateSingleButton:b];
 }
 
@@ -232,12 +233,12 @@
 #pragma mark -
 #pragma mark Geometry
 
-- (NSRect)getNextRectWithLength:(NSInteger)length
+- (NSRect)getNextRect
 {
     NSRect bounds = [tabView bounds];
     NSRect nextRect = NSMakeRect(bounds.origin.x + [tabView contentWidth],
                                 bounds.origin.y,
-                                TAB_WIDTH,
+                                [[tabView subviews] count] == 1 ? SERVER_TAB_WIDTH : TAB_WIDTH,
                                 bounds.size.height);
     return nextRect;
 }

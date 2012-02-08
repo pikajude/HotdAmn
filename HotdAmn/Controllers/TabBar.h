@@ -53,7 +53,7 @@
 #pragma mark -
 #pragma mark Geometry
 
-- (NSRect)getNextRectWithLength:(NSInteger) length;
+- (NSRect)getNextRect;
 - (void)resizeButtons;
 
 #pragma mark -
