@@ -136,7 +136,7 @@
         [[self controller] resizeButtons];
     }];
     
-    NSPoint destination = NSMakePoint((dragIndex - 1)*160 + 80, [[[self window] contentView] frame].size.height - 24.0f);
+    NSPoint destination = NSMakePoint((dragIndex - 1) * TAB_WIDTH + SERVER_TAB_WIDTH, [[[self window] contentView] frame].size.height - 24.0f);
     [[dragImage animator] setFrameOrigin:destination];
     
     [NSAnimationContext endGrouping];

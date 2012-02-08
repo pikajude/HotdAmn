@@ -153,7 +153,7 @@
     
     NSButton *current = [[tabView subviews] objectAtIndex:idx];
     
-    [[current animator] setFrameOrigin:NSMakePoint(80.0f + (fromIdx - 1) * 160.0f, [current frame].origin.y)];
+    [[current animator] setFrameOrigin:NSMakePoint(SERVER_TAB_WIDTH + (fromIdx - 1) * TAB_WIDTH, [current frame].origin.y)];
     
     [NSAnimationContext endGrouping];
 }
@@ -248,7 +248,7 @@
 - (NSRect)getNextRect
 {
     NSRect bounds = [tabView bounds];
-    NSRect nextRect = NSMakeRect([[tabView subviews] count] == 0 ? 0 : [[tabView subviews] count] * 160 - 80,
+    NSRect nextRect = NSMakeRect([[tabView subviews] count] == 0 ? 0 : [[tabView subviews] count] * TAB_WIDTH - SERVER_TAB_WIDTH,
                                 bounds.origin.y,
                                 [[tabView subviews] count] == 0 ? SERVER_TAB_WIDTH : TAB_WIDTH,
                                 bounds.size.height);
