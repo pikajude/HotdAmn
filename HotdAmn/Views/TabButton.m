@@ -37,7 +37,7 @@
                                  frame.size.height - 24);
     [chatRoom setDelegate:self];
     [[chatRoom view] setHidden:YES];
-    // [[[self window] contentView] addSubview:[chatRoom view]];
+    [[[self window] contentView] addSubview:[chatRoom view]];
     [[chatRoom view] setFrame:ourframe];
     [[chatRoom split] setDelegate:chatRoom];
     [[chatRoom view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
