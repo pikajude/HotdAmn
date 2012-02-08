@@ -25,7 +25,6 @@
 
 - (void)awakeFromNib
 {
-    [dragImage setWantsLayer:YES];
     [dragImage setParent:self];
     [dragImage setHidden:YES];
     [dragImage setFrameOrigin:[self frame].origin];
@@ -93,6 +92,8 @@
     
     [dragImage setFrameSize:[[dragImage image] size]];
     
+    [dragImage setFrameOrigin:NSMakePoint([sender draggingLocation].x - (TAB_WIDTH / 2), [dragImage frame].origin.y)];
+    
     [dragImage setHidden:NO];
     
     [[self controller] hideButtonWithTitle:draggerName];
@@ -113,9 +114,8 @@
     [dragImage setFrameOrigin:NSMakePoint(destination - (TAB_WIDTH / 2), [dragImage frame].origin.y)];
     
     if (dragIndex != idx) {
+        [[self controller] insertButton:dragger atIndex:idx fromIndex:dragIndex];
         dragIndex = idx;
-        // Move a spacer to the new spot.
-        [[self controller] insertButton:dragger atIndex:dragIndex];
     }
     return NSDragOperationMove;
 }
@@ -130,7 +130,7 @@
     [[NSAnimationContext currentContext] setCompletionHandler:^(void) {
         [dragImage setImage:nil];
         [dragImage setHidden:YES];
-        [[self controller] insertButton:dragger atIndex:dragIndex];
+        [[self controller] insertButton:dragger atIndex:dragIndex fromIndex:dragIndex];
         [[self controller] showButtonWithTitle:[dragger title]];
         [[dragger cell] setBadgeValue:0];
         [[self controller] resizeButtons];

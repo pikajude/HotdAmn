@@ -136,13 +136,26 @@
     [self resizeButtons];
 }
 
-- (void)insertButton:(NSButton *)button atIndex:(NSInteger)idx
+- (void)insertButton:(NSButton *)button atIndex:(NSInteger)idx fromIndex:(NSInteger)fromIdx
 {
-    NSMutableArray *ary = [NSMutableArray arrayWithArray:[tabView subviews]];
-    [ary removeObjectIdenticalTo:button];
-    [ary insertObject:button atIndex:idx];
-    [tabView setSubviews:ary];
-    [self resizeButtons];
+    [NSAnimationContext beginGrouping];
+    
+    [[NSAnimationContext currentContext] setDuration:0.25];
+    [[NSAnimationContext currentContext] setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[NSAnimationContext currentContext] setCompletionHandler:^(void) {
+        NSMutableArray *ary = [NSMutableArray arrayWithArray:[tabView subviews]];
+        [ary removeObjectIdenticalTo:button];
+        [ary insertObject:button atIndex:idx];
+        [tabView setSubviews:ary];
+        [self resizeButtons];
+    }];
+    
+    NSButton *current = [[tabView subviews] objectAtIndex:idx];
+    
+    [[current animator] setFrameOrigin:NSMakePoint(80.0f + (fromIdx - 1) * 160.0f, [current frame].origin.y)];
+    
+    [NSAnimationContext endGrouping];
 }
 
 - (void)selectNext

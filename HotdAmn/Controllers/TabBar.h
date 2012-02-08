@@ -35,7 +35,7 @@
 - (void)fixHighlight;
 - (void)selectNext;
 - (void)selectPrevious;
-- (void)insertButton:(NSButton *)button atIndex:(NSInteger)idx;
+- (void)insertButton:(NSButton *)button atIndex:(NSInteger)idx fromIndex:(NSInteger)idx;
 
 #pragma mark -
 #pragma mark Removing/Hiding
