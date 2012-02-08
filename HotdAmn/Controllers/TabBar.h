@@ -11,6 +11,9 @@
 #import "TabButtonCell.h"
 #import "Preferences.h"
 
+#define TAB_WIDTH 160.0f
+#define SERVER_TAB_WIDTH 80.0f
+
 @class TabView;
 
 @interface TabBar : NSViewController {

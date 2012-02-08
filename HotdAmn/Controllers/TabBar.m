@@ -6,9 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#define TAB_WIDTH 160.0f
-#define SERVER_TAB_WIDTH 80.0f
-
 #import "TabView.h"
 #import "TabBar.h"
 #import "TabButton.h"
@@ -56,11 +53,13 @@
     [b setTarget:self];
     [b setAction:@selector(activateSingleButton:)];
     [b setCtrl:self];
+    [b setFrame:[self getNextRect]];
+    
+    NSRect r = [b frame];
+    NSLog(@"%f, %f, %f, %f", r.origin.x, r.origin.y, r.size.width, r.size.height);
     
     [tabView addSubview:b];
-    
     [b createChatView];
-    [b setFrame:[self getNextRect]];
     [b addTracker];
     [_tabs setObject:b forKey:[b roomName]];
     
@@ -236,9 +235,9 @@
 - (NSRect)getNextRect
 {
     NSRect bounds = [tabView bounds];
-    NSRect nextRect = NSMakeRect(bounds.origin.x + [tabView contentWidth],
+    NSRect nextRect = NSMakeRect([[tabView subviews] count] == 0 ? 0 : [[tabView subviews] count] * 160 - 80,
                                 bounds.origin.y,
-                                [[tabView subviews] count] == 1 ? SERVER_TAB_WIDTH : TAB_WIDTH,
+                                [[tabView subviews] count] == 0 ? SERVER_TAB_WIDTH : TAB_WIDTH,
                                 bounds.size.height);
     return nextRect;
 }

@@ -37,7 +37,7 @@
                                  frame.size.height - 24);
     [chatRoom setDelegate:self];
     [[chatRoom view] setHidden:YES];
-    [[[self window] contentView] addSubview:[chatRoom view]];
+    // [[[self window] contentView] addSubview:[chatRoom view]];
     [[chatRoom view] setFrame:ourframe];
     [[chatRoom split] setDelegate:chatRoom];
     [[chatRoom view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
@@ -86,7 +86,7 @@
 - (void)resetCursorRects
 {
     NSCursor *c = [NSCursor pointingHandCursor];
-    [self addCursorRect:[self frame] cursor:c];
+    [self addCursorRect:[self bounds] cursor:c];
     [c setOnMouseEntered:YES];
     [super resetCursorRects];
 }
@@ -130,7 +130,7 @@
 - (void)addTracker
 {
     NSTrackingArea *ar = [[[NSTrackingArea alloc]
-                          initWithRect:NSMakeRect(0.0f, 0.0f, [self frame].size.width, [self frame].size.height)
+                          initWithRect:[self bounds]
                                options:NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow
                                  owner:self
                               userInfo:nil] autorelease];

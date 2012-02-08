@@ -25,6 +25,7 @@
 
 - (void)awakeFromNib
 {
+    [dragImage setWantsLayer:YES];
     [dragImage setParent:self];
     [dragImage setHidden:YES];
     [dragImage setFrameOrigin:[self frame].origin];
@@ -102,10 +103,14 @@
 {
     [self setNeedsDisplay:YES];
     NSInteger idx = [[self controller] indexOfRightmostButtonBeforePoint:[sender draggingLocation].x];
-    NSInteger rightmostEdge = [sender draggingLocation].x + ([dragImage frame].size.width / 2);
-    NSInteger loc = rightmostEdge - [dragImage frame].size.width;
+    NSInteger dragLoc = [sender draggingLocation].x;
     
-    [dragImage setFrameOrigin:NSMakePoint(rightmostEdge > [self frame].size.width ? [self frame].size.width - [dragImage frame].size.width : loc, [dragImage frame].origin.y)];
+    NSInteger rightLimit = [self frame].size.width - (TAB_WIDTH / 2);
+    NSInteger leftLimit = SERVER_TAB_WIDTH + (TAB_WIDTH / 2);
+    
+    NSInteger destination = dragLoc > rightLimit ? rightLimit : dragLoc < leftLimit ? leftLimit : dragLoc;
+    
+    [dragImage setFrameOrigin:NSMakePoint(destination - (TAB_WIDTH / 2), [dragImage frame].origin.y)];
     
     if (dragIndex != idx) {
         dragIndex = idx;
@@ -117,12 +122,21 @@
 
 - (void)draggingEnded:(id<NSDraggingInfo>)sender
 {
-    [dragImage setImage:nil];
-    [dragImage setHidden:YES];
-    [[self controller] insertButton:dragger atIndex:dragIndex];
-    [[self controller] showButtonWithTitle:[dragger title]];
-    [[dragger cell] setBadgeValue:0];
-    [[self controller] resizeButtons];
+    [NSAnimationContext beginGrouping];
+    
+    [[NSAnimationContext currentContext] setCompletionHandler:^(void) {
+        [dragImage setImage:nil];
+        [dragImage setHidden:YES];
+        [[self controller] insertButton:dragger atIndex:dragIndex];
+        [[self controller] showButtonWithTitle:[dragger title]];
+        [[dragger cell] setBadgeValue:0];
+        [[self controller] resizeButtons];
+    }];
+    
+    NSPoint destination = NSMakePoint((dragIndex - 1)*160 + 80, [[[self window] contentView] frame].size.height - 24.0f);
+    [[dragImage animator] setFrameOrigin:destination];
+    
+    [NSAnimationContext endGrouping];
 }
 
 - (void)willRemoveSubview:(NSView *)subview

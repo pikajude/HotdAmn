@@ -79,6 +79,7 @@
 		25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5C14BFDBBE0019326D /* UserMessage.m */; };
 		25F20B6014BFE5300019326D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5F14BFE5300019326D /* User.m */; };
 		25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B6214BFE5D90019326D /* AvatarManager.m */; };
+		25F890B614E2A61D00CBADD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F890B514E2A61D00CBADD1 /* QuartzCore.framework */; };
 		25FCA20514DB2B590031E150 /* TabGhostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FCA20414DB2B590031E150 /* TabGhostView.m */; };
 		25FECF2414C0E57F0044AF94 /* UserListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FECF2314C0E57F0044AF94 /* UserListNode.m */; };
 /* End PBXBuildFile section */
@@ -228,6 +229,7 @@
 		25F20B5F14BFE5300019326D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = dAmn/Models/User.m; sourceTree = "<group>"; };
 		25F20B6114BFE5D90019326D /* AvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarManager.h; path = dAmn/AvatarManager.h; sourceTree = "<group>"; };
 		25F20B6214BFE5D90019326D /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarManager.m; path = dAmn/AvatarManager.m; sourceTree = "<group>"; };
+		25F890B514E2A61D00CBADD1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		25FCA20314DB2B590031E150 /* TabGhostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabGhostView.h; path = Views/TabGhostView.h; sourceTree = "<group>"; };
 		25FCA20414DB2B590031E150 /* TabGhostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabGhostView.m; path = Views/TabGhostView.m; sourceTree = "<group>"; };
 		25FECF2214C0E57F0044AF94 /* UserListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListNode.h; path = Views/UserListNode.h; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25F890B614E2A61D00CBADD1 /* QuartzCore.framework in Frameworks */,
 				258E5B6914CDF72C0041EDF1 /* Growl.framework in Frameworks */,
 				253B216E14C66F3D00146356 /* libicucore.dylib in Frameworks */,
 				25123A9F14B95C800022446A /* WebKit.framework in Frameworks */,
@@ -319,6 +322,7 @@
 		2519BE4514AE21F20029F746 = {
 			isa = PBXGroup;
 			children = (
+				25F890B514E2A61D00CBADD1 /* QuartzCore.framework */,
 				258E5B6814CDF72C0041EDF1 /* Growl.framework */,
 				250E00CC14C77F6300AE83F7 /* Growl Registration Ticket.growlRegDict */,
 				253B216D14C66F3D00146356 /* libicucore.dylib */,
