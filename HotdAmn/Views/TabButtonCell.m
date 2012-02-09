@@ -12,7 +12,7 @@
 
 @implementation TabButtonCell
 
-@synthesize prevState;
+@synthesize prevState, isHighlight;
 
 - (id)init
 {
@@ -139,7 +139,11 @@
                                                          yRadius:newFrame.size.height / 2];
     
     // Pill background color.
-    [[NSColor colorWithDeviceWhite:1.0f alpha:0.7f] set];
+    if (isHighlight) {
+        [[NSColor colorWithDeviceRed:1.0f green:0.3f blue:0.3f alpha:0.7f] set];
+    } else {
+        [[NSColor colorWithDeviceWhite:1.0f alpha:0.7f] set];
+    }
     
     // Shadow for the pill.
     [path fill];

@@ -16,6 +16,8 @@
 
 @end
 
+@class Chat;
+
 @interface User : NSObject
 
 - (User *)initWithUsername:(NSString *)username userIcon:(NSInteger)userIcon symbol:(char)symbol;

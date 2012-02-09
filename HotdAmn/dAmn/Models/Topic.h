@@ -14,6 +14,8 @@
 
 @end
 
+@class Chat;
+
 @interface Topic : NSObject {
     NSArray *watchers;
 }

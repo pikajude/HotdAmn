@@ -82,7 +82,9 @@
 
 - (IBAction)removeTab:(id)sender
 {
+    [self beforeRemoval:[barControl highlightedTab]];
     [barControl removeHighlighted];
+    [self afterRemoval];
 }
 
 - (IBAction)selectNextTab:(id)sender
@@ -102,7 +104,20 @@
 
 - (void)removeTabWithTitle:(NSString *)title
 {
+    [self beforeRemoval:[barControl getButtonWithTitle:title]];
     [barControl removeButtonWithTitle:title];
+    [self afterRemoval];
+}
+
+- (void)beforeRemoval:(id)tab
+{
+    [evtHandler part:[tab title]];
+}
+
+- (void)afterRemoval
+{
+    if ([[barControl highlightedTab] chatRoom])
+        [[[barControl highlightedTab] chatRoom] onTopicChange];
 }
 
 // TODO: this
@@ -165,6 +180,8 @@
         b = [barControl getButtonWithTitle:@"Server"];
     [b addLine:msg];
     [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
+    if ([msg highlight])
+        [[b cell] setIsHighlight:YES];
     [barControl resizeButtons];
 }
 

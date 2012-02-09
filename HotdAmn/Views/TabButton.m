@@ -162,4 +162,11 @@
     [chatRoom addLine:str];
 }
 
+- (void)dealloc
+{
+    [[chatRoom view] removeFromSuperview];
+    [chatRoom release];
+    [super dealloc];
+}
+
 @end

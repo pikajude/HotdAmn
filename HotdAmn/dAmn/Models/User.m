@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "Chat.h"
 
 static NSMutableArray *watchers;
 static NSMutableDictionary *roomList;
@@ -113,7 +114,8 @@ static NSMutableDictionary *roomList;
 {
     for (int i = 0; i < [watchers count]; i++) {
         if (watcher == [[watchers objectAtIndex:i] pointerValue]) {
-            [watchers removeObject:watcher];
+            [self removeRoom:[(Chat *)watcher roomName]];
+            [watchers removeObjectAtIndex:i];
             return;
         }
     }

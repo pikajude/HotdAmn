@@ -14,6 +14,7 @@
 }
 
 @property (assign) NSInteger prevState;
+@property (assign) BOOL isHighlight;
 
 - (NSInteger)badgeValue;
 - (void)setBadgeValue:(NSInteger)val;

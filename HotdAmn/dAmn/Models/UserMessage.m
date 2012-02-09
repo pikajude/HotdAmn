@@ -22,7 +22,7 @@
     
     for (NSString *match in highlights) {
         if ([content rangeOfString:match].location != NSNotFound) {
-            highlight = YES;
+            _highlight = YES;
             break;
         }
     }

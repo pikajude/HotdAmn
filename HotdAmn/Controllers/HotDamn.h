@@ -45,6 +45,8 @@ typedef enum {
 - (void)removeTabWithTitle:(NSString *)title;
 - (IBAction)selectNextTab:(id)sender;
 - (IBAction)selectPreviousTab:(id)sender;
+- (void)beforeRemoval:(id)tab;
+- (void)afterRemoval;
 
 #pragma mark -
 #pragma mark Panels
