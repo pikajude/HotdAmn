@@ -11,6 +11,7 @@
 
 static NSMutableArray *watchers;
 static NSMutableDictionary *topics;
+static NSMutableDictionary *titles;
 
 @implementation Topic
 
@@ -24,14 +25,30 @@ static NSMutableDictionary *topics;
     }
 }
 
++ (void)setTitle:(NSString *)title forRoom:(NSString *)roomName
+{
+    if (!titles)
+        titles = [[NSMutableDictionary dictionary] retain];
+    [titles setObject:title forKey:roomName];
+    for (NSValue *obj in watchers) {
+        [(id<TopicWatcher>)[obj pointerValue] onTitleChange];
+    }
+}
+
 + (NSString *)topicForRoom:(NSString *)roomName
 {
     return [topics objectForKey:roomName];
 }
 
++ (NSString *)titleForRoom:(NSString *)roomName
+{
+    return [titles objectForKey:roomName];
+}
+
 + (void)removeRoom:(NSString *)room
 {
     [topics removeObjectForKey:room];
+    [titles removeObjectForKey:room];
 }
 
 + (void)addWatcher:(id<TopicWatcher>)watcher
