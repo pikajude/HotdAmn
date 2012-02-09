@@ -93,7 +93,7 @@
         [delegate postMessage:m inRoom:@"Server"];
         [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
-        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
+        ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
     }
 }

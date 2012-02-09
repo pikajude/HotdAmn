@@ -11,6 +11,8 @@
 @protocol TopicWatcher <NSObject>
 
 - (void)onTopicChange;
+
+@optional
 - (void)onTitleChange;
 
 @end

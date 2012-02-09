@@ -56,7 +56,6 @@
     [b setFrame:[self getNextRect]];
     
     NSRect r = [b frame];
-    NSLog(@"%f, %f, %f, %f", r.origin.x, r.origin.y, r.size.width, r.size.height);
     
     [tabView addSubview:b];
     [b createChatView];

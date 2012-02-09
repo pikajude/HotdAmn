@@ -10,6 +10,7 @@
 #import "DamnSocket.h"
 #import "Message.h"
 #import "UserMessage.h"
+#import "ErrorMessage.h"
 #import "UserAction.h"
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"

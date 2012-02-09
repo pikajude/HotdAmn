@@ -80,6 +80,7 @@
 		25F20B6014BFE5300019326D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5F14BFE5300019326D /* User.m */; };
 		25F20B6314BFE5D90019326D /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B6214BFE5D90019326D /* AvatarManager.m */; };
 		25F890B614E2A61D00CBADD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F890B514E2A61D00CBADD1 /* QuartzCore.framework */; };
+		25F890BA14E35ABE00CBADD1 /* ErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F890B914E35ABE00CBADD1 /* ErrorMessage.m */; };
 		25FCA20514DB2B590031E150 /* TabGhostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FCA20414DB2B590031E150 /* TabGhostView.m */; };
 		25FECF2414C0E57F0044AF94 /* UserListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FECF2314C0E57F0044AF94 /* UserListNode.m */; };
 /* End PBXBuildFile section */
@@ -230,6 +231,8 @@
 		25F20B6114BFE5D90019326D /* AvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarManager.h; path = dAmn/AvatarManager.h; sourceTree = "<group>"; };
 		25F20B6214BFE5D90019326D /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarManager.m; path = dAmn/AvatarManager.m; sourceTree = "<group>"; };
 		25F890B514E2A61D00CBADD1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		25F890B814E35ABE00CBADD1 /* ErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ErrorMessage.h; path = dAmn/Models/ErrorMessage.h; sourceTree = "<group>"; };
+		25F890B914E35ABE00CBADD1 /* ErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorMessage.m; path = dAmn/Models/ErrorMessage.m; sourceTree = "<group>"; };
 		25FCA20314DB2B590031E150 /* TabGhostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabGhostView.h; path = Views/TabGhostView.h; sourceTree = "<group>"; };
 		25FCA20414DB2B590031E150 /* TabGhostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabGhostView.m; path = Views/TabGhostView.m; sourceTree = "<group>"; };
 		25FECF2214C0E57F0044AF94 /* UserListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListNode.h; path = Views/UserListNode.h; sourceTree = "<group>"; };
@@ -499,6 +502,8 @@
 		256E7F7514BFB953000608A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				25F890B814E35ABE00CBADD1 /* ErrorMessage.h */,
+				25F890B914E35ABE00CBADD1 /* ErrorMessage.m */,
 				256E7F7714BFB96A000608A1 /* Message.h */,
 				256E7F7814BFB96A000608A1 /* Message.m */,
 				2514FE6B14D596B7000CC1B5 /* MessageFormatter.h */,
@@ -716,6 +721,7 @@
 				25FCA20514DB2B590031E150 /* TabGhostView.m in Sources */,
 				2516D3E214DDAF26001C2EA0 /* TopicDialog.m in Sources */,
 				25822A4F14E09D7F0004C3EE /* BorderedView.m in Sources */,
+				25F890BA14E35ABE00CBADD1 /* ErrorMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
