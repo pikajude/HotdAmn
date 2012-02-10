@@ -46,8 +46,16 @@
     
     NSRect newRect = NSMakeRect(newOriginX, newOriginY, newWidth, newHeight);
     
-    [[self window] setFrame:newRect display:NO animate:YES];
-    [[[self window] contentView] addSubview:[currentPanel view]];
+    [NSAnimationContext beginGrouping];
+    
+    [[NSAnimationContext currentContext] setDuration:0.15f];
+    [[NSAnimationContext currentContext] setCompletionHandler:^{
+        [[[self window] contentView] addSubview:[currentPanel view]];
+    }];
+    
+    [[[self window] animator] setFrame:newRect display:NO];
+    
+    [NSAnimationContext endGrouping];
 }
 
 @end

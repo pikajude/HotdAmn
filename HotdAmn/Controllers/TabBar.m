@@ -55,8 +55,6 @@
     [b setCtrl:self];
     [b setFrame:[self getNextRect]];
     
-    NSRect r = [b frame];
-    
     [tabView addSubview:b];
     [b createChatView];
     [b addTracker];
@@ -310,6 +308,7 @@
     for (TabButton *b in [[self tabView] subviews]) {
         [b setDividerPos:sep];
     }
+    [tabView setNeedsDisplay:YES];
 }
 
 - (void)dealloc

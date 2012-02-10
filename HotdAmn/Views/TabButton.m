@@ -74,12 +74,12 @@
     [self setState:1];
     [[self target] performSelector:[self action] withObject:self];
     [[self superview] setNeedsDisplay:YES];
+    [chatRoom onTopicChange];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
     [[self cell] setBadgeValue:0];
-    [chatRoom onTopicChange];
     [[self ctrl] resizeButtons];
 }
 
