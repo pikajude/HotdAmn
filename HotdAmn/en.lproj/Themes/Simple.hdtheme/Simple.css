@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Consolas, Monaco, monospace;
+	font-size: 12px;
+}
+
+li {
+	padding: 3px;
+}
+
+li:nth-child(odd) {
+	background: #f1f1f1;
+}
+
+avatar img {
+	vertical-align: middle;
+}
+
+.server-msg username {
+	display: none;
+}
+
+.server-msg msg {
+	color: #666;
+}

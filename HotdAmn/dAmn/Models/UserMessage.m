@@ -20,12 +20,12 @@
     NSMutableArray *highlights = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"highlights"]];
     [highlights addObject:[[UserManager defaultManager] currentUsername]];
     
-    for (NSString *match in highlights) {
-        if ([content rangeOfString:match].location != NSNotFound) {
-            _highlight = YES;
-            break;
-        }
-    }
+    if (![[highlights lastObject] isEqualToString:[[self user] username]])
+        for (NSString *match in highlights)
+            if ([content rangeOfString:match].location != NSNotFound) {
+                _highlight = YES;
+                break;
+            }
     
     return self;
 }
