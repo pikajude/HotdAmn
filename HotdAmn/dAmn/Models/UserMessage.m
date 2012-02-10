@@ -30,16 +30,6 @@
     return self;
 }
 
-- (NSString *)asHTML
-{
-    return [NSString stringWithFormat:@"<li class='%@'><timestamp>%@</timestamp> <username>%c%@</username> <line>%@</line></li>",
-            [self cssClasses],
-            [self timestamp],
-            [[self user] symbol],
-            [[self user] username],
-            [[self content] stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
-}
-
 - (NSString *)asText
 {
     return [NSString stringWithFormat:@"<%c%@> %@",
