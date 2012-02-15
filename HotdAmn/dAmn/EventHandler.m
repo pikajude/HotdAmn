@@ -93,7 +93,13 @@
 {
     if ([msg isOkay]) {
         [[self delegate] createTabWithTitle:[msg roomName]];
-        Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Joined %@.", [msg roomName]]] autorelease];
+        NSString *notifyStr;
+        if ([[msg roomName] characterAtIndex:0] == '#') {
+            notifyStr = [NSString stringWithFormat:@"Joined %@.", [msg roomName]];
+        } else {
+            notifyStr = [NSString stringWithFormat:@"Started private chat with %@.", [msg roomName]];
+        }
+        Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
         [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
@@ -104,10 +110,23 @@
 
 - (void)onPart:(Packet *)msg
 {
-    [privclasses removeObjectForKey:[msg roomName]];
-    [User removeRoom:[msg roomName]];
-    [[self delegate] removeTabWithTitle:[msg roomName] afterPart:YES];
-    [Topic removeRoom:[msg roomName]];
+    if ([msg isOkay]) {
+        [privclasses removeObjectForKey:[msg roomName]];
+        [User removeRoom:[msg roomName]];
+        [[self delegate] removeTabWithTitle:[msg roomName] afterPart:YES];
+        [Topic removeRoom:[msg roomName]];
+        NSString *notifyStr;
+        if ([[msg roomName] characterAtIndex:0] == '#') {
+            notifyStr = [NSString stringWithFormat:@"Parted %@.", [msg roomName]];
+        } else {
+            notifyStr = [NSString stringWithFormat:@"Ended private chat with %@.", [msg roomName]];
+        }
+        Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
+        [delegate postMessage:m inRoom:@"Server"];
+    } else {
+        ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to part room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
+        [delegate postMessage:m inRoom:@"Server"];
+    }
 }
 
 - (void)onPropertyMembers:(Packet *)msg

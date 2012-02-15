@@ -108,7 +108,6 @@
 
 - (void)removeButtonWithTitle:(NSString *)title
 {
-    NSLog(@"%@", title);
     NSMutableArray *buttons = [NSMutableArray arrayWithArray:[tabView subviews]];
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
         return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
