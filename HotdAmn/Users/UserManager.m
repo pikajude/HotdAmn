@@ -175,4 +175,13 @@ static NSString *currentUsername = nil;
     }
 }
 
++ (NSString *)formatChatroom:(NSString *)username
+{
+    if ([username rangeOfString:@"#"].location != NSNotFound)
+        return [NSString stringWithFormat:@"chat:%@", [username stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+    NSMutableArray *ar = [NSMutableArray arrayWithObjects:[[[self defaultManager] currentUsername] lowercaseString], [username lowercaseString], nil];
+    [ar sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    return [NSString stringWithFormat:@"pchat:%@", [ar componentsJoinedByString:@":"]];
+}
+
 @end

@@ -49,6 +49,7 @@
     [[self cell] setPrevState:1];
     [[chatRoom view] setHidden:NO];
     [chatRoom selectInput];
+    [self mouseUp:nil];
 }
 
 - (void)deselect

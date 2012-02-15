@@ -27,13 +27,13 @@
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;
 - (void)onSet:(Packet *)msg;
+- (void)onError:(Packet *)msg;
 /*- (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPrivchg:(Packet *)msg;
 - (void)onRecvKicked:(Packet *)msg;
 - (void)onRecvAdmin:(Packet *)msg;
 - (void)onKicked:(Packet *)msg;
 - (void)onDisconnect:(Packet *)msg;
-- (void)onError:(Packet *)msg;
  */
 
 @end

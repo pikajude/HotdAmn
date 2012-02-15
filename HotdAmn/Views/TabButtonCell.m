@@ -142,7 +142,7 @@
     if (isHighlight) {
         [[NSColor colorWithDeviceRed:1.0f green:0.3f blue:0.3f alpha:0.7f] set];
     } else {
-        [[NSColor colorWithDeviceWhite:1.0f alpha:0.7f] set];
+        [[NSColor colorWithDeviceWhite:0.0f alpha:0.3f] set];
     }
     
     // Shadow for the pill.
@@ -161,7 +161,7 @@
     
     // Pill attributes.
     [str addAttribute:NSForegroundColorAttributeName
-                value:[NSColor colorWithDeviceWhite:0.28f alpha:1.0f]
+                value:[NSColor colorWithDeviceWhite:1.0f alpha:1.0f]
                 range:NSMakeRange(0, [str length])];
     [str addAttribute:NSFontAttributeName
                 value:[NSFont systemFontOfSize:10.0f]
@@ -187,6 +187,7 @@
         // Fix layout; cells with images are slightly wider,
         // even if the image is of size 0
         [self setImagePosition:NSNoImage];
+        _badgeValue = 0;
         return [self setImage:nil];
     }
     if ([self state] == 1) {

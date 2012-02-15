@@ -15,6 +15,7 @@
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
 #import "Command.h"
+#import "UserManager.h"
 
 @protocol EventHandlerDelegate <NSObject>
 
@@ -48,6 +49,7 @@
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;
 - (void)onSet:(Packet *)msg;
+- (void)onError:(Packet *)msg;
 
 #pragma mark -
 #pragma mark Actions

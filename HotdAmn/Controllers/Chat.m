@@ -231,7 +231,9 @@ static void notifyHighlight(Chat *chat, Message *str) {
         return nil;
     
     NSMenu *m = [[[NSMenu alloc] initWithTitle:[item title]] autorelease];
-    NSMenuItem *it = [[[NSMenuItem alloc] initWithTitle:[item title] action:nil keyEquivalent:@""] autorelease];
+    NSMenuItem *it = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Open private message", [item title]] action:@selector(startPchat:) keyEquivalent:@""] autorelease];
+    [it setTarget:[[NSApplication sharedApplication] delegate]];
+    [it setRepresentedObject:[item title]];
     [m addItem:it];
     return m;
 }

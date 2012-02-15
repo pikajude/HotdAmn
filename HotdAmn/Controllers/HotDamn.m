@@ -102,9 +102,9 @@
     [barControl addButtonWithTitle:title];
 }
 
-- (void)removeTabWithTitle:(NSString *)title
+- (void)removeTabWithTitle:(NSString *)title afterPart:(BOOL)af
 {
-    [self beforeRemoval:[barControl getButtonWithTitle:title]];
+    if(!af) [self beforeRemoval:[barControl getButtonWithTitle:title]];
     [barControl removeButtonWithTitle:title];
     [self afterRemoval];
 }
@@ -250,6 +250,11 @@
         modalDelegate:self
        didEndSelector:@selector(onTopicAlertDidEnd:returnCode:contextInfo:)
           contextInfo:nil];
+}
+
+- (void)startPchat:(id)sender
+{
+    [evtHandler join:[sender representedObject]];
 }
 
 - (void)onTopicAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo

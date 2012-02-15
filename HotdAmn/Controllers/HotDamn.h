@@ -42,7 +42,7 @@ typedef enum {
 - (IBAction)removeTab:(id)sender;
 - (IBAction)addTab:(id)sender;
 - (void)createTabWithTitle:(NSString *)title;
-- (void)removeTabWithTitle:(NSString *)title;
+- (void)removeTabWithTitle:(NSString *)title afterPart:(BOOL)af;
 - (IBAction)selectNextTab:(id)sender;
 - (IBAction)selectPreviousTab:(id)sender;
 - (void)beforeRemoval:(id)tab;
@@ -64,6 +64,7 @@ typedef enum {
 - (void)startConnection;
 - (void)stopConnection;
 - (void)postMessage:(Message *)msg inRoom:(NSString *)roomName;
+- (void)startPchat:(id)sender;
 
 #pragma mark -
 #pragma mark User defaults

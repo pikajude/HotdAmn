@@ -109,12 +109,7 @@
         [caller error:[err localizedDescription]];
         return;
     }
-    
-    NSString *us = [[[UserManager defaultManager] currentUsername] lowercaseString];
-    NSString *toChat = [[args objectAtIndex:0] lowercaseString];
-    NSMutableArray *objs = [NSMutableArray arrayWithObjects:us, toChat, nil];
-    [objs sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    [receiver join:[objs componentsJoinedByString:@":"]];
+    [receiver join:[UserManager formatChatroom:[args objectAtIndex:0]]];
 }
                     arity:1
                     types:(int[]){ ArgTypeUsername }], @"chat",

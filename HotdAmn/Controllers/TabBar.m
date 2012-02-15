@@ -40,6 +40,8 @@
 
 - (void)addButtonWithTitle:(NSString *)title
 {
+    if ([_tabs objectForKey:title])
+        return;
     TabButton *b = [[[TabButton alloc] init] autorelease];
     TabButtonCell *cell = [[[TabButtonCell alloc] init] autorelease];
     [b setCell:cell];
@@ -106,12 +108,15 @@
 
 - (void)removeButtonWithTitle:(NSString *)title
 {
+    NSLog(@"%@", title);
     NSMutableArray *buttons = [NSMutableArray arrayWithArray:[tabView subviews]];
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
         return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
     }];
+    [[[[buttons objectAtIndex:idx] chatRoom] view] setHidden:YES];
     [buttons removeObjectAtIndex:idx];
     [self handleLastTab:buttons];
+    [self activateSingleIndex:idx];
 }
 
 - (void)hideButtonWithTitle:(NSString *)title

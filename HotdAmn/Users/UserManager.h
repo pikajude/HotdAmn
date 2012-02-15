@@ -41,4 +41,6 @@
 
 - (NSMutableDictionary *)currentUser;
 
++ (NSString *)formatChatroom:(NSString *)username;
+
 @end

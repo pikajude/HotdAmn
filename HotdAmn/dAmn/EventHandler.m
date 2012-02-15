@@ -71,12 +71,16 @@
     switch ([[[NSUserDefaults standardUserDefaults] objectForKey:@"autojoin"] intValue]) {
         case AutojoinPrevious:
             for (NSString *roomName in [[NSUserDefaults standardUserDefaults] objectForKey:@"savedRooms"]) {
+                if ([roomName characterAtIndex:0] != '#')
+                    roomName = [NSString stringWithFormat:@"#%@", roomName];
                 [self join:roomName];
             }
             break;
             
         case AutojoinUserDefined:
             for (NSString *roomName in [[NSUserDefaults standardUserDefaults] objectForKey:@"autojoinRooms"]) {
+                if ([roomName characterAtIndex:0] != '#')
+                    roomName = [NSString stringWithFormat:@"#%@", roomName];
                 [self join:roomName];
             }
             
@@ -102,7 +106,7 @@
 {
     [privclasses removeObjectForKey:[msg roomName]];
     [User removeRoom:[msg roomName]];
-    [[self delegate] removeTabWithTitle:[msg roomName]];
+    [[self delegate] removeTabWithTitle:[msg roomName] afterPart:YES];
     [Topic removeRoom:[msg roomName]];
 }
 
@@ -209,45 +213,46 @@
     [[self delegate] postMessage:m inRoom:[msg roomName]];
 }
 
+- (void)onError:(Packet *)msg
+{
+    NSLog(@"%@", [[msg args] objectForKey:@"e"]);
+}
+
 #pragma mark -
 #pragma mark Actions
 
 - (void)join:(NSString *)room
 {
-    if ([room rangeOfString:@":"].location != NSNotFound) {
-        [sock write:[NSString stringWithFormat:@"join pchat:%@\n\0", room]];
-    } else {
-        [sock write:[NSString stringWithFormat:@"join chat:%@\n\0",
-                     [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
-    }
+    [sock write:[NSString stringWithFormat:@"join %@\n\0",
+                 [UserManager formatChatroom:room]]];
 }
 
 - (void)part:(NSString *)room
 {
-    [sock write:[NSString stringWithFormat:@"part chat:%@\n\0",
-                 [room stringByReplacingOccurrencesOfString:@"#" withString:@""]]];
+    [sock write:[NSString stringWithFormat:@"part %@\n\0",
+                 [UserManager formatChatroom:room]]];
 }
 
 - (void)say:(NSString *)line inRoom:(NSString *)room
 {
-    NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\nmsg main\n\n%@\0",
-                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\nmsg main\n\n%@\0",
+                    [UserManager formatChatroom:room],
                     line];
     [sock write:pk];
 }
 
 - (void)sayUnparsed:(NSString *)str inRoom:(NSString *)room
 {
-    NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\nnpmsg main\n\n%@\0",
-                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\nnpmsg main\n\n%@\0",
+                    [UserManager formatChatroom:room],
                     str];
     [sock write:pk];
 }
 
 - (void)action:(NSString *)line inRoom:(NSString *)room
 {
-    NSString *pk = [NSString stringWithFormat:@"send chat:%@\n\naction main\n\n%@\0",
-                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\naction main\n\n%@\0",
+                    [UserManager formatChatroom:room],
                     line];
     [sock write:pk];
 }
@@ -290,7 +295,7 @@
 - (void)stopConnection
 {
     for (NSString *room in [privclasses allKeys]) {
-        [[self delegate] removeTabWithTitle:room];
+        [[self delegate] removeTabWithTitle:room afterPart:YES];
         [User removeRoom:room];
         [privclasses removeObjectForKey:room];
         [Topic removeRoom:room];

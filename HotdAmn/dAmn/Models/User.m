@@ -67,6 +67,7 @@ static NSMutableDictionary *roomList;
         return;
     }
     [groupRoot addChild:userNode];
+    [self updateWatchers];
 }
 
 + (void)removeUser:(NSString *)user fromRoom:(NSString *)room

@@ -19,11 +19,13 @@ static int port = 3900;
     self = [super init];
     if (self) {
         host = [NSHost hostWithName:@"chat.deviantart.com"];
+        NSValue *errVal = [NSValue valueWithPointer:@selector(onError:)];
         events = [[NSDictionary dictionaryWithObjectsAndKeys:
                   [NSValue valueWithPointer:@selector(onServer:)], @"dAmnServer",
                   [NSValue valueWithPointer:@selector(onPing:)], @"ping",
                   [NSValue valueWithPointer:@selector(onLogin:)], @"login",
                   [NSValue valueWithPointer:@selector(onJoin:)], @"join",
+                  [NSValue valueWithPointer:@selector(onPart:)], @"part",
                   [NSValue valueWithPointer:@selector(onPropertyMembers:)], @"property_members",
                   [NSValue valueWithPointer:@selector(onPropertyPrivclasses:)], @"property_privclasses",
                   [NSValue valueWithPointer:@selector(onPropertyTopic:)], @"property_topic",
@@ -32,8 +34,8 @@ static int port = 3900;
                   [NSValue valueWithPointer:@selector(onRecvMsg:)], @"recv_msg",
                   [NSValue valueWithPointer:@selector(onRecvAction:)], @"recv_action",
                   [NSValue valueWithPointer:@selector(onSet:)], @"set",
+                  errVal, @"send", errVal, @"kick", errVal, @"get", errVal, @"set", errVal, @"kill",
                   nil] retain];
-        
         buf = [[NSMutableData alloc] init];
     }
     
@@ -94,6 +96,12 @@ static int port = 3900;
             } else {
                 [buf appendBytes:(const void *)buffer length:1];
             }
+            break;
+        }
+            
+        case NSStreamEventErrorOccurred:
+        case NSStreamEventEndEncountered: {
+            NSLog(@"dc'ed");
             break;
         }
             
