@@ -258,7 +258,7 @@
 
 - (void)resizeButtons
 {
-    CGFloat totalWidth = [tabView contentWidth];
+    CGFloat totalWidth = ([[tabView subviews] count] - 1) * TAB_WIDTH + SERVER_TAB_WIDTH;
     CGFloat frame = [[[tabView window] contentView] frame].size.width;
     CGFloat ratio = frame / totalWidth;
     CGFloat newWidth = 0;

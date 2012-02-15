@@ -89,7 +89,7 @@
 - (NSString *)roomName
 {
     if ([self param] != nil) {
-        if ([[self param] hasPrefix:@"pchat"]) {
+        if ([self isPchat]) {
             NSString *username = [[UserManager defaultManager] currentUsername];
             NSArray *possibles = [[[self param] componentsSeparatedByString:@":"] subarrayWithRange:NSMakeRange(1, 1)];
             for (NSString *p in possibles)
@@ -101,6 +101,11 @@
         }
     }
     return @"";
+}
+
+- (BOOL)isPchat
+{
+    return [[self param] hasPrefix:@"pchat"];
 }
 
 - (BOOL)isOkay

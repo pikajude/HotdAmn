@@ -24,5 +24,6 @@
 - (NSString *)roomName;
 
 - (BOOL)isOkay;
+- (BOOL)isPchat;
 
 @end

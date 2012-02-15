@@ -94,7 +94,7 @@
     if ([msg isOkay]) {
         [[self delegate] createTabWithTitle:[msg roomName]];
         NSString *notifyStr;
-        if ([[msg roomName] characterAtIndex:0] == '#') {
+        if (![msg isPchat]) {
             notifyStr = [NSString stringWithFormat:@"Joined %@.", [msg roomName]];
         } else {
             notifyStr = [NSString stringWithFormat:@"Started private chat with %@.", [msg roomName]];
@@ -116,7 +116,7 @@
         [[self delegate] removeTabWithTitle:[msg roomName] afterPart:YES];
         [Topic removeRoom:[msg roomName]];
         NSString *notifyStr;
-        if ([[msg roomName] characterAtIndex:0] == '#') {
+        if (![msg isPchat]) {
             notifyStr = [NSString stringWithFormat:@"Parted %@.", [msg roomName]];
         } else {
             notifyStr = [NSString stringWithFormat:@"Ended private chat with %@.", [msg roomName]];
@@ -173,7 +173,7 @@
     User *us = [[[User alloc] initWithUsername:[p param] userIcon:[[[p args] objectForKey:@"usericon"] integerValue] symbol:[[[p args] objectForKey:@"symbol"] characterAtIndex:0]] autorelease];
     [User addUser:us toRoom:[msg roomName] withGroupName:[[p args] objectForKey:@"pc"]];
     
-    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg roomName]]] autorelease];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has joined %@", [us username], [msg isPchat] ? @"" : [msg roomName]]] autorelease];
     
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableArray *rooms = [NSMutableArray arrayWithArray:[defs objectForKey:@"savedRooms"]];
