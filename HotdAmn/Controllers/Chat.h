@@ -59,4 +59,7 @@
 - (void)onUserListUpdated;
 - (void)onTopicChange;
 
+#pragma mark -
+- (void)whois:(id)sender;
+
 @end

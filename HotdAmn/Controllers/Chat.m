@@ -231,11 +231,24 @@ static void notifyHighlight(Chat *chat, Message *str) {
         return nil;
     
     NSMenu *m = [[[NSMenu alloc] initWithTitle:[item title]] autorelease];
-    NSMenuItem *it = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Open private message", [item title]] action:@selector(startPchat:) keyEquivalent:@""] autorelease];
-    [it setTarget:[[NSApplication sharedApplication] delegate]];
-    [it setRepresentedObject:[item title]];
-    [m addItem:it];
+    
+    NSMenuItem *pm = [[[NSMenuItem alloc] initWithTitle:@"Open private message" action:@selector(startPchat:) keyEquivalent:@""] autorelease];
+    [pm setTarget:[[NSApplication sharedApplication] delegate]];
+    [pm setRepresentedObject:[item title]];
+    
+    NSMenuItem *whois = [[[NSMenuItem alloc] initWithTitle:@"Whois" action:@selector(whois:) keyEquivalent:@""] autorelease];
+    [whois setTarget:self];
+    [whois setRepresentedObject:[item title]];
+    
+    [m addItem:pm];
+    [m addItem:whois];
     return m;
+}
+
+- (void)whois:(id)sender
+{
+    EventHandler *eventHandler = [(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler];
+    [eventHandler whois:[sender representedObject]];
 }
 
 - (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener

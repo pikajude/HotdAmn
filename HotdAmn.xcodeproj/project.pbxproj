@@ -71,6 +71,8 @@
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
+		25A9D98914ECB46500FAF3AD /* WhoisMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9D98814ECB46500FAF3AD /* WhoisMessage.m */; };
+		25A9D98D14ECB5DD00FAF3AD /* WConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9D98C14ECB5DD00FAF3AD /* WConnection.m */; };
 		25AB522C14C35CEC00A3A76C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 25AB522A14C35CEC00A3A76C /* check.png */; };
 		25C7053B14BA794A004BC131 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7053914BA794A004BC131 /* Chat.m */; };
 		25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */; };
@@ -215,6 +217,10 @@
 		2596C55414BF577200CBEB08 /* PrefsGeneral.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsGeneral.xib; sourceTree = "<group>"; };
 		259EA07C14B53FF700D44466 /* JoinRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRoom.h; sourceTree = "<group>"; };
 		259EA07D14B53FF700D44466 /* JoinRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRoom.m; sourceTree = "<group>"; };
+		25A9D98714ECB46500FAF3AD /* WhoisMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhoisMessage.h; path = dAmn/Models/WhoisMessage.h; sourceTree = "<group>"; };
+		25A9D98814ECB46500FAF3AD /* WhoisMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhoisMessage.m; path = dAmn/Models/WhoisMessage.m; sourceTree = "<group>"; };
+		25A9D98B14ECB5DD00FAF3AD /* WConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WConnection.h; path = dAmn/Models/WConnection.h; sourceTree = "<group>"; };
+		25A9D98C14ECB5DD00FAF3AD /* WConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WConnection.m; path = dAmn/Models/WConnection.m; sourceTree = "<group>"; };
 		25AB522B14C35CEC00A3A76C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/check.png; sourceTree = "<group>"; };
 		25C7053814BA794A004BC131 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chat.h; path = Controllers/Chat.h; sourceTree = "<group>"; };
 		25C7053914BA794A004BC131 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chat.m; path = Controllers/Chat.m; sourceTree = "<group>"; };
@@ -515,6 +521,10 @@
 				25007E8514CB52DB0094C716 /* UserAction.m */,
 				25F20B5B14BFDBBE0019326D /* UserMessage.h */,
 				25F20B5C14BFDBBE0019326D /* UserMessage.m */,
+				25A9D98B14ECB5DD00FAF3AD /* WConnection.h */,
+				25A9D98C14ECB5DD00FAF3AD /* WConnection.m */,
+				25A9D98714ECB46500FAF3AD /* WhoisMessage.h */,
+				25A9D98814ECB46500FAF3AD /* WhoisMessage.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -716,6 +726,8 @@
 				2516D3E214DDAF26001C2EA0 /* TopicDialog.m in Sources */,
 				25822A4F14E09D7F0004C3EE /* BorderedView.m in Sources */,
 				25F890BA14E35ABE00CBADD1 /* ErrorMessage.m in Sources */,
+				25A9D98914ECB46500FAF3AD /* WhoisMessage.m in Sources */,
+				25A9D98D14ECB5DD00FAF3AD /* WConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

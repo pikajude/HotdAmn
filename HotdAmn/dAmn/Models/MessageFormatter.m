@@ -14,6 +14,8 @@
 
 + (NSString *)formatMessage:(Message *)msg
 {
+    if ([msg respondsToSelector:@selector(asHTML)]) return [(id)msg asHTML];
+         
     NSString *templ = [ThemeHelper contentsOfThemeTemplate:[[NSUserDefaults standardUserDefaults] objectForKey:@"themeName"]];
     
     NSMutableString *mod = [NSMutableString stringWithString:templ];
@@ -64,6 +66,36 @@
                               range:NSMakeRange(0, [mod length])];
     
     return mod;
+}
+
+static NSString *pluralize(NSInteger value, NSString *singular) {
+    if (value == 1) {
+        return [NSString stringWithFormat:@"1 %@", singular];
+    } else {
+        return [NSString stringWithFormat:@"%ld %@s", value, singular];
+    }
+}
+
++ (NSString *)dateDifferenceToString:(NSTimeInterval)startTime
+{
+    NSInteger days, hours, minutes, seconds;
+    NSMutableArray *crud = [NSMutableArray array];
+    days = startTime / 86400;
+    startTime -= days * 86400;
+    hours = startTime / 3600;
+    startTime -= hours * 3600;
+    minutes = startTime / 60;
+    startTime -= minutes * 60;
+    seconds = startTime;
+    if (days > 0)
+        [crud addObject:pluralize(days, @"day")];
+    if (hours > 0)
+        [crud addObject:pluralize(hours, @"hour")];
+    if (minutes > 0)
+        [crud addObject:pluralize(minutes, @"minute")];
+    if (seconds > 0)
+        [crud addObject:pluralize(seconds, @"second")];
+    return [crud componentsJoinedByString:@", "];
 }
 
 @end

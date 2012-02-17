@@ -11,6 +11,8 @@
 #import "Message.h"
 #import "UserMessage.h"
 #import "ErrorMessage.h"
+#import "WhoisMessage.h"
+#import "WConnection.h"
 #import "UserAction.h"
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
@@ -49,6 +51,7 @@
 - (void)onRecvMsg:(Packet *)msg;
 - (void)onRecvAction:(Packet *)msg;
 - (void)onSet:(Packet *)msg;
+- (void)onWhois:(Packet *)msg;
 - (void)onError:(Packet *)msg;
 
 #pragma mark -
@@ -61,6 +64,7 @@
 - (void)kick:(NSString *)user fromRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room withReason:(NSString *)reason;
 - (void)setTopic:(NSString *)topic inRoom:(NSString *)room;
+- (void)whois:(NSString *)username;
 
 - (void)onLaunch;
 

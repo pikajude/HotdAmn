@@ -34,6 +34,7 @@ static int port = 3900;
                   [NSValue valueWithPointer:@selector(onRecvMsg:)], @"recv_msg",
                   [NSValue valueWithPointer:@selector(onRecvAction:)], @"recv_action",
                   [NSValue valueWithPointer:@selector(onSet:)], @"set",
+                  [NSValue valueWithPointer:@selector(onWhois:)], @"property_info",
                   errVal, @"send", errVal, @"kick", errVal, @"get", errVal, @"set", errVal, @"kill",
                   nil] retain];
         buf = [[NSMutableData alloc] init];

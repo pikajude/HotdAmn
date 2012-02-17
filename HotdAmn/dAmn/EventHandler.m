@@ -232,6 +232,35 @@
     [[self delegate] postMessage:m inRoom:[msg roomName]];
 }
 
+- (void)onWhois:(Packet *)msg
+{
+    NSRange firstDouble = [[msg raw] rangeOfString:@"\n\n"];
+    Packet *fixed = [[[Packet alloc] initWithString:[[msg raw] stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, firstDouble.location + firstDouble.length)]] autorelease];
+    
+    WhoisMessage *wm = [[[WhoisMessage alloc] init] autorelease];
+    
+    [wm setMetadata:[fixed args]];
+    [wm setUsername:[[msg param] substringFromIndex:6]];
+    
+    NSArray *conns = [[fixed body] componentsSeparatedByString:@"conn\n"];
+    conns = [conns subarrayWithRange:NSMakeRange(1, [conns count] - 1)];
+    for (NSString *connstr in conns) {
+        WConnection *wc = [[[WConnection alloc] init] autorelease];
+        NSMutableArray *components = [NSMutableArray arrayWithArray:[connstr componentsSeparatedByString:@"\n\n"]];
+        NSArray *metadata = [[components objectAtIndex:0] componentsSeparatedByString:@"\n"];
+        [components removeObjectAtIndex:0];
+        for (NSString *room in components) {
+            if ([room length] == 0)
+                continue;
+            [wc addRoom:[[room substringFromIndex:8] stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
+        }
+        [wc setConnectionTime:[[[[metadata objectAtIndex:0] componentsSeparatedByString:@"="] objectAtIndex:1] integerValue]];
+        [wc setIdleTime:[[[[metadata objectAtIndex:1] componentsSeparatedByString:@"="] objectAtIndex:1] integerValue]];
+        [wm addConnection:wc];
+    }
+    [[self delegate] postMessage:wm inRoom:@"Server"];
+}
+
 - (void)onError:(Packet *)msg
 {
     NSLog(@"%@", [[msg args] objectForKey:@"e"]);
@@ -298,6 +327,12 @@
     NSString *pk = [NSString stringWithFormat:@"set chat:%@\np=topic\n\n%@\n\0",
                     [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
                     topic];
+    [sock write:pk];
+}
+
+- (void)whois:(NSString *)username
+{
+    NSString *pk = [NSString stringWithFormat:@"get login:%@\np=info\n\0", username];
     [sock write:pk];
 }
 

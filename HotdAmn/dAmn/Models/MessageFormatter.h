@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WhoisMessage.h"
 
 @class Message;
 
 @interface MessageFormatter : NSObject
 
 + (NSString *)formatMessage:(Message *)msg;
++ (NSString *)dateDifferenceToString:(NSTimeInterval)startTime;
 
 @end
