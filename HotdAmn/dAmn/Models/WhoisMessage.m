@@ -27,7 +27,6 @@
 
 - (NSString *)asHTML
 {
-    NSLog(@"%@", self);
     NSMutableString *html = [NSMutableString stringWithString:@"<div class='whois'>"];
     [html appendFormat:@"<img src='%@' />", [AvatarManager avatarURLForUsername:username userIcon:[[metadata objectForKey:@"usericon"] integerValue]]];
     [html appendFormat:@"<div class='userinfo'><h4>%@<a href='http://%@.deviantart.com'>%@</a></h4>", [metadata objectForKey:@"symbol"], username, username];
@@ -51,15 +50,8 @@
         [html appendString:@"</ul></li>"];
     }
     [html appendString:@"</ul></div>"];
+    
     return html;
-}
-
-- (NSString *)description
-{
-    NSMutableString *desc = [NSMutableString string];
-    [desc appendString:[metadata description]];
-    [desc appendString:[connections description]];
-    return desc;
 }
 
 - (void)dealloc

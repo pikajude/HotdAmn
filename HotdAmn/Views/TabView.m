@@ -92,7 +92,7 @@
     
     [dragImage setFrameSize:[[dragImage image] size]];
     
-    [dragImage setFrameOrigin:NSMakePoint([sender draggingLocation].x - (TAB_WIDTH / 2), [dragImage frame].origin.y)];
+    [dragImage setFrameOrigin:NSMakePoint(MAX([sender draggingLocation].x, SERVER_TAB_WIDTH + (TAB_WIDTH / 2)) - (TAB_WIDTH / 2), [dragImage frame].origin.y)];
     
     [dragImage setHidden:NO];
     

@@ -27,11 +27,6 @@
     return rooms;
 }
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"conn: %ld, idle: %ld, rooms: %@", connectionTime, idleTime, [rooms componentsJoinedByString:@", "]];
-}
-
 - (void)dealloc
 {
     [rooms release];
