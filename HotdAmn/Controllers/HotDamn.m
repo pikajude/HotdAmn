@@ -267,4 +267,9 @@
     return NSOffsetRect(rect, 0.0f, 3.0f);
 }
 
+- (TabBar *)barControl
+{
+    return barControl;
+}
+
 @end

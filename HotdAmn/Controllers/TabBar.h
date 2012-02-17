@@ -28,10 +28,12 @@
 #pragma mark -
 #pragma mark Adding
 
-- (void)addButtonWithTitle:(NSString *)title;
+- (NSButton *)addButtonWithTitle:(NSString *)title;
 - (void)showButtonWithTitle:(NSString *)title;
-- (void)activateSingleButton:(NSButton *)button;
-- (void)activateSingleIndex:(NSInteger)index;
+- (void)activateButtonWithTitle:(NSString *)title;
+- (void)deactivateButtonWithTitle:(NSString *)title;
+- (void)selectButton:(NSButton *)button;
+- (void)selectIndex:(NSInteger)index;
 - (void)fixHighlight;
 - (void)selectNext;
 - (void)selectPrevious;

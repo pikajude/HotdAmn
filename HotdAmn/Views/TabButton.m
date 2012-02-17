@@ -11,7 +11,7 @@
 
 @implementation TabButton
 
-@synthesize ctrl, chatRoom;
+@synthesize ctrl, chatRoom, roomName;
 
 - (id)init
 {
@@ -34,7 +34,7 @@
     NSRect ourframe = NSMakeRect(frame.origin.x,
                                  frame.origin.y,
                                  frame.size.width,
-                                 frame.size.height - 24);
+                                 frame.size.height - TAB_HEIGHT);
     [chatRoom setDelegate:self];
     [[chatRoom view] setHidden:YES];
     [[[self window] contentView] addSubview:[chatRoom view]];
@@ -115,8 +115,8 @@
     NSPoint point = NSMakePoint(0.0f, 30.0f);
     
     NSPasteboard *pboard = [NSPasteboard pasteboardWithName:NSDragPboard];
-    [pboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-    [pboard setData:[[self title] dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
+    [pboard declareTypes:[NSArray arrayWithObject:NSPasteboardTypeString] owner:self];
+    [pboard setData:[[self title] dataUsingEncoding:NSUTF8StringEncoding] forType:NSPasteboardTypeString];
     [pboard setData:[img TIFFRepresentation] forType:NSTIFFPboardType];
     
     [self dragImage:nil
@@ -153,14 +153,25 @@
     [[chatRoom split] setPosition:pos ofDividerAtIndex:0];
 }
 
-- (NSString *)roomName
-{
-    return [[self title] stringByReplacingOccurrencesOfString:@"#" withString:@""];
-}
-
 - (void)addLine:(Message *)str
 {
     [chatRoom addLine:str];
+}
+
+- (BOOL)joined
+{
+    return _joined;
+}
+
+- (void)setJoined:(BOOL)active
+{
+    if (!active) {
+        [[self cell] setTitle:[NSString stringWithFormat:@"(#%@)", roomName]];
+    } else {
+        [[self cell] setTitle:[NSString stringWithFormat:@"#%@", roomName]];
+    }
+    [[chatRoom userList] reloadData];
+    _joined = active;
 }
 
 - (void)dealloc

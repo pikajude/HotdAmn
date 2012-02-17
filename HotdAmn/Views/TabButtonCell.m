@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#define RADIUS 4.0f
+#define RADIUS 5.0f
 
 #import "TabButtonCell.h"
 

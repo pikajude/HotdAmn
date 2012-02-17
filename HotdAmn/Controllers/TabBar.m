@@ -38,10 +38,12 @@
 #pragma mark -
 #pragma mark Button management
 
-- (void)addButtonWithTitle:(NSString *)title
+- (NSButton *)addButtonWithTitle:(NSString *)title
 {
-    if ([_tabs objectForKey:title])
-        return;
+    if ([_tabs objectForKey:title]) {
+        [self selectButton:[self getButtonWithTitle:title]];
+        return [self getButtonWithTitle:title];
+    }
     TabButton *b = [[[TabButton alloc] init] autorelease];
     TabButtonCell *cell = [[[TabButtonCell alloc] init] autorelease];
     [b setCell:cell];
@@ -52,8 +54,9 @@
     [b setBordered:YES];
     [b setBezelStyle:NSRoundRectBezelStyle];
     [b setTitle:title];
+    [b setRoomName:[title stringByReplacingOccurrencesOfString:@"#" withString:@""]];
     [b setTarget:self];
-    [b setAction:@selector(activateSingleButton:)];
+    [b setAction:@selector(selectButton:)];
     [b setCtrl:self];
     [b setFrame:[self getNextRect]];
     
@@ -62,10 +65,12 @@
     [b addTracker];
     [_tabs setObject:b forKey:[b roomName]];
     
-    [self activateSingleButton:b];
+    [self selectButton:b];
+    
+    return b;
 }
 
-- (void)activateSingleButton:(NSButton *)button
+- (void)selectButton:(NSButton *)button
 {
     [self beforeChangeFrom:[self highlightedTab] toButton:nil];
     for(TabButton *b in [tabView subviews]) {
@@ -76,7 +81,7 @@
     }
 }
 
-- (void)activateSingleIndex:(NSInteger)index
+- (void)selectIndex:(NSInteger)index
 {
     NSArray *views = [tabView subviews];
     
@@ -95,6 +100,20 @@
     }
 }
 
+- (void)activateButtonWithTitle:(NSString *)title
+{
+    TabButton *b = [self getButtonWithTitle:title];
+    if (!b) b = (TabButton *)[self addButtonWithTitle:title];
+    [b setJoined:YES];
+}
+
+- (void)deactivateButtonWithTitle:(NSString *)title
+{
+    TabButton *b = [self getButtonWithTitle:title];
+    if (!b) b = (TabButton *)[self addButtonWithTitle:title];
+    [b setJoined:NO];
+}
+
 - (void)removeHighlighted
 {
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
@@ -103,7 +122,7 @@
     NSMutableArray *ar = [NSMutableArray arrayWithArray:[tabView subviews]];
     [ar removeObjectAtIndex:idx];
     [self handleLastTab:ar];
-    [self activateSingleIndex:idx];
+    [self selectIndex:idx];
 }
 
 - (void)removeButtonWithTitle:(NSString *)title
@@ -115,7 +134,7 @@
     [[[[buttons objectAtIndex:idx] chatRoom] view] setHidden:YES];
     [buttons removeObjectAtIndex:idx];
     [self handleLastTab:buttons];
-    [self activateSingleIndex:idx];
+    [self selectIndex:idx];
 }
 
 - (void)hideButtonWithTitle:(NSString *)title

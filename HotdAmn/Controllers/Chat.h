@@ -24,7 +24,6 @@
 
 @interface Chat : NSViewController <NSSplitViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, UserListWatcher, TopicWatcher, NSTextFieldDelegate> {
     NSMutableArray *lines;
-    IBOutlet NSOutlineView *userList;
     IBOutlet NSTextField *input;
     IBOutlet WebView *chatView;
     IBOutlet NSView *cShell;
@@ -34,6 +33,7 @@
 @property (retain) NSString *roomName;
 @property (readonly) IBOutlet NSSplitView *split;
 @property (readonly) IBOutlet NSView *chatContainer;
+@property (readonly) IBOutlet NSOutlineView *userList;
 @property (assign) id delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name;

@@ -27,3 +27,7 @@ avatar img {
 .server-msg msg {
 	color: #666;
 }
+
+.action span {
+	display: none;
+}

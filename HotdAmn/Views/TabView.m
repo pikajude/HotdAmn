@@ -17,7 +17,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTIFFPboardType, nil]];
+        [self registerForDraggedTypes:[NSArray arrayWithObjects:NSPasteboardTypeString, NSTIFFPboardType, nil]];
     }
     
     return self;
@@ -86,7 +86,7 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
-    NSString *draggerName = [[[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSStringPboardType] encoding:NSUTF8StringEncoding] autorelease];
+    NSString *draggerName = [[[NSString alloc] initWithData:[[sender draggingPasteboard] dataForType:NSPasteboardTypeString] encoding:NSUTF8StringEncoding] autorelease];
     dragger = [[self controller] getButtonWithTitle:draggerName];
     [dragImage setImage:[[[NSImage alloc] initWithData:[[sender draggingPasteboard] dataForType:NSTIFFPboardType]] autorelease]];
     
@@ -136,7 +136,7 @@
         [[self controller] resizeButtons];
     }];
     
-    NSPoint destination = NSMakePoint((dragIndex - 1) * TAB_WIDTH + SERVER_TAB_WIDTH, [[[self window] contentView] frame].size.height - 24.0f);
+    NSPoint destination = NSMakePoint((dragIndex - 1) * TAB_WIDTH + SERVER_TAB_WIDTH, [[[self window] contentView] frame].size.height - TAB_HEIGHT);
     [[dragImage animator] setFrameOrigin:destination];
     
     [NSAnimationContext endGrouping];

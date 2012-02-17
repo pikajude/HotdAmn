@@ -6,6 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#define TAB_HEIGHT 24.0f
+
 #import <AppKit/AppKit.h>
 #import <WebKit/WebKit.h>
 #import "TabButtonCell.h"
@@ -15,9 +17,12 @@
 
 @class TabBar;
 
-@interface TabButton : NSButton <NSSplitViewDelegate>
+@interface TabButton : NSButton <NSSplitViewDelegate> {
+    BOOL _joined;
+}
 
 @property (retain) Chat *chatRoom;
+@property (retain) NSString *roomName;
 @property (assign) id ctrl;
 
 - (void)select;
@@ -28,8 +33,9 @@
 - (CGFloat)dividerPos;
 - (void)setDividerPos:(CGFloat)pos;
 
-- (NSString *)roomName;
-
 - (void)addLine:(Message *)str;
+
+- (BOOL)joined;
+- (void)setJoined:(BOOL)active;
 
 @end

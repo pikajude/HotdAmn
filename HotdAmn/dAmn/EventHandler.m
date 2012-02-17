@@ -92,7 +92,7 @@
 - (void)onJoin:(Packet *)msg
 {
     if ([msg isOkay]) {
-        [[self delegate] createTabWithTitle:[msg roomName]];
+        [[[self delegate] barControl] activateButtonWithTitle:[msg roomName]];
         NSString *notifyStr;
         if (![msg isPchat]) {
             notifyStr = [NSString stringWithFormat:@"Joined %@.", [msg roomName]];
@@ -100,7 +100,9 @@
             notifyStr = [NSString stringWithFormat:@"Started private chat with %@.", [msg roomName]];
         }
         Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
+        Message *youjoined = [[[Message alloc] initWithContent:@"You have joined"] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
+        [delegate postMessage:youjoined inRoom:[msg roomName]];
         [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
         ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
@@ -111,9 +113,12 @@
 - (void)onPart:(Packet *)msg
 {
     if ([msg isOkay]) {
+        Message *youparted = [[[Message alloc] initWithContent:@"You have parted"] autorelease];
+        [delegate postMessage:youparted inRoom:[msg roomName]];
         [privclasses removeObjectForKey:[msg roomName]];
         [User removeRoom:[msg roomName]];
-        [[self delegate] removeTabWithTitle:[msg roomName] afterPart:YES];
+        [[delegate barControl] deactivateButtonWithTitle:[msg roomName]];
+        [delegate afterRemoval];
         [Topic removeRoom:[msg roomName]];
         NSString *notifyStr;
         if (![msg isPchat]) {

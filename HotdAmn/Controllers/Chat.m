@@ -11,7 +11,7 @@
 
 @implementation Chat
 
-@synthesize roomName, delegate, split, chatContainer;
+@synthesize roomName, delegate, split, chatContainer, userList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name
 {

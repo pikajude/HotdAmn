@@ -77,4 +77,6 @@ typedef enum {
 #pragma mark Window handling
 - (void)windowDidResize:(NSNotification *)notification;
 
+- (TabBar *)barControl;
+
 @end

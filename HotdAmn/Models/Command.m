@@ -42,17 +42,15 @@
 // Join command
 [Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
-    NSError *err = nil;
-    if (![me verifyArity:args error:&err]) {
-        [caller error:[err localizedDescription]];
-        return;
+    if ([args count] == 0) {
+        NSLog(@"%@", [[caller delegate] roomName]);
     }
     
     for (NSString *room in args) {
         [receiver join:room];
     }
 }
-                    arity:-2
+                    arity:-1
                     types:(int[]){ ArgTypeAny }], @"join",
                  
 // Part command
