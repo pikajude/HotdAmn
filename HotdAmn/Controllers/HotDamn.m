@@ -202,6 +202,7 @@
                               [NSNumber numberWithBool:YES], @"WebKitDeveloperExtras",
                               [NSNumber numberWithInt:AutojoinNone], @"autojoin",
                               [NSDictionary dictionary], @"autojoinRooms",
+                              [NSNumber numberWithBool:NO], @"closeOnPart",
                               [NSArray array], @"savedRooms", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];

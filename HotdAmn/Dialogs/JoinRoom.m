@@ -41,7 +41,11 @@
     if ([currentRoomName isEqualToString:@""] || containsBadChars) {
         [errMsg setHidden:NO];
     } else {
-        [[self delegate] join:[currentRoomName stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        NSMutableString *str = [currentRoomName mutableCopy];
+        if ([str characterAtIndex:0] != '#') {
+            [str insertString:@"#" atIndex:0];
+        }
+        [[self delegate] join:str];
         
         // not actually canceling, this is just a shortcut
         [self cancelRoom:nil];

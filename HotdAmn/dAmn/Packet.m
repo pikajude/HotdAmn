@@ -91,7 +91,7 @@
     if ([self param] != nil) {
         if ([self isPchat]) {
             NSString *username = [[UserManager defaultManager] currentUsername];
-            NSArray *possibles = [[[self param] componentsSeparatedByString:@":"] subarrayWithRange:NSMakeRange(1, 1)];
+            NSArray *possibles = [[[self param] componentsSeparatedByString:@":"] subarrayWithRange:NSMakeRange(1, 2)];
             for (NSString *p in possibles)
                 if (![p isEqualToString:username])
                     return p;

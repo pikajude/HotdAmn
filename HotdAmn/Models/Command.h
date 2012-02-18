@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Chat.h"
+#import "User.h"
 
 /*
  Algorithm for commands is pretty complicated.

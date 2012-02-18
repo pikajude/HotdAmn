@@ -43,7 +43,12 @@
 [Command commandWithBlock:^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSArray *args)
 {
     if ([args count] == 0) {
-        NSLog(@"%@", [[caller delegate] roomName]);
+        if ([User listForRoom:[[caller delegate] roomName]] != nil) {
+            [caller error:@"You're already joined."];
+        } else {
+            [receiver join:[[caller delegate] roomName]];
+        }
+        return;
     }
     
     for (NSString *room in args) {

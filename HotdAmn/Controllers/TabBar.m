@@ -54,7 +54,8 @@
     [b setBordered:YES];
     [b setBezelStyle:NSRoundRectBezelStyle];
     [b setTitle:title];
-    [b setRoomName:[title stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+    [b setRoomName:title];
+    [b setIsPchat:[title rangeOfString:@"#"].location == NSNotFound];
     [b setTarget:self];
     [b setAction:@selector(selectButton:)];
     [b setCtrl:self];
@@ -109,9 +110,12 @@
 
 - (void)deactivateButtonWithTitle:(NSString *)title
 {
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     TabButton *b = [self getButtonWithTitle:title];
     if (!b) b = (TabButton *)[self addButtonWithTitle:title];
     [b setJoined:NO];
+    if ([[defs objectForKey:@"closeOnPart"] boolValue])
+        [self removeButtonWithTitle:title];
 }
 
 - (void)removeHighlighted
@@ -129,7 +133,7 @@
 {
     NSMutableArray *buttons = [NSMutableArray arrayWithArray:[tabView subviews]];
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
-        return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
+        return [[object roomName] isEqualToString:title] ? (*stop = YES) : NO;
     }];
     [[[[buttons objectAtIndex:idx] chatRoom] view] setHidden:YES];
     [buttons removeObjectAtIndex:idx];
@@ -140,7 +144,7 @@
 - (void)hideButtonWithTitle:(NSString *)title
 {
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
-        return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
+        return [[object roomName] isEqualToString:title] ? (*stop = YES) : NO;
     }];
     [[[tabView subviews] objectAtIndex:idx] setHidden:YES];
     [self resizeButtons];
@@ -149,7 +153,7 @@
 - (void)showButtonWithTitle:(NSString *)title
 {
     NSInteger idx = [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
-        return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
+        return [[object roomName] isEqualToString:title] ? (*stop = YES) : NO;
     }];
     [self beforeChangeFrom:[self highlightedTab] toButton:[[tabView subviews] objectAtIndex:idx]];
     [[[tabView subviews] objectAtIndex:idx] setHidden:NO];
@@ -239,7 +243,7 @@
 - (NSInteger)indexOfButtonWithTitle:(NSString *)title
 {
     return [[tabView subviews] indexOfObjectPassingTest:^BOOL(id object, NSUInteger len, BOOL *stop) {
-        return [[object title] isEqualToString:title] ? (*stop = YES) : NO;
+        return [[object roomName] isEqualToString:title] ? (*stop = YES) : NO;
     }];
 }
 

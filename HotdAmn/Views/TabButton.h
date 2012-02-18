@@ -24,6 +24,7 @@
 @property (retain) Chat *chatRoom;
 @property (retain) NSString *roomName;
 @property (assign) id ctrl;
+@property (assign) BOOL isPchat;
 
 - (void)select;
 - (void)deselect;

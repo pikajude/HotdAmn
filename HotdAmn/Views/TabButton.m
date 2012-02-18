@@ -11,7 +11,7 @@
 
 @implementation TabButton
 
-@synthesize ctrl, chatRoom, roomName;
+@synthesize ctrl, chatRoom, roomName, isPchat;
 
 - (id)init
 {
@@ -166,9 +166,9 @@
 - (void)setJoined:(BOOL)active
 {
     if (!active) {
-        [[self cell] setTitle:[NSString stringWithFormat:@"(#%@)", roomName]];
+        [[self cell] setTitle:[NSString stringWithFormat:@"(%@)", roomName]];
     } else {
-        [[self cell] setTitle:[NSString stringWithFormat:@"#%@", roomName]];
+        [[self cell] setTitle:roomName];
     }
     [[chatRoom userList] reloadData];
     _joined = active;
