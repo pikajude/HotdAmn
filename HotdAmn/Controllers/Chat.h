@@ -49,6 +49,11 @@
 
 - (BOOL)isPchat;
 
+- (void)addBuddy:(id)sender;
+- (void)removeBuddy:(id)sender;
+- (void)addIgnore:(id)sender;
+- (void)removeIgnore:(id)sender;
+
 #pragma mark -
 #pragma mark Theme management
 - (void)loadTheme:(NSString *)html;

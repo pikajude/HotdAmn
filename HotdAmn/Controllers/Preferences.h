@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Preferences : NSWindowController {
+@interface Preferences : NSWindowController <NSWindowDelegate> {
     NSViewController *currentPanel;
     NSDictionary *panelNames;
 }
@@ -17,5 +17,6 @@
 @property (assign) IBOutlet NSToolbarItem *general;
 
 - (IBAction)selectItem:(id)sender;
+- (void)beforeDisplay;
 
 @end

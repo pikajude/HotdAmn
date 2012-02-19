@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TabButton.h"
 #import "TabButtonCell.h"
 #import "Preferences.h"
+#import "TabButton.h"
 
 #define TAB_WIDTH 160.0f
 #define SERVER_TAB_WIDTH 80.0f

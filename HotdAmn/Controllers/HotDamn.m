@@ -7,6 +7,7 @@
 //
 
 #import "HotDamn.h"
+#import "EventHandler.h"
 
 @implementation HotDamn
 
@@ -149,6 +150,7 @@
 
 - (IBAction)showPreferences:(id)sender
 {
+    [prefs beforeDisplay];
     [[prefs window] makeKeyAndOrderFront:nil];
 }
 

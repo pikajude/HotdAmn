@@ -8,6 +8,7 @@
 
 #import "Chat.h"
 #import "HotDamn.h"
+#import "PrefsUsers.h"
 
 @implementation Chat
 
@@ -230,6 +231,9 @@ static void notifyHighlight(Chat *chat, Message *str) {
     if (![item isLeaf])
         return nil;
     
+    NSArray *buddy = fieldForUser(@"buddies", [[UserManager defaultManager] currentUsername]);
+    NSArray *ignore = fieldForUser(@"ignores", [[UserManager defaultManager] currentUsername]);
+    
     NSMenu *m = [[[NSMenu alloc] initWithTitle:[item title]] autorelease];
     
     NSMenuItem *pm = [[[NSMenuItem alloc] initWithTitle:@"Open private message" action:@selector(startPchat:) keyEquivalent:@""] autorelease];
@@ -240,6 +244,32 @@ static void notifyHighlight(Chat *chat, Message *str) {
     [whois setTarget:self];
     [whois setRepresentedObject:[item title]];
     
+    NSMenuItem *buddyItem = [[[NSMenuItem alloc] init] autorelease];
+    [buddyItem setTarget:self];
+    [buddyItem setKeyEquivalent:@""];
+    [buddyItem setRepresentedObject:[item title]];
+    if ([buddy containsObject:[item title]]) {
+        [buddyItem setTitle:@"Remove buddy"];
+        [buddyItem setAction:@selector(removeBuddy:)];
+    } else {
+        [buddyItem setTitle:@"Add buddy"];
+        [buddyItem setAction:@selector(addBuddy:)];
+    }
+    
+    NSMenuItem *ignoreItem = [[[NSMenuItem alloc] init] autorelease];
+    [ignoreItem setTarget:self];
+    [ignoreItem setKeyEquivalent:@""];
+    [ignoreItem setRepresentedObject:[item title]];
+    if ([ignore containsObject:[item title]]) {
+        [ignoreItem setTitle:@"Unignore"];
+        [ignoreItem setAction:@selector(removeIgnore:)];
+    } else {
+        [ignoreItem setTitle:@"Ignore"];
+        [ignoreItem setAction:@selector(addIgnore:)];
+    }
+    
+    [m addItem:buddyItem];
+    [m addItem:ignoreItem];
     [m addItem:pm];
     [m addItem:whois];
     return m;
@@ -283,6 +313,30 @@ static void notifyHighlight(Chat *chat, Message *str) {
         return YES;
     }
     return NO;
+}
+
+- (void)addBuddy:(id)sender
+{
+    NSString *username = [sender representedObject];
+    addObjectToFieldForUser(username, @"buddies", [[UserManager defaultManager] currentUsername]);
+}
+
+- (void)removeBuddy:(id)sender
+{
+    NSString *username = [sender representedObject];
+    removeObjectFromFieldForUser(username, @"buddies", [[UserManager defaultManager] currentUsername]);
+}
+
+- (void)addIgnore:(id)sender
+{
+    NSString *username = [sender representedObject];
+    addObjectToFieldForUser(username, @"ignores", [[UserManager defaultManager] currentUsername]);
+}
+
+- (void)removeIgnore:(id)sender
+{
+    NSString *username = [sender representedObject];
+    removeObjectFromFieldForUser(username, @"ignores", [[UserManager defaultManager] currentUsername]);
 }
 
 - (void)dealloc

@@ -7,6 +7,7 @@
 //
 
 #import "Preferences.h"
+#import "PrefsUsers.h"
 
 @implementation Preferences
 
@@ -56,6 +57,13 @@
     [[[self window] animator] setFrame:newRect display:NO];
     
     [NSAnimationContext endGrouping];
+}
+
+- (void)beforeDisplay
+{
+    if ([currentPanel respondsToSelector:@selector(beforeDisplay)]) {
+        [(id)currentPanel beforeDisplay];
+    }
 }
 
 @end

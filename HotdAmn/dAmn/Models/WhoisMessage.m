@@ -32,18 +32,17 @@
     [html appendFormat:@"<div class='userinfo'><h4>%@<a href='http://%@.deviantart.com'>%@</a></h4>", [metadata objectForKey:@"symbol"], username, username];
     [html appendFormat:@"<h5>%@</h5>", [metadata objectForKey:@"realname"]];
     [html appendString:@"</div><ul>"];
+    
     for (WConnection *conn in connections) {
-        [html appendString:@"<li><ul>"];
+        [html appendString:@"<li><ul><li>Online: "];
         
-        [html appendString:@"<li>Online: "];
         [html appendString:[MessageFormatter dateDifferenceToString:[conn connectionTime]]];
-        [html appendString:@"</li>"];
         
-        [html appendString:@"<li>Idle: "];
+        [html appendString:@"</li><li>Idle: "];
+        
         [html appendString:[MessageFormatter dateDifferenceToString:[conn idleTime]]];
-        [html appendString:@"</li>"];
         
-        [html appendString:@"<li>Rooms: "];
+        [html appendString:@"</li><li>Rooms: "];
         
         NSMutableArray *rooms = [NSMutableArray arrayWithArray:[[conn rooms] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
         for (int i = 0; i < [rooms count]; i++) {
@@ -52,9 +51,7 @@
         }
         
         [html appendString:[rooms componentsJoinedByString:@", "]];
-        [html appendString:@"</li>"];
-        
-        [html appendString:@"</ul></li>"];
+        [html appendString:@"</li></ul></li>"];
     }
     [html appendString:@"</ul></div>"];
     

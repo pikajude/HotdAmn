@@ -8,19 +8,7 @@
 
 #import "PrefsUsers.h"
 
-@implementation PrefsUsers
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-static NSMutableArray *fieldForUser(NSString *field, NSString *username) {
+NSMutableArray *fieldForUser(NSString *field, NSString *username) {
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
     if ([dict objectForKey:username] == nil) {
@@ -30,7 +18,7 @@ static NSMutableArray *fieldForUser(NSString *field, NSString *username) {
     return [NSMutableArray arrayWithArray:[[defs objectForKey:field] objectForKey:username]];
 }
 
-static void addObjectToFieldForUser(id value, NSString *field, NSString *username) {
+void addObjectToFieldForUser(id value, NSString *field, NSString *username) {
     NSMutableArray *items = fieldForUser(field, username);
     [items addObject:value];
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
@@ -39,7 +27,16 @@ static void addObjectToFieldForUser(id value, NSString *field, NSString *usernam
     [defs setObject:dict forKey:field];
 }
 
-static void removeObjectAtIndexFromFieldForUser(NSInteger index, NSString *field, NSString *username) {
+void removeObjectFromFieldForUser(id value, NSString *field, NSString *username) {
+    NSMutableArray *items = fieldForUser(field, username);
+    [items removeObject:value];
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
+    [dict setObject:items forKey:username];
+    [defs setObject:dict forKey:field];
+}
+
+void removeObjectAtIndexFromFieldForUser(NSInteger index, NSString *field, NSString *username) {
     NSMutableArray *items = fieldForUser(field, username);
     [items removeObjectAtIndex:index];
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
@@ -48,13 +45,31 @@ static void removeObjectAtIndexFromFieldForUser(NSInteger index, NSString *field
     [defs setObject:dict forKey:field];
 }
 
-static void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, NSString *username) {
+void setFieldAtIndexForUser(id value, NSInteger index, NSString *field, NSString *username) {
     NSMutableArray *items = fieldForUser(field, username);
     [items replaceObjectAtIndex:index withObject:value];
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[defs objectForKey:field]];
     [dict setObject:items forKey:username];
     [defs setObject:dict forKey:field];
+}
+
+@implementation PrefsUsers
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+- (void)beforeDisplay
+{
+    [ignoreList reloadData];
+    [buddyList reloadData];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

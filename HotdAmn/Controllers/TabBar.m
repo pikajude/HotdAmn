@@ -8,7 +8,6 @@
 
 #import "TabView.h"
 #import "TabBar.h"
-#import "TabButton.h"
 #import "HotDamn.h"
 
 @implementation TabBar
