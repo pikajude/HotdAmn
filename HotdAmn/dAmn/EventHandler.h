@@ -30,6 +30,8 @@
 @interface EventHandler : NSObject <DamnSocketDelegate, ChatDelegate> {
     DamnSocket *sock;
     BOOL disconnecting;
+    BOOL loggedIn;
+    NSMutableArray *roomBuffer;
 }
 
 @property (readonly) NSMutableDictionary *privclasses;

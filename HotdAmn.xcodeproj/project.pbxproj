@@ -43,7 +43,6 @@
 		252A83E814CD112700143D91 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 252A83E714CD112700143D91 /* Command.m */; };
 		252DB61614B7975B0036E0CF /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61514B7975B0036E0CF /* Token.m */; };
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
-		252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */; };
 		253B216B14C66E9300146356 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B216A14C66E9300146356 /* RegexKitLite.m */; };
 		253B216E14C66F3D00146356 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 253B216D14C66F3D00146356 /* libicucore.dylib */; };
 		253B217114C66F7900146356 /* Tablumps.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B217014C66F7900146356 /* Tablumps.m */; };
@@ -169,8 +168,6 @@
 		252DB61414B7975B0036E0CF /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Token.h; path = HotdAmn/OAuth/Token.h; sourceTree = SOURCE_ROOT; };
 		252DB61514B7975B0036E0CF /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Token.m; path = HotdAmn/OAuth/Token.m; sourceTree = SOURCE_ROOT; };
 		252DB61714B799E00036E0CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthPrompt.h; sourceTree = "<group>"; };
-		252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthPrompt.m; sourceTree = "<group>"; };
 		253B216914C66E9300146356 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = dAmn/RegexKitLite.h; sourceTree = "<group>"; };
 		253B216A14C66E9300146356 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = dAmn/RegexKitLite.m; sourceTree = "<group>"; };
 		253B216D14C66F3D00146356 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -549,8 +546,6 @@
 				257D933B14B8038600CE636C /* About.m */,
 				259EA07C14B53FF700D44466 /* JoinRoom.h */,
 				259EA07D14B53FF700D44466 /* JoinRoom.m */,
-				252DB61C14B7B72D0036E0CF /* OAuthPrompt.h */,
-				252DB61D14B7B72D0036E0CF /* OAuthPrompt.m */,
 				2516D3E014DDAF26001C2EA0 /* TopicDialog.h */,
 				2516D3E114DDAF26001C2EA0 /* TopicDialog.m */,
 			);
@@ -688,7 +683,6 @@
 				2568BE1A14AE9C2900E1C825 /* TabButton.m in Sources */,
 				259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */,
 				252DB61614B7975B0036E0CF /* Token.m in Sources */,
-				252DB61E14B7B72D0036E0CF /* OAuthPrompt.m in Sources */,
 				257D933C14B8038600CE636C /* About.m in Sources */,
 				250338E714B898AB000C2D44 /* DamnSocket.m in Sources */,
 				250338EA14B8C374000C2D44 /* EventHandler.m in Sources */,

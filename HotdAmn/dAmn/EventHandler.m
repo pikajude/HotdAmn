@@ -20,6 +20,8 @@
     if (self) {
         privclasses = [[NSMutableDictionary dictionary] retain];
         disconnecting = NO;
+        loggedIn = NO;
+        roomBuffer = [[NSMutableArray array] retain];
     }
     
     return self;
@@ -52,11 +54,14 @@
 - (void)onLogin:(Packet *)msg
 {
     if ([[[msg args] objectForKey:@"e"] isEqualToString:@"ok"]) {
+        loggedIn = YES;
         Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Logged in as %@.", [msg param]]] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
         [delegate setIsConnected:YES];
         [[UserManager defaultManager] updateRecord:user forUsername:[msg param]];
         [self onLaunch];
+        for (NSString *rm in roomBuffer)
+            [self join:rm];
     } else {
         Message *m = [[[Message alloc] initWithContent:@"Login fail, refreshing authtoken."] autorelease];
         [delegate postMessage:m inRoom:@"Server"];
@@ -276,8 +281,12 @@
 
 - (void)join:(NSString *)room
 {
-    [sock write:[NSString stringWithFormat:@"join %@\n\0",
-                 [UserManager formatChatroom:room]]];
+    if (loggedIn) {
+        [sock write:[NSString stringWithFormat:@"join %@\n\0", [UserManager formatChatroom:room]]];
+        [roomBuffer removeObject:room];
+    } else {
+        [roomBuffer addObject:room];
+    }
 }
 
 - (void)part:(NSString *)room
@@ -367,6 +376,7 @@
 - (void)dealloc
 {
     [privclasses release];
+    [roomBuffer release];
     [user release];
     if (sock) [sock release];
     [super dealloc];

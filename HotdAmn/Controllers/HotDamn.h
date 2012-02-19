@@ -79,4 +79,8 @@ typedef enum {
 
 - (TabBar *)barControl;
 
+#pragma mark -
+#pragma mark Links
+- (void)getURL:(NSAppleEventDescriptor *)evt withReplyEvent:(NSAppleEventDescriptor *)replyEvt;
+
 @end

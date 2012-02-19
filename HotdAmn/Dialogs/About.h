@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface About : NSWindowController
-
-@property (retain) IBOutlet NSScrollView *box;
+@interface About : NSWindowController {
+    IBOutlet NSScrollView *box;
+    IBOutlet NSImageView *appIcon;
+}
 
 @end

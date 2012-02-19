@@ -10,8 +10,6 @@
 
 @implementation About
 
-@synthesize box;
-
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
@@ -30,6 +28,8 @@
     [[[box documentView] textStorage] setAttributedString:content];
     
     [[box documentView] setEditable:NO];
+    
+    [appIcon setImage:[[NSApplication sharedApplication] applicationIconImage]];
 }
 
 @end

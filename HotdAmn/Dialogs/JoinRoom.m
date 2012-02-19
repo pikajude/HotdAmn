@@ -42,9 +42,8 @@
         [errMsg setHidden:NO];
     } else {
         NSMutableString *str = [currentRoomName mutableCopy];
-        if ([str characterAtIndex:0] != '#') {
+        if ([str characterAtIndex:0] != '#')
             [str insertString:@"#" atIndex:0];
-        }
         [[self delegate] join:str];
         
         // not actually canceling, this is just a shortcut

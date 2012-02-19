@@ -18,6 +18,7 @@
     isConnected = NO;
     evtHandler = [[EventHandler alloc] init];
     [evtHandler setDelegate:self];
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
     return self;
 }
 
@@ -271,6 +272,26 @@
 - (TabBar *)barControl
 {
     return barControl;
+}
+
+- (void)getURL:(NSAppleEventDescriptor *)evt withReplyEvent:(NSAppleEventDescriptor *)replyEvt
+{
+    NSLog(@"entered");
+    NSString *url = [[evt paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSURL *parsed = [NSURL URLWithString:url];
+    NSCharacterSet *invalid = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"] invertedSet];
+    if (!parsed) return;
+    NSString *arg;
+    if ([[parsed pathComponents] count] < 2)
+        return;
+    arg = [[parsed pathComponents] objectAtIndex:1];
+    if ([arg rangeOfCharacterFromSet:invalid].location != NSNotFound)
+        return;
+    if ([[parsed host] isEqualToString:@"chat"]) {
+        [evtHandler join:[NSString stringWithFormat:@"#%@", arg]];
+    } else if ([[parsed host] isEqualToString:@"pchat"]) {
+        [evtHandler join:arg];
+    }
 }
 
 @end
