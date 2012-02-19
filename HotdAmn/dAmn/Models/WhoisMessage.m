@@ -43,8 +43,15 @@
         [html appendString:[MessageFormatter dateDifferenceToString:[conn idleTime]]];
         [html appendString:@"</li>"];
         
-        [html appendString:@"<li>Rooms: #"];
-        [html appendString:[[[conn rooms] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@", #"]];
+        [html appendString:@"<li>Rooms: "];
+        
+        NSMutableArray *rooms = [NSMutableArray arrayWithArray:[[conn rooms] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+        for (int i = 0; i < [rooms count]; i++) {
+            NSString *rm = [rooms objectAtIndex:i];
+            [rooms replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"<a href='damn://chat/%@'>#%@</a>", rm, rm]];
+        }
+        
+        [html appendString:[rooms componentsJoinedByString:@", "]];
         [html appendString:@"</li>"];
         
         [html appendString:@"</ul></li>"];

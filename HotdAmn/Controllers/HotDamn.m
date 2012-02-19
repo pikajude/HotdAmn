@@ -186,6 +186,12 @@
     [barControl resizeButtons];
 }
 
+- (void)postMessageInCurrentRoom:(Message *)msg
+{
+    NSString *roomName = [[barControl highlightedTab] roomName];
+    [self postMessage:msg inRoom:roomName];
+}
+
 - (void)setupDefaults
 {
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
@@ -276,7 +282,6 @@
 
 - (void)getURL:(NSAppleEventDescriptor *)evt withReplyEvent:(NSAppleEventDescriptor *)replyEvt
 {
-    NSLog(@"entered");
     NSString *url = [[evt paramDescriptorForKeyword:keyDirectObject] stringValue];
     NSURL *parsed = [NSURL URLWithString:url];
     NSCharacterSet *invalid = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"] invertedSet];

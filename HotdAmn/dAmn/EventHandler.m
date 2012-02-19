@@ -268,7 +268,7 @@
         [wc setIdleTime:[[[[metadata objectAtIndex:1] componentsSeparatedByString:@"="] objectAtIndex:1] integerValue]];
         [wm addConnection:wc];
     }
-    [[self delegate] postMessage:wm inRoom:@"Server"];
+    [[self delegate] postMessageInCurrentRoom:wm];
 }
 
 - (void)onError:(Packet *)msg
