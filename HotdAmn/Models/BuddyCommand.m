@@ -20,7 +20,6 @@ commandBlock action = ^(Command *me, Chat *caller, id<ChatDelegate>receiver, NSA
     
     if ([[args objectAtIndex:0] isEqualToString:@"list"]) {
         
-        NSArray *buddies = [defs objectForKey:@"buddies"];
         [caller error:[NSString stringWithFormat:@"Buddies: %@", [buddies componentsJoinedByString:@", "]]];
         
     } else if ([[args objectAtIndex:0] isEqualToString:@"add"]) {

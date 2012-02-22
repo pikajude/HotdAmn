@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Command.h"
 #import "UserListNode.h"
 #import "User.h"
+#import "LuaCommand.h"
 
 typedef struct {
     NSString *content;

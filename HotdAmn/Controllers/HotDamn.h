@@ -17,6 +17,7 @@
 #import "UserManager.h"
 #import "Preferences.h"
 #import "TopicDialog.h"
+#import "LuaInterop.h"
 
 typedef enum {
     AutojoinNone,

@@ -48,7 +48,7 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
     } else {
         NSRange range = getRangeOfSelectedWord(str, location);
         if (range.location == 0) {
-            return [self _completeCommandString:str withPossibleCommands:[[Command allCommands] allKeys] cursorLocation:location];
+            return [self _completeCommandString:str withPossibleCommands:[[LuaCommand commands] allKeys] cursorLocation:location];
         } else {
             NSInteger commandIndex = -1;
             for (int i = 0; i < range.location; i++) {
@@ -58,8 +58,8 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
             }
             
             NSString *commandName = [[[str componentsSeparatedByString:@" "] objectAtIndex:0] substringFromIndex:1];
-            Command *argDict = [[Command allCommands] objectForKey:commandName];
-            int argType;
+            LuaCommand *argDict = [[LuaCommand commands] objectForKey:commandName];
+            id argType;
             
             if (argDict == nil || [argDict arity] == 0) {
                 return makeTabcmp(str, location);
@@ -70,27 +70,24 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
                 if (commandIndex >= [argDict arity]) {
                     return makeTabcmp(str, location);
                 } else {
-                    argType = [[[argDict types] objectAtIndex:commandIndex] intValue];
+                    argType = [[argDict types] objectAtIndex:commandIndex];
                 }
             } else {
                 // negative arity, so varargs
                 NSInteger arity = [argDict arity] * -1 - 1;
                 if (commandIndex > arity) {
-                    argType = [[[argDict types] lastObject] intValue];
+                    argType = [[argDict types] lastObject];
                 } else {
-                    argType = [[[argDict types] objectAtIndex:commandIndex] intValue];
+                    argType = [[argDict types] objectAtIndex:commandIndex];
                 }
             }
             
-            NSArray *possibleArgs;
-        
-            if (argType == ArgTypeCustom) {
-                possibleArgs = [argDict completionsForIndex:commandIndex];
+            if ([argType isKindOfClass:[NSArray class]]) {
+                return [self _completeCommandArgString:str withPossibleArgs:argType cursorLocation:location];
             } else {
-                possibleArgs = [self _getPossibleArgs:argType withDetails:details];
+                NSArray *possibleArgs = [self _getPossibleArgs:[argType intValue] withDetails:details];
+                return [self _completeCommandArgString:str withPossibleArgs:possibleArgs cursorLocation:location];
             }
-            
-            return [self _completeCommandArgString:str withPossibleArgs:possibleArgs cursorLocation:location];
         }
     }
 }
@@ -165,15 +162,15 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
 + (NSArray *)_getPossibleArgs:(int)types withDetails:(NSString *)details
 {
     NSMutableArray *poss = [NSMutableArray array];
-    
+
     // All privclasses
-    if (types & ArgTypePrivclass) {
+    if (types & ArgPrivclass) {
         NSDictionary *privclasses = [[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] objectForKey:details];
         [poss addObjectsFromArray:[privclasses allKeys]];
     }
     
     // All users
-    if (types & ArgTypeUsername) {
+    if (types & ArgUsername) {
         NSArray *userObjects = [[User listForRoom:details] allChildren];
         for (UserListNode *obj in userObjects) {
             [poss addObject:[obj title]];
@@ -181,12 +178,12 @@ static NSRange getRangeOfSelectedWord(NSString *str, NSInteger loc) {
     }
     
     // All rooms
-    if (types & ArgTypeRoom) {
+    if (types & ArgRoom) {
         [poss addObjectsFromArray:[[[(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler] privclasses] allKeys]];
     }
     
     [poss sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    
+
     return poss;
 }
 

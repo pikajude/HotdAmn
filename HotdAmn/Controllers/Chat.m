@@ -100,11 +100,11 @@
     } else {
         NSArray *pieces = [[[sender stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "];
         NSString *cmdName = [[pieces objectAtIndex:0] substringFromIndex:1];
-        Command *c = [[Command allCommands] objectForKey:cmdName];
+        LuaCommand *c = [LuaCommand commandWithName:cmdName];
         if (c == nil) {
             [self error:[NSString stringWithFormat:@"Unknown command %@.", cmdName]];
         } else {
-            [c command](c, self, receiver, [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)]);
+            [c execute];
         }
     }
     [sender setStringValue:@""];

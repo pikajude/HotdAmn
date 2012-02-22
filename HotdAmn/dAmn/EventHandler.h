@@ -16,7 +16,6 @@
 #import "UserAction.h"
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
-#import "Command.h"
 #import "UserManager.h"
 
 @protocol EventHandlerDelegate <NSObject>
@@ -27,7 +26,7 @@
 
 @class HotDamn;
 
-@interface EventHandler : NSObject <DamnSocketDelegate, ChatDelegate> {
+@interface EventHandler : NSObject <DamnSocketDelegate> {
     DamnSocket *sock;
     BOOL disconnecting;
     BOOL loggedIn;
