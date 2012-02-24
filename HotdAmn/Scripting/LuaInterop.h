@@ -7,11 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HDProxy.h"
 #import "LuaCommand.h"
-#import "lua.h"
-#import "lualib.h"
-#import "lauxlib.h"
+#import "LuaHotDamn.h"
 
 @interface LuaInterop : NSObject {
     lua_State *_L;
@@ -20,5 +17,6 @@
 + (LuaInterop *)lua;
 
 - (void)execFile:(NSString *)filePath error:(NSError **)err;
+- (void)executeRegistryFunction:(int)regIndex withObject:(NSArray *)obj;
 
 @end

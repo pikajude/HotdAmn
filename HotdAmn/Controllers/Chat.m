@@ -99,12 +99,17 @@
         [receiver say:cont inRoom:[self roomName]];
     } else {
         NSArray *pieces = [[[sender stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "];
+        NSArray *args = [pieces subarrayWithRange:NSMakeRange(1, [pieces count] - 1)];
         NSString *cmdName = [[pieces objectAtIndex:0] substringFromIndex:1];
         LuaCommand *c = [LuaCommand commandWithName:cmdName];
         if (c == nil) {
             [self error:[NSString stringWithFormat:@"Unknown command %@.", cmdName]];
         } else {
-            [c execute];
+            if (POSIFY([c arity]) > [args count]) {
+                [self error:[NSString stringWithFormat:@"Not enough arguments to command %@.", cmdName]];
+            } else {
+                [c executeWithArgs:args];
+            }
         }
     }
     [sender setStringValue:@""];

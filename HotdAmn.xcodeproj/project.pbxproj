@@ -54,6 +54,8 @@
 		25559A8D14BA38F900B60137 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8C14BA38F900B60137 /* Welcome.m */; };
 		2567C64B14C4990C00A89A91 /* chat_shell.html in Resources */ = {isa = PBXBuildFile; fileRef = 2567C64914C4990C00A89A91 /* chat_shell.html */; };
 		2568BE1A14AE9C2900E1C825 /* TabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568BE1914AE9C2900E1C825 /* TabButton.m */; };
+		256A1F7014F6723F00D3A204 /* LuaHotDamn.m in Sources */ = {isa = PBXBuildFile; fileRef = 256A1F6F14F6723F00D3A204 /* LuaHotDamn.m */; };
+		256A1F7514F672D100D3A204 /* LuaUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 256A1F7414F672D100D3A204 /* LuaUtil.m */; };
 		256E7F7914BFB96A000608A1 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E7F7814BFB96A000608A1 /* Message.m */; };
 		257205A114BA94DD00A24228 /* ServerChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 257205A014BA94DD00A24228 /* ServerChat.m */; };
 		2577727F14C0F5190012E657 /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2577727E14C0F5190012E657 /* UserListView.m */; };
@@ -105,8 +107,6 @@
 		25F171DA14F351B90077DF26 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 25F171B814F351B90077DF26 /* lundump.c */; };
 		25F171DB14F351B90077DF26 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 25F171BA14F351B90077DF26 /* lvm.c */; };
 		25F171DC14F351B90077DF26 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 25F171BC14F351B90077DF26 /* lzio.c */; };
-		25F171DF14F352090077DF26 /* LuaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F171DE14F352090077DF26 /* LuaTest.m */; };
-		25F171E214F470B50077DF26 /* HDProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F171E114F470B50077DF26 /* HDProxy.m */; };
 		25F171E514F470C70077DF26 /* LuaInterop.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F171E414F470C70077DF26 /* LuaInterop.m */; };
 		25F171E814F4711A0077DF26 /* LuaCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F171E714F471190077DF26 /* LuaCommand.m */; };
 		25F20B5D14BFDBBE0019326D /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F20B5C14BFDBBE0019326D /* UserMessage.m */; };
@@ -221,6 +221,10 @@
 		2567C64A14C4990C00A89A91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/chat_shell.html; sourceTree = "<group>"; };
 		2568BE1814AE9C2900E1C825 /* TabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabButton.h; path = Views/TabButton.h; sourceTree = "<group>"; };
 		2568BE1914AE9C2900E1C825 /* TabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabButton.m; path = Views/TabButton.m; sourceTree = "<group>"; };
+		256A1F6E14F6723F00D3A204 /* LuaHotDamn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaHotDamn.h; path = Scripting/LuaHotDamn.h; sourceTree = "<group>"; };
+		256A1F6F14F6723F00D3A204 /* LuaHotDamn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaHotDamn.m; path = Scripting/LuaHotDamn.m; sourceTree = "<group>"; };
+		256A1F7314F672D100D3A204 /* LuaUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaUtil.h; path = Scripting/LuaUtil.h; sourceTree = "<group>"; };
+		256A1F7414F672D100D3A204 /* LuaUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaUtil.m; path = Scripting/LuaUtil.m; sourceTree = "<group>"; };
 		256E7F7714BFB96A000608A1 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = dAmn/Models/Message.h; sourceTree = "<group>"; };
 		256E7F7814BFB96A000608A1 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = dAmn/Models/Message.m; sourceTree = "<group>"; };
 		2572059F14BA94DD00A24228 /* ServerChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerChat.h; path = Controllers/ServerChat.h; sourceTree = "<group>"; };
@@ -309,10 +313,6 @@
 		25F171BB14F351B90077DF26 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lvm.h; path = Scripting/Bridge/lvm.h; sourceTree = "<group>"; };
 		25F171BC14F351B90077DF26 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzio.c; path = Scripting/Bridge/lzio.c; sourceTree = "<group>"; };
 		25F171BD14F351B90077DF26 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzio.h; path = Scripting/Bridge/lzio.h; sourceTree = "<group>"; };
-		25F171DD14F352090077DF26 /* LuaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaTest.h; path = Scripting/LuaTest.h; sourceTree = "<group>"; };
-		25F171DE14F352090077DF26 /* LuaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaTest.m; path = Scripting/LuaTest.m; sourceTree = "<group>"; };
-		25F171E014F470B40077DF26 /* HDProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDProxy.h; path = Scripting/HDProxy.h; sourceTree = "<group>"; };
-		25F171E114F470B50077DF26 /* HDProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDProxy.m; path = Scripting/HDProxy.m; sourceTree = "<group>"; };
 		25F171E314F470C70077DF26 /* LuaInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaInterop.h; path = Scripting/LuaInterop.h; sourceTree = "<group>"; };
 		25F171E414F470C70077DF26 /* LuaInterop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaInterop.m; path = Scripting/LuaInterop.m; sourceTree = "<group>"; };
 		25F171E614F471190077DF26 /* LuaCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaCommand.h; path = Scripting/LuaCommand.h; sourceTree = "<group>"; };
@@ -652,14 +652,14 @@
 			isa = PBXGroup;
 			children = (
 				25F1718414F350350077DF26 /* Bridge */,
-				25F171DD14F352090077DF26 /* LuaTest.h */,
-				25F171DE14F352090077DF26 /* LuaTest.m */,
-				25F171E014F470B40077DF26 /* HDProxy.h */,
-				25F171E114F470B50077DF26 /* HDProxy.m */,
 				25F171E614F471190077DF26 /* LuaCommand.h */,
 				25F171E714F471190077DF26 /* LuaCommand.m */,
 				25F171E314F470C70077DF26 /* LuaInterop.h */,
 				25F171E414F470C70077DF26 /* LuaInterop.m */,
+				256A1F6E14F6723F00D3A204 /* LuaHotDamn.h */,
+				256A1F6F14F6723F00D3A204 /* LuaHotDamn.m */,
+				256A1F7314F672D100D3A204 /* LuaUtil.h */,
+				256A1F7414F672D100D3A204 /* LuaUtil.m */,
 			);
 			name = Scripting;
 			sourceTree = "<group>";
@@ -922,10 +922,10 @@
 				25F171DA14F351B90077DF26 /* lundump.c in Sources */,
 				25F171DB14F351B90077DF26 /* lvm.c in Sources */,
 				25F171DC14F351B90077DF26 /* lzio.c in Sources */,
-				25F171DF14F352090077DF26 /* LuaTest.m in Sources */,
-				25F171E214F470B50077DF26 /* HDProxy.m in Sources */,
 				25F171E514F470C70077DF26 /* LuaInterop.m in Sources */,
 				25F171E814F4711A0077DF26 /* LuaCommand.m in Sources */,
+				256A1F7014F6723F00D3A204 /* LuaHotDamn.m in Sources */,
+				256A1F7514F672D100D3A204 /* LuaUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

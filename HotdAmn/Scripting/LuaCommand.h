@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HDProxy.h"
+
+#define POSIFY(arg) (arg < 0 ? -arg - 1 : arg)
 
 enum {
     ArgAny = 1,
@@ -29,12 +30,9 @@ enum {
 @property (readonly) NSString *name;
 
 - (id)initWithIndex:(int)index commandName:(NSString *)name;
+- (void)executeWithArgs:(NSArray *)args;
 
-- (NSArray *)completionsForIndex:(NSInteger)index withPossibleCompletions:(NSDictionary *)comp;
-- (void)testArity:(NSArray *)arguments;
-- (void)execute;
-
-+ (void)addCommand:(LuaCommand *)cmd;
++ (BOOL)addCommand:(LuaCommand *)cmd;
 + (NSMutableDictionary *)commands;
 + (LuaCommand *)commandWithName:(NSString *)name;
 
