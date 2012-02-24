@@ -73,14 +73,21 @@ int hd_say(lua_State *L) {
     return 0;
 }
 
+int hd_action(lua_State *L) {
+    [[HOTDAMN evtHandler] action:[NSString stringWithUTF8String:luaL_checkstring(L, 1)]
+                          inRoom:[[[HOTDAMN barControl] highlightedTab] roomName]];
+    return 0;
+}
+
 int hd_currentRoom(lua_State *L) {
     lua_pushstring(L, [[[[HOTDAMN barControl] highlightedTab] roomName] UTF8String]);
     return 1;
 }
 
-const struct luaL_Reg proxylibs[6] = {
+const struct luaL_Reg proxylibs[7] = {
     {"register_cmd", hd_registerCmd},
     {"say", hd_say},
+    {"action", hd_action},
     {"join", hd_join},
     {"part", hd_part},
     {"current_room", hd_currentRoom},

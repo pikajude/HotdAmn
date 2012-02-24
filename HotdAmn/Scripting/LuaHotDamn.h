@@ -16,10 +16,11 @@ int hd_registerCmd(lua_State *L);
 int hd_join(lua_State *L);
 int hd_part(lua_State *L);
 int hd_say(lua_State *L);
+int hd_action(lua_State *L);
 
 int hd_currentRoom(lua_State *L);
 
-const struct luaL_Reg proxylibs[6];
+const struct luaL_Reg proxylibs[7];
 
 @interface LuaHotDamn : NSObject
 
