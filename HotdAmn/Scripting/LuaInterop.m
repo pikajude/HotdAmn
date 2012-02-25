@@ -89,7 +89,11 @@ static LuaInterop *globalRuntime;
 {
     lua_rawgeti(_L, LUA_REGISTRYINDEX, regIndex);
     [LuaUtil pushArray:_L :obj];
-    lua_pcall(_L, 1, 0, 0);
+    int ret = lua_pcall(_L, 1, 0, 0);
+    if (ret != 0) {
+        NSLog(@"%s", lua_tostring(_L, -1));
+        lua_pop(_L, -1);
+    }
 }
 
 @end

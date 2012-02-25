@@ -59,23 +59,26 @@ int hd_part(lua_State *L) {
 }
 
 int hd_say(lua_State *L) {
-    int argc = lua_gettop(L);
-    NSString *tabName;
-    NSString *toSay;
-    if (argc == 1) {
-        tabName = [[[HOTDAMN barControl] highlightedTab] roomName];
-        toSay = [NSString stringWithUTF8String:luaL_checkstring(L, 1)];
-    } else {
-        tabName = [NSString stringWithUTF8String:luaL_checkstring(L, 1)];
-        toSay = [NSString stringWithUTF8String:luaL_checkstring(L, 2)];
+    const char *roomname = luaL_checkstring(L, 1);
+    const char *toSay = luaL_checkstring(L, 2);
+    bool parsed = true;
+    if (lua_gettop(L) >= 3) {
+        luaL_checktype(L, 3, LUA_TBOOLEAN);
+        parsed = lua_toboolean(L, 3);
     }
-    [[HOTDAMN evtHandler] say:toSay inRoom:tabName];
+    if (parsed)
+        [[HOTDAMN evtHandler] say:[NSString stringWithUTF8String:toSay]
+                           inRoom:[NSString stringWithUTF8String:roomname]];
+    else
+        [[HOTDAMN evtHandler] sayUnparsed:[NSString stringWithUTF8String:toSay]
+                                   inRoom:[NSString stringWithUTF8String:roomname]];
+        
     return 0;
 }
 
 int hd_action(lua_State *L) {
-    [[HOTDAMN evtHandler] action:[NSString stringWithUTF8String:luaL_checkstring(L, 1)]
-                          inRoom:[[[HOTDAMN barControl] highlightedTab] roomName]];
+    [[HOTDAMN evtHandler] action:[NSString stringWithUTF8String:luaL_checkstring(L, 2)]
+                          inRoom:[NSString stringWithUTF8String:luaL_checkstring(L, 1)]];
     return 0;
 }
 

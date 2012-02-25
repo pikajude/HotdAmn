@@ -78,6 +78,7 @@
 		25C7053B14BA794A004BC131 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7053914BA794A004BC131 /* Chat.m */; };
 		25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */; };
 		25CCF4DE14C3E8D600C75C4B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 25CCF4DC14C3E8D600C75C4B /* Themes */; };
+		25DA035B14F952B7008839AF /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DA035A14F952B7008839AF /* GTMNSString+HTML.m */; };
 		25F171BE14F351B90077DF26 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 25F1718814F351B80077DF26 /* lapi.c */; };
 		25F171BF14F351B90077DF26 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 25F1718A14F351B80077DF26 /* lauxlib.c */; };
 		25F171C014F351B90077DF26 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 25F1718C14F351B80077DF26 /* lbaselib.c */; };
@@ -262,6 +263,9 @@
 		25CCF4C714C3CF7400C75C4B /* ThemeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeHelper.h; path = Controllers/ThemeHelper.h; sourceTree = "<group>"; };
 		25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeHelper.m; path = Controllers/ThemeHelper.m; sourceTree = "<group>"; };
 		25CCF4DD14C3E8D600C75C4B /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = HotdAmn/en.lproj/Themes; sourceTree = "<group>"; };
+		25DA035814F952B7008839AF /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = dAmn/Models/GTMDefines.h; sourceTree = "<group>"; };
+		25DA035914F952B7008839AF /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "dAmn/Models/GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		25DA035A14F952B7008839AF /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "dAmn/Models/GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		25F1718814F351B80077DF26 /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = Scripting/Bridge/lapi.c; sourceTree = "<group>"; };
 		25F1718914F351B80077DF26 /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lapi.h; path = Scripting/Bridge/lapi.h; sourceTree = "<group>"; };
 		25F1718A14F351B80077DF26 /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lauxlib.c; path = Scripting/Bridge/lauxlib.c; sourceTree = "<group>"; };
@@ -598,6 +602,9 @@
 			children = (
 				25F890B814E35ABE00CBADD1 /* ErrorMessage.h */,
 				25F890B914E35ABE00CBADD1 /* ErrorMessage.m */,
+				25DA035814F952B7008839AF /* GTMDefines.h */,
+				25DA035914F952B7008839AF /* GTMNSString+HTML.h */,
+				25DA035A14F952B7008839AF /* GTMNSString+HTML.m */,
 				256E7F7714BFB96A000608A1 /* Message.h */,
 				256E7F7814BFB96A000608A1 /* Message.m */,
 				2514FE6B14D596B7000CC1B5 /* MessageFormatter.h */,
@@ -926,6 +933,7 @@
 				25F171E814F4711A0077DF26 /* LuaCommand.m in Sources */,
 				256A1F7014F6723F00D3A204 /* LuaHotDamn.m in Sources */,
 				256A1F7514F672D100D3A204 /* LuaUtil.m in Sources */,
+				25DA035B14F952B7008839AF /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

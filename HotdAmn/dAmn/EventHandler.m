@@ -299,7 +299,7 @@
 {
     NSString *pk = [NSString stringWithFormat:@"send %@\n\nmsg main\n\n%@\0",
                     [UserManager formatChatroom:room],
-                    line];
+                    [line gtm_stringByEscapingForAsciiHTML]];
     [sock write:pk];
 }
 
@@ -307,7 +307,7 @@
 {
     NSString *pk = [NSString stringWithFormat:@"send %@\n\nnpmsg main\n\n%@\0",
                     [UserManager formatChatroom:room],
-                    str];
+                    [str gtm_stringByEscapingForAsciiHTML]];
     [sock write:pk];
 }
 
@@ -315,7 +315,7 @@
 {
     NSString *pk = [NSString stringWithFormat:@"send %@\n\naction main\n\n%@\0",
                     [UserManager formatChatroom:room],
-                    line];
+                    [line gtm_stringByEscapingForAsciiHTML]];
     [sock write:pk];
 }
 

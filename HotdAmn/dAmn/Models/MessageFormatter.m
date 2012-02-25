@@ -60,6 +60,11 @@
                             options:NSLiteralSearch
                               range:NSMakeRange(0, [mod length])];
     
+    [mod replaceOccurrencesOfString:@"\\"
+                         withString:@"\\\\"
+                            options:NSLiteralSearch
+                              range:NSMakeRange(0, [mod length])];
+    
     [mod replaceOccurrencesOfString:@"\""
                          withString:@"\\\""
                             options:NSLiteralSearch

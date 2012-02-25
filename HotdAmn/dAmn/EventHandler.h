@@ -17,6 +17,7 @@
 #import "NSDictionary+User.h"
 #import "NSMutableDictionary+Privclass.h"
 #import "UserManager.h"
+#import "GTMNSString+HTML.h"
 
 @protocol EventHandlerDelegate <NSObject>
 
