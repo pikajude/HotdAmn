@@ -42,6 +42,7 @@
 - (void)onPropertyMembers:(Packet *)msg;
 - (void)onPropertyPrivclasses:(Packet *)msg;
 - (void)onPropertyTopic:(Packet *)msg;
+- (void)onPropertyTitle:(Packet *)msg;
 - (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPart:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;
@@ -64,6 +65,7 @@
 - (void)promote:(NSString *)user inRoom:(NSString *)room;
 - (void)promote:(NSString *)user toPrivclass:(NSString *)privclass inRoom:(NSString *)room;
 - (void)setTopic:(NSString *)topic inRoom:(NSString *)room;
+- (void)setTitle:(NSString *)title inRoom:(NSString *)room;
 - (void)whois:(NSString *)username;
 
 - (void)onLaunch;

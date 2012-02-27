@@ -21,7 +21,8 @@ static NSMutableDictionary *titles;
         topics = [[NSMutableDictionary dictionary] retain];
     [topics setObject:topic forKey:roomName];
     for (NSValue *obj in watchers) {
-        [(id)[obj pointerValue] onTopicChange];
+        if ([(id)[obj pointerValue] respondsToSelector:@selector(onTopicChange)])
+            [(id<TopicWatcher>)[obj pointerValue] onTopicChange];
     }
 }
 
@@ -31,7 +32,8 @@ static NSMutableDictionary *titles;
         titles = [[NSMutableDictionary dictionary] retain];
     [titles setObject:title forKey:roomName];
     for (NSValue *obj in watchers) {
-        [(id<TopicWatcher>)[obj pointerValue] onTitleChange];
+        if ([(id)[obj pointerValue] respondsToSelector:@selector(onTitleChange)])
+            [(id<TopicWatcher>)[obj pointerValue] onTitleChange];
     }
 }
 

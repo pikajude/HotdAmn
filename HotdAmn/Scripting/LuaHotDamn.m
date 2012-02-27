@@ -128,11 +128,31 @@ static int hd_promote(lua_State *L) {
 static int hd_getTopic(lua_State *L) {
     const char *room = luaL_checkstring(L, 1);
     NSString *top = [Topic topicForRoom:STR(room)];
-    if (top == nil) {
+    if (top == nil)
         luaL_error(L, "not joined to %s", room);
-    }
     lua_pushstring(L, [top UTF8String]);
     return 1;
+}
+
+static int hd_setTopic(lua_State *L) {
+    [[HOTDAMN evtHandler] setTopic:STR(luaL_checkstring(L, 2))
+                            inRoom:STR(luaL_checkstring(L, 1))];
+    return 0;
+}
+
+static int hd_getTitle(lua_State *L) {
+    const char *room = luaL_checkstring(L, 1);
+    NSString *top = [Topic titleForRoom:STR(room)];
+    if (top == nil)
+        luaL_error(L, "not joined to %s", room);
+    lua_pushstring(L, [top UTF8String]);
+    return 1;
+}
+
+static int hd_setTitle(lua_State *L) {
+    [[HOTDAMN evtHandler] setTitle:STR(luaL_checkstring(L, 2))
+                            inRoom:STR(luaL_checkstring(L, 1))];
+    return 0;
 }
 
 static int hd_currentRoom(lua_State *L) {
@@ -140,7 +160,16 @@ static int hd_currentRoom(lua_State *L) {
     return 1;
 }
 
-const struct luaL_Reg proxylibs[14] = {
+static int hd_print(lua_State *L) {
+    Message *m = [[[Message alloc] initWithContent:STR(luaL_checkstring(L, 2))] autorelease];
+    [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"message-%@", STR(luaL_checkstring(L, 1))]
+                                                        object:nil
+                                                      userInfo:[NSDictionary dictionaryWithObject:m
+                                                                                           forKey:@"msg"]];
+    return 0;
+}
+
+const struct luaL_Reg proxylibs[18] = {
     {"register_cmd", hd_registerCmd},
     {"say", hd_say},
     {"action", hd_action},
@@ -155,5 +184,10 @@ const struct luaL_Reg proxylibs[14] = {
     
     {"current_room", hd_currentRoom},
     {"gettopic", hd_getTopic},
+    {"settopic", hd_setTopic},
+    {"gettitle", hd_getTitle},
+    {"settitle", hd_setTitle},
+    
+    {"print", hd_print},
     {NULL, NULL}
 };

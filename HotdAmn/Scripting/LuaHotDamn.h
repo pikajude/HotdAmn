@@ -10,8 +10,9 @@
 #import "LuaUtil.h"
 #import "LuaCommand.h"
 #import "Topic.h"
+#import "Message.h"
 
 #define HOTDAMN ((id)[[NSApplication sharedApplication] delegate])
 #define STR(x) [NSString stringWithUTF8String:(x)]
 
-const struct luaL_Reg proxylibs[14];
+const struct luaL_Reg proxylibs[18];

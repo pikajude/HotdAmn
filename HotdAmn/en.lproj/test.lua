@@ -61,8 +61,16 @@ hotdamn.register_cmd("demote", promote, -2, {hotdamn.arg.username, hotdamn.arg.p
 
 hotdamn.register_cmd("topic", function(args)
     if #args == 0 then
-        print(hotdamn.current_room(), hotdamn.gettopic(hotdamn.current_room()))
+        hotdamn.print(hotdamn.current_room(), "Topic for <b>" .. hotdamn.current_room() .. "</b>: " .. hotdamn.gettopic(hotdamn.current_room()))
     else
-        -- hotdamn.settopic(hotdamn.current_room(), table.concat(args, " "))
+        hotdamn.settopic(hotdamn.current_room(), table.concat(args, " "))
+    end
+end, -1, {hotdamn.arg.all})
+
+hotdamn.register_cmd("title", function(args)
+    if #args == 0 then
+        hotdamn.print(hotdamn.current_room(), "Title for <b>" .. hotdamn.current_room() .. "</b>: " .. hotdamn.gettitle(hotdamn.current_room()))
+    else
+        hotdamn.settitle(hotdamn.current_room(), table.concat(args, " "))
     end
 end, -1, {hotdamn.arg.all})

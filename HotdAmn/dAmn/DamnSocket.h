@@ -22,6 +22,7 @@
 - (void)onPropertyMembers:(Packet *)msg;
 - (void)onPropertyPrivclasses:(Packet *)msg;
 - (void)onPropertyTopic:(Packet *)msg;
+- (void)onPropertyTitle:(Packet *)msg;
 - (void)onRecvJoin:(Packet *)msg;
 - (void)onRecvPart:(Packet *)msg;
 - (void)onRecvMsg:(Packet *)msg;

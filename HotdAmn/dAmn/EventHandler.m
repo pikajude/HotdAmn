@@ -185,6 +185,11 @@ static void POST(NSString *room, Message *m) {
     [Topic setTopic:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomName]];
 }
 
+- (void)onPropertyTitle:(Packet *)msg
+{
+    [Topic setTitle:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomName]];
+}
+
 - (void)onRecvJoin:(Packet *)msg
 {
     Packet *p = [[[Packet alloc] initWithString:[[[msg subpacket] raw] stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"]] autorelease];
@@ -380,8 +385,16 @@ static void POST(NSString *room, Message *m) {
 - (void)setTopic:(NSString *)topic inRoom:(NSString *)room
 {
     NSString *pk = [NSString stringWithFormat:@"set chat:%@\np=topic\n\n%@\n\0",
-                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+                    [UserManager formatChatroom:room],
                     topic];
+    [sock write:pk];
+}
+
+- (void)setTitle:(NSString *)title inRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"set chat:%@\np=title\n\n%@\n\0",
+                    [UserManager formatChatroom:room],
+                    title];
     [sock write:pk];
 }
 
