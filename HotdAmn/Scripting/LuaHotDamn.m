@@ -82,11 +82,6 @@ static int hd_action(lua_State *L) {
     return 0;
 }
 
-static int hd_currentRoom(lua_State *L) {
-    lua_pushstring(L, [[[[HOTDAMN barControl] highlightedTab] roomName] UTF8String]);
-    return 1;
-}
-
 static int hd_kick(lua_State *L) {
     const char *roomname = luaL_checkstring(L, 1);
     const char *username = luaL_checkstring(L, 2);
@@ -101,17 +96,64 @@ static int hd_kick(lua_State *L) {
     return 0;
 }
 
-const struct luaL_Reg proxylibs[8] = {
+static int hd_ban(lua_State *L) {
+    [[HOTDAMN evtHandler] ban:STR(luaL_checkstring(L, 2))
+                     fromRoom:STR(luaL_checkstring(L, 1))];
+    return 0;
+}
+
+static int hd_unban(lua_State *L) {
+    [[HOTDAMN evtHandler] unban:STR(luaL_checkstring(L, 2))
+                       fromRoom:STR(luaL_checkstring(L, 1))];
+    return 0;
+}
+
+static int hd_whois(lua_State *L) {
+    [[HOTDAMN evtHandler] whois:STR(luaL_checkstring(L, 1))];
+    return 0;
+}
+
+static int hd_promote(lua_State *L) {
+    if (lua_gettop(L) > 2) {
+        [[HOTDAMN evtHandler] promote:STR(luaL_checkstring(L, 2))
+                          toPrivclass:STR(luaL_checkstring(L, 3))
+                               inRoom:STR(luaL_checkstring(L, 1))];
+    } else {
+        [[HOTDAMN evtHandler] promote:STR(luaL_checkstring(L, 2))
+                               inRoom:STR(luaL_checkstring(L, 1))];
+    }
+    return 0;
+}
+
+static int hd_getTopic(lua_State *L) {
+    const char *room = luaL_checkstring(L, 1);
+    NSString *top = [Topic topicForRoom:STR(room)];
+    if (top == nil) {
+        luaL_error(L, "not joined to %s", room);
+    }
+    lua_pushstring(L, [top UTF8String]);
+    return 1;
+}
+
+static int hd_currentRoom(lua_State *L) {
+    lua_pushstring(L, [[[[HOTDAMN barControl] highlightedTab] roomName] UTF8String]);
+    return 1;
+}
+
+const struct luaL_Reg proxylibs[14] = {
     {"register_cmd", hd_registerCmd},
     {"say", hd_say},
     {"action", hd_action},
     {"join", hd_join},
     {"part", hd_part},
     {"kick", hd_kick},
+    {"ban", hd_ban},
+    {"unban", hd_unban},
+    {"whois", hd_whois},
+    {"promote", hd_promote},
+    {"demote", hd_promote},
+    
     {"current_room", hd_currentRoom},
+    {"gettopic", hd_getTopic},
     {NULL, NULL}
 };
-
-@implementation LuaHotDamn
-
-@end

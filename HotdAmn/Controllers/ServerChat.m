@@ -12,16 +12,6 @@
 
 @synthesize roomName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil roomName:(NSString *)name
-{
-    self = [super initWithNibName:@"ServerView" bundle:nibBundleOrNil];
-    if (self) {
-        roomName = name;
-    }
-    
-    return self;
-}
-
 - (void)selectInput
 {
     return;

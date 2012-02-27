@@ -19,12 +19,6 @@
 #import "UserManager.h"
 #import "GTMNSString+HTML.h"
 
-@protocol EventHandlerDelegate <NSObject>
-
-- (void)postMessage:(Message *)msg inRoom:(NSString *)roomName;
-
-@end
-
 @class HotDamn;
 
 @interface EventHandler : NSObject <DamnSocketDelegate> {
@@ -65,6 +59,10 @@
 - (void)action:(NSString *)line inRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room;
 - (void)kick:(NSString *)user fromRoom:(NSString *)room withReason:(NSString *)reason;
+- (void)ban:(NSString *)user fromRoom:(NSString *)room;
+- (void)unban:(NSString *)user fromRoom:(NSString *)room;
+- (void)promote:(NSString *)user inRoom:(NSString *)room;
+- (void)promote:(NSString *)user toPrivclass:(NSString *)privclass inRoom:(NSString *)room;
 - (void)setTopic:(NSString *)topic inRoom:(NSString *)room;
 - (void)whois:(NSString *)username;
 

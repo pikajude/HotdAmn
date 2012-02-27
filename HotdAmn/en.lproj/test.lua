@@ -35,3 +35,34 @@ hotdamn.register_cmd("kick", function(args)
         hotdamn.kick(hotdamn.current_room(), username, table.concat(args, " "))
     end
 end, -2, {hotdamn.arg.username, hotdamn.arg.all})
+
+hotdamn.register_cmd("ban", function(args)
+    hotdamn.ban(hotdamn.current_room(), args[1])
+end, 1, {hotdamn.arg.username})
+
+hotdamn.register_cmd("unban", function(args)
+    hotdamn.unban(hotdamn.current_room(), args[1])
+end, 1, {hotdamn.arg.any})
+
+hotdamn.register_cmd("whois", function(args)
+    hotdamn.whois(args[1])
+end, 1, {hotdamn.arg.username})
+
+local promote = function(args)
+    if #args > 1 then
+        hotdamn.promote(hotdamn.current_room(), args[1], args[2])
+    else
+        hotdamn.promote(hotdamn.current_room(), args[1])
+    end
+end
+
+hotdamn.register_cmd("promote", promote, -2, {hotdamn.arg.username, hotdamn.arg.privclass})
+hotdamn.register_cmd("demote", promote, -2, {hotdamn.arg.username, hotdamn.arg.privclass})
+
+hotdamn.register_cmd("topic", function(args)
+    if #args == 0 then
+        print(hotdamn.current_room(), hotdamn.gettopic(hotdamn.current_room()))
+    else
+        -- hotdamn.settopic(hotdamn.current_room(), table.concat(args, " "))
+    end
+end, -1, {hotdamn.arg.all})

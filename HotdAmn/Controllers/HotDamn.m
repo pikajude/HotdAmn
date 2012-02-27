@@ -179,22 +179,9 @@
     [evtHandler stopConnection];
 }
 
-- (void)postMessage:(Message *)msg inRoom:(NSString *)roomName
+- (NSString *)currentRoom
 {
-    TabButton *b = [barControl getButtonWithTitle:roomName];
-    if (b == nil)
-        b = [barControl getButtonWithTitle:@"Server"];
-    [b addLine:msg];
-    [[b cell] setBadgeValue:[[b cell] badgeValue] + 1];
-    if ([msg highlight])
-        [[b cell] setIsHighlight:YES];
-    [barControl resizeButtons];
-}
-
-- (void)postMessageInCurrentRoom:(Message *)msg
-{
-    NSString *roomName = [[barControl highlightedTab] roomName];
-    [self postMessage:msg inRoom:roomName];
+    return [[barControl highlightedTab] roomName];
 }
 
 - (void)setupDefaults

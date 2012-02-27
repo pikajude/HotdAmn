@@ -26,7 +26,7 @@
 - (void)createChatView
 {
     if ([[self title] isEqualToString:@"Server"]) {
-        chatRoom = [[ServerChat alloc] initWithNibName:nil bundle:[NSBundle mainBundle] roomName:@"Server"];
+        chatRoom = [[ServerChat alloc] initWithNibName:@"ServerView" bundle:[NSBundle mainBundle] roomName:@"Server"];
     } else {
         chatRoom = [[Chat alloc] initWithNibName:@"ChatView" bundle:[NSBundle mainBundle] roomName:[self title]];
     }
@@ -151,11 +151,6 @@
     if ([[self title] isEqualToString:@"Server"])
         return;
     [[chatRoom split] setPosition:pos ofDividerAtIndex:0];
-}
-
-- (void)addLine:(Message *)str
-{
-    [chatRoom addLine:str];
 }
 
 - (BOOL)joined

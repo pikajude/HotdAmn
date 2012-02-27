@@ -10,6 +10,14 @@
 #import "HotDamn.h"
 #import "Packet.h"
 
+static void POST(NSString *room, Message *m) {
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:[NSString stringWithFormat:@"message-%@", room]
+     object:nil
+     userInfo:[NSDictionary dictionaryWithObject:m
+                                          forKey:@"msg"]];
+}
+
 @implementation EventHandler
 
 @synthesize delegate, user, privclasses;
@@ -41,7 +49,7 @@
                       [user objectForKey:@"username"],
                       [user objectForKey:@"authtoken"]];
     Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Connected to dAmnServer %@.", [msg param]]] autorelease];
-    [delegate postMessage:m inRoom:@"Server"];
+    POST(@"Server", m);
     disconnecting = NO;
     [sock write:resp];
 }
@@ -56,7 +64,7 @@
     if ([[[msg args] objectForKey:@"e"] isEqualToString:@"ok"]) {
         loggedIn = YES;
         Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Logged in as %@.", [msg param]]] autorelease];
-        [delegate postMessage:m inRoom:@"Server"];
+        POST(@"Server", m);
         [delegate setIsConnected:YES];
         [[UserManager defaultManager] updateRecord:user forUsername:[msg param]];
         [self onLaunch];
@@ -64,7 +72,7 @@
             [self join:rm];
     } else {
         Message *m = [[[Message alloc] initWithContent:@"Login fail, refreshing authtoken."] autorelease];
-        [delegate postMessage:m inRoom:@"Server"];
+        POST(@"Server", m);
         [user refreshFields];
         [sock release];
         [self startConnection];
@@ -106,12 +114,12 @@
         }
         Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
         Message *youjoined = [[[Message alloc] initWithContent:@"You have joined"] autorelease];
-        [delegate postMessage:m inRoom:@"Server"];
-        [delegate postMessage:youjoined inRoom:[msg roomName]];
+        POST(@"Server", m);
+        POST([msg roomName], youjoined);
         [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
         ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
-        [delegate postMessage:m inRoom:@"Server"];
+        POST(@"Server", m);
     }
 }
 
@@ -119,7 +127,7 @@
 {
     if ([msg isOkay]) {
         Message *youparted = [[[Message alloc] initWithContent:@"You have parted"] autorelease];
-        [delegate postMessage:youparted inRoom:[msg roomName]];
+        POST([msg roomName], youparted);
         [privclasses removeObjectForKey:[msg roomName]];
         [User removeRoom:[msg roomName]];
         [[delegate barControl] deactivateButtonWithTitle:[msg roomName]];
@@ -132,10 +140,10 @@
             notifyStr = [NSString stringWithFormat:@"Ended private chat with %@.", [msg roomName]];
         }
         Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
-        [delegate postMessage:m inRoom:@"Server"];
+        POST(@"Server", m);
     } else {
         ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to part room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
-        [delegate postMessage:m inRoom:@"Server"];
+        POST(@"Server", m);
     }
 }
 
@@ -200,7 +208,7 @@
         }
     }
     
-    [[self delegate] postMessage:m inRoom:[msg roomName]];
+    POST([msg roomName], m);
     
     [User updateWatchers];
 }
@@ -208,7 +216,7 @@
 - (void)onRecvPart:(Packet *)msg
 {
     Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ has parted %@", [[msg subpacket] param], [msg roomName]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomName]];
+    POST([msg roomName], m);
     [User removeUser:[[msg subpacket] param] fromRoom:[msg roomName]];
     
     if (!disconnecting) {
@@ -224,13 +232,13 @@
 - (void)onRecvMsg:(Packet *)msg
 {
     UserMessage *m = [[[UserMessage alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomName]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomName]];
+    POST([msg roomName], m);
 }
 
 - (void)onRecvAction:(Packet *)msg
 {
     UserAction *m = [[[UserAction alloc] initWithContent:[Tablumps removeTablumps:[[msg subpacket] body]] user:[User userWithName:[[[msg subpacket] args] objectForKey:@"from"] inRoom:[msg roomName]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomName]];
+    POST([msg roomName], m);
 }
 
 - (void)onSet:(Packet *)msg
@@ -239,7 +247,7 @@
     Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"%@ set error: %@",
                                                     prop,
                                                     [[msg args] objectForKey:@"e"]]] autorelease];
-    [[self delegate] postMessage:m inRoom:[msg roomName]];
+    POST([msg roomName], m);
 }
 
 - (void)onWhois:(Packet *)msg
@@ -268,7 +276,7 @@
         [wc setIdleTime:[[[[metadata objectAtIndex:1] componentsSeparatedByString:@"="] objectAtIndex:1] integerValue]];
         [wm addConnection:wc];
     }
-    [[self delegate] postMessageInCurrentRoom:wm];
+    POST([delegate currentRoom], wm);
 }
 
 - (void)onError:(Packet *)msg
@@ -321,18 +329,51 @@
 
 - (void)kick:(NSString *)us fromRoom:(NSString *)room
 {
-    NSString *pk = [NSString stringWithFormat:@"kick chat:%@\nu=%@\n\n\0",
-                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+    NSString *pk = [NSString stringWithFormat:@"kick %@\nu=%@\n\n\0",
+                    [UserManager formatChatroom:room],
                     us];
     [sock write:pk];
 }
 
 - (void)kick:(NSString *)us fromRoom:(NSString *)room withReason:(NSString *)reason
 {
-    NSString *pk = [NSString stringWithFormat:@"kick chat:%@\nu=%@\n\n%@\n\0",
-                    [room stringByReplacingOccurrencesOfString:@"#" withString:@""],
+    NSString *pk = [NSString stringWithFormat:@"kick %@\nu=%@\n\n%@\n\0",
+                    [UserManager formatChatroom:room],
                     us,
                     reason];
+    [sock write:pk];
+}
+
+- (void)ban:(NSString *)us fromRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\nban %@\n\n\0",
+                    [UserManager formatChatroom:room],
+                     us];
+    [sock write:pk];
+}
+
+- (void)unban:(NSString *)us fromRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\nunban %@\n\n\0",
+                    [UserManager formatChatroom:room],
+                    us];
+    [sock write:pk];
+}
+
+- (void)promote:(NSString *)us inRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\npromote %@\n\0",
+                    [UserManager formatChatroom:room],
+                    us];
+    [sock write:pk];
+}
+
+- (void)promote:(NSString *)us toPrivclass:(NSString *)privclass inRoom:(NSString *)room
+{
+    NSString *pk = [NSString stringWithFormat:@"send %@\n\npromote %@\n\n%@\n\0",
+                    [UserManager formatChatroom:room],
+                    us,
+                    privclass];
     [sock write:pk];
 }
 

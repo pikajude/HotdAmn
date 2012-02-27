@@ -34,8 +34,6 @@
 - (CGFloat)dividerPos;
 - (void)setDividerPos:(CGFloat)pos;
 
-- (void)addLine:(Message *)str;
-
 - (BOOL)joined;
 - (void)setJoined:(BOOL)active;
 

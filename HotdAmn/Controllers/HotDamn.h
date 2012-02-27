@@ -25,7 +25,7 @@ typedef enum {
     AutojoinUserDefined
 } autojoin;
 
-@interface HotDamn : NSObject <NSApplicationDelegate, NSWindowDelegate, EventHandlerDelegate> {
+@interface HotDamn : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     IBOutlet TabBar *barControl;
     Preferences *prefs;
     BOOL topicActive;
@@ -64,9 +64,8 @@ typedef enum {
 - (void)restartConnection;
 - (void)startConnection;
 - (void)stopConnection;
-- (void)postMessage:(Message *)msg inRoom:(NSString *)roomName;
-- (void)postMessageInCurrentRoom:(Message *)msg;
 - (void)startPchat:(id)sender;
+- (NSString *)currentRoom;
 
 #pragma mark -
 #pragma mark User defaults

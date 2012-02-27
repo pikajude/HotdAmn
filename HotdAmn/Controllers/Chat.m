@@ -10,6 +10,17 @@
 #import "HotDamn.h"
 #import "PrefsUsers.h"
 
+static void notifyHighlight(Chat *chat, Message *str) {
+    NSString *notName = [str isKindOfClass:[UserMessage class]] ? @"User Mentioned" : @"Buddy Joined";
+    [GrowlApplicationBridge notifyWithTitle:[chat roomName]
+                                description:[str asText]
+                           notificationName:notName
+                                   iconData:[[NSApp applicationIconImage] TIFFRepresentation]
+                                   priority:0
+                                   isSticky:NO
+                               clickContext:nil];
+}
+
 @implementation Chat
 
 @synthesize roomName, delegate, split, chatContainer, userList;
@@ -18,6 +29,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     [self setRoomName:name];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onMessage:)
+                                                 name:[NSString stringWithFormat:@"message-%@", name]
+                                               object:nil];
     
     return self;
 }
@@ -82,6 +97,27 @@
     [input setDelegate:self];
 }
 
+- (void)onMessage:(NSNotification *)message
+{
+    Message *str = [[message userInfo] objectForKey:@"msg"];
+    if ([str highlight]) {
+        notifyHighlight(self, str);
+    }
+    
+    [lines addObject:str];
+    NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [MessageFormatter formatMessage:str]];
+    [chatView stringByEvaluatingJavaScriptFromString:addScript];
+    NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
+    if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
+        [lines removeObjectAtIndex:0];
+        [chatView stringByEvaluatingJavaScriptFromString:@"removeFirstLine()"];
+    }
+    
+    [[delegate cell] setBadgeValue:[[delegate cell] badgeValue] + 1];
+    [[delegate cell] setIsHighlight:[str highlight]];
+    [[delegate ctrl] resizeButtons];
+}
+
 - (void)say:(id)sender unparsed:(BOOL)unparsed
 {
     EventHandler *receiver = [(HotDamn *)[[NSApplication sharedApplication] delegate] evtHandler];
@@ -137,33 +173,6 @@
 - (void)selectInput
 {
     [input becomeFirstResponder];
-}
-
-static void notifyHighlight(Chat *chat, Message *str) {
-    NSString *notName = [str isKindOfClass:[UserMessage class]] ? @"User Mentioned" : @"Buddy Joined";
-    [GrowlApplicationBridge notifyWithTitle:[chat roomName]
-                                description:[str asText]
-                            notificationName:notName
-                                    iconData:[[NSApp applicationIconImage] TIFFRepresentation]
-                                    priority:0
-                                    isSticky:NO
-                                clickContext:nil];
-}
-
-- (void)addLine:(Message *)str
-{
-    if ([str highlight]) {
-        notifyHighlight(self, str);
-    }
-    
-    [lines addObject:str];
-    NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [MessageFormatter formatMessage:str]];
-    [chatView stringByEvaluatingJavaScriptFromString:addScript];
-    NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
-    if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
-        [lines removeObjectAtIndex:0];
-        [chatView stringByEvaluatingJavaScriptFromString:@"removeFirstLine()"];
-    }
 }
 
 - (BOOL)isPchat
@@ -347,6 +356,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [Topic removeWatcher:self];
     [User removeWatcher:self];
     [super dealloc];

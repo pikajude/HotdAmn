@@ -40,7 +40,7 @@
 
 - (void)selectInput;
 
-- (void)addLine:(Message *)str;
+- (void)onMessage:(NSNotification *)message;
 
 - (NSMenu *)menuForOutlineView:(NSOutlineView *)view byItem:(id)item;
 
