@@ -28,6 +28,8 @@
     IBOutlet WebView *chatView;
     IBOutlet NSView *cShell;
     IBOutlet NSView *uShell;
+    NSMutableArray *preBuffer;
+    BOOL loadFinished;
 }
 
 @property (retain) NSString *roomName;

@@ -33,8 +33,20 @@ static void notifyHighlight(Chat *chat, Message *str) {
                                              selector:@selector(onMessage:)
                                                  name:[NSString stringWithFormat:@"message-%@", name]
                                                object:nil];
-    
+    preBuffer = [[NSMutableArray array] retain];
+    loadFinished = NO;
     return self;
+}
+
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    if (!loadFinished) {
+        loadFinished = YES;
+        for (NSNotification *m in preBuffer)
+            [self onMessage:m];
+        [preBuffer release];
+    }
+    loadFinished = YES;
 }
 
 #pragma mark -
@@ -48,7 +60,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
                              [[[self roomName] stringByReplacingOccurrencesOfString:@"#" withString:@""] lowercaseString],
                              html];
     
-    [[chatView mainFrame] loadHTMLString:styledShell baseURL:nil];
+    [[chatView mainFrame] loadHTMLString:styledShell baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://"]]];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -99,6 +111,10 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (void)onMessage:(NSNotification *)message
 {
+    if (!loadFinished) {
+        [preBuffer addObject:message];
+        return;
+    }
     Message *str = [[message userInfo] objectForKey:@"msg"];
     if ([str highlight]) {
         notifyHighlight(self, str);
@@ -106,7 +122,8 @@ static void notifyHighlight(Chat *chat, Message *str) {
     
     [lines addObject:str];
     NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [MessageFormatter formatMessage:str]];
-    [chatView stringByEvaluatingJavaScriptFromString:addScript];
+    NSLog(@"%@", chatView);
+    NSLog(@"%@", [chatView stringByEvaluatingJavaScriptFromString:addScript]);
     NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
     if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
         [lines removeObjectAtIndex:0];

@@ -114,8 +114,8 @@ static void POST(NSString *room, Message *m) {
         }
         Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
         Message *youjoined = [[[Message alloc] initWithContent:@"You have joined"] autorelease];
-        POST(@"Server", m);
-        POST([msg roomName], youjoined);
+        POST([msg roomName], m);
+        // POST([msg roomName], youjoined);
         [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
         ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
@@ -182,7 +182,10 @@ static void POST(NSString *room, Message *m) {
 
 - (void)onPropertyTopic:(Packet *)msg
 {
-    [Topic setTopic:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomName]];
+    NSString *bod = [Tablumps removeTablumps:[msg body]];
+    [Topic setTopic:bod forRoom:[msg roomName]];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Topic for <b>%@</b>: %@", [msg roomName], bod]] autorelease];
+    POST([msg roomName], m);
 }
 
 - (void)onPropertyTitle:(Packet *)msg

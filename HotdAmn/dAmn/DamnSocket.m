@@ -86,7 +86,6 @@ static int port = 3900;
                 NSString *str = [[[NSString alloc] initWithData:buf encoding:NSUTF8StringEncoding] autorelease];
                 Packet *pkt = [[[Packet alloc] initWithString:str] autorelease];
                 [delegate onPacket:pkt];
-                NSLog(@"%@", [self eventName:pkt]);
                 SEL sel = [[events objectForKey:[self eventName:pkt]] pointerValue];
                 if (sel && [delegate respondsToSelector:sel]) {
                     [delegate performSelector:sel withObject:pkt];
