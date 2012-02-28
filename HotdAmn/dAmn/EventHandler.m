@@ -112,13 +112,11 @@ static void POST(NSString *room, Message *m) {
         } else {
             notifyStr = [NSString stringWithFormat:@"Started private chat with %@.", [msg roomName]];
         }
-        Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
-        Message *youjoined = [[[Message alloc] initWithContent:@"You have joined"] autorelease];
-        POST([msg roomName], m);
-        // POST([msg roomName], youjoined);
+        Message *youjoined = [[[Message alloc] initWithContent:@"You joined"] autorelease];
+        POST([msg roomName], youjoined);
         [privclasses setObject:[NSMutableDictionary dictionary] forKey:[msg roomName]];
     } else {
-        ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
+        ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to join room %@: %@", [msg roomName], [[msg args] objectForKey:@"e"]]] autorelease];
         POST(@"Server", m);
     }
 }
@@ -133,16 +131,8 @@ static void POST(NSString *room, Message *m) {
         [[delegate barControl] deactivateButtonWithTitle:[msg roomName]];
         [delegate afterRemoval];
         [Topic removeRoom:[msg roomName]];
-        NSString *notifyStr;
-        if (![msg isPchat]) {
-            notifyStr = [NSString stringWithFormat:@"Parted %@.", [msg roomName]];
-        } else {
-            notifyStr = [NSString stringWithFormat:@"Ended private chat with %@.", [msg roomName]];
-        }
-        Message *m = [[[Message alloc] initWithContent:notifyStr] autorelease];
-        POST(@"Server", m);
     } else {
-        ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to part room: %@", [[msg args] objectForKey:@"e"]]] autorelease];
+        ErrorMessage *m = [[[ErrorMessage alloc] initWithContent:[NSString stringWithFormat:@"Failed to part room %@: %@", [msg roomName], [[msg args] objectForKey:@"e"]]] autorelease];
         POST(@"Server", m);
     }
 }
@@ -190,7 +180,11 @@ static void POST(NSString *room, Message *m) {
 
 - (void)onPropertyTitle:(Packet *)msg
 {
-    [Topic setTitle:[Tablumps removeTablumps:[msg body]] forRoom:[msg roomName]];
+    NSString *bod = [Tablumps removeTablumps:[msg body]];
+    [Topic setTitle:bod forRoom:[msg roomName]];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Title for <b>%@</b>: %@",
+                                                    [msg roomName], bod]] autorelease];
+    POST([msg roomName], m);
 }
 
 - (void)onRecvJoin:(Packet *)msg

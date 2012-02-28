@@ -40,7 +40,6 @@
 		2519BE9614AE22D30029F746 /* TabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9514AE22D30029F746 /* TabView.m */; };
 		2519BE9814AE23040029F746 /* HotDamn.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9714AE23040029F746 /* HotDamn.m */; };
 		2519BE9B14AE2C920029F746 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2519BE9A14AE2C920029F746 /* TabBar.m */; };
-		252A83E814CD112700143D91 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 252A83E714CD112700143D91 /* Command.m */; };
 		252DB61614B7975B0036E0CF /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 252DB61514B7975B0036E0CF /* Token.m */; };
 		252DB61814B799E00036E0CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252DB61714B799E00036E0CF /* Security.framework */; };
 		253B216B14C66E9300146356 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B216A14C66E9300146356 /* RegexKitLite.m */; };
@@ -48,7 +47,6 @@
 		253B217114C66F7900146356 /* Tablumps.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B217014C66F7900146356 /* Tablumps.m */; };
 		2541CD5214BF69F40065C4C1 /* PrefsAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */; };
 		2541CD5614BF6A130065C4C1 /* PrefsAppearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */; };
-		254B3C8014CD13BC00E97553 /* BuddyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 254B3C7F14CD13BC00E97553 /* BuddyCommand.m */; };
 		25559A8014BA06AE00B60137 /* OAuthLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */; };
 		25559A8714BA1F6E00B60137 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8614BA1F6E00B60137 /* JSONKit.m */; };
 		25559A8D14BA38F900B60137 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 25559A8C14BA38F900B60137 /* Welcome.m */; };
@@ -198,8 +196,6 @@
 		2519BE9714AE23040029F746 /* HotDamn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotDamn.m; path = Controllers/HotDamn.m; sourceTree = "<group>"; };
 		2519BE9914AE2C920029F746 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBar.h; path = Controllers/TabBar.h; sourceTree = "<group>"; };
 		2519BE9A14AE2C920029F746 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBar.m; path = Controllers/TabBar.m; sourceTree = "<group>"; };
-		252A83E614CD112700143D91 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = Models/Command.h; sourceTree = "<group>"; };
-		252A83E714CD112700143D91 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Command.m; path = Models/Command.m; sourceTree = "<group>"; };
 		252DB61414B7975B0036E0CF /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Token.h; path = HotdAmn/OAuth/Token.h; sourceTree = SOURCE_ROOT; };
 		252DB61514B7975B0036E0CF /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Token.m; path = HotdAmn/OAuth/Token.m; sourceTree = SOURCE_ROOT; };
 		252DB61714B799E00036E0CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -211,8 +207,6 @@
 		2541CD4F14BF69F40065C4C1 /* PrefsAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsAppearance.h; path = Controllers/Preferences/PrefsAppearance.h; sourceTree = "<group>"; };
 		2541CD5014BF69F40065C4C1 /* PrefsAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsAppearance.m; path = Controllers/Preferences/PrefsAppearance.m; sourceTree = "<group>"; };
 		2541CD5514BF6A120065C4C1 /* PrefsAppearance.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsAppearance.xib; sourceTree = "<group>"; };
-		254B3C7E14CD13BC00E97553 /* BuddyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuddyCommand.h; path = Models/BuddyCommand.h; sourceTree = "<group>"; };
-		254B3C7F14CD13BC00E97553 /* BuddyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuddyCommand.m; path = Models/BuddyCommand.m; sourceTree = "<group>"; };
 		25559A7E14BA06AE00B60137 /* OAuthLocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthLocalServer.h; path = HotdAmn/OAuth/OAuthLocalServer.h; sourceTree = SOURCE_ROOT; };
 		25559A7F14BA06AE00B60137 /* OAuthLocalServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthLocalServer.m; path = HotdAmn/OAuth/OAuthLocalServer.m; sourceTree = SOURCE_ROOT; };
 		25559A8514BA1F6E00B60137 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = HotdAmn/OAuth/JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
@@ -474,7 +468,6 @@
 				2519BE8A14AE220E0029F746 /* Controllers */,
 				250338E314B8983E000C2D44 /* dAmn */,
 				259EA07B14B53FF700D44466 /* Dialogs */,
-				252A83E514CD110F00143D91 /* Models */,
 				252DB61214B7968B0036E0CF /* OAuth */,
 				25123A9314B9318D0022446A /* Users */,
 				2519BE8914AE22040029F746 /* Views */,
@@ -562,17 +555,6 @@
 				25559A8C14BA38F900B60137 /* Welcome.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		252A83E514CD110F00143D91 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				252A83E614CD112700143D91 /* Command.h */,
-				252A83E714CD112700143D91 /* Command.m */,
-				254B3C7E14CD13BC00E97553 /* BuddyCommand.h */,
-				254B3C7F14CD13BC00E97553 /* BuddyCommand.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		252DB61214B7968B0036E0CF /* OAuth */ = {
@@ -891,8 +873,6 @@
 				250E00D914C7AA0800AE83F7 /* ChatInputField.m in Sources */,
 				257AACFD14CA135700A6F0C4 /* TabCompletion.m in Sources */,
 				25007E8614CB52DB0094C716 /* UserAction.m in Sources */,
-				252A83E814CD112700143D91 /* Command.m in Sources */,
-				254B3C8014CD13BC00E97553 /* BuddyCommand.m in Sources */,
 				2514FE6D14D596B7000CC1B5 /* MessageFormatter.m in Sources */,
 				25FCA20514DB2B590031E150 /* TabGhostView.m in Sources */,
 				2516D3E214DDAF26001C2EA0 /* TopicDialog.m in Sources */,

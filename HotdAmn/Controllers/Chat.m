@@ -40,13 +40,10 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-    if (!loadFinished) {
-        loadFinished = YES;
-        for (NSNotification *m in preBuffer)
-            [self onMessage:m];
-        [preBuffer release];
-    }
     loadFinished = YES;
+    for (NSNotification *m in preBuffer)
+        [self onMessage:m];
+    [preBuffer release];
 }
 
 #pragma mark -
@@ -122,8 +119,7 @@ static void notifyHighlight(Chat *chat, Message *str) {
     
     [lines addObject:str];
     NSString *addScript = [NSString stringWithFormat:@"createLine(\"%@\")", [MessageFormatter formatMessage:str]];
-    NSLog(@"%@", chatView);
-    NSLog(@"%@", [chatView stringByEvaluatingJavaScriptFromString:addScript]);
+    [chatView stringByEvaluatingJavaScriptFromString:addScript];
     NSInteger lineCount = [[chatView stringByEvaluatingJavaScriptFromString:@"lineCount()"] integerValue];
     if (lineCount > [[[NSUserDefaults standardUserDefaults] objectForKey:@"scrollbackLimit"] integerValue]) {
         [lines removeObjectAtIndex:0];
@@ -171,7 +167,11 @@ static void notifyHighlight(Chat *chat, Message *str) {
 
 - (void)error:(NSString *)errMsg
 {
-    NSLog(@"%@", errMsg);
+    Message *m = [[[Message alloc] initWithContent:errMsg] autorelease];
+    [self onMessage:[NSNotification notificationWithName:[NSString stringWithFormat:@"message-%@", roomName]
+                                                  object:nil
+                                                userInfo:[NSDictionary dictionaryWithObject:m
+                                                                                     forKey:@"msg"]]];
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)view
@@ -299,6 +299,15 @@ static void notifyHighlight(Chat *chat, Message *str) {
         [ignoreItem setAction:@selector(addIgnore:)];
     }
     
+    NSMenuItem *username = [[[NSMenuItem alloc] init] autorelease];
+    NSString *avatarURL = [AvatarManager avatarURLForUsername:[item title]
+                                                     userIcon:[[item object] usericon]];
+    NSImage *img = [[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:avatarURL]] autorelease];
+    [img setSize:NSMakeSize(16.0f, 16.0f)];
+    [username setTitle:[item title]];
+    [username setImage:img];
+    
+    [m addItem:username];
     [m addItem:buddyItem];
     [m addItem:ignoreItem];
     [m addItem:[NSMenuItem separatorItem]];

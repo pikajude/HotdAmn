@@ -17,7 +17,8 @@ li:nth-child(odd) {
 }
 
 avatar img {
-	vertical-align: middle;
+	vertical-align: -4px;
+	padding-right: 4px;
 }
 
 .server-msg username {
@@ -30,4 +31,8 @@ avatar img {
 
 .action span {
 	display: none;
+}
+
+.action username:before {
+	content: "* ";
 }

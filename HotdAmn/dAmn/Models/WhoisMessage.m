@@ -28,7 +28,7 @@
 - (NSString *)asHTML
 {
     NSMutableString *html = [NSMutableString stringWithString:@"<div class='whois'>"];
-    [html appendFormat:@"<img src='%@' />", [AvatarManager avatarURLForUsername:username userIcon:[[metadata objectForKey:@"usericon"] integerValue]]];
+    [html appendFormat:@"<img src='%@' width='50' height='50' />", [AvatarManager avatarURLForUsername:username userIcon:[[metadata objectForKey:@"usericon"] integerValue]]];
     [html appendFormat:@"<div class='userinfo'><h4>%@<a href='http://%@.deviantart.com'>%@</a></h4>", [metadata objectForKey:@"symbol"], username, username];
     [html appendFormat:@"<h5>%@</h5>", [metadata objectForKey:@"realname"]];
     [html appendString:@"</div><ul>"];

@@ -34,7 +34,6 @@
     [window setAutorecalculatesContentBorderThickness:NO forEdge:NSMaxYEdge];
     
     [[LuaInterop lua] execFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"lua"] error:NULL];
-    NSLog(@"%@", [LuaCommand commands]);
     
     [[UserManager defaultManager] setDelegate:self];
     
