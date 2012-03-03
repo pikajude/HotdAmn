@@ -41,7 +41,7 @@
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="NSTextField" id="247499464">
+					<object class="NSTextField" id="200914597">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{9, 12}, {290, 157}}</string>
@@ -51,7 +51,7 @@
 						<string key="NSReuseIdentifierKey">_NS:360</string>
 						<string key="NSAntiCompressionPriority">{250, 750}</string>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="510598069">
+						<object class="NSTextFieldCell" key="NSCell" id="682738663">
 							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">272629760</int>
 							<string key="NSContents">Error message</string>
@@ -61,8 +61,8 @@
 								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:360</string>
-							<reference key="NSControlView" ref="247499464"/>
-							<object class="NSColor" key="NSBackgroundColor" id="54551876">
+							<reference key="NSControlView" ref="200914597"/>
+							<object class="NSColor" key="NSBackgroundColor" id="770040359">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
 								<string key="NSColorName">controlColor</string>
@@ -71,7 +71,7 @@
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 							</object>
-							<object class="NSColor" key="NSTextColor" id="464546578">
+							<object class="NSColor" key="NSTextColor" id="1051398874">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
 								<string key="NSColorName">controlTextColor</string>
@@ -82,16 +82,16 @@
 							</object>
 						</object>
 					</object>
-					<object class="NSTextField" id="778404876">
+					<object class="NSTextField" id="806168745">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{9, 172}, {61, 17}}</string>
+						<string key="NSFrame">{{9, 172}, {290, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="247499464"/>
+						<reference key="NSNextKeyView" ref="200914597"/>
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="742222534">
+						<object class="NSTextFieldCell" key="NSCell" id="382409277">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Filename</string>
@@ -101,17 +101,17 @@
 								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:3944</string>
-							<reference key="NSControlView" ref="778404876"/>
-							<reference key="NSBackgroundColor" ref="54551876"/>
-							<reference key="NSTextColor" ref="464546578"/>
+							<reference key="NSControlView" ref="806168745"/>
+							<reference key="NSBackgroundColor" ref="770040359"/>
+							<reference key="NSTextColor" ref="1051398874"/>
 						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{308, 198}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="778404876"/>
-				<string key="NSClassName">NSView</string>
+				<reference key="NSNextKeyView" ref="806168745"/>
+				<string key="NSClassName">ScriptErrorView</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -121,7 +121,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">filename</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="778404876"/>
+						<reference key="destination" ref="806168745"/>
 					</object>
 					<int key="connectionID">6</int>
 				</object>
@@ -129,7 +129,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">errDesc</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="247499464"/>
+						<reference key="destination" ref="200914597"/>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
@@ -176,38 +176,38 @@
 						<reference key="object" ref="1005"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="778404876"/>
-							<reference ref="247499464"/>
+							<reference ref="806168745"/>
+							<reference ref="200914597"/>
 						</object>
 						<reference key="parent" ref="1002"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
-						<reference key="object" ref="778404876"/>
+						<reference key="object" ref="806168745"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="742222534"/>
+							<reference ref="382409277"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="742222534"/>
-						<reference key="parent" ref="778404876"/>
+						<reference key="object" ref="382409277"/>
+						<reference key="parent" ref="806168745"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="247499464"/>
+						<reference key="object" ref="200914597"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="510598069"/>
+							<reference ref="682738663"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
-						<reference key="object" ref="510598069"/>
-						<reference key="parent" ref="247499464"/>
+						<reference key="object" ref="682738663"/>
+						<reference key="parent" ref="200914597"/>
 					</object>
 				</object>
 			</object>
@@ -291,6 +291,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ScriptErrorSingle.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ScriptErrorView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ScriptErrorView.h</string>
 					</object>
 				</object>
 			</object>

@@ -74,6 +74,7 @@
 		25A77CC7150271AE00FAE1FB /* ScriptErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A77CC6150271AE00FAE1FB /* ScriptErrors.m */; };
 		25A77CC91502771F00FAE1FB /* ScriptErrorSingle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25A77CC81502771F00FAE1FB /* ScriptErrorSingle.xib */; };
 		25A77CCD150277AD00FAE1FB /* ScriptErrorSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A77CCB150277AD00FAE1FB /* ScriptErrorSingle.m */; };
+		25A77CD115027D9F00FAE1FB /* ScriptErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A77CD015027D9F00FAE1FB /* ScriptErrorView.m */; };
 		25A9D98914ECB46500FAF3AD /* WhoisMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9D98814ECB46500FAF3AD /* WhoisMessage.m */; };
 		25A9D98D14ECB5DD00FAF3AD /* WConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9D98C14ECB5DD00FAF3AD /* WConnection.m */; };
 		25AB522C14C35CEC00A3A76C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 25AB522A14C35CEC00A3A76C /* check.png */; };
@@ -258,6 +259,8 @@
 		25A77CC81502771F00FAE1FB /* ScriptErrorSingle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptErrorSingle.xib; path = Scripting/ScriptErrorSingle.xib; sourceTree = "<group>"; };
 		25A77CCA150277AD00FAE1FB /* ScriptErrorSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptErrorSingle.h; sourceTree = "<group>"; };
 		25A77CCB150277AD00FAE1FB /* ScriptErrorSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptErrorSingle.m; sourceTree = "<group>"; };
+		25A77CCF15027D9F00FAE1FB /* ScriptErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptErrorView.h; path = Views/ScriptErrorView.h; sourceTree = "<group>"; };
+		25A77CD015027D9F00FAE1FB /* ScriptErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptErrorView.m; path = Views/ScriptErrorView.m; sourceTree = "<group>"; };
 		25A9D98714ECB46500FAF3AD /* WhoisMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhoisMessage.h; path = dAmn/Models/WhoisMessage.h; sourceTree = "<group>"; };
 		25A9D98814ECB46500FAF3AD /* WhoisMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhoisMessage.m; path = dAmn/Models/WhoisMessage.m; sourceTree = "<group>"; };
 		25A9D98B14ECB5DD00FAF3AD /* WConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WConnection.h; path = dAmn/Models/WConnection.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				25822A4E14E09D7F0004C3EE /* BorderedView.m */,
 				250E00D714C7AA0800AE83F7 /* ChatInputField.h */,
 				250E00D814C7AA0800AE83F7 /* ChatInputField.m */,
+				25A77CCF15027D9F00FAE1FB /* ScriptErrorView.h */,
+				25A77CD015027D9F00FAE1FB /* ScriptErrorView.m */,
 				2568BE1814AE9C2900E1C825 /* TabButton.h */,
 				2568BE1914AE9C2900E1C825 /* TabButton.m */,
 				2519311414AE46DB003A5FBA /* TabButtonCell.h */,
@@ -948,6 +953,7 @@
 				25F63486150188BB0012D6A1 /* LuaErrLog.m in Sources */,
 				25A77CC7150271AE00FAE1FB /* ScriptErrors.m in Sources */,
 				25A77CCD150277AD00FAE1FB /* ScriptErrorSingle.m in Sources */,
+				25A77CD115027D9F00FAE1FB /* ScriptErrorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

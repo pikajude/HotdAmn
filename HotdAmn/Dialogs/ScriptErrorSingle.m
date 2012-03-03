@@ -22,7 +22,16 @@
 
 - (void)setLog:(LuaErrLog *)l
 {
-    [filename setStringValue:[l location]];
+    NSMutableAttributedString *str = [[[NSMutableAttributedString alloc] initWithString:[l location]] autorelease];
+    
+    NSShadow *shad = [[[NSShadow alloc] init] autorelease];
+    [shad setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.8f]];
+    [shad setShadowOffset:NSMakeSize(0.0f, -1.0f)];
+    [shad setShadowBlurRadius:1.0f];
+    
+    [str addAttribute:NSShadowAttributeName value:shad range:NSMakeRange(0, [str length])];
+    
+    [filename setAttributedStringValue:str];
 }
 
 @end
