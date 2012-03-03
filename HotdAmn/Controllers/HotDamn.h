@@ -18,6 +18,7 @@
 #import "Preferences.h"
 #import "TopicDialog.h"
 #import "LuaInterop.h"
+#import "ScriptErrors.h"
 
 typedef enum {
     AutojoinNone,
@@ -79,6 +80,11 @@ typedef enum {
 - (void)windowDidResize:(NSNotification *)notification;
 
 - (TabBar *)barControl;
+
+#pragma mark -
+#pragma mark Script stuff
+- (NSMenuItem *)scriptMenu;
+- (void)showScriptErrorLog:(id)sender;
 
 #pragma mark -
 #pragma mark Links

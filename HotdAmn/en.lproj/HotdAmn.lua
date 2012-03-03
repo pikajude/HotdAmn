@@ -1,3 +1,8 @@
+-----------------------------
+-- HotdAmn built-in commands.
+-- Created by Joel Taylor.
+-----------------------------
+
 local generate = function(str)
     return function(args)
         if #args == 0 then

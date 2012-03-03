@@ -174,7 +174,7 @@ static void POST(NSString *room, Message *m) {
 {
     NSString *bod = [Tablumps removeTablumps:[msg body]];
     [Topic setTopic:bod forRoom:[msg roomName]];
-    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Topic for <b>%@</b>: %@", [msg roomName], bod]] autorelease];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Topic for <b>%@</b>:<br/>%@", [msg roomName], bod]] autorelease];
     POST([msg roomName], m);
 }
 
@@ -182,8 +182,7 @@ static void POST(NSString *room, Message *m) {
 {
     NSString *bod = [Tablumps removeTablumps:[msg body]];
     [Topic setTitle:bod forRoom:[msg roomName]];
-    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Title for <b>%@</b>: %@",
-                                                    [msg roomName], bod]] autorelease];
+    Message *m = [[[Message alloc] initWithContent:[NSString stringWithFormat:@"Title for <b>%@</b>:<br/>%@", [msg roomName], bod]] autorelease];
     POST([msg roomName], m);
 }
 

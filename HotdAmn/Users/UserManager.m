@@ -88,7 +88,10 @@ static NSString *currentUsername = nil;
 {
     if (![self hasDefaultUser]) {
         NSString *dirname = [[self userFilePath] stringByDeletingLastPathComponent];
-        [[NSFileManager defaultManager] createDirectoryAtPath:dirname withIntermediateDirectories:YES attributes:nil error:nil];
+        [[NSFileManager defaultManager] createDirectoryAtPath:dirname
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:nil];
     }
     
     [users writeToFile:[self userFilePath] atomically:YES];

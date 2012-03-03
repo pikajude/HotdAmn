@@ -23,9 +23,29 @@
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"values.advanced"]) {
+        BOOL val = [[[NSUserDefaults standardUserDefaults] objectForKey:@"advanced"] boolValue];
+        if (val) {
+            [appMenu addItem:[self scriptMenu]];
+        } else
+            if ([appMenu itemWithTitle:@"Script"])
+                [appMenu removeItem:[appMenu itemWithTitle:@"Script"]];
+    }
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     [self setupDefaults];
+    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
+                                                              forKeyPath:@"values.advanced"
+                                                                 options:NSKeyValueObservingOptionNew
+                                                                 context:nil];
+    [self observeValueForKeyPath:@"values.advanced"
+                        ofObject:nil
+                          change:nil
+                         context:nil];
     [self verifyTheme];
     aboutPanel = [[About alloc] initWithWindowNibName:@"About"];
     prefs = [[Preferences alloc] initWithWindowNibName:@"Shell"];
@@ -33,7 +53,8 @@
     [window setContentBorderThickness:4.0f forEdge:NSMaxYEdge];
     [window setAutorecalculatesContentBorderThickness:NO forEdge:NSMaxYEdge];
     
-    [[LuaInterop lua] execFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"lua"] error:NULL];
+    [[LuaInterop lua] loadBuiltins];
+    [[LuaInterop lua] loadUserDefined];
     
     [[UserManager defaultManager] setDelegate:self];
     
@@ -201,6 +222,7 @@
                               [NSNumber numberWithInt:AutojoinNone], @"autojoin",
                               [NSDictionary dictionary], @"autojoinRooms",
                               [NSNumber numberWithBool:NO], @"closeOnPart",
+                              [NSNumber numberWithBool:NO], @"advanced",
                               [NSArray array], @"savedRooms", nil];
     [def registerDefaults:standard];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:standard];
@@ -269,6 +291,29 @@
 - (TabBar *)barControl
 {
     return barControl;
+}
+
+- (NSMenuItem *)scriptMenu
+{
+    NSMenuItem *parent = [[[NSMenuItem alloc] initWithTitle:@""
+                                                     action:nil
+                                              keyEquivalent:@""] autorelease];
+    NSMenu *container = [[[NSMenu alloc] initWithTitle:@"Script"] autorelease];
+    [parent setSubmenu:container];
+    
+    NSMenuItem *errors = [[[NSMenuItem alloc] initWithTitle:@"Errors (0)"
+                                                     action:@selector(showScriptErrorLog:)
+                                              keyEquivalent:@""] autorelease];
+    [errors setTarget:self];
+    
+    [container addItem:errors];
+    return parent;
+}
+
+- (void)showScriptErrorLog:(id)sender
+{
+    ScriptErrors *r = [[ScriptErrors alloc] initWithWindowNibName:@"ScriptErrors"];
+    [[r window] makeKeyAndOrderFront:nil];
 }
 
 - (void)getURL:(NSAppleEventDescriptor *)evt withReplyEvent:(NSAppleEventDescriptor *)replyEvt

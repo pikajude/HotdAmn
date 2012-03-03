@@ -80,9 +80,13 @@ static LuaInterop *globalRuntime;
         lua_pop(_L, 1);
     }
     
-    if (error != NULL) {
-        NSLog(@"%@", [NSString stringWithUTF8String:error]);
-    }
+    if (error == NULL) return;
+    NSError *e = [NSError errorWithDomain:@"dunno"
+                                     code:-1
+                                 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithUTF8String:error]
+                                                                      forKey:NSLocalizedDescriptionKey]];
+    
+    *err = e;
 }
 
 - (void)executeRegistryFunction:(int)regIndex withObject:(NSArray *)obj
@@ -93,6 +97,39 @@ static LuaInterop *globalRuntime;
     if (ret != 0) {
         NSLog(@"%s", lua_tostring(_L, -1));
         lua_pop(_L, -1);
+    }
+}
+
+- (void)loadBuiltins
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"HotdAmn" ofType:@"lua"];
+    NSError *e = NULL;
+    [self execFile:path error:&e];
+    [LuaErrLog logError:e];
+}
+
+- (void)loadUserDefined
+{
+    NSError *e = NULL;
+    NSFileManager *man = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                                         NSUserDomainMask,
+                                                         YES);
+    
+    NSString *dir = [[[paths objectAtIndex:0]
+                     stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"]]
+                     stringByAppendingPathComponent:@"Scripts"];
+    if (![man fileExistsAtPath:dir]) {
+        [man createDirectoryAtPath:dir
+       withIntermediateDirectories:YES
+                        attributes:nil
+                             error:&e];
+    }
+    
+    for (NSString *str in [man contentsOfDirectoryAtPath:dir error:nil]) {
+        NSError *err = NULL;
+        [self execFile:[dir stringByAppendingPathComponent:str] error:&err];
+        [LuaErrLog logError:err];
     }
 }
 
