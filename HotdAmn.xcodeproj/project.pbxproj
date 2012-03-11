@@ -67,17 +67,14 @@
 		25822A4F14E09D7F0004C3EE /* BorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25822A4E14E09D7F0004C3EE /* BorderedView.m */; };
 		258E5B6914CDF72C0041EDF1 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E5B6814CDF72C0041EDF1 /* Growl.framework */; };
 		258E5B6A14CDF7330041EDF1 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 258E5B6814CDF72C0041EDF1 /* Growl.framework */; };
+		2596C1061507986400A2EB6C /* ScriptList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C1051507986400A2EB6C /* ScriptList.xib */; };
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
 		259EA07E14B53FF800D44466 /* JoinRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 259EA07D14B53FF700D44466 /* JoinRoom.m */; };
-		25A77CC41502717E00FAE1FB /* ScriptErrors.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25A77CC21502717E00FAE1FB /* ScriptErrors.xib */; };
-		25A77CC7150271AE00FAE1FB /* ScriptErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A77CC6150271AE00FAE1FB /* ScriptErrors.m */; };
-		25A77CC91502771F00FAE1FB /* ScriptErrorSingle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25A77CC81502771F00FAE1FB /* ScriptErrorSingle.xib */; };
-		25A77CCD150277AD00FAE1FB /* ScriptErrorSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A77CCB150277AD00FAE1FB /* ScriptErrorSingle.m */; };
-		25A77CD115027D9F00FAE1FB /* ScriptErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A77CD015027D9F00FAE1FB /* ScriptErrorView.m */; };
 		25A9D98914ECB46500FAF3AD /* WhoisMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9D98814ECB46500FAF3AD /* WhoisMessage.m */; };
 		25A9D98D14ECB5DD00FAF3AD /* WConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9D98C14ECB5DD00FAF3AD /* WConnection.m */; };
 		25AB522C14C35CEC00A3A76C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 25AB522A14C35CEC00A3A76C /* check.png */; };
+		25BBE1D1150C1E71008A9442 /* ScriptList.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BBE1D0150C1E71008A9442 /* ScriptList.m */; };
 		25C7053B14BA794A004BC131 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7053914BA794A004BC131 /* Chat.m */; };
 		25CCF4C914C3CF7400C75C4B /* ThemeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CCF4C814C3CF7400C75C4B /* ThemeHelper.m */; };
 		25CCF4DE14C3E8D600C75C4B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 25CCF4DC14C3E8D600C75C4B /* Themes */; };
@@ -248,24 +245,19 @@
 		25822A4D14E09D7F0004C3EE /* BorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderedView.h; path = Views/BorderedView.h; sourceTree = "<group>"; };
 		25822A4E14E09D7F0004C3EE /* BorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderedView.m; path = Views/BorderedView.m; sourceTree = "<group>"; };
 		258E5B6814CDF72C0041EDF1 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = HotdAmn/Frameworks/Growl.framework; sourceTree = "<group>"; };
+		2596C1051507986400A2EB6C /* ScriptList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptList.xib; path = Scripting/ScriptList.xib; sourceTree = "<group>"; };
 		2596C54F14BF556700CBEB08 /* PrefsGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsGeneral.h; path = Controllers/Preferences/PrefsGeneral.h; sourceTree = "<group>"; };
 		2596C55014BF556700CBEB08 /* PrefsGeneral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsGeneral.m; path = Controllers/Preferences/PrefsGeneral.m; sourceTree = "<group>"; };
 		2596C55414BF577200CBEB08 /* PrefsGeneral.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsGeneral.xib; sourceTree = "<group>"; };
 		259EA07C14B53FF700D44466 /* JoinRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRoom.h; sourceTree = "<group>"; };
 		259EA07D14B53FF700D44466 /* JoinRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRoom.m; sourceTree = "<group>"; };
-		25A77CC21502717E00FAE1FB /* ScriptErrors.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptErrors.xib; path = Scripting/ScriptErrors.xib; sourceTree = "<group>"; };
-		25A77CC5150271AE00FAE1FB /* ScriptErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptErrors.h; sourceTree = "<group>"; };
-		25A77CC6150271AE00FAE1FB /* ScriptErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptErrors.m; sourceTree = "<group>"; };
-		25A77CC81502771F00FAE1FB /* ScriptErrorSingle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptErrorSingle.xib; path = Scripting/ScriptErrorSingle.xib; sourceTree = "<group>"; };
-		25A77CCA150277AD00FAE1FB /* ScriptErrorSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptErrorSingle.h; sourceTree = "<group>"; };
-		25A77CCB150277AD00FAE1FB /* ScriptErrorSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptErrorSingle.m; sourceTree = "<group>"; };
-		25A77CCF15027D9F00FAE1FB /* ScriptErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptErrorView.h; path = Views/ScriptErrorView.h; sourceTree = "<group>"; };
-		25A77CD015027D9F00FAE1FB /* ScriptErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptErrorView.m; path = Views/ScriptErrorView.m; sourceTree = "<group>"; };
 		25A9D98714ECB46500FAF3AD /* WhoisMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhoisMessage.h; path = dAmn/Models/WhoisMessage.h; sourceTree = "<group>"; };
 		25A9D98814ECB46500FAF3AD /* WhoisMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhoisMessage.m; path = dAmn/Models/WhoisMessage.m; sourceTree = "<group>"; };
 		25A9D98B14ECB5DD00FAF3AD /* WConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WConnection.h; path = dAmn/Models/WConnection.h; sourceTree = "<group>"; };
 		25A9D98C14ECB5DD00FAF3AD /* WConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WConnection.m; path = dAmn/Models/WConnection.m; sourceTree = "<group>"; };
 		25AB522B14C35CEC00A3A76C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/check.png; sourceTree = "<group>"; };
+		25BBE1CF150C1E71008A9442 /* ScriptList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptList.h; sourceTree = "<group>"; };
+		25BBE1D0150C1E71008A9442 /* ScriptList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptList.m; sourceTree = "<group>"; };
 		25C7053814BA794A004BC131 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chat.h; path = Controllers/Chat.h; sourceTree = "<group>"; };
 		25C7053914BA794A004BC131 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chat.m; path = Controllers/Chat.m; sourceTree = "<group>"; };
 		25CCF4C714C3CF7400C75C4B /* ThemeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeHelper.h; path = Controllers/ThemeHelper.h; sourceTree = "<group>"; };
@@ -534,8 +526,6 @@
 				25822A4E14E09D7F0004C3EE /* BorderedView.m */,
 				250E00D714C7AA0800AE83F7 /* ChatInputField.h */,
 				250E00D814C7AA0800AE83F7 /* ChatInputField.m */,
-				25A77CCF15027D9F00FAE1FB /* ScriptErrorView.h */,
-				25A77CD015027D9F00FAE1FB /* ScriptErrorView.m */,
 				2568BE1814AE9C2900E1C825 /* TabButton.h */,
 				2568BE1914AE9C2900E1C825 /* TabButton.m */,
 				2519311414AE46DB003A5FBA /* TabButtonCell.h */,
@@ -650,10 +640,8 @@
 				257D933B14B8038600CE636C /* About.m */,
 				259EA07C14B53FF700D44466 /* JoinRoom.h */,
 				259EA07D14B53FF700D44466 /* JoinRoom.m */,
-				25A77CC5150271AE00FAE1FB /* ScriptErrors.h */,
-				25A77CC6150271AE00FAE1FB /* ScriptErrors.m */,
-				25A77CCA150277AD00FAE1FB /* ScriptErrorSingle.h */,
-				25A77CCB150277AD00FAE1FB /* ScriptErrorSingle.m */,
+				25BBE1CF150C1E71008A9442 /* ScriptList.h */,
+				25BBE1D0150C1E71008A9442 /* ScriptList.m */,
 				2516D3E014DDAF26001C2EA0 /* TopicDialog.h */,
 				2516D3E114DDAF26001C2EA0 /* TopicDialog.m */,
 			);
@@ -663,8 +651,7 @@
 		25A77CBF1502716000FAE1FB /* Scripting */ = {
 			isa = PBXGroup;
 			children = (
-				25A77CC21502717E00FAE1FB /* ScriptErrors.xib */,
-				25A77CC81502771F00FAE1FB /* ScriptErrorSingle.xib */,
+				2596C1051507986400A2EB6C /* ScriptList.xib */,
 			);
 			name = Scripting;
 			sourceTree = "<group>";
@@ -834,8 +821,7 @@
 				2567C64B14C4990C00A89A91 /* chat_shell.html in Resources */,
 				2516D3E514DDAF47001C2EA0 /* Topic.xib in Resources */,
 				25F63483150070290012D6A1 /* HotdAmn.lua in Resources */,
-				25A77CC41502717E00FAE1FB /* ScriptErrors.xib in Resources */,
-				25A77CC91502771F00FAE1FB /* ScriptErrorSingle.xib in Resources */,
+				2596C1061507986400A2EB6C /* ScriptList.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,9 +937,7 @@
 				256A1F7514F672D100D3A204 /* LuaUtil.m in Sources */,
 				25DA035B14F952B7008839AF /* GTMNSString+HTML.m in Sources */,
 				25F63486150188BB0012D6A1 /* LuaErrLog.m in Sources */,
-				25A77CC7150271AE00FAE1FB /* ScriptErrors.m in Sources */,
-				25A77CCD150277AD00FAE1FB /* ScriptErrorSingle.m in Sources */,
-				25A77CD115027D9F00FAE1FB /* ScriptErrorView.m in Sources */,
+				25BBE1D1150C1E71008A9442 /* ScriptList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@
 #import "Preferences.h"
 #import "TopicDialog.h"
 #import "LuaInterop.h"
-#import "ScriptErrors.h"
+#import "ScriptList.h"
 
 typedef enum {
     AutojoinNone,

@@ -108,7 +108,7 @@ static LuaInterop *globalRuntime;
     [LuaErrLog logError:e];
 }
 
-- (void)loadUserDefined
+- (NSArray *)userDefined
 {
     NSError *e = NULL;
     NSFileManager *man = [NSFileManager defaultManager];
@@ -117,7 +117,7 @@ static LuaInterop *globalRuntime;
                                                          YES);
     
     NSString *dir = [[[paths objectAtIndex:0]
-                     stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"]]
+                      stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"]]
                      stringByAppendingPathComponent:@"Scripts"];
     if (![man fileExistsAtPath:dir]) {
         [man createDirectoryAtPath:dir
@@ -125,10 +125,19 @@ static LuaInterop *globalRuntime;
                         attributes:nil
                              error:&e];
     }
+    NSMutableArray *r = [NSMutableArray array];
+    for (NSString *str in [man contentsOfDirectoryAtPath:dir error:&e]) {
+        [r addObject:[dir stringByAppendingPathComponent:str]];
+    }
     
-    for (NSString *str in [man contentsOfDirectoryAtPath:dir error:nil]) {
+    return r;
+}
+
+- (void)loadUserDefined
+{
+    for (NSString *str in [self userDefined]) {
         NSError *err = NULL;
-        [self execFile:[dir stringByAppendingPathComponent:str] error:&err];
+        [self execFile:str error:&err];
         [LuaErrLog logError:err];
     }
 }

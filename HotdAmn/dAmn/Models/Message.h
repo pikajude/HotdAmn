@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
 #import "User.h"
-#import "ThemeHelper.h"
 
 @interface Message : NSObject {
     BOOL highlight;

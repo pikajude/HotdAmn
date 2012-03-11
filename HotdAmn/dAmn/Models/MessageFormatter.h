@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WhoisMessage.h"
+#import "ThemeHelper.h"
 
 @class Message;
 

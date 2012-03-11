@@ -303,7 +303,7 @@
     
     NSMenuItem *errors = [[[NSMenuItem alloc] initWithTitle:@"Errors (0)"
                                                      action:@selector(showScriptErrorLog:)
-                                              keyEquivalent:@""] autorelease];
+                                              keyEquivalent:@"s"] autorelease];
     [errors setTarget:self];
     
     [container addItem:errors];
@@ -312,8 +312,8 @@
 
 - (void)showScriptErrorLog:(id)sender
 {
-    ScriptErrors *r = [[ScriptErrors alloc] initWithWindowNibName:@"ScriptErrors"];
-    [[r window] makeKeyAndOrderFront:nil];
+    ScriptList *b = [[ScriptList alloc] initWithWindowNibName:@"ScriptList"];
+    [[b window] makeKeyAndOrderFront:nil];
 }
 
 - (void)getURL:(NSAppleEventDescriptor *)evt withReplyEvent:(NSAppleEventDescriptor *)replyEvt

@@ -22,4 +22,6 @@
 - (void)loadBuiltins;
 - (void)loadUserDefined;
 
+- (NSArray *)userDefined;
+
 @end

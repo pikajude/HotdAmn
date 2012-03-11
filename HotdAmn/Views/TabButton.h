@@ -13,7 +13,6 @@
 #import "TabButtonCell.h"
 #import "Chat.h"
 #import "ServerChat.h"
-#import "Message.h"
 
 @class TabBar;
 
