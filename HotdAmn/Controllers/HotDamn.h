@@ -85,6 +85,7 @@ typedef enum {
 #pragma mark Script stuff
 - (NSMenuItem *)scriptMenu;
 - (void)showScriptErrorLog:(id)sender;
+- (void)refreshScriptMenu:(id)sender;
 
 #pragma mark -
 #pragma mark Links

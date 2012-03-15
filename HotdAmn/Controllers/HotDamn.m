@@ -19,8 +19,26 @@
     isConnected = NO;
     evtHandler = [[EventHandler alloc] init];
     [evtHandler setDelegate:self];
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                       andSelector:@selector(getURL:withReplyEvent:)
+                                                     forEventClass:kInternetEventClass
+                                                        andEventID:kAEGetURL];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshScriptMenu:)
+                                                 name:@"luaerr"
+                                               object:nil];
     return self;
+}
+
+- (void)refreshScriptMenu:(id)_whatever
+{
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"advanced"] boolValue])
+        return;
+    id obj = [appMenu itemWithTitle:@"Script"];
+    if (obj != nil) {
+        [appMenu removeItem:obj];
+    }
+    [appMenu addItem:[self scriptMenu]];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -295,13 +313,15 @@
 
 - (NSMenuItem *)scriptMenu
 {
-    NSMenuItem *parent = [[[NSMenuItem alloc] initWithTitle:@""
+    NSMenuItem *parent = [[[NSMenuItem alloc] initWithTitle:@"Script"
                                                      action:nil
                                               keyEquivalent:@""] autorelease];
     NSMenu *container = [[[NSMenu alloc] initWithTitle:@"Script"] autorelease];
     [parent setSubmenu:container];
     
-    NSMenuItem *errors = [[[NSMenuItem alloc] initWithTitle:@"Errors (0)"
+    NSLog(@"%ld", [[LuaErrLog log] count]);
+    
+    NSMenuItem *errors = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Errors (%ld)", [[LuaErrLog log] count]]
                                                      action:@selector(showScriptErrorLog:)
                                               keyEquivalent:@"s"] autorelease];
     [errors setTarget:self];

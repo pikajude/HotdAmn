@@ -23,6 +23,4 @@
 + (void)logError:(NSError *)err;
 + (NSArray *)log;
 
-- (NSAttributedString *)attributedDescription;
-
 @end

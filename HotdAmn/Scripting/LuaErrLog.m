@@ -20,6 +20,7 @@ static NSMutableArray *errs = NULL;
     NSString *msg = [err localizedDescription];
     NSScanner *scanner = [NSScanner scannerWithString:msg];
     [scanner scanUpToString:@":" intoString:&location];
+    location = [location lastPathComponent];
     [scanner scanString:@":" intoString:nil];
     [scanner scanInteger:&line];
     [scanner scanString:@":" intoString:nil];
@@ -36,6 +37,7 @@ static NSMutableArray *errs = NULL;
     if (err == NULL)
         return;
     [errs addObject:[[[LuaErrLog alloc] initWithError:err] autorelease]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"luaerr" object:nil];
     NSLog(@"%@", errs);
 }
 
@@ -47,19 +49,6 @@ static NSMutableArray *errs = NULL;
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@:%ld: %@", location, line, error];
-}
-
-- (NSAttributedString *)attributedDescription
-{
-    NSMutableAttributedString *str = [[[NSMutableAttributedString alloc] init] autorelease];
-    NSString *fileurl = [NSString stringWithFormat:@"file://%@", location];
-    NSDictionary *url = [NSDictionary dictionaryWithObject:[NSURL URLWithString:fileurl]
-                                                    forKey:NSLinkAttributeName];
-    NSAttributedString *link = [[NSAttributedString alloc] initWithString:[location lastPathComponent]
-                                                               attributes:url];
-    [str appendAttributedString:link];
-    [str appendAttributedString:[NSString stringWithFormat:@":%ld: %@", line, error]];
-    return str;
 }
 
 - (void)dealloc
