@@ -37,13 +37,23 @@ static NSMutableArray *errs = NULL;
     if (err == NULL)
         return;
     [errs addObject:[[[LuaErrLog alloc] initWithError:err] autorelease]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"luaerr" object:nil];
-    NSLog(@"%@", errs);
+    NSNotification *not = [NSNotification notificationWithName:@"luaerr"
+                                                        object:nil
+                                                      userInfo:[NSDictionary
+                                                                dictionaryWithObject:[errs lastObject]
+                                                                              forKey:@"err"]];
+    [[NSNotificationCenter defaultCenter] postNotification:not];
 }
 
 + (NSArray *)log
 {
     return errs;
+}
+
++ (void)clear
+{
+    [errs release];
+    errs = [[NSMutableArray array] retain];
 }
 
 - (NSString *)description

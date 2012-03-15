@@ -27,6 +27,7 @@
                                              selector:@selector(refreshScriptMenu:)
                                                  name:@"luaerr"
                                                object:nil];
+    scriptLog = [[ScriptList alloc] initWithWindowNibName:@"ScriptList"];
     return self;
 }
 
@@ -319,21 +320,39 @@
     NSMenu *container = [[[NSMenu alloc] initWithTitle:@"Script"] autorelease];
     [parent setSubmenu:container];
     
-    NSLog(@"%ld", [[LuaErrLog log] count]);
-    
     NSMenuItem *errors = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Errors (%ld)", [[LuaErrLog log] count]]
                                                      action:@selector(showScriptErrorLog:)
                                               keyEquivalent:@"s"] autorelease];
+    [errors setEnabled:[[LuaErrLog log] count] > 1];
     [errors setTarget:self];
-    
     [container addItem:errors];
+    
+    NSMenuItem *reset = [[[NSMenuItem alloc] initWithTitle:@"Reload All"
+                                                    action:@selector(reloadScripts:)
+                                             keyEquivalent:@"R"] autorelease];
+    [reset setTarget:self];
+    [container addItem:reset];
+    
+    NSMenuItem *clear = [[[NSMenuItem alloc] initWithTitle:@"Clear Log"
+                                                    action:@selector(clearLog:)
+                                             keyEquivalent:@"C"] autorelease];
+    [clear setTarget:scriptLog];
+    [container addItem:[NSMenuItem separatorItem]];
+    [container addItem:clear];
     return parent;
 }
 
 - (void)showScriptErrorLog:(id)sender
 {
-    ScriptList *b = [[ScriptList alloc] initWithWindowNibName:@"ScriptList"];
-    [[b window] makeKeyAndOrderFront:nil];
+    [[scriptLog window] makeKeyAndOrderFront:nil];
+}
+
+- (void)reloadScripts:(id)sender
+{
+    [LuaErrLog clear];
+    [LuaCommand reset];
+    [[LuaInterop newLua] loadBuiltins];
+    [[LuaInterop lua] loadUserDefined];
 }
 
 - (void)getURL:(NSAppleEventDescriptor *)evt withReplyEvent:(NSAppleEventDescriptor *)replyEvt

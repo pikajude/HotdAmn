@@ -32,6 +32,7 @@ enum {
 - (id)initWithIndex:(int)index commandName:(NSString *)name;
 - (void)executeWithArgs:(NSArray *)args;
 
++ (void)reset;
 + (BOOL)addCommand:(LuaCommand *)cmd;
 + (NSMutableDictionary *)commands;
 + (LuaCommand *)commandWithName:(NSString *)name;

@@ -30,6 +30,7 @@ typedef enum {
     IBOutlet TabBar *barControl;
     Preferences *prefs;
     BOOL topicActive;
+    ScriptList *scriptLog;
 }
 
 @property (readwrite, assign) BOOL isConnected;
@@ -86,6 +87,7 @@ typedef enum {
 - (NSMenuItem *)scriptMenu;
 - (void)showScriptErrorLog:(id)sender;
 - (void)refreshScriptMenu:(id)sender;
+- (void)reloadScripts:(id)sender;
 
 #pragma mark -
 #pragma mark Links

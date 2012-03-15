@@ -16,6 +16,7 @@
 }
 
 + (LuaInterop *)lua;
++ (LuaInterop *)newLua;
 
 - (void)execFile:(NSString *)filePath error:(NSError **)err;
 - (void)executeRegistryFunction:(int)regIndex withObject:(NSArray *)obj;

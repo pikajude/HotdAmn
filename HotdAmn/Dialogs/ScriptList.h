@@ -14,4 +14,7 @@
     IBOutlet NSTextView *errList;
 }
 
+- (void)onError:(NSNotification *)err;
+- (void)clearLog:(id)sender;
+
 @end

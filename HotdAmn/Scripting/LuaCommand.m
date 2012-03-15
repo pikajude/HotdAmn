@@ -44,6 +44,12 @@ static NSMutableDictionary *cmds;
     return YES;
 }
 
++ (void)reset
+{
+    [cmds release];
+    cmds = nil;
+}
+
 + (NSMutableDictionary *)commands
 {
     return cmds;

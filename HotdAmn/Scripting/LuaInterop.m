@@ -19,6 +19,13 @@ static LuaInterop *globalRuntime;
     return globalRuntime;
 }
 
++ (LuaInterop *)newLua
+{
+    [[LuaInterop lua] release];
+    globalRuntime = nil;
+    return [LuaInterop lua];
+}
+
 - (id)init
 {
     self = [super init];

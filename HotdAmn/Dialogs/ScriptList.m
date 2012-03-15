@@ -17,13 +17,28 @@
         // Initialization code here.
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onError:)
+                                                 name:@"luaerr"
+                                               object:nil];
+    
     return self;
 }
 
 - (void)awakeFromNib
 {
-    [errList setString:[[LuaErrLog log] componentsJoinedByString:@"\n"]];
+    [errList setString:[NSString stringWithFormat:@"%@\n", [[LuaErrLog log] componentsJoinedByString:@"\n"]]];
     [[errList textStorage] setFont:[NSFont fontWithName:@"Menlo" size:11.0f]];
+}
+
+- (void)clearLog:(id)sender
+{
+    [errList setString:@""];
+}
+
+- (void)onError:(NSNotification *)err
+{
+    [errList setString:[[errList string] stringByAppendingString:[NSString stringWithFormat:@"%@\n", [[err userInfo] objectForKey:@"err"]]]];
 }
 
 @end

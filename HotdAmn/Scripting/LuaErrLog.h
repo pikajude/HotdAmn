@@ -22,5 +22,6 @@
 
 + (void)logError:(NSError *)err;
 + (NSArray *)log;
++ (void)clear;
 
 @end
