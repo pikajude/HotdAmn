@@ -84,7 +84,7 @@ static UInt32 servNameLength = 16;
     } else {
         qstring = [NSString stringWithFormat:@"code=%@&grant_type=authorization_code", code];
     }
-    NSString *url = [NSString stringWithFormat:@"https://www.deviantart.com/oauth2/draft15/token?client_id=121&client_secret=1b533761582f17a1f5c094d14054af92&%@", qstring];
+    NSString *url = [NSString stringWithFormat:@"https://www.deviantart.com/oauth2/draft15/token?client_id=155&client_secret=b22c63e7193c874e09f866e8ce3f38fd&%@", qstring];
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     
     NSURLResponse *resp;
