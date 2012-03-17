@@ -33,11 +33,11 @@ static LuaInterop *globalRuntime;
         return nil;
     }
     
-    _L = lua_open();
+    _L = luaL_newstate();
     luaL_openlibs(_L);
     
-    luaL_register(_L, "hotdamn", proxylibs);
-    lua_getglobal(_L, "hotdamn");
+    lua_newtable(_L);
+    luaL_setfuncs(_L, proxylibs, 0);
     
     // regular attributes
     lua_pushstring(_L, "arg");

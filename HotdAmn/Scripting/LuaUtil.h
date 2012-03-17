@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "lua.h"
 #import "lualib.h"
 #import "lauxlib.h"
 

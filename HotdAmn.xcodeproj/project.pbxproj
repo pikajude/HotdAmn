@@ -67,6 +67,9 @@
 		25822A4F14E09D7F0004C3EE /* BorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25822A4E14E09D7F0004C3EE /* BorderedView.m */; };
 		258E5B6914CDF72C0041EDF1 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E5B6814CDF72C0041EDF1 /* Growl.framework */; };
 		258E5B6A14CDF7330041EDF1 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 258E5B6814CDF72C0041EDF1 /* Growl.framework */; };
+		259626DC1514163500FE7509 /* lbitlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 259626D71514163500FE7509 /* lbitlib.c */; };
+		259626DD1514163500FE7509 /* lcorolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 259626D81514163500FE7509 /* lcorolib.c */; };
+		259626DE1514163500FE7509 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 259626D91514163500FE7509 /* lctype.c */; };
 		2596C1061507986400A2EB6C /* ScriptList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C1051507986400A2EB6C /* ScriptList.xib */; };
 		2596C55214BF556700CBEB08 /* PrefsGeneral.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596C55014BF556700CBEB08 /* PrefsGeneral.m */; };
 		2596C55514BF577300CBEB08 /* PrefsGeneral.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2596C55414BF577200CBEB08 /* PrefsGeneral.xib */; };
@@ -245,6 +248,11 @@
 		25822A4D14E09D7F0004C3EE /* BorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderedView.h; path = Views/BorderedView.h; sourceTree = "<group>"; };
 		25822A4E14E09D7F0004C3EE /* BorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderedView.m; path = Views/BorderedView.m; sourceTree = "<group>"; };
 		258E5B6814CDF72C0041EDF1 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = HotdAmn/Frameworks/Growl.framework; sourceTree = "<group>"; };
+		259626D51514152F00FE7509 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lua.h; path = Scripting/Bridge/lua.h; sourceTree = "<group>"; };
+		259626D71514163500FE7509 /* lbitlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lbitlib.c; path = Scripting/Bridge/lbitlib.c; sourceTree = "<group>"; };
+		259626D81514163500FE7509 /* lcorolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lcorolib.c; path = Scripting/Bridge/lcorolib.c; sourceTree = "<group>"; };
+		259626D91514163500FE7509 /* lctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lctype.c; path = Scripting/Bridge/lctype.c; sourceTree = "<group>"; };
+		259626DA1514163500FE7509 /* lctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lctype.h; path = Scripting/Bridge/lctype.h; sourceTree = "<group>"; };
 		2596C1051507986400A2EB6C /* ScriptList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptList.xib; path = Scripting/ScriptList.xib; sourceTree = "<group>"; };
 		2596C54F14BF556700CBEB08 /* PrefsGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsGeneral.h; path = Controllers/Preferences/PrefsGeneral.h; sourceTree = "<group>"; };
 		2596C55014BF556700CBEB08 /* PrefsGeneral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsGeneral.m; path = Controllers/Preferences/PrefsGeneral.m; sourceTree = "<group>"; };
@@ -677,6 +685,10 @@
 		25F1718414F350350077DF26 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
+				259626D71514163500FE7509 /* lbitlib.c */,
+				259626D81514163500FE7509 /* lcorolib.c */,
+				259626D91514163500FE7509 /* lctype.c */,
+				259626DA1514163500FE7509 /* lctype.h */,
 				25F1718814F351B80077DF26 /* lapi.c */,
 				25F1718914F351B80077DF26 /* lapi.h */,
 				25F1718A14F351B80077DF26 /* lauxlib.c */,
@@ -720,6 +732,7 @@
 				25F171B014F351B80077DF26 /* ltablib.c */,
 				25F171B114F351B80077DF26 /* ltm.c */,
 				25F171B214F351B80077DF26 /* ltm.h */,
+				259626D51514152F00FE7509 /* lua.h */,
 				25F171B614F351B90077DF26 /* luaconf.h */,
 				25F171B714F351B90077DF26 /* lualib.h */,
 				25F171B814F351B90077DF26 /* lundump.c */,
@@ -938,6 +951,9 @@
 				25DA035B14F952B7008839AF /* GTMNSString+HTML.m in Sources */,
 				25F63486150188BB0012D6A1 /* LuaErrLog.m in Sources */,
 				25BBE1D1150C1E71008A9442 /* ScriptList.m in Sources */,
+				259626DC1514163500FE7509 /* lbitlib.c in Sources */,
+				259626DD1514163500FE7509 /* lcorolib.c in Sources */,
+				259626DE1514163500FE7509 /* lctype.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

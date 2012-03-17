@@ -13,7 +13,7 @@
 + (NSArray *)argTableToArray:(lua_State *)L
 {
     NSMutableArray *ar = [NSMutableArray array];
-    size_t len = lua_objlen(L, -1);
+    size_t len = lua_rawlen(L, -1);
     for (int i = 1; i <= len; i++) {
         lua_pushinteger(L, i);
         lua_gettable(L, -2);
@@ -31,7 +31,7 @@
 + (NSArray *)stringTableToArray:(lua_State *)L
 {
     NSMutableArray *ar = [NSMutableArray array];
-    size_t len = lua_objlen(L, -1);
+    size_t len = lua_rawlen(L, -1);
     for (int i = 1; i <= len; i++) {
         lua_pushinteger(L, i);
         lua_gettable(L, -2);
